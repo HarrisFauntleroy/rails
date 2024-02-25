@@ -26,6 +26,12 @@ To start the server, run the following command:
 rails server
 ```
 
+To run the rails console, run the following command:
+
+```bash
+rails console
+```
+
 ---
 
 Things you may want to cover:
