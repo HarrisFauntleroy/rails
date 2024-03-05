@@ -1,0 +1,21 @@
+<%= form_tag(@category, method: @category.persisted? ? :patch : :post) do %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <ul>
+        <% @category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :name, "Name" %>
+    <%= text_field_tag :name, @category.name %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag @category.persisted? ? "Update" : "Create Category" %>
+  </div>
+<% end %>
