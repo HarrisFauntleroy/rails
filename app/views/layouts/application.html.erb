@@ -11,6 +11,18 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li><%= button_to 'Home', root_path %></li>
+        <!-- Add other navigation links as needed -->
+        <% if user_signed_in? %>
+          <li>Welcome <%= current_user.email %> | <%= button_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= button_to 'Sign in', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
