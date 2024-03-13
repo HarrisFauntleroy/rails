@@ -1,3 +1,17 @@
-<h2><%= @topic.title %></h2>
+<h1><%= @topic.title %></h1>
+
 <p><%= @topic.content %></p>
-<%= link_to 'Back', category_topics_path(@category) %>
+
+
+<h3>Posts</h3>
+
+<% if policy(@topic).create_post? %>
+  <%= link_to "New post", new_topic_post_path(@topic), class: 'btn btn-primary' %> 
+<% end %>
+
+<br />
+
+<p>Does Pundit work here? <%= user_signed_in? %></p> 
+
+<p>Current User: <%= @current_user.inspect %></p>
+<p>Current Topic: <%= @topic.inspect %></p>

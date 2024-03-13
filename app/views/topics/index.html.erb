@@ -1,7 +1,15 @@
-<h1>Topics</h1>
-<ul>
-  <% @topics.each do |topic| %>
-    <li><%= link_to topic.title, category_topic_path(@category, topic) %></li>
-  <% end %>
-</ul>
-<%= link_to 'New Topic', new_category_topic_path(@category) %>
+<h1><%= @category.name %> Topics</h1>
+
+<% @topics.each do |topic| %>
+  <div>
+    <%= link_to topic.title, [@category, topic] %>
+  </div>
+<% end %>
+
+<%= link_to 'New Topic', new_category_topic_path(@category) if can?(:create, Topic) %>
+
+<br />
+
+<p>Does Pundit work here? <%= user_signed_in? %></p> 
+
+<p>Current User: <%= @current_user.inspect %></p>

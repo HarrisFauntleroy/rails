@@ -1,6 +1,27 @@
-<h1>Categories</h1>
+<h1>Forums</h1>
+
 <ul>
   <% @categories.each do |category| %>
-    <li><%= link_to category.name, category %></li>
+    <li>
+      <%= link_to category.name, category%> 
+      <% if authorized_to_edit?(category) %> 
+        <%= link_to 'Edit', edit_category_path(category) %>
+      <% end %>
+      <% if authorized_to_destroy?(category) %>
+        <%= button_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
+
+<%= link_to "Back", :back, class: 'btn btn-secondary' %>
+
+<br />
+
+<% if @current_user&.admin? %>
+  <%= link_to 'Create New Category', new_category_path %>
+<% end %>
+
+<p>Does Pundit work here? <%= user_signed_in? %></p> 
+
+<p>Current User: <%= @current_user.inspect %></p>

@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Forum</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <!-- Add custom stylesheets and scripts here -->
+  <%= yield(:head) %>
+</head>
+<body>
+  <header>
     <nav>
-      <ul>
-        <li><%= button_to 'Home', root_path %></li>
-        <!-- Add other navigation links as needed -->
+        <div><%= link_to 'Home', root_path %></div>
         <% if user_signed_in? %>
-          <li>Welcome <%= current_user.email %> | <%= button_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+          <div>Welcome <%= current_user.email %></div> 
+          <div><%= button_to 'Sign out', destroy_user_session_path, method: :delete %></div>
         <% else %>
-          <li><%= button_to 'Sign in', new_user_session_path %></li>
+          <div><%= button_to 'Sign in', new_user_session_path %></div>
         <% end %>
-      </ul>
     </nav>
+  </header>
 
+  <main>
     <%= yield %>
-  </body>
+  </main>
+
+  <footer>
+    <!-- Add footer content here -->
+  </footer>
+</body>
 </html>

@@ -1,3 +1,31 @@
-<h2><%= @category.name %></h2>
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<h1><%= @category.name %></h1>
+
+<% if @category.topics.any? %>
+  <h2>Topics:</h2>
+  <br />
+  <% @category.topics.each do |topic| %>
+    <div>
+      <%= link_to topic.title, [@category, topic] %>
+    </div>
+  <% end %>
+<% else %>
+  <p>There are no topics in this category yet.</p>
+<% end %>
+
+<br />
+
+<% if policy(@category).create_topic? %>
+<%= link_to "New Topic", new_category_topic_path(@category), class: 'btn btn-primary' %> 
+<% end %>
+
+<%= link_to "Back", :back, class: 'btn btn-secondary' %>
+
+<br />
+
+<% if policy(@category).edit? %>
+  <%= link_to 'Edit', edit_category_path(@category) %>
+<% end %>
+
+<p>Does Pundit work here? <%= user_signed_in? %></p> 
+
+<p>Current User: <%= @current_user.inspect %></p>

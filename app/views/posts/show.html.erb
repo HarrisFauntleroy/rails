@@ -1,0 +1,9 @@
+<h1><%= @post.content %></h1> 
+<p>by <%= @post.user.email %></p> 
+
+<% if can?(:edit, @post) %>
+  <%= link_to 'Edit', edit_topic_post_path(@topic, @post) %>
+<% end %>
+<% if can?(:destroy, @post) %>
+  <%= link_to 'Delete', [@topic, @post], method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
