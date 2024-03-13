@@ -13,3 +13,147 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5% /* makes 1rem 10px */
+}
+
+body {
+    font-size: 1.6em; /* default font of 16px */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-display: swap;
+    line-height: 1.3;
+    color: #373737;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+}
+
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.category-title {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.main-menu a {
+  color: #000;
+  text-decoration: none;
+}
+
+.categories {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.categories h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.categories ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.categories li {
+  margin-bottom: 5px;
+}
+
+.members {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.members h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.members ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.members li {
+  margin-bottom: 5px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* Basic button style */
+.btn { 
+  display: inline-block;
+  padding: 0.5rem 1rem; 
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+ }
+
+/* Primary button */
+.btn-primary {
+  background-color: #0d6efd; 
+  color: #fff;
+  border-color: #0d6efd; 
+}
+
+.btn-primary:hover { 
+  background-color: #0b5ed7; 
+}
+
+/* Secondary button */
+.btn-secondary {
+  background-color: #6c757d; 
+  color: #fff;
+  border-color: #6c757d; 
+}
+
+.btn-secondary:hover { 
+  background-color: #5c636a;
+}
