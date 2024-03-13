@@ -1,14 +1,31 @@
 class PostsController < ApplicationController
-  before_action :set_category
-  before_action :set_topic
-  before_action :set_post, only: [:edit, :update, :destroy]
+  include Pundit 
+  
+  before_action :set_topic, only: [:new, :create]
+
+  def index
+    @posts = Post.all
+    @current_user = current_user
+  end
+
+  def show
+    @post = Post.find(params[:id]) 
+  end
+
+  def new
+    @post = Post.new
+    @current_user = current_user
+  end
 
   def create
-    @post = @topic.posts.new(post_params)
+    @post = Post.new(post_params)
+    @post.user = current_user
+    authorize @post
+  
     if @post.save
-      redirect_to category_topic_path(@category, @topic), notice: 'Post was successfully created.'
+      redirect_to topic_post_path(@topic, @post), notice: 'Post created!' # Change here
     else
-      render 'topics/show'
+      render :new
     end
   end
 
@@ -17,31 +34,26 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to category_topic_path(@category, @topic), notice: 'Post was successfully updated.'
+      redirect_to post_path(@post), notice: 'Post updated!'
     else
       render :edit
     end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    authorize @post # Ensure Pundit authorization
     @post.destroy
-    redirect_to category_topic_path(@category, @topic), notice: 'Post was successfully destroyed.'
+    redirect_to posts_path, notice: 'Post deleted!'
   end
 
   private
-    def set_category
-      @category = Category.find(params[:category_id])
-    end
 
-    def set_topic
-      @topic = @category.topics.find(params[:topic_id])
-    end
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
+  end
 
-    def set_post
-      @post = @topic.posts.find(params[:id])
-    end
-
-    def post_params
-      params.require(:post).permit(:content)
-    end
+  def post_params
+    params.require(:post).permit(:title, :content) 
+ end
 end
