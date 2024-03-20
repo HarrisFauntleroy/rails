@@ -1,27 +1,40 @@
 require 'rails_helper'
 
-RSpec.describe CategoryPolicy, type: :policy do
-  let(:user) { User.new }
+RSpec.describe CategoryPolicy do
+  subject { described_class.new(user, category) } 
 
-  subject { described_class }
+  let(:category) { FactoryBot.create(:category) }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context "for unauthenticated visitors" do
+    let(:user) { nil } 
+
+    it { should permit(:index) }
+    it { should permit(:show)  }
+    it { should_not permit(:create) }
+    it { should_not permit(:edit)  }
+    it { should_not permit(:update)  }
+    it { should_not permit(:destroy)  }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context "for regular users" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it { should permit(:index) }
+    it { should permit(:show)  }
+    it { should_not permit(:create) }
+    it { should_not permit(:edit)  }
+    it { should_not permit(:update)  }
+    it { should_not permit(:destroy)  }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context "for admins" do
+    let(:user) { FactoryBot.create(:user, admin: true) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { should permit(:index) }
+    it { should permit(:show)  }
+    it { should permit(:create) }
+    it { should permit(:edit)  }
+    it { should permit(:update)  }
+    it { should permit(:destroy)  }
   end
 end

@@ -22,14 +22,33 @@
           <div><%= button_to 'Sign in', new_user_session_path %></div>
         <% end %>
     </nav>
+    <br />
+    <section class="search-bar">
+      <input />
+    </section>
   </header>
 
-  <main>
-    <%= yield %>
+
+
+  <main class="content-area">
+    <div class="container">
+    <aside class="sidebar">
+      <h3>Main Menu</h3> 
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Forum', categories_path %></li>  
+      </ul>
+    </aside>
+  
+
+      <div class="main-content">
+        <%= yield %> </div>
+    </div>
   </main>
 
-  <footer>
-    <!-- Add footer content here -->
+  <footer class="site-footer">
+    <div class="container">
+      </div>
   </footer>
 </body>
 </html>

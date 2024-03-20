@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'factory_bot_rails'
 
 RSpec.describe TopicPolicy, type: :policy do
   let(:user) { User.new }

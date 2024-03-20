@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include Pundit 
+  include Pundit::Authorization
 
   def authorized_to_create?(record)
     policy(record).create?
