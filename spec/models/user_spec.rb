@@ -15,9 +15,20 @@ RSpec.describe User, type: :model do
   end 
   it "can have many posts" do
     user = create(:user)
-    post1 = create(:post, user: user) # Assuming you have a Post factory
+    post1 = create(:post, user: user)
     post2 = create(:post, user: user)
 
     expect(user.posts).to include(post1, post2)
+  end
+  describe "User roles" do
+    it "defaults to a regular user" do
+      user = build(:user)
+      expect(user.admin).to be false
+    end
+
+    it "can be an admin" do
+      admin_user = build(:user, admin: true)
+      expect(admin_user.admin).to be true
+    end
   end
 end
