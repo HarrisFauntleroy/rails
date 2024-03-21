@@ -44,6 +44,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     authorize @category # Ensure Pundit authorization
     @category.destroy
+
+    flash[:notice] = 'Category has been deleted successfully'
+
     redirect_to categories_path, notice: 'Category deleted!'
   end
 
