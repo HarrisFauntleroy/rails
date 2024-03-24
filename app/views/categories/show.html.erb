@@ -1,16 +1,27 @@
-<h1><%= @category.name %></h1>
-
-<% if @category.topics.any? %>
-  <h2>Topics:</h2>
-  <br />
-  <% @category.topics.each do |topic| %>
-    <div>
-      <%= link_to topic.title, [@category, topic] %>
+<div class="custom-card">
+  <div class="card-header">
+    <div class="header-content">
+      <img src="/images/bullet.png" alt="Blue circle"> 
+      <span>Forums</span> 
     </div>
-  <% end %>
-<% else %>
-  <p>There are no topics in this category yet.</p>
-<% end %>
+  </div>
+  <div class="card-body">
+    <% if @category.topics.any? %>
+      <h2><%= @category.name %></h2>
+      <br />
+      <% @category.topics.each do |topic| %>
+        <div>
+          <%= link_to topic.title, [@category, topic] %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>There are no topics in this category yet.</p>
+    <% end %>
+  </div>
+</div>
+
+
+
 
 <br />
 

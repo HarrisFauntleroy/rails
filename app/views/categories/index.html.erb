@@ -1,18 +1,29 @@
-<h1>Forums</h1>
+<div class="custom-card">
+  <div class="card-header">
+    <div class="header-content">
+      <img src="/images/bullet.png" alt="Blue circle"> 
+      <span>Forums</span> 
+    </div>
+  </div>
+  <div class="card-body">
+    <ul>
+      <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.name, category%> 
+          <% if authorized_to_edit?(category) %> 
+            <%= link_to 'Edit', edit_category_path(category) %>
+          <% end %>
+          <% if authorized_to_destroy?(category) %>
+            <%= button_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category%> 
-      <% if authorized_to_edit?(category) %> 
-        <%= link_to 'Edit', edit_category_path(category) %>
-      <% end %>
-      <% if authorized_to_destroy?(category) %>
-        <%= button_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+
+
 
 <%= link_to "Back", :back, class: 'btn btn-secondary' %>
 

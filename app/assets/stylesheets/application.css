@@ -117,3 +117,50 @@ main {
 .btn-secondary:hover { 
   background-color: #5c636a;
 }
+
+/* ================ ================ ================ */
+
+/* Overall Card Container */
+.custom-card {
+  font-family: verdana, tahoma, arial, helvetica, sans-serif;
+  font-size: 10px;
+  background: #DAE7F3;
+  color: #000;
+  border-radius: 4px;
+  box-shadow: 
+    #505559 0px 0px 1px 2px, 
+    #5a5e62 0px 4px 6px -1px, 
+    #8b8d90 0px 1px 0px inset; 
+}
+
+/* Header Section */
+.custom-card .card-header {
+  height: 18px; 
+  font-size: 10px;
+  font-family: verdana, tahoma, arial, sans-serif;
+  color: #FFF;
+  background: linear-gradient(#c7d3e6 10%, #869ac0 40%, #8d9fc2 50%);
+  border-bottom: 1px solid black;
+}
+
+.custom-card .card-header .header-content { 
+  background: linear-gradient(#6c7e9e 50%, #5b6c8e 50%);
+  display: flex; /* Inferred from <Flex> */
+  align-items: center;
+  gap: 4px; 
+  height: 100%; 
+  padding: 0 24px 0 4px; 
+  border-radius: 0 11px 3px 0; 
+}
+
+.custom-card .card-header img {
+  height: 10px;
+  width: 10px;
+}
+
+/* Card Body */
+.custom-card .card-body {
+  padding: 4px 5px 5px 4px;
+}
+
+/* ================ ================ ================ */

@@ -33,11 +33,25 @@
   <main class="content-area">
     <div class="container">
     <aside class="sidebar">
-      <h3>Main Menu</h3> 
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Forum', categories_path %></li>  
-      </ul>
+      <div class="custom-card">
+        <div class="card-header">
+          <div class="header-content">
+            <img src="/images/bullet.png" alt="Blue circle"> 
+            <span>Main Menu</span> 
+          </div>
+        </div>
+        <div class="card-body">
+        <ul>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Forum', categories_path %></li>  
+          <li><%= link_to 'Members', categories_path %></li>  
+          <li><%= link_to 'Member Map', categories_path %></li>  
+          <li><%= link_to 'HvWiki', categories_path %></li>  
+          <li><%= link_to 'Chat Room', categories_path %></li>  
+          <li><%= link_to 'Site Rules', site_rules_path %></li>  
+        </ul>
+        </div>
+      </div>
     </aside>
   
 
