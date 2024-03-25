@@ -13,15 +13,9 @@
 </head>
 <body>
   <header>
-    <nav>
-        <div><%= link_to 'Home', root_path %></div>
-        <% if user_signed_in? %>
-          <div>Welcome <%= current_user.email %></div> 
-          <div><%= button_to 'Sign out', destroy_user_session_path, method: :delete %></div>
-        <% else %>
-          <div><%= button_to 'Sign in', new_user_session_path %></div>
-        <% end %>
-    </nav>
+    <div class="banner-container">
+      <%= image_tag("logo.png", width: 200) %>
+    </div>
     <br />
     <section class="search-bar">
       <input />
@@ -32,37 +26,137 @@
 
   <main class="content-area">
     <div class="container">
-    <aside class="sidebar">
-      <div class="custom-card">
-        <div class="card-header">
-          <div class="header-content">
-            <img src="/images/bullet.png" alt="Blue circle"> 
-            <span>Main Menu</span> 
+      <aside class="sidebar">
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Main Menu</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>
+                <%= link_to 'Home' , root_path %>
+              </li>
+              <li>
+                <%= link_to 'Forum' , categories_path %>
+              </li>
+              <li>
+                <%= link_to 'Members' , categories_path %>
+              </li>
+              <li>
+                <%= link_to 'Member Map' , categories_path %>
+              </li>
+              <li>
+                <%= link_to 'HvWiki' , categories_path %>
+              </li>
+              <li>
+                <%= link_to 'Chat Room' , categories_path %>
+              </li>
+              <li>
+                <%= link_to 'Site Rules' , site_rules_path %>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="card-body">
-        <ul>
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Forum', categories_path %></li>  
-          <li><%= link_to 'Members', categories_path %></li>  
-          <li><%= link_to 'Member Map', categories_path %></li>  
-          <li><%= link_to 'HvWiki', categories_path %></li>  
-          <li><%= link_to 'Chat Room', categories_path %></li>  
-          <li><%= link_to 'Site Rules', site_rules_path %></li>  
-        </ul>
+
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Welcome</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <nav>
+              <div>
+                <%= link_to 'Home' , root_path %>
+              </div>
+              <% if user_signed_in? %>
+                <div>
+                  Welcome <%= current_user.email %>
+                </div>
+                <div>
+                  <%= button_to 'Sign out' , destroy_user_session_path, method: :delete %>
+                </div>
+              <% else %>
+                <div>
+                  <%= button_to 'Sign in' , new_user_session_path %>
+                </div>
+              <% end %>
+            </nav>
+          </div>
         </div>
-      </div>
-    </aside>
-  
+
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Online</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>todo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Members Birthdays:</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>todo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Contact</span>
+            </div>
+          </div>
+          <div class="card-body">
+            If you need assistance, please send an email to forum at 4hv dot org. To ensure your email is not marked as
+            spam, please include the phrase "4hv help" in the subject line. You can also find assistance via IRC, at
+            irc.shadowworld.net, room #hvcomm.
+          </div>
+        </div>
+
+        <div class="custom-card">
+          <div class="card-header">
+            <div class="header-content">
+              <%= image_tag("bullet.png") %>
+                <span>Support 4hv.org!</span>
+            </div>
+          </div>
+          <div class="card-body">
+            Donate: 4hv.org is hosted on a dedicated server. Unfortunately, this server costs and we rely on the help of
+            site members to keep 4hv.org running. Please consider donating. We will place your name on the thanks list
+            and you'll be helping to keep 4hv.org alive and free for everyone. Members whose names appear in red bold
+            have donated recently. Green bold denotes those who have recently donated to keep the server carbon neutral.
+          </div>
+        </div>
+      </aside>
+
 
       <div class="main-content">
-        <%= yield %> </div>
+        <%= yield %>
+      </div>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      </div>
+    </div>
   </footer>
 </body>
 </html>
