@@ -14,6 +14,8 @@
  *= require_self
  */
 
+/* ---- Layout ----  */
+
 * {
     margin: 0;
     padding: 0;
@@ -25,16 +27,15 @@ html {
 }
 
 body {
-    font-size: 1.6em; /* default font of 16px */
+    font-size: 1.6rem; /* default font of 16px */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     font-display: swap;
-    line-height: 1.3;
+    line-height: 1.5;
     color: #373737;
     background-color: #E7E7E7;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
 }
 
 header {
@@ -46,7 +47,7 @@ header .banner-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  padding: 0.5rem;
 }
 
 .banner-container img {
@@ -62,6 +63,7 @@ header .search-bar {
 }
 
 main {
+  max-width: 100%;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -69,16 +71,14 @@ main {
 
 .container {
   display: flex;
-  flex-direction: row;
   flex-grow: 1;
+  width: 100%;
 }
 
 .sidebar {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  min-width: 200px;
-  max-width: 20%;
+  flex-grow: 0; /* Prevent sidebar from expanding beyond its content */
+  flex-basis: 200px; /* Minimum width */
+  max-width: 20%; 
 }
 
 .sidebar ul {
@@ -86,44 +86,131 @@ main {
 }
 
 .main-content {
-  display: flex;
   flex-grow: 1;
+  width: 100%; /* Allow to fill available width */
+}
+
+/* Layout Helpers - Reusable */
+
+.flex-column {
+  display: flex;
   flex-direction: column;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.gap-4 {
+  gap: 0.5rem; /* Use rem for spacing */
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+/* ---- Button ----  */
+
 .btn { 
-  display: inline-block;
+  flex: 1;
+  max-width: max-content;
+  display: flex;
   padding: 0.5rem 1rem; 
   border: 1px solid transparent;
   border-radius: 0.25rem;
   text-decoration: none;
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s
  }
 
-.btn-primary {
-  background-color: #0d6efd; 
-  color: #fff;
-  border-color: #0d6efd; 
+ .btn-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.btn-primary:hover { 
-  background-color: #0b5ed7; 
+.btn-primary {
+  background-color: #1971C2; 
+  color: #fff;
+  border-color: #1864AB; 
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #4DABF7;
+  border-color: #4DABF7;
 }
 
 .btn-secondary {
-  background-color: #6c757d; 
+  background-color: #E8590C; 
   color: #fff;
-  border-color: #6c757d; 
+  border-color: #D9480F; 
 }
 
-.btn-secondary:hover { 
-  background-color: #5c636a;
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+  background-color: #FFA94D;
+  border-color: #FFA94D;
 }
 
-/* ================ ================ ================ */
+.btn-tertiary {
+  background-color: #343A40; 
+  color: #fff;
+  border-color: #212529; 
+}
 
-/* Overall Card Container */
+.btn-tertiary:hover,
+.btn-tertiary:focus,
+.btn-tertiary:active {
+  background-color: #CED4DA;
+  border-color: #CED4DA;
+  color: #000;
+}
+
+.btn-success {
+  background-color: #2F9E44; 
+  color: #fff;
+  border-color: #2B8A3E; 
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background-color: #69DB7C;
+  border-color: #69DB7C;
+}
+
+.btn-danger {
+  background-color: #E03131; 
+  color: #fff;
+  border-color: #C92A2A; 
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+  background-color: #FF8787;
+  border-color: #FF8787;
+}
+
+/* Card */
+
 .custom-card {
+  max-width: 100%;
   font-family: verdana, tahoma, arial, helvetica, sans-serif;
   font-size: 10px;
   background: #DAE7F3;
@@ -135,7 +222,6 @@ main {
     #8b8d90 0px 1px 0px inset; 
 }
 
-/* Header Section */
 .custom-card .card-header {
   height: 18px; 
   font-size: 10px;
@@ -147,7 +233,7 @@ main {
 
 .custom-card .card-header .header-content { 
   background: linear-gradient(#6c7e9e 50%, #5b6c8e 50%);
-  display: flex; /* Inferred from <Flex> */
+  display: flex;
   align-items: center;
   gap: 4px; 
   height: 100%; 
@@ -160,9 +246,14 @@ main {
   width: 10px;
 }
 
-/* Card Body */
 .custom-card .card-body {
   padding: 4px 5px 5px 4px;
 }
 
-/* ================ ================ ================ */
+/* Category */
+
+.category-title {
+  color: #716d6d;
+  font-size: 12px;
+  text-decoration: underline;
+}
