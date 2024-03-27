@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   include Pundit 
   
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  # A Rails callback. Executes `set_category` *before* running the actions: show, edit, update, and destroy.
+
 
   def index
     @categories = Category.all
@@ -54,9 +56,11 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+      #  Finds a Category by ID. Used by the 'before_action' to streamline several actions. 
   end
-
+  
   def category_params
     params.require(:category).permit(:name)
+      # Defines "strong parameters" for security - Permits only the 'name' attribute in the parameters sent when creating/editing a category.
   end
 end

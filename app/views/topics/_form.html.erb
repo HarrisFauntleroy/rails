@@ -1,17 +1,27 @@
-<%= form_with(model: [@category, topic], url: category_topics_path(@category), local: true) do |form| %>
-  <div>
+<%= form_with(model: [@category, topic], local: true) do |form| %>
+  <% if topic.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+      <ul>
+        <% topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="stack">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
+  <div class="stack">
     <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="btn-group">
+    <%= link_to "Go Back", :back, class: 'btn btn-tertiary' %>
+    <%= form.submit class: 'btn btn-success' %>
   </div>
 <% end %>
-
-<%= link_to "Back", :back, class: 'btn btn-secondary' %>

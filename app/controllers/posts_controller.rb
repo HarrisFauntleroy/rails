@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   end
 
   def new
+    @category = Category.find(params[:category_id])
+    @topic = Topic.find(params[:topic_id])
     @post = Post.new
     @current_user = current_user
   end

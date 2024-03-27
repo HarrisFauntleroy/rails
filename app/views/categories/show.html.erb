@@ -20,23 +20,10 @@
   </div>
 </div>
 
-
-
-
 <br />
 
 <% if policy(@category).create_topic? %>
-<%= link_to "New Topic", new_category_topic_path(@category), class: 'btn btn-primary' %> 
+  <%= link_to "New Topic", new_category_topic_path(@category), class: 'btn btn-primary' %> 
 <% end %>
 
-<%= link_to "Back", :back, class: 'btn btn-secondary' %>
-
-<br />
-
-<% if policy(@category).edit? %>
-  <%= link_to 'Edit', edit_category_path(@category) %>
-<% end %>
-
-<p>Does Pundit work here? <%= user_signed_in? %></p> 
-
-<p>Current User: <%= @current_user.inspect %></p>
+<%= link_to "Go Back", :back, class: 'btn btn-tertiary' %>
