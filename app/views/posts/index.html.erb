@@ -3,13 +3,19 @@
 <% @posts.each do |post| %>
   <div>
     <h4><%= post.content %></h4>
-    <p>by <%= post.user.email %></p>
-    <%= link_to 'Show', [@topic, post] %>
-    <% if can?(:edit, post) %> 
-      <%= link_to 'Edit', edit_topic_post_path(@topic, post) %>
+    <p>by
+      <%= post.user.email %></p>
+    <%= link_to "Show", [@topic, post] %>
+    <% if can?(:edit, post) %>
+      <%= link_to "Edit", edit_topic_post_path(@topic, post) %>
     <% end %>
     <% if can?(:destroy, post) %>
-      <%= link_to 'Delete', [@topic, post], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Delete",
+      [@topic, post],
+      method: :delete,
+      data: {
+        confirm: "Are you sure?",
+      } %>
     <% end %>
   </div>
 <% end %>

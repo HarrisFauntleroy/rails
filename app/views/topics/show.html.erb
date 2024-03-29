@@ -1,17 +1,40 @@
-<h1><%= @topic.title %></h1>
+<div class="custom-card">
+  <div class="custom-card">
+    <div class="card-body">
+      <h1><%= @topic.title %></h1>
+      <p><%= @topic.content %></p>
 
-<p><%= @topic.content %></p>
-
-
-<h3>Posts</h3>
-
-<% if policy(@topic).create_post? %>
-  <%= link_to "New post", new_topic_post_path(@topic), class: 'btn btn-primary' %> 
-<% end %>
-
-<br />
-
-<p>Does Pundit work here? <%= user_signed_in? %></p> 
-
-<p>Current User: <%= @current_user.inspect %></p>
-<p>Current Topic: <%= @topic.inspect %></p>
+      <% if @topic.posts.any? %>
+        <br/>
+        <hr/>
+        <br/>
+        <% @topic.posts.each do |post| %>
+          <div class="post">
+            <p class="post-info">
+              Posted by
+              <%= post.user.email %>
+              on
+              <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
+            </p>
+            <div class="post-content">
+              <%= post.content %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <br/>
+        <hr/>
+        <br/>
+        <p>There are no comments in this thread yet.</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="btn-group">
+    <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
+    <% if policy(@topic).create_post? %>
+      <%= link_to "New Comment",
+      new_category_topic_post_path(@category, @topic),
+      class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

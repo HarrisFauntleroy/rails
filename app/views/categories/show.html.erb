@@ -1,29 +1,49 @@
 <div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <img src="/images/bullet.png" alt="Blue circle"> 
-      <span>Forums</span> 
+  <div class="custom-card">
+    <div class="card-header">
+      <div class="header-content">
+        <%= image_tag("bullet.png") %>
+        <span>Forums</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <% if @category.topics.any? %>
+        <h2><%= @category.name %></h2>
+        <br/>
+        <% @category.topics.each do |topic| %>
+          <div style="display: flex; justify-content: space-between;">
+            <%= link_to topic.title, [@category, topic] %>
+            <div class="btn-group">
+              <% if policy(topic).edit? %>
+                <%= link_to "Edit",
+                edit_category_topic_path(@category, topic),
+                { class: "btn btn-primary" } %>
+              <% end %>
+              <% if policy(topic).destroy? %>
+                <%= button_to "Delete",
+                [@category, topic],
+                class: "btn btn-danger",
+                method: :delete,
+                form: {
+                  data: {
+                    turbo_confirm: "Are you sure?",
+                  },
+                } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>There are no topics in this category yet.</p>
+      <% end %>
     </div>
   </div>
-  <div class="card-body">
-    <% if @category.topics.any? %>
-      <h2><%= @category.name %></h2>
-      <br />
-      <% @category.topics.each do |topic| %>
-        <div>
-          <%= link_to topic.title, [@category, topic] %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>There are no topics in this category yet.</p>
+  <div class="btn-group">
+    <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
+    <% if policy(@category).create_topic? %>
+      <%= link_to "New Thread",
+      new_category_topic_path(@category),
+      class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
-
-<br />
-
-<% if policy(@category).create_topic? %>
-  <%= link_to "New Topic", new_category_topic_path(@category), class: 'btn btn-primary' %> 
-<% end %>
-
-<%= link_to "Go Back", :back, class: 'btn btn-tertiary' %>

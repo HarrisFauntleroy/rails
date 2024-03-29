@@ -1,7 +1,8 @@
 <%= form_with(model: category, local: true) do |form| %>
   <% if category.errors.any? %>
     <div class="error_messages">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h2><%= pluralize(category.errors.count, "error") %>
+        prohibited this category from being saved:</h2>
       <ul>
         <% category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -16,7 +17,7 @@
   </div>
 
   <div class="btn-group">
-    <%= link_to "Go Back", :back, class: 'btn btn-tertiary' %>
-    <%= form.submit class: 'btn btn-success' %>
+    <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
+    <%= form.submit "Create Forum", class: "btn btn-success" %>
   </div>
 <% end %>
