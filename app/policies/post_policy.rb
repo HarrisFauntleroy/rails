@@ -22,4 +22,8 @@ class PostPolicy < ApplicationPolicy
   def destroy?
     edit?
   end
+
+  def create_post?
+    user.present? 
+  end
 end

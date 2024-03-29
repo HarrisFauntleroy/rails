@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     @category.user = current_user
-    authorize @category # Authorize before saving
+    authorize @category
 
     if @category.save
       redirect_to categories_path, notice: 'Category created!'
@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    authorize @category # Ensure Pundit authorization
+    authorize @category
     @category.destroy
 
     flash[:notice] = 'Category has been deleted successfully'

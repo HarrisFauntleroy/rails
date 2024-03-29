@@ -19,7 +19,7 @@ class TopicPolicy
   end
 
   def edit?
-    user.present
+    user.present?
   end
 
   def update?
@@ -31,6 +31,10 @@ class TopicPolicy
   end
 
   def create_post?
+    user.present? 
+  end
+
+  def create_topic?
     user.present? 
   end
 end

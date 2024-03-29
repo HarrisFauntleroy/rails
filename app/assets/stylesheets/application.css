@@ -131,7 +131,6 @@ main {
   border-radius: 0.25rem;
   text-decoration: none;
   cursor: pointer;
-  font-weight: 500;
   transition: background-color 0.2s, border-color 0.2s
  }
 
@@ -139,6 +138,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 0.25rem;
 }
 
 .btn-primary {

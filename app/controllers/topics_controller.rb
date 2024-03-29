@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   include Pundit 
   
-  before_action :set_category, only: [:new, :create]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
     @topics = Topic.all
@@ -9,6 +9,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @category = Category.find(params[:category_id])
     @topic = Topic.find(params[:id]) 
   end
 
@@ -19,23 +20,29 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params)
+    @category = Category.find(params[:category_id])
+    @topic = @category.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
   
     if @topic.save
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic created!' # Change here
+      redirect_to category_topic_path(@category, @topic), notice: 'Topic created!'
     else
       render :new
     end
   end
 
   def edit
+    if @topic.update(topic_params)
+      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
+    else
+      render :edit
+    end
   end
 
   def update
     if @topic.update(topic_params)
-      redirect_to topic_path(@topic), notice: 'Topic updated!'
+      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
     else
       render :edit
     end
@@ -43,15 +50,18 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
-    authorize @topic # Ensure Pundit authorization
+    authorize @topic
     @topic.destroy
-    redirect_to topics_path, notice: 'Topic deleted!'
+
+    flash[:notice] = 'Topic has been deleted successfully'
+
+    redirect_to category_topic_path(@category, @topic), notice: 'Topic deleted!'
   end
 
   private
 
-  def set_category
-    @category = Category.find(params[:category_id])
+  def set_topic
+    @topic = Topic.find(params[:id])
   end
 
   def topic_params

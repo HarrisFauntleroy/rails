@@ -75,3 +75,5 @@ end
 
 gem "devise", "~> 4.9"
 gem "pundit"
+
+gem "erb-formatter", "~> 0.7.2"
