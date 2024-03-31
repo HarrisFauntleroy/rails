@@ -7,11 +7,11 @@ class UserPolicy < ApplicationPolicy
     def show?
       true # Anyone can view user profiles
     end
-  
+
     def update?
       user.admin? || user == record
     end
-  
+
     def destroy?
       user.admin? || user == record
     end

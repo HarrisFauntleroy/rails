@@ -2,18 +2,18 @@ class StaticPagesController < ApplicationController
   def site_rules
   end
 
-  def index 
+  def index
   end
 
-  def create 
+  def create
   end
 
-  def edit 
+  def edit
   end
 
-  def update 
+  def update
   end
 
-  def destroy 
+  def destroy
   end
 end

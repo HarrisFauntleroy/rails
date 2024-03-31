@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-  include Pundit 
-  
+  include Pundit
+
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,7 +10,7 @@ class TopicsController < ApplicationController
 
   def show
     @category = Category.find(params[:category_id])
-    @topic = Topic.find(params[:id]) 
+    @topic = Topic.find(params[:id])
 
     add_breadcrumb "4hv.org", root_path
     add_breadcrumb "Forums", categories_path
@@ -29,9 +29,9 @@ class TopicsController < ApplicationController
     @topic = @category.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
-  
+
     if @topic.save
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic created!'
+      redirect_to category_topic_path(@category, @topic), notice: "Topic created!"
     else
       render :new
     end
@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
+      redirect_to category_topic_path(@category, @topic), notice: "Topic updated!"
     else
       render :edit
     end
@@ -53,8 +53,8 @@ class TopicsController < ApplicationController
     @category = @topic.category
     authorize @topic
     @topic.destroy
-  
-    redirect_to category_path(@category), notice: 'Topic deleted!' 
+
+    redirect_to category_path(@category), notice: "Topic deleted!"
   end
 
   private
@@ -64,6 +64,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content) 
+    params.require(:topic).permit(:title, :content)
   end
 end

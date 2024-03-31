@@ -7,9 +7,9 @@
       <div style="display: flex; justify-content: space-between;">
         <div>
           <%= link_to topic.title, [@category, topic] %>
-          <p class="topic-meta">
+          <p class="topic-info">
             By:
-            <%= topic.user.username %>
+            <%= link_to topic.user.username, user_url(topic.user) %>
             | Created:
             <%= topic.created_at.strftime("%d %b %Y") %>
             | Replies:

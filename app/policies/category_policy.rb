@@ -15,7 +15,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? 
+    user.admin?
   end
 
   def edit?
@@ -31,6 +31,6 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create_topic?
-    user.present? 
+    user.present?
   end
 end

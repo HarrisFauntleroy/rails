@@ -18,10 +18,10 @@ module ApplicationHelper
       "forums"
     elsif request.path.include?("/wikis")
       "wiki"
-    elsif request.path.include?("/members") 
+    elsif request.path.include?("/members")
       "member map"
     else
-      "unknown" 
+      "unknown"
     end
   end
 end

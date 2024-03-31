@@ -1,10 +1,10 @@
 class PostPolicy < ApplicationPolicy
   def index?
-    true 
+    true
   end
 
   def show?
-    true 
+    true
   end
 
   def create?
@@ -24,6 +24,6 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create_post?
-    user.present? 
+    user.present?
   end
 end

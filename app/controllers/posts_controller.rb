@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  include Pundit 
-  
+  include Pundit
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     @category = Category.find(params[:category_id])
     @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:id]) 
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -27,9 +27,9 @@ class PostsController < ApplicationController
     @post = @topic.posts.build(post_params)
     @post.user = current_user
     authorize @post
-  
+
     if @post.save
-      redirect_to category_topic_post_path(@category, @topic, @post), notice: 'Post created!'
+      redirect_to category_topic_post_path(@category, @topic, @post), notice: "Post created!"
     else
       render :new
     end
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to category_topic_post_path(@post), notice: 'Post updated!'
+      redirect_to category_topic_post_path(@post), notice: "Post updated!"
     else
       render :edit
     end
@@ -51,9 +51,9 @@ class PostsController < ApplicationController
     authorize @post
     @post.destroy
 
-    flash[:notice] = 'Post has been deleted successfully'
+    flash[:notice] = "Post has been deleted successfully"
 
-    redirect_to posts_path, notice: 'Post deleted!'
+    redirect_to posts_path, notice: "Post deleted!"
   end
 
   private
@@ -63,6 +63,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content) 
- end
+    params.require(:post).permit(:content)
+  end
 end

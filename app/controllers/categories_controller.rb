@@ -1,9 +1,8 @@
 class CategoriesController < ApplicationController
-  include Pundit 
-  
+  include Pundit
+
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   # A Rails callback. Executes `set_category` *before* running the actions: show, edit, update, and destroy.
-
 
   def index
     @categories = Category.all
@@ -14,7 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id]) 
+    @category = Category.find(params[:id])
 
     add_breadcrumb "4hv.org", root_path
     add_breadcrumb "Forums", categories_path
@@ -32,7 +31,7 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.save
-      redirect_to categories_path, notice: 'Category created!'
+      redirect_to categories_path, notice: "Category created!"
     else
       render :new
     end
@@ -43,7 +42,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: 'Category updated!'
+      redirect_to categories_path, notice: "Category updated!"
     else
       render :edit
     end
@@ -54,20 +53,20 @@ class CategoriesController < ApplicationController
     authorize @category
     @category.destroy
 
-    flash[:notice] = 'Category has been deleted successfully'
+    flash[:notice] = "Category has been deleted successfully"
 
-    redirect_to categories_path, notice: 'Category deleted!'
+    redirect_to categories_path, notice: "Category deleted!"
   end
 
   private
 
   def set_category
     @category = Category.find(params[:id])
-      #  Finds a Category by ID. Used by the 'before_action' to streamline several actions. 
+    #  Finds a Category by ID. Used by the 'before_action' to streamline several actions.
   end
-  
+
   def category_params
     params.require(:category).permit(:name)
-      # Defines "strong parameters" for security - Permits only the 'name' attribute in the parameters sent when creating/editing a category.
+    # Defines "strong parameters" for security - Permits only the 'name' attribute in the parameters sent when creating/editing a category.
   end
 end
