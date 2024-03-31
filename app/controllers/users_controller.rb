@@ -8,4 +8,8 @@ class UsersController < ApplicationController
 
     @total_posts = @user.posts.count 
   end
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :timezone, :latitude, :longitude) 
+  end
 end

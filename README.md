@@ -32,6 +32,12 @@ To run the rails console, run the following command:
 rails console
 ```
 
+The format `.erb` files
+
+```bash
+rails erb-format app/views/**/*.html.erb --write 
+```
+
 ---
 
 Things you may want to cover:

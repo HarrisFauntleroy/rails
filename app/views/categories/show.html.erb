@@ -9,7 +9,7 @@
           <%= link_to topic.title, [@category, topic] %>
           <p class="topic-meta">
             By:
-            <%= topic.user.email %>
+            <%= topic.user.username %>
             | Created:
             <%= topic.created_at.strftime("%d %b %Y") %>
             | Replies:
@@ -41,9 +41,8 @@
   <% end %>
 </div>
 <div class="btn-group">
-  <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
   <% if policy(@category).create_topic? %>
-    <%= link_to "New Thread",
+    <%= link_to "New Topic",
     new_category_topic_path(@category),
     class: "btn btn-success" %>
   <% end %>

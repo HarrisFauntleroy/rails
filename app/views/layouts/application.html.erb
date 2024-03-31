@@ -77,7 +77,7 @@
                 <% if user_signed_in? %>
                   <div>
                     Welcome
-                    <%= current_user.email %>
+                    <%= link_to current_user.username, user_url(current_user) %>
                   </div>
                   <div>
                     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>

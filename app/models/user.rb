@@ -4,6 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 25 }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :password, length: { minimum: 8 }, allow_nil: true
+  validates :password, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }, allow_nil: true
+
+  validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: "is not a valid time zone" }, allow_blank: true
+  validates :latitude, numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }, allow_blank: true
+  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
+
   has_many :posts
   has_many :topics
   has_many :categories

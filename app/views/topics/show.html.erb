@@ -11,7 +11,7 @@
       <div class="post">
         <p class="post-info">
           Posted by
-          <%= link_to post.user.email, user_url(post.user) %>
+          <%= link_to post.user.username, user_url(post.user) %>
           on
           <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
         </p>
@@ -24,7 +24,7 @@
     <br/>
     <hr/>
     <br/>
-    <p>There are no comments in this thread yet.</p>
+    <p>There are no comments in this topic yet.</p>
   <% end %>
 </div>
 <% if policy(@topic).create_post? %>
