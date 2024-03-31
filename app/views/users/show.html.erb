@@ -1,0 +1,36 @@
+<div class="card-body">
+  <h1><%= @user.email %></h1>
+  <p>Email:
+    <%= @user.email %></p>
+
+  <h2>Recent Activity</h2>
+
+  <% if @recent_topics_opened.any? %>
+    <h3>Threads Opened (<%= @user.topics.count %>)</h3>
+    <ul>
+      <% @recent_topics_opened.each do |topic| %>
+        <li>
+          <%= link_to topic.title, category_topic_path(topic.category, topic) %>
+          <small class="timestamp">
+            (<%= topic.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if @recent_posts.any? %>
+    <h3>Recent Comments (<%= @user.posts.count %>)</h3>
+    <ul>
+      <% @recent_posts.each do |post| %>
+        <li>
+          <%= link_to truncate(post.content, length: 50),
+          category_topic_post_path(post.topic.category, post.topic, post) %>
+          (in
+          <%= link_to post.topic.title, category_topic_path(post.topic.category, post.topic) %>)
+          <small class="timestamp">
+            (<%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

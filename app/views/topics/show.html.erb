@@ -11,7 +11,7 @@
       <div class="post">
         <p class="post-info">
           Posted by
-          <%= post.user.email %>
+          <%= link_to post.user.email, user_url(post.user) %>
           on
           <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
         </p>
