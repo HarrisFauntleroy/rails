@@ -19,7 +19,7 @@ class TopicPolicy
   end
 
   def edit?
-    user.present?
+    user.present? && (topic.user == user || user.admin?)
   end
 
   def update?

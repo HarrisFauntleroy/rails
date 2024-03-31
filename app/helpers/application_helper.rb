@@ -12,4 +12,16 @@ module ApplicationHelper
   def authorized_to_destroy?(record)
     policy(record).destroy?
   end
+
+  def current_section
+    if request.path.include?("/categories")
+      "forums"
+    elsif request.path.include?("/wikis")
+      "wiki"
+    elsif request.path.include?("/members") 
+      "member map"
+    else
+      "unknown" 
+    end
+  end
 end

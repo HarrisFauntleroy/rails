@@ -154,7 +154,17 @@
         </aside>
 
         <div class="main-content">
-          <%= yield %>
+          <div class="custom-card">
+            <div class="custom-card">
+              <div class="card-header">
+                <div class="header-content">
+                  <%= image_tag("bullet.png") %>
+                  <span><%= current_section.capitalize %></span>
+                </div>
+              </div>
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
     </main>

@@ -11,6 +11,11 @@ class TopicsController < ApplicationController
   def show
     @category = Category.find(params[:category_id])
     @topic = Topic.find(params[:id]) 
+
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
+    add_breadcrumb @category.name, category_path(@category)
+    add_breadcrumb @topic.title, category_topic_path(@category, @topic)
   end
 
   def new
@@ -33,11 +38,6 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    if @topic.update(topic_params)
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
-    else
-      render :edit
-    end
   end
 
   def update
@@ -66,5 +66,5 @@ class TopicsController < ApplicationController
 
   def topic_params
     params.require(:topic).permit(:title, :content) 
- end
+  end
 end

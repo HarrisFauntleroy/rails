@@ -8,10 +8,17 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.all
     @current_user = current_user
+
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
   end
 
   def show
     @category = Category.find(params[:id]) 
+
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
+    add_breadcrumb @category.name, category_path(@category)
   end
 
   def new
@@ -36,7 +43,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to category_path(@category), notice: 'Category updated!'
+      redirect_to categories_path, notice: 'Category updated!'
     else
       render :edit
     end

@@ -1,41 +1,28 @@
-<div class="custom-card">
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span>Forums</span>
-      </div>
-    </div>
-    <div class="card-body">
-      <ul>
-        <% @categories.each do |category| %>
-          <li style="display: flex; justify-content: space-between;">
-            <%= link_to category.name, category, { class: "category-title" } %>
-            <div class="btn-group">
-              <% if authorized_to_edit?(category) %>
-                <%= link_to "Edit", edit_category_path(category), { class: "btn btn-primary" } %>
-              <% end %>
-              <% if authorized_to_destroy?(category) %>
-                <%= button_to "Delete",
-                category,
-                class: "btn btn-danger",
-                method: :delete,
-                form: {
-                  data: {
-                    turbo_confirm: "Are you sure?",
-                  },
-                } %>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="btn-group">
-    <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
-    <% if @current_user&.admin? %>
-      <%= link_to "New Forum", new_category_path, class: "btn btn-success" %>
+<div class="card-body">
+  <ul>
+    <% @categories.each do |category| %>
+      <li style="display: flex; justify-content: space-between;">
+        <%= link_to category.name, category, { class: "category-title" } %>
+        <div class="btn-group">
+          <% if authorized_to_edit?(category) %>
+            <%= link_to "Edit", edit_category_path(category), { class: "btn btn-primary" } %>
+          <% end %>
+          <% if authorized_to_destroy?(category) %>
+            <%= button_to "Delete",
+            category,
+            class: "btn btn-danger",
+            method: :delete,
+            form: {
+              data: {
+                turbo_confirm: "Are you sure?",
+              },
+            } %>
+          <% end %>
+        </div>
+      </li>
     <% end %>
-  </div>
+  </ul>
 </div>
+<% if @current_user&.admin? %>
+  <%= link_to "New Forum", new_category_path, class: "btn btn-success" %>
+<% end %>

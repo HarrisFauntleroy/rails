@@ -1,0 +1,11 @@
+<% if defined?(breadcrumbs) && breadcrumbs.any? %>
+  <nav class="breadcrumbs">
+    <% breadcrumbs.each do |crumb| %>
+      <%= link_to crumb.name, crumb.path if crumb.path %>
+      <%= crumb.name if !crumb.path %>
+      <% unless crumb == breadcrumbs.last %>
+        /
+      <% end %>
+    <% end %>
+  </nav>
+<% end %>

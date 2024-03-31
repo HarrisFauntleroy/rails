@@ -1,40 +1,32 @@
-<div class="custom-card">
-  <div class="custom-card">
-    <div class="card-body">
-      <h1><%= @topic.title %></h1>
-      <p><%= @topic.content %></p>
+<div class="card-body">
+  <%= render "shared/breadcrumbs" %>
+  <h1><%= @topic.title %></h1>
+  <p><%= @topic.content %></p>
 
-      <% if @topic.posts.any? %>
-        <br/>
-        <hr/>
-        <br/>
-        <% @topic.posts.each do |post| %>
-          <div class="post">
-            <p class="post-info">
-              Posted by
-              <%= post.user.email %>
-              on
-              <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
-            </p>
-            <div class="post-content">
-              <%= post.content %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <br/>
-        <hr/>
-        <br/>
-        <p>There are no comments in this thread yet.</p>
-      <% end %>
-    </div>
-  </div>
-  <div class="btn-group">
-    <%= link_to "Go Back", :back, class: "btn btn-tertiary" %>
-    <% if policy(@topic).create_post? %>
-      <%= link_to "New Comment",
-      new_category_topic_post_path(@category, @topic),
-      class: "btn btn-success" %>
+  <% if @topic.posts.any? %>
+    <br/>
+    <hr/>
+    <br/>
+    <% @topic.posts.each do |post| %>
+      <div class="post">
+        <p class="post-info">
+          Posted by
+          <%= post.user.email %>
+          on
+          <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
+        </p>
+        <div class="post-content">
+          <%= post.content %>
+        </div>
+      </div>
     <% end %>
-  </div>
+  <% else %>
+    <br/>
+    <hr/>
+    <br/>
+    <p>There are no comments in this thread yet.</p>
+  <% end %>
 </div>
+<% if policy(@topic).create_post? %>
+  <%= render "posts/form", post: @topic.posts.build %>
+<% end %>
