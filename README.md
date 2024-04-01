@@ -120,6 +120,12 @@ The format `.rb` files with Rufo
 rufo app/**/*.rb                              
 ```
 
+The run Rubocop
+
+```bash
+rubocop                           
+```
+
 <!-- _Please refer to the package.json for additional details and scripts._ -->
 
 ## Contributing 🤝
