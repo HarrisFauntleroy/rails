@@ -85,22 +85,26 @@ To migrate the database, run the following command:
 rails db:migrate
 ```
 
-To run the test suite, run the following command:
+To run the specs, a single spec, or a single test:
 
 ```bash
-rails test
+rails rspec
+rspec spec/controllers/user_controller_spec.rb
+rspec spec/controllers/user_controller_spec.rb:32 
 ```
 
 To start the server, run the following command:
 
 ```bash
 rails server
+rails s
 ```
 
 To run the rails console, run the following command:
 
 ```bash
 rails console
+rails c
 ```
 
 **Commands**
