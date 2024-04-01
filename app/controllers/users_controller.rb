@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @recent_posts = @user.posts.order(created_at: :desc).limit(5)
     @total_posts = @user.posts.count
   rescue ActiveRecord::RecordNotFound
-    redirect_to errors_not_found_path, alert: 'User not found'
+    redirect_to errors_not_found_path, alert: "User not found"
   end
 
   def index
@@ -36,6 +36,6 @@ class UsersController < ApplicationController
     return if current_user&.admin?
 
     redirect_to root_path,
-                alert: 'You are not authorized to access this page.'
+                alert: "You are not authorized to access this page."
   end
 end

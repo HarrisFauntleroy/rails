@@ -14,8 +14,8 @@ class TopicsController < ApplicationController
     @category = Category.find(params[:category_id])
     @topic = Topic.find(params[:id])
 
-    add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
     add_breadcrumb @category.name, category_path(@category)
     add_breadcrumb @topic.title, category_topic_path(@category, @topic)
   end
@@ -33,7 +33,7 @@ class TopicsController < ApplicationController
     authorize @topic
 
     if @topic.save
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic created!'
+      redirect_to category_topic_path(@category, @topic), notice: "Topic created!"
     else
       render :new
     end
@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
+      redirect_to category_topic_path(@category, @topic), notice: "Topic updated!"
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class TopicsController < ApplicationController
     authorize @topic
     @topic.destroy
 
-    redirect_to category_path(@category), notice: 'Topic deleted!'
+    redirect_to category_path(@category), notice: "Topic deleted!"
   end
 
   private

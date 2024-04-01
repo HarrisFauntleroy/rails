@@ -10,15 +10,15 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     @current_user = current_user
 
-    add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
   end
 
   def show
     @category = Category.find(params[:id])
 
-    add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
+    add_breadcrumb "4hv.org", root_path
+    add_breadcrumb "Forums", categories_path
     add_breadcrumb @category.name, category_path(@category)
   end
 
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.save
-      redirect_to categories_path, notice: 'Category created!'
+      redirect_to categories_path, notice: "Category created!"
     else
       render :new
     end
@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to categories_path, notice: 'Category updated!'
+      redirect_to categories_path, notice: "Category updated!"
     else
       render :edit
     end
@@ -54,9 +54,9 @@ class CategoriesController < ApplicationController
     authorize @category
     @category.destroy
 
-    flash[:notice] = 'Category has been deleted successfully'
+    flash[:notice] = "Category has been deleted successfully"
 
-    redirect_to categories_path, notice: 'Category deleted!'
+    redirect_to categories_path, notice: "Category deleted!"
   end
 
   private

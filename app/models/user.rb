@@ -11,9 +11,9 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 8 }, allow_nil: true
   validates :password,
-            format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./, message: 'must include at least one lowercase letter, one uppercase letter, and one digit' }, allow_nil: true
+            format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./, message: "must include at least one lowercase letter, one uppercase letter, and one digit" }, allow_nil: true
 
-  validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: 'is not a valid time zone' },
+  validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: "is not a valid time zone" },
                        allow_blank: true
   validates :latitude, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }, allow_blank: true
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
