@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.save
-      redirect_to category_topic_post_path(@category, @topic, @post), notice: "Post created!"
+      redirect_to category_topic_post_path(@category, @topic, @post), notice: 'Post created!'
     else
       render :new
     end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to category_topic_post_path(@post), notice: "Post updated!"
+      redirect_to category_topic_post_path(@post), notice: 'Post updated!'
     else
       render :edit
     end
@@ -52,9 +52,9 @@ class PostsController < ApplicationController
     authorize @post
     @post.destroy
 
-    flash[:notice] = "Post has been deleted successfully"
+    flash[:notice] = 'Post has been deleted successfully'
 
-    redirect_to posts_path, notice: "Post deleted!"
+    redirect_to posts_path, notice: 'Post deleted!'
   end
 
   private
