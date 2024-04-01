@@ -1,9 +1,6 @@
 # Forum
 
 <p align="center">
-    <a href="https://github.com/HarrisFauntleroy/forum/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/package-json/v/HarrisFauntleroy/forum?&style=for-the-badge">
-    </a>
     <a href="/LICENSE.md">
         <img alt="GitHub" src="https://img.shields.io/github/license/HarrisFauntleroy/forum?&style=for-the-badge">
     </a>
@@ -131,7 +128,7 @@ rufo app/**/*.rb
 
 ## License ⚖️
 
-Distributed under the MIT License. See `LICENSE` for more information.
+<!-- Distributed under the MIT License. See `LICENSE` for more information. -->
 
 ## Disclaimer 🚨
 
