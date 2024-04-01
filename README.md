@@ -38,6 +38,12 @@ The format `.erb` files
 rails erb-format app/views/**/*.html.erb --write 
 ```
 
+The format `.rb` files
+
+```bash
+rufo app/**/*.rb                              
+```
+
 ---
 
 Things you may want to cover:

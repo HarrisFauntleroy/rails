@@ -76,7 +76,7 @@ header .search-bar {
   display: flex;
   flex-grow: 1;
   width: 100%;
-  gap: 8px;
+  gap: 1rem;
 }
 
 .sidebar {
@@ -85,7 +85,7 @@ header .search-bar {
   flex-grow: 0;
   min-width: 150px; 
   max-width: 20%; 
-  gap: 8px;
+  gap: 1rem;
 }
 
 .sidebar ul {

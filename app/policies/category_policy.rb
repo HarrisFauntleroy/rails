@@ -15,11 +15,11 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    user.present? && user.admin?
   end
 
   def edit?
-    user.admin
+    user.present? && user.admin?
   end
 
   def update?

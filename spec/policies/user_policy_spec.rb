@@ -1,42 +1,40 @@
 require 'rails_helper'
 
-RSpec.describe UserPolicy, type: :policy do
-  let(:regular_user) { build(:user) }  # Or use create(:user) if needed
-  let(:admin_user) { build(:user, admin: true) }
+RSpec.describe UserPolicy do
+  subject { described_class.new(user, record) }
 
-  subject { described_class.new(user, User) } # User to be authorized
+  context "for a visitor (no user)" do
+    let(:user) { nil }
+    let(:record) { User.new } 
+
+    it { is_expected.not_to permit_action(:show) }
+    it { is_expected.not_to permit_action(:update) }
+    it { is_expected.not_to permit_action(:destroy) }
+  end
 
   context "for a regular user" do
-    let(:user) { regular_user }
+    let(:user) { User.new }
+    let(:record) { User.new }
 
-    it { should_not permit_action(:update) }  
-    it { should_not permit_action(:destroy) }
+    it { is_expected.to permit_action(:show) }
+
+    it { is_expected.not_to permit_action(:update) } 
+    it { is_expected.not_to permit_action(:destroy) } 
+
+    context "when the record is themselves" do
+      let(:record) { user }
+
+      it { is_expected.to permit_action(:update) }
+      it { is_expected.to permit_action(:destroy) }
+    end
   end
 
   context "for an admin user" do
-    let(:user) { admin_user }
+    let(:user) { User.new(admin: true) }
+    let(:record) { User.new }
 
-    it { should permit_action(:update) } 
-    it { should permit_action(:destroy) }
-  end
-
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { is_expected.to permit_action(:show) }
+    it { is_expected.to permit_action(:update) }
+    it { is_expected.to permit_action(:destroy) }
   end
 end

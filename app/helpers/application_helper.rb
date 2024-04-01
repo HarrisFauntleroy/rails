@@ -20,6 +20,8 @@ module ApplicationHelper
       "wiki"
     elsif request.path.include?("/members")
       "member map"
+    elsif request.path.include?("/users")
+      "users"
     else
       "unknown"
     end

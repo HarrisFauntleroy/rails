@@ -1,49 +1,57 @@
-<div class="card-body">
-  <%= render "shared/breadcrumbs" %>
-  <% if @category.topics.any? %>
-    <h2><%= @category.name %></h2>
-    <br/>
-    <% @category.topics.each do |topic| %>
-      <div style="display: flex; justify-content: space-between;">
-        <div>
-          <%= link_to topic.title, [@category, topic] %>
-          <p class="topic-info">
-            By:
-            <%= link_to topic.user.username, user_url(topic.user) %>
-            | Created:
-            <%= topic.created_at.strftime("%d %b %Y") %>
-            | Replies:
-            <%= topic.posts.count %>
-          </p>
+<div class="custom-card">
+  <div class="card-header">
+    <div class="header-content">
+      <%= image_tag("bullet.png") %>
+      <span><%= current_section.capitalize %></span>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= render "shared/breadcrumbs" %>
+    <% if @category.topics.any? %>
+      <h2><%= @category.name %></h2>
+      <br/>
+      <% @category.topics.each do |topic| %>
+        <div style="display: flex; justify-content: space-between;">
+          <div>
+            <%= link_to topic.title, [@category, topic] %>
+            <p class="topic-info">
+              By:
+              <%= link_to topic.user.username, user_url(topic.user) %>
+              | Created:
+              <%= topic.created_at.strftime("%d %b %Y") %>
+              | Replies:
+              <%= topic.posts.count %>
+            </p>
+          </div>
+          <div class="btn-group">
+            <% if policy(topic).edit? %>
+              <%= link_to "Edit",
+              edit_category_topic_path(@category, topic),
+              { class: "btn btn-primary" } %>
+            <% end %>
+            <% if policy(topic).destroy? %>
+              <%= button_to "Delete",
+              [@category, topic],
+              class: "btn btn-danger",
+              method: :delete,
+              form: {
+                data: {
+                  turbo_confirm: "Are you sure?",
+                },
+              } %>
+            <% end %>
+          </div>
         </div>
-        <div class="btn-group">
-          <% if policy(topic).edit? %>
-            <%= link_to "Edit",
-            edit_category_topic_path(@category, topic),
-            { class: "btn btn-primary" } %>
-          <% end %>
-          <% if policy(topic).destroy? %>
-            <%= button_to "Delete",
-            [@category, topic],
-            class: "btn btn-danger",
-            method: :delete,
-            form: {
-              data: {
-                turbo_confirm: "Are you sure?",
-              },
-            } %>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
+    <% else %>
+      <p>There are no topics in this category yet.</p>
     <% end %>
-  <% else %>
-    <p>There are no topics in this category yet.</p>
-  <% end %>
-</div>
-<div class="btn-group">
-  <% if policy(@category).create_topic? %>
-    <%= link_to "New Topic",
-    new_category_topic_path(@category),
-    class: "btn btn-success" %>
-  <% end %>
+  </div>
+  <div class="btn-group">
+    <% if policy(@category).create_topic? %>
+      <%= link_to "New Topic",
+      new_category_topic_path(@category),
+      class: "btn btn-success" %>
+    <% end %>
+  </div>
 </div>

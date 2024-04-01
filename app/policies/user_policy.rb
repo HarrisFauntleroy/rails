@@ -1,19 +1,23 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
-    def show?
-      true # Anyone can view user profiles
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.none
+      end
     end
+  end
 
-    def update?
-      user.admin? || user == record
-    end
+  def show?
+    user.present?
+  end
 
-    def destroy?
-      user.admin? || user == record
-    end
+  def update?
+    user.present? && (user.admin? || user == record)
+  end
+
+  def destroy?
+    user.present? && (user.admin? || user == record)
   end
 end
