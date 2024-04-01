@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  include Pundit
+  include Pundit::Authorization
 
   before_action :set_category, only: %i[show edit update destroy]
   # A Rails callback. Executes `set_category` *before* running the actions: show, edit, update, and destroy.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  include Pundit
+  include Pundit::Authorization
 
   before_action :set_post, only: %i[show edit update destroy]
 
