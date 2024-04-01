@@ -119,7 +119,7 @@ The format `.rb` files with Rufo
 rufo app/**/*.rb                              
 ```
 
-_Please refer to the package.json for additional details and scripts._
+<!-- _Please refer to the package.json for additional details and scripts._ -->
 
 ## Contributing 🤝
 
