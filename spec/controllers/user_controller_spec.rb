@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
@@ -66,7 +68,7 @@ RSpec.describe UsersController, type: :controller do
 
   shared_context 'unauthorized access' do |action, params|
     it 'raises an error' do
-      expect {
+      expect do
         case action
         when :get
           get action, params: params
@@ -77,7 +79,7 @@ RSpec.describe UsersController, type: :controller do
         when :delete
           delete action, params: params
         end
-      }.to raise_error(ActionController::UrlGenerationError)
+      end.to raise_error(ActionController::UrlGenerationError)
     end
   end
 

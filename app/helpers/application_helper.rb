@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Pundit::Authorization
 
@@ -14,16 +16,16 @@ module ApplicationHelper
   end
 
   def current_section
-    if request.path.include?("/categories")
-      "forums"
-    elsif request.path.include?("/wikis")
-      "wiki"
-    elsif request.path.include?("/members")
-      "member map"
-    elsif request.path.include?("/users")
-      "users"
+    if request.path.include?('/categories')
+      'forums'
+    elsif request.path.include?('/wikis')
+      'wiki'
+    elsif request.path.include?('/members')
+      'member map'
+    elsif request.path.include?('/users')
+      'users'
     else
-      "unknown"
+      'unknown'
     end
   end
 end

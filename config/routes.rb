@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'static_pages/site_rules'
   devise_for :users, controllers: {
@@ -5,14 +7,14 @@ Rails.application.routes.draw do
   }
 
   root 'home#index'
-  
+
   get 'site_rules', to: 'static_pages#site_rules'
 
-  resources :users, only: [:show, :index] # Only need the 'show' route for profiles
+  resources :users, only: %i[show index] # Only need the 'show' route for profiles
 
   resources :categories do
     resources :topics do
-      resources :posts 
+      resources :posts
     end
   end
 

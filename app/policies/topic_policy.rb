@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TopicPolicy
   attr_reader :user, :topic
 
