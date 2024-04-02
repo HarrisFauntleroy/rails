@@ -74,6 +74,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'simplecov', require: false
 end
 
 gem 'devise', '~> 4.9'
