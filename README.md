@@ -1,8 +1,13 @@
 # Forum
 
+[![coverage](https://github.com/HarrisFauntleroy/forum/tree/main/coverage/coverage.svg)](https://github.com/HarrisFauntleroy/forum/tree/main/coverage/coverage.svg)
+
 <p align="center">
     <a href="/LICENSE.md">
         <img alt="GitHub" src="https://img.shields.io/github/license/HarrisFauntleroy/forum?&style=for-the-badge">
+    </a>
+    <a href="/LICENSE.md">
+        <img alt="GitHub" src="https://github.com/HarrisFauntleroy/forum/tree/main/coverage/coverage.svg">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/graphs/contributors">
         <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum?&style=for-the-badge">

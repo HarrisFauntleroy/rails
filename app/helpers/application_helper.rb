@@ -16,16 +16,12 @@ module ApplicationHelper
   end
 
   def current_section
-    if request.path.include?('/categories')
-      'forums'
-    elsif request.path.include?('/wikis')
-      'wiki'
-    elsif request.path.include?('/members')
-      'member map'
-    elsif request.path.include?('/users')
-      'users'
-    else
-      'unknown'
+    case request.path
+    when /\/categories/ then 'forums'
+    when /\/members/    then 'member map'
+    when /\/wikis/      then 'wiki'
+    when /\/chat_room/      then 'chat room'
+    else                     'unknown'
     end
   end
 end
