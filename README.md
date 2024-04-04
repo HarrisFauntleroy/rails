@@ -2,26 +2,26 @@
 
 <p align="center">
     <a href="/LICENSE.md">
-        <img alt="GitHub" src="https://img.shields.io/github/license/HarrisFauntleroy/forum?&style=for-the-badge">
+        <img alt="GitHub" src="https://img.shields.io/github/license/HarrisFauntleroy/forum?&style=flat">
     </a>
     <a href="/LICENSE.md">
         <img alt="GitHub" src="coverage/coverage.svg">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/graphs/contributors">
-        <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum?&style=for-the-badge">
+        <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum?&style=flat">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/actions">
-        <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/HarrisFauntleroy/forum/main?&style=for-the-badge">
+        <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/HarrisFauntleroy/forum/main?&style=flat">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/issues/HarrisFauntleroy/forum?&style=for-the-badge">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/HarrisFauntleroy/forum?&style=flat">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/last-commit/HarrisFauntleroy/forum?&style=for-the-badge">
+        <img alt="GitHub issues" src="https://img.shields.io/github/last-commit/HarrisFauntleroy/forum?&style=flat">
     </a>
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/forum?&style=for-the-badge">
+        <img alt="GitHub issues" src="https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/forum?&style=flat">
     </a>
 </p>
 
