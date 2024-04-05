@@ -35,5 +35,6 @@
 # Ignore MacOS files
 .DS_Store
 
-# Ignore coverage folder
-/coverage
+# Ignore coverage folder except for coverage badge
+/coverage/*
+!/coverage/coverage.svg
