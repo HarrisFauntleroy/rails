@@ -82,5 +82,7 @@ gem 'devise', '~> 4.9'
 gem 'pundit'
 
 gem 'erb-formatter', '~> 0.7.2'
+gem 'bootstrap', '~> 5.3.2'
+gem 'dartsass-sprockets'
 
 gem 'simplecov-formatter-badge', require: false

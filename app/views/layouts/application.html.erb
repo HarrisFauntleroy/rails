@@ -18,10 +18,9 @@
       </div>
       <hr/>
       <section class="search-bar">
-        <input/>
+        <input class="tbox search"/>
+        <%= image_tag("search.png") %>
       </section>
-      <hr/>
-      <br/>
       <hr/>
     </header>
 
@@ -38,25 +37,25 @@
             <div class="card-body">
               <ul>
                 <li>
-                  <%= link_to "Home", root_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Home", root_path %>
                 </li>
                 <li>
-                  <%= link_to "Forum", categories_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Forum", categories_path %>
                 </li>
                 <li>
-                  <%= link_to "Members", categories_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Members", categories_path %>
                 </li>
                 <li>
-                  <%= link_to "Member Map", categories_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Member Map", categories_path %>
                 </li>
                 <li>
-                  <%= link_to "HvWiki", categories_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "HvWiki", categories_path %>
                 </li>
                 <li>
-                  <%= link_to "Chat Room", categories_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Chat Room", categories_path %>
                 </li>
                 <li>
-                  <%= link_to "Site Rules", site_rules_path %>
+                  <%= image_tag("bullet2.gif") %> <%= link_to "Site Rules", site_rules_path %>
                 </li>
               </ul>
             </div>

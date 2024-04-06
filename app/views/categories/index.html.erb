@@ -1,34 +1,57 @@
 <div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span><%= current_section.capitalize %></span>
-    </div>
-  </div>
   <div class="card-body">
-    <ul>
-      <% @categories.each do |category| %>
-        <li style="display: flex; justify-content: space-between;">
-          <%= link_to category.name, category, { class: "category-title" } %>
-          <div class="btn-group">
-            <% if authorized_to_edit?(category) %>
-              <%= link_to "Edit", edit_category_path(category), { class: "btn btn-primary" } %>
+    <table class="nforumholder"> <thead>
+      <tr>
+        <td colspan="5" class="nforumcaption">Chatting and Socializing (Restricted Access)</td>
+        </tr>
+      <tr>
+        <td colspan="2" style="width:60%; text-align:center" class="nforumcaption2">Forums</td>
+        <td style="width:10%; text-align:center" class="nforumcaption2">Topics</td>
+        <td style="width:10%; text-align:center" class="nforumcaption2">Replies</td>
+        <td style="width:20%; text-align:center" class="nforumcaption2">Last Post</td>
+        <% if @current_user&.admin? %>
+        <th>Actions</th>
+        <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td style="width:5%; text-align:center" class="nforumcaption3">
+              <%= image_tag("nonew.png") %>
+            </td>
+            <td class="nforumcaption3">
+              <%= link_to category.name, category, class: "category-title" %>
+              <br/>
+              <span class="smallblacktext">Want to chat about something not covered by any of the other boards? This is the place to do it. Please remember that most of the site rules still apply here.</span>
+            </td>
+            <td style="width: 10%; text-align: center;" class="nforumthread">
+                <%= category.total_topics %>
+            </td> 
+            <td style="width: 10%; text-align: center;" class="nforumthread">
+              <%= category.total_posts %>
+            </td>
+            <td style="width: 20%; text-align: center;" class="nforumthread">
+              <span class="smallblacktext"><a><%= category.last_post_info %></a></span>
+            </td> 
+            <% if @current_user&.admin? %>
+              <td>
+                <div class="btn-group">
+                    <% if authorized_to_edit?(category) %>
+                      <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
+                    <% end %>
+                    <% if authorized_to_destroy?(category) %>
+                      <%= button_to "Delete", category, class: "btn btn-danger", 
+                                    method: :delete, 
+                                    data: { turbo_confirm: "Are you sure?" } %>
+                    <% end %>
+                </div>
+              </td>
             <% end %>
-            <% if authorized_to_destroy?(category) %>
-              <%= button_to "Delete",
-              category,
-              class: "btn btn-danger",
-              method: :delete,
-              form: {
-                data: {
-                  turbo_confirm: "Are you sure?",
-                },
-              } %>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
   <% if @current_user&.admin? %>
     <%= link_to "New Forum", new_category_path, class: "btn btn-success" %>
