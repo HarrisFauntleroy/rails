@@ -85,6 +85,10 @@ To migrate the database, run the following command:
 rails db:migrate
 ```
 
+```bash
+rails db:create db:migrate db:seed
+```
+
 To run the specs, a single spec, or a single test:
 
 ```bash
