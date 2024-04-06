@@ -117,12 +117,6 @@ The format `.erb` files with erb-format
 rails erb-format app/views/**/*.html.erb --write 
 ```
 
-The format `.rb` files with Rufo
-
-```bash
-rufo app/**/*.rb                              
-```
-
 The run Rubocop
 
 ```bash

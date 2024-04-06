@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   # A Rails callback. Executes `set_category` *before* running the actions: show, edit, update, and destroy.
 
   def index
-    @categories = Category.includes(topics: :posts) 
+    @categories = Category.includes(topics: :posts)
     @current_user = current_user
 
     add_breadcrumb '4hv.org', root_path

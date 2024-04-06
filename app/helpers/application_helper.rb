@@ -17,11 +17,11 @@ module ApplicationHelper
 
   def current_section
     case request.path
-    when /\/categories/ then 'forums'
-    when /\/members/    then 'member map'
-    when /\/wikis/      then 'wiki'
-    when /\/chat_room/      then 'chat room'
-    else                     'unknown'
+    when %r{/categories} then 'forums'
+    when %r{/members}    then 'member map'
+    when %r{/wikis}      then 'wiki'
+    when %r{/chat_room} then 'chat room'
+    else 'unknown'
     end
   end
 end

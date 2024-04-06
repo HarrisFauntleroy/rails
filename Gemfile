@@ -74,15 +74,15 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 gem 'devise', '~> 4.9'
 gem 'pundit'
 
-gem 'erb-formatter', '~> 0.7.2'
 gem 'bootstrap', '~> 5.3.2'
 gem 'dartsass-sprockets'
+gem 'erb-formatter', '~> 0.7.2'
 
 gem 'simplecov-formatter-badge', require: false
