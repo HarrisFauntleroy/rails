@@ -263,12 +263,19 @@ header .search-bar {
 
 /* EXPERIMENTAL  */
 
-a {
+.link-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a, .link-button {
   color: #716d6d;
   text-decoration: underline;
 }
 
-a:hover {
+a:hover, .link-button {
   color: #2a3236;
   text-decoration: underline;
 }

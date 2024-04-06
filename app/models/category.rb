@@ -21,7 +21,7 @@ class Category < ApplicationRecord
     user = last_post.user
     time_ago = time_ago_in_words(last_post.created_at)
 
-    "#{user.username} #{time_ago} ago"
+    "#{user&.username} #{time_ago} ago"
   end
 
   def last_post_time

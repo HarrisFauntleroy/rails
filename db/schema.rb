@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_331_042_411) do
+ActiveRecord::Schema[7.1].define(version: 20_240_406_025_325) do
   create_table 'articles', force: :cascade do |t|
     t.string 'title'
     t.text 'body'
@@ -62,6 +60,8 @@ ActiveRecord::Schema[7.1].define(version: 20_240_331_042_411) do
     t.string 'timezone'
     t.float 'latitude'
     t.float 'longitude'
+    t.datetime 'last_seen_at'
+    t.date 'date_of_birth'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
