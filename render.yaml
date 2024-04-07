@@ -1,11 +1,13 @@
 databases:
   - name: forum
+    plan: free
     databaseName: forum
     user: forum
 
 services:
   - type: web
     name: forum
+    plan: free
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
