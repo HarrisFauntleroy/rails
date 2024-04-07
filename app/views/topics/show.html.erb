@@ -109,26 +109,21 @@
               </td>
               <td class="nforumthread" style="vertical-align:top">
                 <%= @topic.content %><br><br><br><br><br><br>
-                <hr style="width:15%; text-align:left"><span class="smalltext">All saints have a past, and all sinners have a future.</span>
+                <% if @topic.user&.signature %>
+                  <hr style="width:15%; text-align:left">
+                  <span class="smalltext">
+                    <%= @topic.user.signature %>
+                  </span>
+                <% end %>
               </td>
             </tr>
             <tr>
-              <td class="nforumthread2"><span class="smallblacktext"><a
-                    href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
-                    onclick="window.scrollTo(0,0);"
-                  >Back to top</a></span></td>
+              <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+              </span></td>
               <td class="nforumthread2" style="vertical-align:top">
                 <table cellspacing="0" cellpadding="0" style="width:100%">
                   <tbody>
                     <tr>
-                      <td>
-                        <a href="http://arcstarter.host22.com/index.php?p=1_1"><img
-                            src="/e107_plugins/forum/images/lite/website.png"
-                            alt="Website"
-                            title="Website"
-                            style="border:0"
-                          ></a>
-                      </td>
                       <td style="text-align:right"></td>
                     </tr>
                   </tbody>
@@ -178,26 +173,22 @@
                     </span>
                   </td>
                   <td class="nforumthread" style="vertical-align:top">
-                    <%= post.content %>
+                    <%= post.content %><br><br><br><br><br><br>
+                    <% if post.user&.signature %>
+                      <hr style="width:15%; text-align:left">
+                      <span class="smalltext">
+                        <%= post.user.signature %>
+                      </span>
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nforumthread2"><span class="smallblacktext"><a
-                        href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
-                        onclick="window.scrollTo(0,0);"
-                      >Back to top</a></span></td>
+                  <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                  </span></td>
                   <td class="nforumthread2" style="vertical-align:top">
                     <table cellspacing="0" cellpadding="0" style="width:100%">
                       <tbody>
                         <tr>
-                          <td>
-                            <a href="http://www.yahoo.com"><img
-                                src="/e107_plugins/forum/images/lite/website.png"
-                                alt="Website"
-                                title="Website"
-                                style="border:0"
-                              ></a>
-                          </td>
                           <td style="text-align:right"></td>
                         </tr>
                       </tbody>
@@ -251,10 +242,7 @@
                       <option value="21">Attachments</option>
                       <option value="23">HvWiki Discussion</option>
                     </select>
-                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<a
-                      href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
-                      onclick="window.scrollTo(0,0);"
-                    >Back to top</a>
+                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
                   </p>
                 </form>
               </td>
