@@ -124,20 +124,30 @@ header .search-bar {
 /* ---- Button ----  */
 
 .btn {
-  flex: 1;
-  max-width: max-content;
   display: flex;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1rem;
   text-decoration: none;
+  color: #fff;
+  background-color: #1971C2;
+  border: 1px solid transparent;   
+  border-radius: 0.25rem;  
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s
+  transition: background-color 0.2s, border-color 0.2s;
+  height: 2.5rem;
+  max-width: max-content;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: #0C5AA0;  /* Darker blue on hover */
+  border-color: #084282; 
 }
 
 .btn-group {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 0.25rem;
 }
@@ -155,18 +165,24 @@ header .search-bar {
   border-color: #4DABF7;
 }
 
-.btn-secondary {
-  background-color: #E8590C;
-  color: #fff;
-  border-color: #D9480F;
+.btn-secondary { 
+  background-color: #E8590C; /* An orange color */
+}
+.btn-secondary:hover, 
+.btn-secondary:focus, 
+.btn-secondary:active {
+  background-color: #BF4509;
 }
 
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active {
-  background-color: #FFA94D;
-  border-color: #FFA94D;
+.btn-accent {
+  background-color: #343A40; /* A dark grey color */
 }
+.btn-accent:hover, 
+.btn-accent:focus, 
+.btn-accent:active {
+  background-color: #1D2124; 
+}
+
 
 .btn-tertiary {
   background-color: #343A40;
