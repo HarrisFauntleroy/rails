@@ -20,14 +20,13 @@
                 <%= @category.name %>
               </b>
             </div>
-            Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+            Go to page&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
             <a class="nextprev_link">2</a>
             <a class="nextprev_link">3</a>
             ...
             <a class="nextprev_link">89</a>
             <a class="nextprev_link">90</a>
             <a class="nextprev_link">91</a>
-            <!-- End of Next/Prev -->
           </td>
           <td style="width:20%; text-align:right; vertical-align:bottom;">
           </td>
@@ -54,91 +53,119 @@
           <td style="width:20%; text-align:center" class="nforumcaption2">Actions</td>
         </tr>
 
-        <tr>
-          <td class="forumheader">&nbsp;</td>
-          <td colspan="6" class="forumheader">
-            <span class="mediumtext">
-              <b>Important Threads</b>
-            </span>
-          </td>
-        </tr>
+        <% if @category.topics.where(sticky: true).or(@category.topics.where(announcement: true)).any? %>
 
-        <tr>
-          <td
-            style="vertical-align:middle; text-align:center; width:3%"
-            class="nforumview1"
-          >
-            <%= image_tag("sticky.png") %>
-          </td>
+          <tr>
+            <td class="forumheader">&nbsp;</td>
+            <td colspan="6" class="forumheader">
+              <span class="mediumtext">
+                <b>Important Threads</b>
+              </span>
+            </td>
+          </tr>
 
-          <td
-            style="vertical-align:middle; text-align:left; width:47%"
-            class="nforumview1"
-          >
-            <table style="width:100%">
-              <tbody>
-                <tr>
-                  <td style="width:90%">
-                    <span class="mediumtext">
-                      <b>
-                        <a
-                          title="The main idea of this thread is to help new members with calculations and assorted stuff by having a[more ...]"
-                          href="../../e107_plugins/forum/forum_viewtopic.php?66240"
-                        >
-                          Useful link reference and formulas.
-                        </a>
-                      </b>
-                    </span>
-                    <span class="smalltext">
-                      Goto page: [&nbsp;<a href="../../e107_plugins/forum/forum_viewtopic.php?66240.0">1</a>
-                      <a href="../../e107_plugins/forum/forum_viewtopic.php?66240.30">2</a>&nbsp;]</span>
-                  </td>
-                  <td style="width:10%; white-space:nowrap;"></td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
+          <%# Important (Sticky) Threads %>
+          <% @category.topics.where(sticky: true).or(@category.topics.where(announcement: true))
+          .order(announcement: :desc, created_at: :desc).each do |topic| %>
+            <tr>
+              <td
+                style="vertical-align:middle; text-align:center; width:3%"
+                class="nforumview1"
+              >
+                <% if topic.announcement? %>
+                  <%= image_tag("announce.png") %>
+                <% else %>
+                  <%= image_tag("sticky_1.png") %>
+                <% end %>
+              </td>
 
-          <td
-            style="vertical-align:top; text-align:center; width:20%"
-            class="nforumview2"
-          >
-            <span class="smalltext">
-              <b>
-                <a href="../../user.php?id.1225">
-                  Arcstarter
-                </a>
-              </b>
-              <br/>
-              Sun Mar 22 2009, 10:29PM
-            </span>
-          </td>
+              <td
+                style="vertical-align:middle; text-align:left; width:47%"
+                class="nforumview1"
+              >
+                <table style="width:100%">
+                  <tbody>
+                    <tr>
+                      <td style="width:90%">
+                        <span class="mediumtext">
+                          <b>
+                            <%= link_to topic.title, [@category, topic] %>
+                          </b>
+                        </span>
+                        <span class="smalltext"></span>
+                      </td>
+                      <td style="width:10%; white-space:nowrap;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
 
-          <td
-            style="vertical-align:center; text-align:center; width:5%"
-            class="nforumview2"
-          ><span class="smalltext">34</span>
-          </td>
+              <td
+                style="vertical-align:top; text-align:center; width:20%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <b>
+                    <%= link_to topic.user.username, user_url(topic.user) %>
+                  </b>
+                  <br/>
+                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+                </span>
+              </td>
 
-          <td
-            style="vertical-align:center; text-align:center; width:5%"
-            class="nforumview2"
-          ><span class="smalltext">2435</span>
-          </td>
+              <td
+                style="vertical-align:center; text-align:center; width:5%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <%= topic.posts.count %>
+                </span>
+              </td>
 
-          <td
-            style="vertical-align:top; text-align:center; width:20%"
-            class="nforumview2"
-          ><span class="smalltext"><a href="../../user.php?id.3108">Plasmana</a><br/>Sun Aug 29 2010, 06:05PM</span>
-          </td>
+              <td
+                style="vertical-align:center; text-align:center; width:5%"
+                class="nforumview2"
+              >
+                <span class="smalltext">0</span>
+              </td>
 
-          <td
-            style="vertical-align:top; text-align:center; width:20%"
-            class="nforumview2"
-          ><span class="smalltext"><br/></span>
-          </td>
+              <td
+                style="vertical-align:top; text-align:center; width:20%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <%= link_to topic.user.username, user_url(topic.user) %>
+                  <br/>
+                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+                </span>
+              </td>
 
-        </tr>
+              <td
+                style="vertical-align:top; text-align:center; width:20%"
+                class="nforumview2"
+              >
+                <% if policy(topic).edit? %>
+                  <%= link_to "Edit",
+                  edit_category_topic_path(@category, topic),
+                  { class: "btn" } %>
+                <% end %>
+
+                <% if policy(topic).destroy? %>
+                  <%= button_to "Delete",
+                  [@category, topic],
+                  class: "btn",
+                  method: :delete,
+                  form: {
+                    data: {
+                      turbo_confirm: "Are you sure?",
+                    },
+                  } %>
+                <% end %>
+                <span class="smalltext"><br/></span>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
 
         <tr>
           <td class="forumheader">&nbsp;</td>
@@ -149,8 +176,8 @@
           </td>
         </tr>
 
-        <% if @category.topics.any? %>
-          <% @category.topics.each do |topic| %>
+        <% if @category.topics.where(sticky: false).or(@category.topics.where(announcement: false)).any? %>
+          <% @category.topics.where(sticky: false).and(@category.topics.where(announcement: false)).each do |topic| %>
             <tr>
               <td
                 style="vertical-align:middle; text-align:center; width:3%"
@@ -227,13 +254,13 @@
                 <% if policy(topic).edit? %>
                   <%= link_to "Edit",
                   edit_category_topic_path(@category, topic),
-                  { class: "btn btn-primary" } %>
+                  { class: "btn" } %>
                 <% end %>
 
                 <% if policy(topic).destroy? %>
                   <%= button_to "Delete",
                   [@category, topic],
-                  class: "btn btn-danger",
+                  class: "btn",
                   method: :delete,
                   form: {
                     data: {
@@ -256,14 +283,13 @@
     <tbody>
       <tr>
         <td style="width:80%">
-          <span class="mediumtext">Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <span class="mediumtext">Go to page&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
             <a class="nextprev_link">2</a>
             <a class="nextprev_link">3</a>
             ...
             <a class="nextprev_link">89</a>
             <a class="nextprev_link">90</a>
             <a class="nextprev_link">91</a>
-            <!-- End of Next/Prev -->
           </span>
           <form
             method="post"

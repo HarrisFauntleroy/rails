@@ -88,6 +88,8 @@
                           ></a>
                         Sun Mar 22 2009, 10:29PM</td>
                       <td style="text-align:right">
+                        <button>edit</button>
+                        <button>delete</button>
                         <a href="/print.php?plugin:forum.66240">
                           <%= image_tag("printer.png") %>
                         </a>
@@ -99,10 +101,8 @@
             </tr>
             <tr>
               <td class="nforumthread" style="vertical-align:top">
-                <div class="spacer"><img
-                    src="../../e107_files/public/avatars/ap_1225_sstc_corona_jet_motor._001.jpg"
-                    alt=""
-                  >
+                <div class="spacer">
+                  <%= image_tag("blank_avatar.jpg") %>
                 </div><br><span class="smalltext">
                   <div class="spacer"><img src="../../e107_images/rate/lite/lev10.png" alt=""></div><span class="smalltext">Registered Member #1225</span><br>Joined: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
                 </span>
@@ -118,8 +118,11 @@
               </td>
             </tr>
             <tr>
-              <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-              </span></td>
+              <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top",
+                  nil,
+                  id: "back-to-top",
+                  onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                </span></td>
               <td class="nforumthread2" style="vertical-align:top">
                 <table cellspacing="0" cellpadding="0" style="width:100%">
                   <tbody>
@@ -183,8 +186,11 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-                  </span></td>
+                  <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top",
+                      nil,
+                      id: "back-to-top",
+                      onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                    </span></td>
                   <td class="nforumthread2" style="vertical-align:top">
                     <table cellspacing="0" cellpadding="0" style="width:100%">
                       <tbody>
@@ -242,7 +248,10 @@
                       <option value="21">Attachments</option>
                       <option value="23">HvWiki Discussion</option>
                     </select>
-                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Back to top", nil, id: "back-to-top", onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Back to top",
+                    nil,
+                    id: "back-to-top",
+                    onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
                   </p>
                 </form>
               </td>

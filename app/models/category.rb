@@ -11,7 +11,7 @@ class Category < ApplicationRecord
   end
 
   def total_topics
-    topics.count
+    Topic.where(category_id: id).count
   end
 
   def last_post_info

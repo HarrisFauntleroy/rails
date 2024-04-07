@@ -39,9 +39,15 @@ class TopicsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @category = Category.find(params[:category_id])
+    @topic = @category.topics.find(params[:id])
+  end
 
   def update
+    @category = Category.find(params[:category_id]) # Fetch category directly
+    @topic = @category.topics.find(params[:id])
+
     if @topic.update(topic_params)
       redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
     else
@@ -58,6 +64,33 @@ class TopicsController < ApplicationController
     redirect_to category_path(@category), notice: 'Topic deleted!'
   end
 
+
+  def toggle_sticky
+    @topic = Topic.find(params[:id])
+    authorize @topic, :toggle_sticky? # Assuming 'toggle_sticky?' policy exists
+
+    if @topic.sticky?
+      @topic.unmark_as_sticky!
+    else
+      @topic.mark_as_sticky!
+    end
+
+    redirect_to [@category, @topic], notice: "Topic stickiness updated."
+  end
+
+  def toggle_announcement
+    @topic = Topic.find(params[:id])
+    authorize @topic, :toggle_announcement? # Assuming 'toggle_announcement?' policy exists
+
+    if @topic.announcement?
+      @topic.unmark_as_announcement!
+    else
+      @topic.mark_as_announcement!
+    end
+
+    redirect_to [@category, @topic], notice: "Topic stickiness updated."
+  end
+
   private
 
   def set_topic
@@ -65,6 +98,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content)
+    params.require(:topic).permit(:title, :content, :sticky, :announcement, :category_id, :user_id)
   end
 end
