@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_online_stats, :set_birthday_stats
+  before_action :set_online_stats
 
   helper_method :breadcrumbs, :resource_name, :resource, :devise_mapping, :resource_class
 
@@ -60,10 +60,10 @@ class ApplicationController < ActionController::Base
     @most_ever_online = 0
   end
 
-  def set_birthday_stats
-    @today_birthdays = User.where("strftime('%m-%d', date_of_birth) = strftime('%m-%d', ?)", Date.today)
+  # def set_birthday_stats
+  #   @today_birthdays = User.where("to_char(date_of_birth::date, 'MM-DD') = to_char(?, 'MM-DD')", Date.today)
 
-    @next_birthdays = User.where("strftime('%m-%d', date_of_birth) > strftime('%m-%d', ?)", Date.today)
-                          .order(Arel.sql("strftime('%m', date_of_birth), strftime('%d', date_of_birth)"))
-  end
+  #   @next_birthdays = User.where("to_char(date_of_birth, 'MM-DD') > to_char(?, 'MM-DD')", Date.today)
+  #                         .order(Arel.sql("to_char(date_of_birth, 'MM'), to_char(date_of_birth, 'DD')"))
+  # end
 end

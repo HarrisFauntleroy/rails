@@ -2,9 +2,9 @@
   <div class="card-header">
     <div class="header-content">
       <%= image_tag("bullet.png") %>
-        <span>
-          <%= current_section.capitalize %>
-        </span>
+      <span>
+        <%= current_section.capitalize %>
+      </span>
     </div>
   </div>
   <div class="card-body">
@@ -13,245 +13,275 @@
         <tbody>
           <%= render "shared/breadcrumbs" %>
 
+          <tr>
+            <td class="nforumcaption2" colspan="2">
+              <table cellspacing="0" cellpadding="0" style="width:100%">
+                <tbody>
+                  <tr>
+                    <td>&lt;&lt;
+                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.prev">Previous thread</a>
+                      |
+                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.next">Next thread</a>
+                      &gt;&gt;
+                    </td>
+                    <td style="text-align:right">&nbsp;&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <table style="width:100%">
+        <tbody>
+          <tr>
+            <td style="width:60%">
+              <div class="mediumtext">
+                <%= image_tag("e.png") %>
+                <b>
+                  <%= @topic.title %>
+                </b>
+              </div><br>Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+              <a
+                class="nextprev_link"
+                href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30"
+              >2</a>
+              <!-- End of Next/Prev -->
+            </td>
+            <td style="width:40%; text-align: right; vertical-align:bottom;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width:20%; text-align:center" class="nforumcaption2">
+              Author
+            </td>
+            <td style="width:80%; text-align:center" class="nforumcaption2">
+              Post
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spacer">
+        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+          <tbody>
             <tr>
-              <td class="nforumcaption2" colspan="2">
+              <td class="nforumcaption3" style="vertical-align:middle; width:20%;"><a href="../../user.php?id.1225"><b>
+                    <%= link_to @topic.user.username, user_url(@topic.user) %>
+                  </b></a></td>
+              <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
                 <table cellspacing="0" cellpadding="0" style="width:100%">
                   <tbody>
                     <tr>
-                      <td>&lt;&lt;
-                        <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.prev">Previous thread</a>
-                        |
-                        <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.next">Next thread</a>
-                        &gt;&gt;
+                      <td class="smallblacktext"><a
+                          id="post_66240"
+                          href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.post"
+                        ><img
+                            src="/e107_plugins/forum/images/lite/post.png"
+                            alt=""
+                            title=""
+                            style="border:0"
+                          ></a>
+                        Sun Mar 22 2009, 10:29PM</td>
+                      <td style="text-align:right">
+                        <a href="/print.php?plugin:forum.66240">
+                          <%= image_tag("printer.png") %>
+                        </a>
                       </td>
-                      <td style="text-align:right">&nbsp;&nbsp;</td>
                     </tr>
                   </tbody>
                 </table>
               </td>
             </tr>
-            </tbody>
-            </table>
-            <br>
-            <table style="width:100%">
-              <tbody>
-                <tr>
-                  <td style="width:60%">
-                    <div class="mediumtext">
-                      <%= image_tag("e.png") %>
-                        <b>
-                          <%= @topic.title %>
-                        </b>
-                    </div><br>Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current"
-                      style="text-decoration:underline">1</span>]
-                    <a class="nextprev_link" href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30">2</a>
-                    <!-- End of Next/Prev -->
-                  </td>
-                  <td style="width:40%; text-align: right; vertical-align:bottom;"></td>
-                </tr>
-              </tbody>
-            </table>
-            
-            <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-              <tbody>
-                <tr>
-                  <td style="width:20%; text-align:center" class="nforumcaption2">
-                    Author
-                  </td>
-                  <td style="width:80%; text-align:center" class="nforumcaption2">
-                    Post
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="spacer">
-              <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-                <tbody>
-                  <tr>
-                    <td class="nforumcaption3" style="vertical-align:middle; width:20%;"><a href="../../user.php?id.1225"><b>
-                          <%= link_to @topic.user.username, user_url(@topic.user) %>
-                        </b></a></td>
-                    <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
-                      <table cellspacing="0" cellpadding="0" style="width:100%">
-                        <tbody>
-                          <tr>
-                            <td class="smallblacktext"><a id="post_66240"
-                                href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.post"><img
-                                  src="/e107_plugins/forum/images/lite/post.png" alt="" title="" style="border:0"></a>
-                              Sun Mar 22 2009, 10:29PM</td>
-                            <td style="text-align:right">
-                              <a href="/print.php?plugin:forum.66240"><img src="/e107_images/generic/lite/printer.png"
-                                  style="border:0" alt="Print View" title="Print View"></a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="nforumthread" style="vertical-align:top">
-                      <div class="spacer"><img src="../../e107_files/public/avatars/ap_1225_sstc_corona_jet_motor._001.jpg" alt="">
-                      </div><br><span class="smalltext">
-                        <div class="spacer"><img src="../../e107_images/rate/lite/lev10.png" alt=""></div><span
-                          class="smalltext">Registered Member #1225</span><br>Joined: Fri Jan 11 2008, 07:24PM<br>Location:
-                        Beaumont, Texas, USA<br>Posts: 1814<br>
-                      </span>
-                    </td>
-                    <td class="nforumthread" style="vertical-align:top">
-                      <%= @topic.content %><br><br><br><br><br><br>
-                        <hr style="width:15%; text-align:left"><span class="smalltext">All saints have a past, and all sinners
-                          have a future.</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="nforumthread2"><span class="smallblacktext"><a
-                          href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
-                          onclick="window.scrollTo(0,0);">Back to top</a></span></td>
-                    <td class="nforumthread2" style="vertical-align:top">
-                      <table cellspacing="0" cellpadding="0" style="width:100%">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a href="http://arcstarter.host22.com/index.php?p=1_1"><img
-                                  src="/e107_plugins/forum/images/lite/website.png" alt="Website" title="Website"
-                                  style="border:0"></a>
-                            </td>
-                            <td style="text-align:right"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <tr>
+              <td class="nforumthread" style="vertical-align:top">
+                <div class="spacer"><img
+                    src="../../e107_files/public/avatars/ap_1225_sstc_corona_jet_motor._001.jpg"
+                    alt=""
+                  >
+                </div><br><span class="smalltext">
+                  <div class="spacer"><img src="../../e107_images/rate/lite/lev10.png" alt=""></div><span class="smalltext">Registered Member #1225</span><br>Joined: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
+                </span>
+              </td>
+              <td class="nforumthread" style="vertical-align:top">
+                <%= @topic.content %><br><br><br><br><br><br>
+                <hr style="width:15%; text-align:left"><span class="smalltext">All saints have a past, and all sinners have a future.</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="nforumthread2"><span class="smallblacktext"><a
+                    href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
+                    onclick="window.scrollTo(0,0);"
+                  >Back to top</a></span></td>
+              <td class="nforumthread2" style="vertical-align:top">
+                <table cellspacing="0" cellpadding="0" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="http://arcstarter.host22.com/index.php?p=1_1"><img
+                            src="/e107_plugins/forum/images/lite/website.png"
+                            alt="Website"
+                            title="Website"
+                            style="border:0"
+                          ></a>
+                      </td>
+                      <td style="text-align:right"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <% if @topic.posts.any? %>
         <% @topic.posts.each do |post| %>
           <div class="spacer">
             <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
               <tbody>
-          
+
                 <tr>
                   <td class="nforumcaption3" style="vertical-align:middle; width:20%;"><a href="../../user.php?id.1749"><b>
                         <%= link_to post.user.username, user_url(post.user) %>
                       </b></a></td>
-                      <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
-                        <table cellspacing="0" cellpadding="0" style="width:100%">
-                          <tbody>
-                            <tr>
-                              <td class="smallblacktext"><a id="post_66241"
-                                  href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66241.post"><img
-                                    src="/e107_plugins/forum/images/lite/post.png" alt="" title="" style="border:0"></a>
-                                <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
+                  <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
+                    <table cellspacing="0" cellpadding="0" style="width:100%">
+                      <tbody>
+                        <tr>
+                          <td class="smallblacktext"><a
+                              id="post_66241"
+                              href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66241.post"
+                            ><img
+                                src="/e107_plugins/forum/images/lite/post.png"
+                                alt=""
+                                title=""
+                                style="border:0"
+                              ></a>
+                            <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
                           </td>
                           <td style="text-align:right">
                           </td>
-                          </tr>
-                          </tbody>
-                          </table>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td class="nforumthread" style="vertical-align:top">
-                              <div class="spacer"><img src="../../e107_files/public/avatars/ap_1749_07_6853034-3.jpg" alt="">
-                              </div><br><span class="smalltext">
-                                <div class="spacer"><img src="../../e107_images/rate/lite/lev6.png" alt=""></div><span
-                                  class="smalltext">Registered Member #1749</span><br>Joined: Thu Oct 09 2008,
-                                09:04PM<br>Location: Claremont New Hampshire<br>Posts: 270<br>
-                              </span>
-                            </td>
-                            <td class="nforumthread" style="vertical-align:top">
-                              <%= post.content %>
+                        </tr>
+                      </tbody>
+                    </table>
                   </td>
-                  </tr>
-                  <tr>
-                    <td class="nforumthread2"><span class="smallblacktext"><a
-                          href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top" onclick="window.scrollTo(0,0);">Back to
-                          top</a></span></td>
-                    <td class="nforumthread2" style="vertical-align:top">
-                      <table cellspacing="0" cellpadding="0" style="width:100%">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <a href="http://www.yahoo.com"><img src="/e107_plugins/forum/images/lite/website.png" alt="Website"
-                                  title="Website" style="border:0"></a>
-                            </td>
-                            <td style="text-align:right"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                  </tbody>
-                  </table>
-                  </div>
-                  <% end %>
-                    <% else %>
-<p>There are no comments in this topic yet.</p>
-<% end %>
-                <% if policy(@topic).create_post? %>
-                  <%= render "posts/form" , post: @topic.posts.build %>
-                    <% end %>
-<div class="spacer">
-  <div class="forumheader">
-    Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current"
-      style="text-decoration:underline">1</span>]
-    <a class="nextprev_link" href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30">2</a>
+                </tr>
+                <tr>
+                  <td class="nforumthread" style="vertical-align:top">
+                    <div class="spacer"><img src="../../e107_files/public/avatars/ap_1749_07_6853034-3.jpg" alt="">
+                    </div><br><span class="smalltext">
+                      <div class="spacer"><img src="../../e107_images/rate/lite/lev6.png" alt=""></div><span class="smalltext">Registered Member #1749</span><br>Joined: Thu Oct 09 2008, 09:04PM<br>Location: Claremont New Hampshire<br>Posts: 270<br>
+                    </span>
+                  </td>
+                  <td class="nforumthread" style="vertical-align:top">
+                    <%= post.content %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nforumthread2"><span class="smallblacktext"><a
+                        href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
+                        onclick="window.scrollTo(0,0);"
+                      >Back to top</a></span></td>
+                  <td class="nforumthread2" style="vertical-align:top">
+                    <table cellspacing="0" cellpadding="0" style="width:100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a href="http://www.yahoo.com"><img
+                                src="/e107_plugins/forum/images/lite/website.png"
+                                alt="Website"
+                                title="Website"
+                                style="border:0"
+                              ></a>
+                          </td>
+                          <td style="text-align:right"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+      <% else %>
+        <p>There are no comments in this topic yet.</p>
+      <% end %>
+      <% if policy(@topic).create_post? %>
+        <%= render "posts/form", post: @topic.posts.build %>
+      <% end %>
+      <div class="spacer">
+        <div class="forumheader">
+          Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <a
+            class="nextprev_link"
+            href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30"
+          >2</a>
+          <!-- End of Next/Prev -->
+        </div>
+        <br>
+        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
+                <b>Moderators: Chris Russell, Noelle, Alex, Tesladownunder, Dave
+                  Marshall, Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
+                <form
+                  method="post"
+                  action="http://4hv.org/e107_plugins/forum/forum_viewtopic.php"
+                >
+                  <p>Jump:
+                    <select name="forumjump" class="tbox">
+                      <option value="2">General Chatting</option>
+                      <option value="8">Sale and Trade</option>
+                      <option value="9">General Science and Electronics</option>
+                      <option value="10">Electromagnetic Radiation</option>
+                      <option value="11">Electromagnetic Projectile Accelerators</option>
+                      <option value="12">High Voltage</option>
+                      <option value="13">Tesla Coils</option>
+                      <option value="14">Chemistry</option>
+                      <option value="15">Computer Science</option>
+                      <option value="16">Projects</option>
+                      <option value="20">Archive Discussion</option>
+                      <option value="19">Suggestion Box</option>
+                      <option value="21">Attachments</option>
+                      <option value="23">HvWiki Discussion</option>
+                    </select>
+                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<a
+                      href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
+                      onclick="window.scrollTo(0,0);"
+                    >Back to top</a>
+                  </p>
+                </form>
+              </td>
+              <td
+                style="width:50%; text-align:right; vertical-align:top"
+                class="nforumthread"
+              ></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- End of Next/Prev -->
-  </div>
-  <br>
-  <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
-          <b>Moderators: Chris Russell, Noelle, Alex, Tesladownunder, Dave
-            Marshall, Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
-          <form method="post" action="http://4hv.org/e107_plugins/forum/forum_viewtopic.php">
-            <p>Jump:
-              <select name="forumjump" class="tbox">
-                <option value="2">General Chatting</option>
-                <option value="8">Sale and Trade</option>
-                <option value="9">General Science and Electronics</option>
-                <option value="10">Electromagnetic Radiation</option>
-                <option value="11">Electromagnetic Projectile Accelerators</option>
-                <option value="12">High Voltage</option>
-                <option value="13">Tesla Coils</option>
-                <option value="14">Chemistry</option>
-                <option value="15">Computer Science</option>
-                <option value="16">Projects</option>
-                <option value="20">Archive Discussion</option>
-                <option value="19">Suggestion Box</option>
-                <option value="21">Attachments</option>
-                <option value="23">HvWiki Discussion</option>
-              </select>
-              <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<a
-                href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240#top"
-                onclick="window.scrollTo(0,0);">Back to top</a>
-            </p>
-          </form>
-        </td>
-        <td style="width:50%; text-align:right; vertical-align:top" class="nforumthread"></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      <div class="spacer">
+        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td style="text-align:center" class="nforumthread2">
 
-<div class="spacer">
-  <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td style="text-align:center" class="nforumthread2">
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="nforumdisclaimer" style="text-align:center">Powered by
-    <b>e107 Forum System</b>
-  </div>
-                      </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="nforumdisclaimer" style="text-align:center">Powered by
+          <b>e107 Forum System</b>
+        </div>
+      </div>
     </td>
 
   </div>
-  </div>
+</div>

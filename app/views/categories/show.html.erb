@@ -2,50 +2,41 @@
   <div class="card-header">
     <div class="header-content">
       <%= image_tag("bullet.png") %>
-      <span><%= current_section.capitalize %></span>
+      <span>
+        <%= current_section.capitalize %>
+      </span>
     </div>
   </div>
- 
+
   <div class="card-body">
     <%= render "shared/breadcrumbs" %>
-
-    <table style="width:100%"><tbody><tr>
-          <td style="width:80%"><div class="mediumtext">
+    <table style="width:100%">
+      <tbody>
+        <tr>
+          <td style="width:80%">
+            <div class="mediumtext">
               <%= image_tag("e.png") %>
-              <b><%= @category.name %></b></div>Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
-            <a
-              class="nextprev_link"
-              href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.25"
-            >2</a>
-            <a
-              class="nextprev_link"
-              href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.50"
-            >3</a>
+              <b>
+                <%= @category.name %>
+              </b>
+            </div>
+            Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+            <a class="nextprev_link">2</a>
+            <a class="nextprev_link">3</a>
             ...
-            <a
-              class="nextprev_link"
-              href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2200"
-            >89</a>
-            <a
-              class="nextprev_link"
-              href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2225"
-            >90</a>
-            <a
-              class="nextprev_link"
-              href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2250"
-            >91</a>
-
+            <a class="nextprev_link">89</a>
+            <a class="nextprev_link">90</a>
+            <a class="nextprev_link">91</a>
             <!-- End of Next/Prev -->
           </td>
           <td style="width:20%; text-align:right; vertical-align:bottom;">
-
           </td>
         </tr>
-      </tbody></table>
+      </tbody>
+    </table>
 
-          <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+    <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
       <tbody>
-        
         <tr>
           <td style="width:3%" class="nforumcaption2">&nbsp;</td>
           <td style="width:47%" class="nforumcaption2">Thread</td>
@@ -54,255 +45,366 @@
           <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
           <td style="width:20%; text-align:center" class="nforumcaption2">Latest Post</td>
         </tr>
-        
-        <tr><td class="forumheader">&nbsp;</td><td colspan="5" class="forumheader"><span class="mediumtext"><b>Important Threads</b></span></td>
+
+        <tr>
+          <td class="forumheader">&nbsp;</td>
+          <td colspan="5" class="forumheader">
+            <span class="mediumtext">
+              <b>Important Threads</b>
+            </span>
+          </td>
         </tr>
 
         <tr>
           <td
             style="vertical-align:middle; text-align:center; width:3%"
             class="nforumview1"
-          ><!-- style="border:0" -->
-          <%= image_tag("sticky.png") %>
+          >
+            <%= image_tag("sticky.png") %>
           </td>
+
           <td
             style="vertical-align:middle; text-align:left; width:47%"
             class="nforumview1"
           >
-
             <table style="width:100%">
-              <tbody><tr>
-                  <td style="width:90%"><span class="mediumtext"><b><a
+              <tbody>
+                <tr>
+                  <td style="width:90%">
+                    <span class="mediumtext">
+                      <b>
+                        <a
                           title="The main idea of this thread is to help new members with calculations and assorted stuff by having a[more ...]"
                           href="../../e107_plugins/forum/forum_viewtopic.php?66240"
-                        >Useful link reference and formulas.</a></b></span>
-                    <span class="smalltext">Goto page: [&nbsp;<a href="../../e107_plugins/forum/forum_viewtopic.php?66240.0">1</a>
-                      <a href="../../e107_plugins/forum/forum_viewtopic.php?66240.30">2</a>&nbsp;]</span></td>
+                        >
+                          Useful link reference and formulas.
+                        </a>
+                      </b>
+                    </span>
+                    <span class="smalltext">
+                      Goto page: [&nbsp;<a href="../../e107_plugins/forum/forum_viewtopic.php?66240.0">1</a>
+                      <a href="../../e107_plugins/forum/forum_viewtopic.php?66240.30">2</a>&nbsp;]</span>
+                  </td>
                   <td style="width:10%; white-space:nowrap;"></td>
                 </tr>
-              </tbody></table>
+              </tbody>
+            </table>
           </td>
 
           <td
             style="vertical-align:top; text-align:center; width:20%"
             class="nforumview2"
-          ><span class="smalltext"><b><a href="../../user.php?id.1225">Arcstarter</a></b><br>Sun Mar 22 2009, 10:29PM</span></td>
-          <td
-            style="vertical-align:center; text-align:center; width:5%"
-            class="nforumview2"
-          ><span class="smalltext">34</span></td>
-          <td
-            style="vertical-align:center; text-align:center; width:5%"
-            class="nforumview2"
-          ><span class="smalltext">2435</span></td>
-          <td
-            style="vertical-align:top; text-align:center; width:20%"
-            class="nforumview2"
-          ><span class="smalltext"><a href="../../user.php?id.3108">Plasmana</a><br>Sun Aug 29 2010, 06:05PM</span></td>
-        </tr>
-        
-        <tr><td class="forumheader">&nbsp;</td><td colspan="5" class="forumheader"><span class="mediumtext"><b>Forum Threads</b></span></td>
-        </tr>
-
-         <% if @category.topics.any? %>
-      <% @category.topics.each do |topic| %>
-              <tr>
-          <td
-            style="vertical-align:middle; text-align:center; width:3%"
-            class="nforumview1"
-          ><!-- style="border:0" -->
-          <%= image_tag("nonew_popular.png") %></td>
-          <td
-            style="vertical-align:middle; text-align:left; width:47%"
-            class="nforumview1"
           >
-
-            <table style="width:100%">
-              <tbody><tr>
-                  <td style="width:90%"><span class="mediumtext"><b><%= link_to topic.title, [@category, topic] %></b></span>
-                    <span class="smalltext"></span></td>
-                  <td style="width:10%; white-space:nowrap;"></td>
-                </tr>
-              </tbody></table>
+            <span class="smalltext">
+              <b>
+                <a href="../../user.php?id.1225">
+                  Arcstarter
+                </a>
+              </b>
+              <br/>
+              Sun Mar 22 2009, 10:29PM
+            </span>
           </td>
-          <td
-            style="vertical-align:top; text-align:center; width:20%"
-            class="nforumview2"
-          ><span class="smalltext"><b><%= link_to topic.user.username, user_url(topic.user) %></b><br><%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %></span></td>
+
           <td
             style="vertical-align:center; text-align:center; width:5%"
             class="nforumview2"
-          ><span class="smalltext"><%= topic.posts.count %></span></td>
+          ><span class="smalltext">34</span>
+          </td>
+
           <td
             style="vertical-align:center; text-align:center; width:5%"
             class="nforumview2"
-          ><span class="smalltext">0</span></td>
+          ><span class="smalltext">2435</span>
+          </td>
+
           <td
             style="vertical-align:top; text-align:center; width:20%"
             class="nforumview2"
-          ><span class="smalltext"><%= link_to topic.user.username, user_url(topic.user) %><br><%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %></span></td>
-          <td class="btn-group">
-              <% if policy(topic).edit? %>
-                <%= link_to "Edit",
-                edit_category_topic_path(@category, topic),
-                { class: "btn btn-primary" } %>
-              <% end %>
-              <% if policy(topic).destroy? %>
-                <%= button_to "Delete",
-                [@category, topic],
-                class: "btn btn-danger",
-                method: :delete,
-                form: {
-                  data: {
-                    turbo_confirm: "Are you sure?",
-                  },
-                } %>
-              <% end %>
+          ><span class="smalltext"><a href="../../user.php?id.3108">Plasmana</a><br/>Sun Aug 29 2010, 06:05PM</span>
           </td>
-
         </tr>
-      <% end %>
-    <% else %>
-      <p>There are no topics in this category yet.</p>
-    <% end %>
-  </div>
-  <div class="btn-group">
-    <% if policy(@category).create_topic? %>
-      <%= link_to "New Topic",
-      new_category_topic_path(@category),
-      class: "btn btn-success" %>
-    <% end %>
-  </div>
-  
+
+        <tr>
+          <td class="forumheader">&nbsp;</td>
+          <td colspan="5" class="forumheader">
+            <span class="mediumtext">
+              <b>Forum Threads</b>
+            </span>
+          </td>
+        </tr>
+
+        <% if @category.topics.any? %>
+          <% @category.topics.each do |topic| %>
+            <tr>
+              <td
+                style="vertical-align:middle; text-align:center; width:3%"
+                class="nforumview1"
+              >
+                <%= image_tag("nonew_popular.png") %>
+              </td>
+
+              <td
+                style="vertical-align:middle; text-align:left; width:47%"
+                class="nforumview1"
+              >
+                <table style="width:100%">
+                  <tbody>
+                    <tr>
+                      <td style="width:90%">
+                        <span class="mediumtext">
+                          <b>
+                            <%= link_to topic.title, [@category, topic] %>
+                          </b>
+                        </span>
+                        <span class="smalltext"></span>
+                      </td>
+                      <td style="width:10%; white-space:nowrap;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+
+              <td
+                style="vertical-align:top; text-align:center; width:20%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <b>
+                    <%= link_to topic.user.username, user_url(topic.user) %>
+                  </b>
+                  <br/>
+                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+                </span>
+              </td>
+
+              <td
+                style="vertical-align:center; text-align:center; width:5%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <%= topic.posts.count %>
+                </span>
+              </td>
+
+              <td
+                style="vertical-align:center; text-align:center; width:5%"
+                class="nforumview2"
+              >
+                <span class="smalltext">0</span>
+              </td>
+
+              <td
+                style="vertical-align:top; text-align:center; width:20%"
+                class="nforumview2"
+              >
+                <span class="smalltext">
+                  <%= link_to topic.user.username, user_url(topic.user) %>
+                  <br/>
+                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+                </span>
+              </td>
+
+              <td class="btn-group">
+                <% if policy(topic).edit? %>
+                  <%= link_to "Edit",
+                  edit_category_topic_path(@category, topic),
+                  { class: "btn btn-primary" } %>
+                <% end %>
+
+                <% if policy(topic).destroy? %>
+                  <%= button_to "Delete",
+                  [@category, topic],
+                  class: "btn btn-danger",
+                  method: :delete,
+                  form: {
+                    data: {
+                      turbo_confirm: "Are you sure?",
+                    },
+                  } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <p>There are no topics in this category yet.</p>
+        <% end %>
+
+        <div class="btn-group">
+          <% if policy(@category).create_topic? %>
+            <%= link_to "New Topic",
+            new_category_topic_path(@category),
+            class: "btn btn-success" %>
+          <% end %>
+        </div>
       </tbody>
     </table>
+  </div>
 
-    <table style="width:100%">
-      <tbody><tr>
-          <td style="width:80%"><span class="mediumtext">Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
-              <a
-                class="nextprev_link"
-                href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.25"
-              >2</a>
-              <a
-                class="nextprev_link"
-                href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.50"
-              >3</a>
-              ...
-              <a
-                class="nextprev_link"
-                href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2200"
-              >89</a>
-              <a
-                class="nextprev_link"
-                href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2225"
-              >90</a>
-              <a
-                class="nextprev_link"
-                href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9.2250"
-              >91</a>
+  <table style="width:100%">
+    <tbody>
+      <tr>
+        <td style="width:80%">
+          <span class="mediumtext">Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+            <a class="nextprev_link">2</a>
+            <a class="nextprev_link">3</a>
+            ...
+            <a class="nextprev_link">89</a>
+            <a class="nextprev_link">90</a>
+            <a class="nextprev_link">91</a>
+            <!-- End of Next/Prev -->
+          </span>
+          <form
+            method="post"
+            action="http://4hv.org/e107_plugins/forum/forum_viewforum.php"
+          >
+            <p>Jump to forum:
+              <select name="forumjump" class="tbox">
+                <option value="2">General Chatting</option>
+                <option value="8">Sale and Trade</option>
+                <option value="9">General Science and Electronics</option>
+                <option value="10">Electromagnetic Radiation</option>
+                <option value="11">Electromagnetic Projectile Accelerators</option>
+                <option value="12">High Voltage</option>
+                <option value="13">Tesla Coils</option>
+                <option value="14">Chemistry</option>
+                <option value="15">Computer Science</option>
+                <option value="16">Projects</option>
+                <option value="20">Archive Discussion</option>
+                <option value="19">Suggestion Box</option>
+                <option value="21">Attachments</option>
+                <option value="23">HvWiki Discussion</option>
+              </select>
 
-              <!-- End of Next/Prev -->
+              <input class="button" type="submit" name="fjsubmit" value="Go"/>&nbsp;&nbsp;&nbsp;&nbsp;
+              <td style="width:20%; text-align:right"/>
+            </p>
+          </form>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="spacer">
+    <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align:center; width:50%" class="nforumview3">
+            <span class="smalltext">This forum is moderated by: Chris Russell, Noelle, Alex,
+              Tesladownunder, Dave Marshall, Bjørn, Dave Billington, Steve
+              McConner, Anders M.
             </span>
-            <form
-              method="post"
-              action="http://4hv.org/e107_plugins/forum/forum_viewforum.php"
-            ><p>Jump to forum:
-                <select name="forumjump" class="tbox">
-                  <option value="2">General Chatting</option>
-                  <option value="8">Sale and Trade</option>
-                  <option value="9">General Science and Electronics</option>
-                  <option value="10">Electromagnetic Radiation</option>
-                  <option value="11">Electromagnetic Projectile Accelerators</option>
-                  <option value="12">High Voltage</option>
-                  <option value="13">Tesla Coils</option>
-                  <option value="14">Chemistry</option>
-                  <option value="15">Computer Science</option>
-                  <option value="16">Projects</option>
-                  <option value="20">Archive Discussion</option>
-                  <option value="19">Suggestion Box</option>
-                  <option value="21">Attachments</option>
-                  <option value="23">HvWiki Discussion</option></select>
-                <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://4hv.org/e107_plugins/forum/forum_viewforum.php?9#top">Back to top</a></p></form>
           </td>
-          <td style="width:20%; text-align:right">
 
+          <td
+            style="text-align:right; vertical-align:center; width:50%"
+            class="nforumview3"
+          >
+            <span class="smalltext">1 user is browsing this forum at the moment (0 members, 1 guest)
+            </span>
           </td>
         </tr>
-      </tbody></table>
 
-    <div class="spacer">
-      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-        <tbody><tr>
-            <td style="vertical-align:center; width:50%" class="nforumview3"><span class="smalltext">This forum is moderated by: Chris Russell, Noelle, Alex,
-                Tesladownunder, Dave Marshall, Bjørn, Dave Billington, Steve
-                McConner, Anders M.</span></td>
-            <td
-              style="text-align:right; vertical-align:center; width:50%"
-              class="nforumview3"
-            ><span class="smalltext">1 user is browsing this forum at the moment (0 members, 1
-                guest)</span></td>
-          </tr>
+        <tr>
+          <td style="vertical-align:center; width:50%" class="nforumview4">
+            <table style="width:100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("new_small.png") %>
+                  </td>
 
-          <tr>
-            <td style="vertical-align:center; width:50%" class="nforumview4">
-              <table style="width:100%">
-                <tbody><tr>
-                    <td style="vertical-align:middle; text-align:center; width:2%">
-                      <!-- style="border:0" -->
-                      <%= image_tag("new_small.png") %>
-                     </td>
-                    <td style="width:10%" class="smallblacktext">New posts</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("nonew_small.png") %></td>
-                    <td style="width:10%" class="smallblacktext">
-                      No new posts</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("sticky_small.png") %></td>
-                    <td style="width:10%" class="smallblacktext">Sticky</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("announce_small.png") %></td>
-                    <td style="width:10%" class="smallblacktext">Announcement</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("new_popular_small.png") %></td>
-                    <td style="width:2%" class="smallblacktext">New posts [popular]</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("nonew_popular_small.png") %></td>
-                    <td style="width:10%" class="smallblacktext">
-                      No new posts [popular]</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("sticky_closed_small.png") %></td>
-                    <td style="width:10%" class="smallblacktext">Sticky/Closed</td>
-                    <td style="vertical-align:middle; text-align:center; width:2%"><!-- style="border:0" -->
-                      <%= image_tag("closed_small.png") %>></td>
-                    <td style="width:10%" class="smallblacktext">Closed thread</td>
-                  </tr>
-                </tbody></table></td>
-            <td
-              style="vertical-align:center; text-align:center; width:50%"
-              class="nforumview4"
-            >You
-              <b>can</b>
-              start new threads - You
-              <b>can</b>
-              post replies - You
-              <b>can</b>
-              edit your posts<br><br>
-              <form method="get" action="../../search.php">
-                <p>
-                  <input class="tbox" type="text" name="q" size="20" value="" maxlength="50">
-                  <input type="hidden" name="r" value="0">
-                  <input type="hidden" name="ref" value="forum">
-                  <input class="button" type="submit" name="s" value="Search">
-                </p>
-              </form>
-            </td>
-          </tr>
-        </tbody></table>
-    </div>
+                  <td style="width:10%" class="smallblacktext">New posts</td>
 
-    <div class="nforumdisclaimer" style="text-align:center">Powered by
-      <b>e107 Forum System</b></div></td>
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("nonew_small.png") %>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">
+                    No new posts
+                  </td>
+
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("sticky_small.png") %>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">Sticky</td>
+
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("announce_small.png") %>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">
+                    Announcement
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("new_popular_small.png") %>
+                  </td>
+
+                  <td style="width:2%" class="smallblacktext">
+                    New posts [popular]
+                  </td>
+
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("nonew_popular_small.png") %>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">
+                    No new posts [popular]
+                  </td>
+
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("sticky_closed_small.png") %>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">
+                    Sticky/Closed
+                  </td>
+
+                  <td style="vertical-align:middle; text-align:center; width:2%">
+                    <%= image_tag("closed_small.png") %>>
+                  </td>
+
+                  <td style="width:10%" class="smallblacktext">
+                    Closed thread
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+
+          <td
+            style="vertical-align:center; text-align:center; width:50%"
+            class="nforumview4"
+          >
+            You
+            <b>can</b>
+            start new threads - You
+            <b>can</b>
+            post replies - You
+            <b>can</b>
+            edit your posts
+            <br/>
+            <br/>
+            <form method="get" action="../../search.php">
+              <p>
+                <input class="tbox" type="text" name="q" size="20" value="" maxlength="50"/>
+                <input type="hidden" name="r" value="0 "/>
+                <input type="hidden" name="ref" value="forum "/>
+                <input class="button" type="submit" name="s" value="Search "/>
+              </p>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="nforumdisclaimer" style="text-align:center">Powered by
+    <b>e107 Forum System</b>
+  </div>
 </div>
