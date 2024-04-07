@@ -1,22 +1,26 @@
-<%= form_with(model: [@category, @topic, post], local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(post.errors.count, "error") %>
-        prohibited this post from being saved:</h2>
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="custom-card">
+  <div class="card-body">
+    <%= form_with(model: [@category, @topic, post], local: true) do |form| %>
+      <% if post.errors.any? %>
+        <div class="error_messages">
+          <h2><%= pluralize(post.errors.count, "error") %>
+            prohibited this post from being saved:</h2>
+          <ul>
+            <% post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="stack">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+      <div class="stack">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
 
-  <div class="btn-group">
-    <%= form.submit "Submit", class: "btn" %>
+      <div class="btn-group">
+        <%= form.submit "Submit", class: "btn" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
-class PostPolicy < ApplicationPolicy
+class PostPolicy
+  attr_reader :user, :post
+
+  def initialize(user, post)
+    @user = user
+    @post = post
+  end
+
   def index?
     true
   end
@@ -10,11 +17,11 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present? # Require login
+    user.present?
   end
 
   def edit?
-    user.admin? || topic.user == user
+    user.present? && (post.user == user || user.admin?)
   end
 
   def update?

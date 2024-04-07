@@ -31,17 +31,25 @@ class PostsController < ApplicationController
     authorize @post
 
     if @post.save
-      redirect_to category_topic_post_path(@category, @topic, @post), notice: 'Post created!'
+      redirect_to category_topic_path(@category, @topic, @post), notice: 'Post created!'
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+    @category = Category.find(params[:category_id])
+    @topic = @category.topics.find(params[:id])
+    @post = @topic.posts.find(params[:id])
+  end
 
   def update
+    @category = Category.find(params[:category_id])
+    @topic = @category.topics.find(params[:id])
+    @post = @topic.posts.find(params[:id])
+
     if @post.update(post_params)
-      redirect_to category_topic_post_path(@post), notice: 'Post updated!'
+      redirect_to category_topic_post_path(@category, @topic, @post), notice: 'Post updated!'
     else
       render :edit
     end
@@ -54,13 +62,13 @@ class PostsController < ApplicationController
 
     flash[:notice] = 'Post has been deleted successfully'
 
-    redirect_to posts_path, notice: 'Post deleted!'
+    redirect_to category_topic_path, notice: 'Post deleted!'
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params[:id])
   end
 
   def post_params

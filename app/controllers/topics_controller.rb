@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:category_id]) # Fetch category directly
+    @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
 
     if @topic.update(topic_params)

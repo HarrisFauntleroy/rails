@@ -50,7 +50,6 @@
           <td style="width:5%; text-align:center" class="nforumcaption2">Replies</td>
           <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
           <td style="width:20%; text-align:center" class="nforumcaption2">Last Post</td>
-          <td style="width:20%; text-align:center" class="nforumcaption2">Actions</td>
         </tr>
 
         <% if @category.topics.where(sticky: true).or(@category.topics.where(announcement: true)).any? %>
@@ -139,30 +138,6 @@
                   <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
                 </span>
               </td>
-
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <% if policy(topic).edit? %>
-                  <%= link_to "Edit",
-                  edit_category_topic_path(@category, topic),
-                  { class: "btn" } %>
-                <% end %>
-
-                <% if policy(topic).destroy? %>
-                  <%= button_to "Delete",
-                  [@category, topic],
-                  class: "btn",
-                  method: :delete,
-                  form: {
-                    data: {
-                      turbo_confirm: "Are you sure?",
-                    },
-                  } %>
-                <% end %>
-                <span class="smalltext"><br/></span>
-              </td>
             </tr>
           <% end %>
         <% end %>
@@ -245,30 +220,6 @@
                   <br/>
                   <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
                 </span>
-              </td>
-
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <% if policy(topic).edit? %>
-                  <%= link_to "Edit",
-                  edit_category_topic_path(@category, topic),
-                  { class: "btn" } %>
-                <% end %>
-
-                <% if policy(topic).destroy? %>
-                  <%= button_to "Delete",
-                  [@category, topic],
-                  class: "btn",
-                  method: :delete,
-                  form: {
-                    data: {
-                      turbo_confirm: "Are you sure?",
-                    },
-                  } %>
-                <% end %>
-                <span class="smalltext"><br/></span>
               </td>
             </tr>
           <% end %>
