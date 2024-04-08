@@ -60,7 +60,6 @@ class TopicsController < ApplicationController
     redirect_to category_path(@category), notice: 'Topic deleted!'
   end
 
-
   def toggle_sticky
     @topic = Topic.find(params[:id])
     authorize @topic, :toggle_sticky? # Assuming 'toggle_sticky?' policy exists
@@ -71,7 +70,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_sticky!
     end
 
-    redirect_to [@category, @topic], notice: "Topic stickiness updated."
+    redirect_to [@category, @topic], notice: 'Topic stickiness updated.'
   end
 
   def toggle_announcement
@@ -84,7 +83,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_announcement!
     end
 
-    redirect_to [@category, @topic], notice: "Topic stickiness updated."
+    redirect_to [@category, @topic], notice: 'Topic stickiness updated.'
   end
 
   private

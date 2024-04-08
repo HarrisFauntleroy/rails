@@ -103,7 +103,11 @@
                 <div class="spacer">
                   <%= image_tag("blank_avatar.jpg") %>
                 </div><br><span class="smalltext">
-                  <div class="spacer"><img src="../../e107_images/rate/lite/lev10.png" alt=""></div><span class="smalltext">Registered Member #1225</span><br>Joined: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
+                  <div class="spacer">
+                    <%= image_tag("lev3.png") %>
+                  </div>
+                  <span class="smalltext">Registered Member #1225</span>
+                  <br>Joined: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
                 </span>
               </td>
               <td class="nforumthread" style="vertical-align:top">
@@ -154,90 +158,7 @@
       </div>
       <% if @topic.posts.any? %>
         <% @topic.posts.each do |post| %>
-          <div class="spacer">
-            <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-              <tbody>
-
-                <tr>
-                  <td class="nforumcaption3" style="vertical-align:middle; width:20%;"><a href="../../user.php?id.1749"><b>
-                        <%= link_to post.user.username, user_url(post.user) %>
-                      </b></a></td>
-                  <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
-                    <table cellspacing="0" cellpadding="0" style="width:100%">
-                      <tbody>
-                        <tr>
-                          <td class="smallblacktext"><a
-                              id="post_66241"
-                              href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66241.post"
-                            ><img
-                                src="/e107_plugins/forum/images/lite/post.png"
-                                alt=""
-                                title=""
-                                style="border:0"
-                              ></a>
-                            <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
-                          </td>
-                          <td style="text-align:right">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="nforumthread" style="vertical-align:top">
-                    <div class="spacer"><img src="../../e107_files/public/avatars/ap_1749_07_6853034-3.jpg" alt="">
-                    </div><br><span class="smalltext">
-                      <div class="spacer"><img src="../../e107_images/rate/lite/lev6.png" alt=""></div><span class="smalltext">Registered Member #1749</span><br>Joined: Thu Oct 09 2008, 09:04PM<br>Location: Claremont New Hampshire<br>Posts: 270<br>
-                    </span>
-                  </td>
-                  <td class="nforumthread" style="vertical-align:top">
-                    <%= post.content %><br><br><br><br><br><br>
-                    <% if post.user&.signature %>
-                      <hr style="width:15%; text-align:left">
-                      <span class="smalltext">
-                        <%= post.user.signature %>
-                      </span>
-                    <% end %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top",
-                      nil,
-                      id: "back-to-top",
-                      onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-                    </span></td>
-                  <td class="nforumthread2" style="vertical-align:top">
-                    <table cellspacing="0" cellpadding="0" style="width:100%">
-                      <tbody>
-                        <tr>
-                          <td style="text-align:right">
-                            <div class="btn-group">
-                              <% if authorized_to_edit?(post) %>
-                                <%= link_to "Edit",
-                                edit_category_topic_post_path(@category, @topic, post),
-                                class: "btn btn-primary" %>
-                              <% end %>
-                              <% if authorized_to_destroy?(post) %>
-                                <%= button_to "Delete",
-                                [@category, @topic, post],
-                                class: "btn",
-                                method: :delete,
-                                data: {
-                                  turbo_confirm:
-                                    "Are you sure you want to delete this post? with id: #{post.id}",
-                                } %>
-                              <% end %>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <%= render post %>
         <% end %>
       <% else %>
         <p>There are no comments in this topic yet.</p>

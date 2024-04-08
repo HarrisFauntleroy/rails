@@ -6,26 +6,26 @@ class Topic < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   def sticky?
-    self.sticky
+    sticky
   end
 
   def mark_as_sticky!
-    self.update(sticky: true)
+    update(sticky: true)
   end
 
   def unmark_as_sticky!
-    self.update(sticky: false)
+    update(sticky: false)
   end
 
   def announcement?
-    self.announcement
+    announcement
   end
 
   def mark_as_announcement!
-    self.update(announcement: true)
+    update(announcement: true)
   end
 
   def unmark_as_announcement!
-    self.update(announcement: false)
+    update(announcement: false)
   end
 end

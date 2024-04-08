@@ -18,13 +18,19 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @parent_post_id = params[:parent_post_id]
     @current_user = current_user
   end
 
   def create
+    @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
-    authorize @post
+
+    if params[:parent_post_id]
+      parent_post = Post.find(params[:parent_post_id])
+      @post.parent_post_id = parent_post.id
+    end
 
     if @post.save
       redirect_to category_topic_path(@category, @topic, @post), notice: 'Post created!'
@@ -74,6 +80,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :parent_post_id)
   end
 end
