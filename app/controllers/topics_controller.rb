@@ -3,6 +3,7 @@
 class TopicsController < ApplicationController
   include Pundit::Authorization
 
+  before_action :set_category
   before_action :set_topic, only: %i[show edit update destroy]
 
   def index
@@ -11,7 +12,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:category_id])
     @topic = Topic.find(params[:id])
 
     add_breadcrumb '4hv.org', root_path
@@ -21,13 +21,11 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @category = Category.find(params[:category_id])
     @topic = Topic.new
     @current_user = current_user
   end
 
   def create
-    @category = Category.find(params[:category_id])
     @topic = @category.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
@@ -40,12 +38,10 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
 
     if @topic.update(topic_params)
@@ -92,6 +88,10 @@ class TopicsController < ApplicationController
   end
 
   private
+
+  def set_category
+    @category = Category.find(params[:category_id])
+  end
 
   def set_topic
     @topic = Topic.find(params[:id])

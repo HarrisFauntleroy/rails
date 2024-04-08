@@ -3,6 +3,8 @@
 class PostsController < ApplicationController
   include Pundit::Authorization
 
+  before_action :set_category
+  before_action :set_topic, only: %i[show new create edit update destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -11,21 +13,15 @@ class PostsController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:category_id])
-    @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
   end
 
   def new
-    @category = Category.find(params[:category_id])
-    @topic = Topic.find(params[:topic_id])
     @post = Post.new
     @current_user = current_user
   end
 
   def create
-    @category = Category.find(params[:category_id])
-    @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
     @post.user = current_user
     authorize @post
@@ -38,13 +34,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
     @post = @topic.posts.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:category_id])
     @topic = @category.topics.find(params[:id])
     @post = @topic.posts.find(params[:id])
 
@@ -66,6 +60,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_category
+    @category = Category.find(params[:category_id])
+  end
+
+  def set_topic
+    @topic = @category.topics.find(params[:topic_id])
+  end
 
   def set_post
     @post = Post.find(params[:id])
