@@ -8,5 +8,5 @@ bundle config --local build.nokogiri --use-system-libraries
 bundle install
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
-# bundle exec rake db:schema:load # For initial setup only
+# bundle exec rake db:schema:load db:seed # For initial setup only
 bundle exec rake db:migrate
