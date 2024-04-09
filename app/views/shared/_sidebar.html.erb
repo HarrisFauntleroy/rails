@@ -55,16 +55,20 @@
             <%= link_to current_user.username, current_user %>
           </div>
           <div>
-            <% if current_user&.admin? %>
-              <%= image_tag("lev3.png") %>
-              <div>
+            <div class="spacer">
+              <% if current_user&.admin? %>
+                <%= image_tag("lev10.png") %>
                 <%= image_tag("English_main_admin.png") %>
-              </div>
-            <% else %>
-              <div>
-                Signed in as User
-              </div>
-            <% end %>
+              <% elsif current_user&.moderator? %>
+                <%= image_tag("lev10.png") %>
+                <%= image_tag("English_moderator.png") %>
+              <% else %>
+                <%= image_tag("lev3.png") %>
+                <div>
+                  Signed in as User
+                </div>
+              <% end %>
+            </div>
             <%= button_to "Sign out",
             destroy_user_session_path,
             method: :delete,
@@ -167,7 +171,8 @@
       running. Please consider donating. We will place your name on the thanks
       list and you'll be helping to keep 4hv.org alive and free for everyone.
       Members whose names appear in red bold have donated recently. Green bold
-      denotes those who have recently donated to keep the server carbon neutral.
+      denotes those who have recently donated to keep the server carbon
+      neutral.
       <br/>
       <%= image_tag("paypal.gif") %>
     </div>

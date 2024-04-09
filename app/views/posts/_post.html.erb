@@ -38,6 +38,8 @@
             <div class="spacer">
               <% if current_user&.admin? %>
                 <%= image_tag("English_main_admin.png") %>
+              <% else %>
+                <%= image_tag("English_moderator.png") %>
               <% end %>
             </div>
             <span class="smalltext">Registered Member #1749</span>

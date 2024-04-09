@@ -32,6 +32,13 @@ class UsersController < ApplicationController
 
   private
 
+  def authenticate_moderator!
+    return if current_user&.moderator?
+
+    redirect_to root_path,
+                alert: 'You are not authorized to access this page.'
+  end
+
   def authenticate_admin!
     return if current_user&.admin?
 

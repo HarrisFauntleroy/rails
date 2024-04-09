@@ -6,5 +6,6 @@ FactoryBot.define do
     username { Faker::Internet.unique.username(specifier: 6..12) }
     password { 'Password!1' }
     admin { false }
+    moderator { false }
   end
 end
