@@ -58,15 +58,15 @@
             <div class="spacer">
               <% if current_user&.admin? %>
                 <%= image_tag("lev10.png") %>
-                <br />
+                <br/>
                 <%= image_tag("English_main_admin.png") %>
               <% elsif current_user&.moderator? %>
                 <%= image_tag("lev10.png") %>
-                <br />
+                <br/>
                 <%= image_tag("English_moderator.png") %>
               <% else %>
                 <%= image_tag("lev3.png") %>
-                <br />
+                <br/>
                 <span class="smalltext">Registered Member #1749</span>
               <% end %>
             </div>

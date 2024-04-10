@@ -41,7 +41,18 @@
               <%= category.total_posts %>
             </td>
             <td style="width: 20%; text-align: center;" class="nforumthread">
-              <span class="smallblacktext"><a><%= category.last_post_info %></a></span>
+              <span class="smallblacktext">
+                <% if category.last_post_info %>
+                  <%= link_to category.last_post_info,
+                  category_topic_path(
+                    category,
+                    category.topics.last,
+                    category.topics.last.posts.last,
+                  ) %>
+                <% else %>
+                  No posts yet
+                <% end %>
+              </span>
             </td>
             <% if @current_user&.admin? %>
               <td style="width: 20%; text-align: center;" class="nforumthread">
