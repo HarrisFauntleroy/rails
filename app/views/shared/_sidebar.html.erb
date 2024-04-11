@@ -10,31 +10,31 @@
       <ul>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to "Home", root_path %>
+          <%= link_to t("home"), root_path %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to "Forum", categories_path %>
+          <%= link_to t("forum"), categories_path %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          Members
+          <%= t("members") %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          Member Map
+          <%= t("member_map") %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          HvWiki
+          <%= t("hv_wiki") %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          Chat Room
+          <%= t("chat_room") %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to "Site Rules", site_rules_path %>
+          <%= link_to t("site_rules"), site_rules_path %>
         </li>
       </ul>
     </div>
@@ -44,14 +44,14 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Welcome</span>
+        <span><%= t("welcome") %></span>
       </div>
     </div>
     <div class="card-body">
       <div style="text-align: center">
         <% if user_signed_in? %>
           <div style="margin-bottom: 4px;">
-            Welcome
+            <%= t("welcome") %>
             <%= link_to current_user.username, current_user %>
           </div>
           <div>
@@ -95,25 +95,25 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Online</span>
+        <span><%= t("online") %></span>
       </div>
     </div>
     <div class="card-body">
       <ol class="online-stats">
         <li>
-          Online Guests:
+          <%= t("online_guests") %>:
           <%= @online_guests_count %>
         </li>
         <li>
-          Members:
+          <%= t("members") %>:
           <%= @online_members_count %>
         </li>
         <li>
-          Newest Member:
+          <%= t("newest_member") %>:
           <%= @newest_member&.username %>
         </li>
         <li>
-          Most ever online:
+          <%= t("most_ever_online") %>:
           <%= @most_ever_online %>
         </li>
       </ol>
@@ -124,7 +124,7 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Members Birthdays:</span>
+        <span><%= t("member_birthdays") %>:</span>
       </div>
     </div>
     <div class="card-body">
@@ -135,7 +135,7 @@
             <%= link_to "#{user.username} (#{age(user)})", user_path(user) %><br>
           <% end %>
         <% end %>
-        Next birthdays
+        <%= t("next_birthdays") %>
         <% User.upcoming_birthdays.each do |user| %>
           <%= user.date_of_birth.to_char("MM/DD") %>
           <%= link_to "#{user.username} (#{age(user)})", user_path(user) %><br>
@@ -148,14 +148,11 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Contact</span>
+        <span><%= t("contact") %></span>
       </div>
     </div>
     <div class="card-body">
-      If you need assistance, please send an email to forum at 4hv dot org. To
-      ensure your email is not marked as spam, please include the phrase "4hv
-      help" in the subject line. You can also find assistance via IRC, at
-      irc.shadowworld.net, room #hvcomm.
+      <%= t("contact_sidebar_text") %>
     </div>
   </div>
 
@@ -163,17 +160,11 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Support 4hv.org!</span>
+        <span><%= t("support_4hv") %></span>
       </div>
     </div>
     <div class="card-body">
-      Donate: 4hv.org is hosted on a dedicated server. Unfortunately, this
-      server costs and we rely on the help of site members to keep 4hv.org
-      running. Please consider donating. We will place your name on the thanks
-      list and you'll be helping to keep 4hv.org alive and free for everyone.
-      Members whose names appear in red bold have donated recently. Green bold
-      denotes those who have recently donated to keep the server carbon
-      neutral.
+      <%= t("donate") %>
       <br/>
       <%= image_tag("paypal.gif") %>
     </div>

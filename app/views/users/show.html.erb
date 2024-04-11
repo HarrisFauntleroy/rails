@@ -9,11 +9,12 @@
     <h1><%= @user.username %></h1>
 
     <br/>
-    <h2>Recent Activity</h2>
+    <h2><%= t("recent_activity") %></h2>
 
     <% if @recent_topics_opened.any? || @recent_posts.any? %>
       <% if @recent_topics_opened.any? %>
-        <h3>Threads Opened (<%= @user.topics.count %>)</h3>
+        <h3><%= t("threads_opened") %>
+          (<%= @user.topics.count %>)</h3>
         <ul>
           <% @recent_topics_opened.each do |topic| %>
             <li>
@@ -26,7 +27,8 @@
       <% end %>
 
       <% if @recent_posts.any? %>
-        <h3>Recent Comments (<%= @user.posts.count %>)</h3>
+        <h3><%= t("recent_comments") %>
+          (<%= @user.posts.count %>)</h3>
         <ul>
           <% @recent_posts.each do |post| %>
             <li>
@@ -41,7 +43,7 @@
         </ul>
       <% end %>
     <% else %>
-      <p class="text-muted">No recent activity to display.</p>
+      <p class="text-muted"><%= t("no_recent_activity_to_display") %>.</p>
     <% end %>
   </div>
 </div>

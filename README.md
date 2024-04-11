@@ -115,16 +115,26 @@ rails c
 
 <!-- LIST OF COMMANDS -->
 
-The format `.erb` files with erb-format
+To format `.erb` files with erb-format
 
 ```bash
 rails erb-format app/views/**/*.html.erb --write 
 ```
 
-The run Rubocop
+To run Rubocop
 
 ```bash
-rubocop                           
+rubocop
+```
+
+[i18n-tasks](https://github.com/glebm/i18n-tasks)
+
+```bash
+i18n-tasks health
+```
+
+```bash
+i18n-tasks normalize
 ```
 
 <!-- _Please refer to the package.json for additional details and scripts._ -->

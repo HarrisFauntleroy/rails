@@ -18,9 +18,9 @@
                 <tbody>
                   <tr>
                     <td>&lt;&lt;
-                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.prev">Previous thread</a>
+                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.prev"><%= t("previous_thread") %></a>
                       |
-                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.next">Next thread</a>
+                      <a href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.9.next"><%= t("next_thread") %></a>
                       &gt;&gt;
                     </td>
                     <td style="text-align:right">&nbsp;&nbsp;</td>
@@ -41,7 +41,7 @@
                 <b>
                   <%= @topic.title %>
                 </b>
-              </div><br>Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+              </div><br><%= t("go_to_page") %>&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
               <a
                 class="nextprev_link"
                 href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30"
@@ -57,10 +57,10 @@
         <tbody>
           <tr>
             <td style="width:20%; text-align:center" class="nforumcaption2">
-              Author
+              <%= t("author") %>
             </td>
             <td style="width:80%; text-align:center" class="nforumcaption2">
-              Post
+              <%= t("post") %>
             </td>
           </tr>
         </tbody>
@@ -106,8 +106,9 @@
                   <div class="spacer">
                     <%= image_tag("lev3.png") %>
                   </div>
-                  <span class="smalltext">Registered Member #1225</span>
-                  <br>Joined: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
+                  <span class="smalltext"><%= t("registered_member") %>
+                    #1225</span>
+                  <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
                 </span>
               </td>
               <td class="nforumthread" style="vertical-align:top">
@@ -121,7 +122,7 @@
               </td>
             </tr>
             <tr>
-              <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top",
+              <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
                   nil,
                   id: "back-to-top",
                   onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
@@ -133,17 +134,17 @@
                       <td style="text-align:right">
                         <div class="btn-group">
                           <% if authorized_to_edit?(@topic) %>
-                            <%= link_to "Edit topic",
+                            <%= link_to t("edit_topic"),
                             edit_category_topic_path(@category, @topic),
                             class: "btn btn-primary" %>
                           <% end %>
                           <% if authorized_to_destroy?(@topic) %>
-                            <%= button_to "Delete",
+                            <%= button_to t("delete"),
                             [@category, @topic],
                             class: "btn",
                             method: :delete,
                             data: {
-                              turbo_confirm: "Are you sure?",
+                              turbo_confirm: t("are_you_sure"),
                             } %>
                           <% end %>
                         </div>
@@ -161,14 +162,14 @@
           <%= render post %>
         <% end %>
       <% else %>
-        <p>There are no comments in this topic yet.</p>
+        <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
       <% end %>
       <% if policy(@topic).create_post? %>
         <%= render "posts/form", post: @topic.posts.build %>
       <% end %>
       <div class="spacer">
         <div class="forumheader">
-          Go to page&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <%= t("go_to_page") %>&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
           <a
             class="nextprev_link"
             href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.30"
@@ -180,13 +181,13 @@
           <tbody>
             <tr>
               <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
-                <b>Moderators: Chris Russell, Noelle, Alex, Tesladownunder, Dave
-                  Marshall, Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
+                <b><%= t("moderators") %>: Chris Russell, Noelle, Alex, Tesladownunder, Dave Marshall,
+                  Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
                 <form
                   method="post"
                   action="http://4hv.org/e107_plugins/forum/forum_viewtopic.php"
                 >
-                  <p>Jump:
+                  <p><%= t("jump") %>:
                     <select name="forumjump" class="tbox">
                       <option value="2">General Chatting</option>
                       <option value="8">Sale and Trade</option>
@@ -203,7 +204,7 @@
                       <option value="21">Attachments</option>
                       <option value="23">HvWiki Discussion</option>
                     </select>
-                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "Back to top",
+                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to t("back_to_top"),
                     nil,
                     id: "back-to-top",
                     onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
@@ -229,8 +230,8 @@
             </tr>
           </tbody>
         </table>
-        <div class="nforumdisclaimer" style="text-align:center">Powered by
-          <b>e107 Forum System</b>
+        <div class="nforumdisclaimer" style="text-align:center"><%= t("powered_by") %>
+          <b><%= t("coffee") %></b>
         </div>
       </div>
     </td>
