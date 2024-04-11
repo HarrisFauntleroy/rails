@@ -127,6 +127,12 @@ To run Rubocop
 rubocop
 ```
 
+To run Brakeman (if installed)
+
+```bash
+brakeman
+```
+
 [i18n-tasks](https://github.com/glebm/i18n-tasks)
 
 ```bash

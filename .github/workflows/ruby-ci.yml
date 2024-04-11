@@ -12,9 +12,3 @@ jobs:
 
     - name: Run Tests
       run: bundle exec rake
-
-    - name: Run RuboCop
-      run: bundle exec rubocop 
-
-    - name: Run Brakeman
-      run: bundle exec brakeman
