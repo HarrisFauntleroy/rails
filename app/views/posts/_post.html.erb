@@ -109,8 +109,8 @@
                       class: "btn",
                       method: :delete,
                       data: {
-                        turbo_confirm:
-                          "#{t("are_you_sure_you_want_do_delete_this_post_with_id")}: #{post.id}",
+                        confirm: t("are_you_sure"),
+                        turbo_confirm: t("are_you_sure"),
                       } %>
                     <% end %>
                   </div>

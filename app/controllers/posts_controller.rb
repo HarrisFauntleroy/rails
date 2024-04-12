@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
     flash[:notice] = 'Post has been deleted successfully'
 
-    redirect_to category_topic_path, notice: 'Post deleted!'
+    redirect_to category_topic_path(@category, @topic), notice: 'Post deleted!'
   end
 
   private
