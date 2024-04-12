@@ -1,4 +1,4 @@
-<h2>Edit
+<h2><%= t("edit") %>
   <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -10,18 +10,18 @@
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for:
-      <%= resource.unconfirmed_email %></div>
+    <div>
+      <%= t("currently_waiting_confirmation_for") %> <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
     <%= f.label :password %>
-    <i>(leave blank if you don't want to change it)</i><br/>
+    <i>(<%= t("leave_blank_if_you_dont_want_to_change_it") %>)</i><br/>
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br/>
       <em><%= @minimum_password_length %>
-        characters minimum</em>
+        <%= t("characters_minimum") %></em>
     <% end %>
   </div>
 
@@ -37,18 +37,18 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit t("update") %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3><%= t("cancel_my_account") %></h3>
 
 <div>Unhappy?
-  <%= button_to "Cancel my account",
+  <%= button_to t("cancel_my_account"),
   registration_path(resource_name),
   data: {
-    confirm: "Are you sure?",
-    turbo_confirm: "Are you sure?",
+    confirm: t("are_you_sure"),
+    turbo_confirm: t("are_you_sure"),
   },
   method: :delete %></div>
 

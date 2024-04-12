@@ -4,7 +4,7 @@
       <% if post.errors.any? %>
         <div class="error_messages">
           <h2><%= pluralize(post.errors.count, "error") %>
-            prohibited this post from being saved:</h2>
+            <%= t("prohibited_this_post_from_being_saved") %>:</h2>
           <ul>
             <% post.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -21,7 +21,7 @@
       </div>
 
       <div class="btn-group">
-        <%= form.submit "Submit", class: "btn" %>
+        <%= form.submit t("submit"), class: "btn" %>
       </div>
     <% end %>
   </div>

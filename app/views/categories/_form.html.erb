@@ -2,7 +2,7 @@
   <% if category.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(category.errors.count, "error") %>
-        prohibited this category from being saved:</h2>
+        <%= t("prohibited_this_category_from_being_saved") %>:</h2>
       <ul>
         <% category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -18,6 +18,6 @@
 
   <div class="btn-group">
     <%= link_to t("go_back"), :back, class: "btn" %>
-    <%= form.submit "Submit", class: "btn" %>
+    <%= form.submit t("submit"), class: "btn" %>
   </div>
 <% end %>

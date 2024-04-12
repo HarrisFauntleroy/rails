@@ -20,7 +20,7 @@
                 <%= @category.name %>
               </b>
             </div>
-            Go to page&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+            <%= t("go_to_page") %>&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
             <a class="nextprev_link">2</a>
             <a class="nextprev_link">3</a>
             ...
@@ -45,9 +45,9 @@
       <tbody>
         <tr>
           <td style="width:3%" class="nforumcaption2">&nbsp;</td>
-          <td style="width:47%" class="nforumcaption2">Topic</td>
-          <td style="width:20%; text-align:center" class="nforumcaption2">Starter</td>
-          <td style="width:5%; text-align:center" class="nforumcaption2">Replies</td>
+          <td style="width:47%" class="nforumcaption2"><%= t("topic") %></td>
+          <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("starter") %></td>
+          <td style="width:5%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
           <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
           <td style="width:20%; text-align:center" class="nforumcaption2">Last Post</td>
         </tr>
@@ -58,7 +58,7 @@
             <td class="forumheader">&nbsp;</td>
             <td colspan="6" class="forumheader">
               <span class="mediumtext">
-                <b>Important Threads</b>
+                <b><%= t("important_threads") %></b>
               </span>
             </td>
           </tr>
@@ -146,7 +146,7 @@
           <td class="forumheader">&nbsp;</td>
           <td colspan="6" class="forumheader">
             <span class="mediumtext">
-              <b>Forum Threads</b>
+              <b><%= t("forum_threads") %></b>
             </span>
           </td>
         </tr>
@@ -224,7 +224,7 @@
             </tr>
           <% end %>
         <% else %>
-          <p>There are no topics in this category yet.</p>
+          <p><%= t("there_are_no_topics_in_this_category_yet") %></p>
         <% end %>
       </tbody>
     </table>
@@ -234,7 +234,7 @@
     <tbody>
       <tr>
         <td style="width:80%">
-          <span class="mediumtext">Go to page&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <span class="mediumtext"><%= t("go_to_page") %>&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
             <a class="nextprev_link">2</a>
             <a class="nextprev_link">3</a>
             ...
@@ -246,7 +246,7 @@
             method="post"
             action="http://4hv.org/e107_plugins/forum/forum_viewforum.php"
           >
-            <p>Jump to forum:
+            <p><%= t("jump_to_forum") %>:
               <select name="forumjump" class="tbox">
                 <option value="2">General Chatting</option>
                 <option value="8">Sale and Trade</option>
@@ -310,7 +310,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    No new posts
+                    <%= t("no_new_posts") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -324,7 +324,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    Announcement
+                    <%= t("announcement") %>
                   </td>
                 </tr>
 
@@ -334,7 +334,7 @@
                   </td>
 
                   <td style="width:2%" class="smallblacktext">
-                    New posts [popular]
+                    <%= t("new_posts_popular") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -342,7 +342,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    No new posts [popular]
+                    <%= t("no_new_posts_popular") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -350,7 +350,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    Sticky/Closed
+                    <%= t("sticky_closed") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -358,7 +358,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    Closed thread
+                    <%= t("closed_thread") %>
                   </td>
                 </tr>
               </tbody>
@@ -369,13 +369,13 @@
             style="vertical-align:center; text-align:center; width:50%"
             class="nforumview4"
           >
-            You
-            <b>can</b>
-            start new threads - You
-            <b>can</b>
-            post replies - You
-            <b>can</b>
-            edit your posts
+            <%= t("you") %>
+            <b><%= t("can") %></b>
+            <%= t("start_new_threads_you") %>
+            <b><%= t("can") %></b>
+            <%= t("post_replies_uou") %>
+            <b><%= t("can") %></b>
+            <%= t("edit_your_posts") %>
             <br/>
             <br/>
             <form method="get" action="../../search.php">
@@ -392,7 +392,7 @@
     </table>
   </div>
 
-  <div class="nforumdisclaimer" style="text-align:center">Powered by
-    <b>e107 Forum System</b>
+  <div class="nforumdisclaimer" style="text-align:center"><%= t("powered_by") %>
+    <b><%= t("coffee") %></b>
   </div>
 </div>

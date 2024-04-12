@@ -9,15 +9,16 @@
     <table class="nforumholder">
       <thead>
         <tr>
-          <td colspan="6" class="nforumcaption">Chatting and Socializing (Restricted Access)</td>
+          <td colspan="6" class="nforumcaption">
+            Chatting and Socializing (Restricted Access)</td>
         </tr>
         <tr>
           <td colspan="2" style="width:60%; text-align:center" class="nforumcaption2">Forums</td>
-          <td style="width:10%; text-align:center" class="nforumcaption2">Topics</td>
-          <td style="width:10%; text-align:center" class="nforumcaption2">Replies</td>
-          <td style="width:20%; text-align:center" class="nforumcaption2">Last Post</td>
+          <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("topics") %></td>
+          <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
+          <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("last_post") %></td>
           <% if @current_user&.admin? %>
-            <td style="width:20%; text-align:center" class="nforumcaption2">Actions</td>
+            <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
           <% end %>
         </tr>
       </thead>
@@ -30,9 +31,9 @@
             <td class="nforumcaption3">
               <%= link_to category.name, category, class: "category-title" %>
               <br/>
-              <span class="smallblacktext">Want to chat about something not covered by any of the other
-                boards? This is the place to do it. Please remember that most
-                of the site rules still apply here.</span>
+              <span class="smallblacktext">
+                CATEGORY DESCRIPTION
+              </span>
             </td>
             <td style="width: 10%; text-align: center;" class="nforumthread">
               <%= category.total_topics %>
@@ -50,7 +51,7 @@
                     category.topics.last.posts.last,
                   ) %>
                 <% else %>
-                  No posts yet
+                  <%= t("no_posts_yet") %>
                 <% end %>
               </span>
             </td>
@@ -58,15 +59,15 @@
               <td style="width: 20%; text-align: center;" class="nforumthread">
                 <div class="btn-group">
                   <% if authorized_to_edit?(category) %>
-                    <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
+                    <%= link_to t("edit"), edit_category_path(category), class: "btn btn-primary" %>
                   <% end %>
                   <% if authorized_to_destroy?(category) %>
-                    <%= button_to "Delete",
+                    <%= button_to t("delete"),
                     category,
                     class: "btn",
                     method: :delete,
                     data: {
-                      turbo_confirm: "Are you sure?",
+                      turbo_confirm: t("are_you_sure"),
                     } %>
                   <% end %>
                 </div>

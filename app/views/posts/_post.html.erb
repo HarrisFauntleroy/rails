@@ -42,13 +42,13 @@
                 <%= image_tag("English_moderator.png") %>
               <% end %>
             </div>
-            <span class="smalltext">Registered Member #1749</span>
+            <span class="smalltext"><%= t("registered_member") %> #1749</span>
             <br>
-            Joined: Thu Oct 09 2008, 09:04PM
+            <%= t("joined") %>: Thu Oct 09 2008, 09:04PM
             <br>
-            Location: Claremont New Hampshire
+            <%= t("location") %>: Claremont New Hampshire
             <br>
-            Posts: 270
+            <%= t("posts") %>: 270
             <br>
           </span>
         </td>
@@ -57,7 +57,7 @@
             <div class="indent">
               <em>
                 <%= post.parent_post.user.username %>
-                wrote
+                <%= t("wrote") %>
               </em>
               ...
               <br>
@@ -78,7 +78,7 @@
         </td>
       </tr>
       <tr>
-        <td class="nforumthread2"><span class="smallblacktext"><%= link_to "Back to top",
+        <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
             nil,
             id: "back-to-top",
             onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
@@ -91,25 +91,25 @@
                 <td style="text-align:right">
                   <div class="btn-group">
                     <% if authorized_to_create?(post) %>
-                      <%= link_to "Reply",
+                      <%= link_to t("reply"),
                       new_category_topic_post_path(@category, @topic, parent_post_id: post.id),
                       class: "btn btn-secondary" %>
                     <% end %>
 
                     <% if authorized_to_edit?(post) %>
-                      <%= link_to "Edit",
+                      <%= link_to t("edit"),
                       edit_category_topic_post_path(@category, @topic, post),
                       class: "btn btn-primary" %>
                     <% end %>
 
                     <% if authorized_to_destroy?(post) %>
-                      <%= button_to "Delete",
+                      <%= button_to t("delete"),
                       [@category, @topic, post],
                       class: "btn",
                       method: :delete,
                       data: {
                         turbo_confirm:
-                          "Are you sure you want to delete this post? with id: #{post.id}",
+                          "#{t("are_you_sure_you_want_do_delete_this_post_with_id")}: #{post.id}",
                       } %>
                     <% end %>
                   </div>
