@@ -11,7 +11,8 @@
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>
-      <%= t("currently_waiting_confirmation_for") %> <%= resource.unconfirmed_email %></div>
+      <%= t("currently_waiting_confirmation_for") %>
+      <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">

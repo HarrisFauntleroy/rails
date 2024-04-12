@@ -27,8 +27,6 @@ en:
     forgot_your_password: Forgot your password?
     log_in: Log in
     omniauth_providers:
-      facebook: Facebook
-      google_oauth2: Google
       sign_in_with: 'Sign in with '
     resend_unlock_instructions: Resend unlock instructions
     sign_up: Sign up

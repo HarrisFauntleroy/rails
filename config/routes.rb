@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'site_rules', to: 'static_pages#site_rules'
-  # get 'static_pages/site_rules'
+  get 'static_pages/site_rules'
 
   resources :users, only: %i[show index] # Only need the 'show' route for profiles
 
