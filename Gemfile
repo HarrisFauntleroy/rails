@@ -82,8 +82,6 @@ end
 gem 'devise', '~> 4.9'
 gem 'pundit'
 
-gem 'dartsass-ruby', '~> 3.0', '>= 3.0.1'
-
 gem 'erb-formatter', '~> 0.7.2'
 
 gem 'simplecov-formatter-badge', require: false
