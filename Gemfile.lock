@@ -108,12 +108,6 @@ GEM
     crass (1.0.6)
     dartsass-ruby (3.0.2)
       sass-embedded (~> 1.54, < 1.67)
-    dartsass-sprockets (3.0.0)
-      dartsass-ruby (~> 3.0)
-      railties (>= 4.0.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -337,7 +331,6 @@ GEM
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
     thor (1.3.1)
-    tilt (2.3.0)
     timeout (0.4.1)
     turbo-rails (2.0.4)
       actionpack (>= 6.0.0)
@@ -376,7 +369,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
-  dartsass-sprockets
+  dartsass-ruby (~> 3.0, >= 3.0.1)
   debug
   devise (~> 4.9)
   erb-formatter (~> 0.7.2)
@@ -394,7 +387,6 @@ DEPENDENCIES
   rspec
   rspec-rails
   rubocop
-  sass-embedded (~> 1.66.1)
   selenium-webdriver
   simplecov
   simplecov-formatter-badge
