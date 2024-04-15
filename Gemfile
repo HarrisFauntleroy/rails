@@ -85,3 +85,5 @@ gem 'pundit'
 gem 'erb-formatter', '~> 0.7.2'
 
 gem 'simplecov-formatter-badge', require: false
+
+gem 'view_component', '~> 3.12'

@@ -111,6 +111,14 @@ rails console
 rails c
 ```
 
+**Generators**
+
+To create an ExampleComponent with title and content attributes:
+
+```bash
+rails generate component Example title content
+```
+
 **Commands**
 
 <!-- LIST OF COMMANDS -->
