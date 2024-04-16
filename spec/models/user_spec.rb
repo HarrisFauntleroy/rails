@@ -101,4 +101,28 @@ RSpec.describe User, type: :model do
       expect(moderator_user.moderator).to be true
     end
   end
+
+  describe 'Crud methods' do
+    it 'can be created' do
+      user = create(:user)
+      expect(user).to be_valid
+    end
+
+    it 'can be read' do
+      user = create(:user)
+      expect(User.find(user.id)).to eq(user)
+    end
+
+    it 'can be updated' do
+      user = create(:user)
+      user.update(username: 'new_username')
+      expect(user.username).to eq('new_username')
+    end
+
+    it 'can be deleted' do
+      user = create(:user)
+      user.destroy
+      expect(User.all).to_not include(user)
+    end
+  end
 end

@@ -20,5 +20,14 @@ Rails.application.routes.draw do
     end
   end
 
+  # Incremental refactoring
+  resources :category_groups do
+    resources :categories do
+      resources :topics do
+        resources :posts
+      end
+    end
+  end
+
   get 'errors/not_found', to: 'errors#not_found'
 end

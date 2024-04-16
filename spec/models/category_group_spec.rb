@@ -35,4 +35,34 @@ RSpec.describe CategoryGroup, type: :model do
       expect(@category_group.categories).to include(category1, category2)
     end
   end 
+
+  describe 'Crud methods' do
+    it 'can be created' do
+      new_category_group = build(:category_group, name: 'New Group')
+      new_category_group.save
+
+      expect(new_category_group).to be_persisted
+    end
+
+    it 'can be read' do
+      created_group = create(:category_group, name: 'Test Group')
+
+      expect(CategoryGroup.find(created_group.id)).to eq(created_group)
+    end
+
+    it 'can be updated' do
+      group_to_update = create(:category_group, name: 'Old Name')
+      group_to_update.update(name: 'Updated Name')
+
+      expect(group_to_update.reload.name).to eq('Updated Name')
+    end
+
+    it 'can be deleted' do
+      group_to_delete = create(:category_group)
+      group_id = group_to_delete.id
+      group_to_delete.destroy 
+
+      expect(CategoryGroup.where(id: group_id)).to be_empty
+    end
+  end 
 end 
