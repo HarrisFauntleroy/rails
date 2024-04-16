@@ -62,8 +62,10 @@ en:
   moderators: Moderators
   most_ever_online: Most Ever Online
   new_category: New Category
+  new_category_group: New Category Group
   new_comment: New Comment
   new_forum: New Forum
+  new_forum_group: New Forum Group
   new_password: New password
   new_posts_popular: New posts [popular]
   new_topic: New Topic
@@ -82,6 +84,7 @@ en:
   powered_by: Powered by
   previous_thread: Previous Thread
   prohibited_this_category_from_being_saved: prohibited this category from being saved
+  prohibited_this_category_group_from_being_saved: prohibited this category group from being saved
   prohibited_this_post_from_being_saved: prohibited this post from being saved
   prohibited_this_topic_from_being_saved: prohibited this topic from being saved
   recent_activity: Recent Activity

@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 25 }
+
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password, length: { minimum: 8 }, allow_nil: true
@@ -18,9 +19,10 @@ class User < ApplicationRecord
   validates :latitude, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }, allow_blank: true
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
 
-  has_many :posts
-  has_many :topics
+  has_many :category_groups
   has_many :categories
+  has_many :topics
+  has_many :posts
 
   def self.todays_birthdays
     where('EXTRACT(month FROM date_of_birth) = ? AND EXTRACT(day FROM date_of_birth) = ?', Date.today.month,

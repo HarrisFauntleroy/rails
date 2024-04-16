@@ -56,11 +56,11 @@
           </div>
           <div>
             <div class="spacer">
-              <% if current_user&.admin? %>
+              <% if @current_user&.admin? %>
                 <%= image_tag("lev10.png") %>
                 <br/>
                 <%= image_tag("English_main_admin.png") %>
-              <% elsif current_user&.moderator? %>
+              <% elsif @current_user&.moderator? %>
                 <%= image_tag("lev10.png") %>
                 <br/>
                 <%= image_tag("English_moderator.png") %>

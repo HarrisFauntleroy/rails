@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CategoryPolicy < ApplicationPolicy
-  attr_reader :user, :category
+class CategoryGroupPolicy < ApplicationPolicy
+  attr_reader :user, :category_group
 
-  def initialize(user, category)
+  def initialize(user, category_group)
     @user = user
-    @category = category
+    @category_group = category_group
   end
 
   def index?
@@ -22,9 +22,5 @@ class CategoryPolicy < ApplicationPolicy
 
   def destroy?
     user.admin? || (user.moderator? && user.id == record.user_id) # Admins or the category's moderator owner
-  end
-
-  def create_topic?
-    user.present? # Anyone logged in can create a topic
   end
 end

@@ -3,10 +3,11 @@
 class CategoriesController < ApplicationController
   include Pundit::Authorization
 
+  before_action :set_category_group, only: %i[show edit update destroy]
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
-    @categories = Category.includes(topics: :posts)
+    @category_groups = CategoryGroup.all.includes(categories: { topics: :posts })
     @current_user = current_user
 
     add_breadcrumb '4hv.org', root_path
@@ -62,11 +63,15 @@ class CategoriesController < ApplicationController
 
   private
 
+  def set_category_group
+    @category_group = CategoryGroup.find(params[:category_group_id])
+  end
+
   def set_category
     @category = Category.find(params[:id])
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :description, :category_group_id)
   end
 end

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show index] # Only need the 'show' route for profiles
 
+  resources :category_groups 
+  
   resources :categories do
     resources :topics do
       resources :posts

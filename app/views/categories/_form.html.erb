@@ -16,6 +16,13 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="stack">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <%= form.collection_select :category_group_id, CategoryGroup.all, :id, :name %>
+
   <div class="btn-group">
     <%= link_to t("go_back"), :back, class: "btn" %>
     <%= form.submit t("submit"), class: "btn" %>
