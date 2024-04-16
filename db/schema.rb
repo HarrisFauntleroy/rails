@@ -10,84 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_16_000545) do
+ActiveRecord::Schema[7.1].define(version: 20_240_416_000_545) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "articles", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'articles', force: :cascade do |t|
+    t.string 'title'
+    t.text 'body'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.string "description"
-    t.bigint "category_group_id", default: 1, null: false
-    t.index ["category_group_id"], name: "index_categories_on_category_group_id"
-    t.index ["user_id"], name: "index_categories_on_user_id"
+  create_table 'categories', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'user_id', null: false
+    t.string 'description'
+    t.bigint 'category_group_id', default: 1, null: false
+    t.index ['category_group_id'], name: 'index_categories_on_category_group_id'
+    t.index ['user_id'], name: 'index_categories_on_user_id'
   end
 
-  create_table "category_groups", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 1, null: false
-    t.index ["user_id"], name: "index_category_groups_on_user_id"
+  create_table 'category_groups', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.bigint 'user_id', default: 1, null: false
+    t.index ['user_id'], name: 'index_category_groups_on_user_id'
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.text "content"
-    t.integer "topic_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "parent_post_id"
-    t.index ["topic_id"], name: "index_posts_on_topic_id"
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  create_table 'posts', force: :cascade do |t|
+    t.text 'content'
+    t.integer 'topic_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'user_id'
+    t.integer 'parent_post_id'
+    t.index ['topic_id'], name: 'index_posts_on_topic_id'
+    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table "topics", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.integer "category_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.boolean "sticky"
-    t.boolean "announcement"
-    t.index ["category_id"], name: "index_topics_on_category_id"
-    t.index ["user_id"], name: "index_topics_on_user_id"
+  create_table 'topics', force: :cascade do |t|
+    t.string 'title'
+    t.text 'content'
+    t.integer 'category_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'user_id'
+    t.boolean 'sticky'
+    t.boolean 'announcement'
+    t.index ['category_id'], name: 'index_topics_on_category_id'
+    t.index ['user_id'], name: 'index_topics_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "admin"
-    t.string "username"
-    t.string "timezone"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "last_seen_at"
-    t.date "date_of_birth"
-    t.string "signature"
-    t.boolean "moderator"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.boolean 'admin'
+    t.string 'username'
+    t.string 'timezone'
+    t.float 'latitude'
+    t.float 'longitude'
+    t.datetime 'last_seen_at'
+    t.date 'date_of_birth'
+    t.string 'signature'
+    t.boolean 'moderator'
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
-  add_foreign_key "categories", "category_groups"
-  add_foreign_key "categories", "users"
-  add_foreign_key "category_groups", "users"
-  add_foreign_key "posts", "topics"
-  add_foreign_key "topics", "categories"
+  add_foreign_key 'categories', 'category_groups'
+  add_foreign_key 'categories', 'users'
+  add_foreign_key 'category_groups', 'users'
+  add_foreign_key 'posts', 'topics'
+  add_foreign_key 'topics', 'categories'
 end

@@ -40,7 +40,6 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
 
-
     it 'is valid with a valid password' do
       user = build(:user, password: 'Password1')
       expect(user).to be_valid

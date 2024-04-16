@@ -25,7 +25,7 @@ RSpec.describe Topic, type: :model do
   end
 
   describe 'associations' do
-    it 'belongs to a user' do 
+    it 'belongs to a user' do
       expect(@topic.user).to eq(@topic.user)
     end
 
@@ -33,7 +33,7 @@ RSpec.describe Topic, type: :model do
       category = create(:category, topics: [@topic])
       expect(@topic.category).to eq(category)
     end
-  
+
     it 'is destroyed when its parent category is destroyed' do
       category = create(:category, topics: [@topic])
       category.destroy
@@ -47,14 +47,14 @@ RSpec.describe Topic, type: :model do
 
       expect(@topic.posts).to include(post1, post2)
     end
-  end 
+  end
 
   describe 'Crud methods' do
     it 'can be created' do
       new_topic = build(:topic, title: 'Test Topic', user: @user, category: @category)
       new_topic.save
 
-      expect(new_topic).to be_persisted 
+      expect(new_topic).to be_persisted
     end
 
     it 'can be read' do
@@ -73,9 +73,9 @@ RSpec.describe Topic, type: :model do
     it 'can be deleted' do
       topic_to_delete = create(:topic, user: @user, category: @category)
       topic_id = topic_to_delete.id
-      topic_to_delete.destroy 
+      topic_to_delete.destroy
 
       expect(Topic.where(id: topic_id)).to be_empty
     end
   end
-end 
+end

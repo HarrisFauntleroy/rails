@@ -24,7 +24,7 @@ RSpec.describe CategoryGroup, type: :model do
   end
 
   describe 'associations' do
-    it 'belongs to a user' do 
+    it 'belongs to a user' do
       expect(@category_group.user).to eq(@category_group.user)
     end
 
@@ -34,7 +34,7 @@ RSpec.describe CategoryGroup, type: :model do
 
       expect(@category_group.categories).to include(category1, category2)
     end
-  end 
+  end
 
   describe 'Crud methods' do
     it 'can be created' do
@@ -60,9 +60,9 @@ RSpec.describe CategoryGroup, type: :model do
     it 'can be deleted' do
       group_to_delete = create(:category_group)
       group_id = group_to_delete.id
-      group_to_delete.destroy 
+      group_to_delete.destroy
 
       expect(CategoryGroup.where(id: group_id)).to be_empty
     end
-  end 
-end 
+  end
+end
