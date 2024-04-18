@@ -4,7 +4,7 @@ class CategoryGroupsController < ApplicationController
   before_action :set_category_group, only: %i[show edit update destroy]
 
   def index
-    @category_groups = CategoryGroup.all
+    @category_groups = CategoryGroup.all.includes(:categories)
     authorize @category_groups
   end
 

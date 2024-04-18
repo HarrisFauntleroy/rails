@@ -8,26 +8,18 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'site_rules', to: 'static_pages#site_rules'
-  get 'static_pages/site_rules'
 
-  resources :users, only: %i[show index] # Only need the 'show' route for profiles
+  resources :users, only: %i[show index]
 
-  resources :category_groups
+  resources :category_groups do
+    resources :categories
+  end
 
   resources :categories do
-    resources :topics do
-      resources :posts
-    end
+    resources :topics
   end
 
-  # Incremental refactoring
-  resources :category_groups do
-    resources :categories do
-      resources :topics do
-        resources :posts
-      end
-    end
+  resources :topics do
+    resources :posts
   end
-
-  get 'errors/not_found', to: 'errors#not_found'
 end

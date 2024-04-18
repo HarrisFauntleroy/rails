@@ -93,19 +93,17 @@
                   <div class="btn-group">
                     <% if authorized_to_create?(post) %>
                       <%= link_to t("reply"),
-                      new_category_topic_post_path(@category, @topic, parent_post_id: post.id),
+                      new_topic_post_path(@topic, parent_post_id: post.id),
                       class: "btn btn-secondary" %>
                     <% end %>
 
                     <% if authorized_to_edit?(post) %>
-                      <%= link_to t("edit"),
-                      edit_category_topic_post_path(@category, @topic, post),
-                      class: "btn btn-primary" %>
+                      <%= link_to t("edit"), edit_topic_post_path(@topic, post), class: "btn btn-primary" %>
                     <% end %>
 
                     <% if authorized_to_destroy?(post) %>
                       <%= button_to t("delete"),
-                      [@category, @topic, post],
+                      [@topic, post],
                       class: "btn",
                       method: :delete,
                       data: {

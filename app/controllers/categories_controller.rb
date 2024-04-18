@@ -3,7 +3,7 @@
 class CategoriesController < ApplicationController
   include Pundit::Authorization
 
-  before_action :set_category_group, only: %i[show edit update destroy]
+  # before_action :set_category_group, only: %i[show edit update destroy]
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
     @current_user = current_user
 
     add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
+    add_breadcrumb 'Forums', category_groups_path
   end
 
   def show

@@ -1,6 +1,6 @@
 <div class="custom-card">
   <div class="card-body">
-    <%= form_with(model: [@category, @topic, post], local: true) do |form| %>
+    <%= form_with(model: [@topic, post], local: true) do |form| %>
       <% if post.errors.any? %>
         <div class="error_messages">
           <h2><%= pluralize(post.errors.count, "error") %>

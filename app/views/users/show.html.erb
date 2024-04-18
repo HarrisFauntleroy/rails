@@ -32,8 +32,7 @@
         <ul>
           <% @recent_posts.each do |post| %>
             <li>
-              <%= link_to truncate(post.content, length: 50),
-              category_topic_post_path(post.topic.category, post.topic, post) %>
+              <%= link_to truncate(post.content, length: 50), topic_post_path(post.topic, post) %>
               (in
               <%= link_to post.topic.title, category_topic_path(post.topic.category, post.topic) %>)
               <small class="timestamp">

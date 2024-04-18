@@ -19,8 +19,8 @@ class TopicsController < ApplicationController
 
   def breadcrumb_handler
     add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
-    add_breadcrumb @category.name, category_path(@category)
+    add_breadcrumb 'Forums', category_groups_path
+    add_breadcrumb @category.name, category_group_category_path(@category.category_group, @category)
     add_breadcrumb @topic.title, category_topic_path(@category, @topic)
   end
 
