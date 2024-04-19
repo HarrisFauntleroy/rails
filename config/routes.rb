@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'site_rules', to: 'static_pages#site_rules'
+  get 'errors/not_found', to: 'errors#not_found'
 
   resources :users, only: %i[show index]
 
