@@ -1,10 +1,23 @@
-<h1>All Users</h1>
+<div class="custom-card">
+  <div class="card-header">
+    <div class="header-content">
+      <%= image_tag("bullet.png") %>
+      <span>
+        <%= current_section.capitalize %>
+      </span>
+    </div>
+  </div>
 
-<% @users.each do |user| %>
-  <div>
-    <%= link_to user.username, user_path(user) %>
-    <% if user.admin? %>
-      <span>(Admin)</span>
+  <div class="card-body">
+    <h1>All Users</h1>
+
+    <% @users.each do |user| %>
+      <div>
+        <%= link_to user.username, user_path(user) %>
+        <% if user.admin? %>
+          <span>(Admin)</span>
+        <% end %>
+      </div>
     <% end %>
   </div>
-<% end %>
+</div>

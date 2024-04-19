@@ -21,6 +21,7 @@ module ApplicationHelper
     when %r{/members}    then 'member map'
     when %r{/wikis}      then 'wiki'
     when %r{/chat_room} then 'chat room'
+    when %r{/users} then 'Users'
     else 'unknown'
     end
   end
