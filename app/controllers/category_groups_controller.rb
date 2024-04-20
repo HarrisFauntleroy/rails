@@ -5,7 +5,6 @@ class CategoryGroupsController < ApplicationController
 
   def index
     @category_groups = CategoryGroup.all.includes(:categories)
-    authorize @category_groups
   end
 
   def new

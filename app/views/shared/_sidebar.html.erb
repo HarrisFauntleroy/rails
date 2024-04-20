@@ -70,7 +70,7 @@
                 <span class="smalltext">Registered Member #1749</span>
               <% end %>
             </div>
-            <%= button_to "Sign out",
+            <%= button_to t("devise.sign_out"),
             destroy_user_session_path,
             method: :delete,
             class: "link-button" %>
