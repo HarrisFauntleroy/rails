@@ -42,6 +42,7 @@ en:
   forgot_your_password: Forgot your password
   forum: Forum
   forum_threads: Forum Threads
+  forums: Forums
   go_back: Go Back
   go_home: Go Home
   go_to_page: Go to page
@@ -141,6 +142,7 @@ en:
   unhappy: Unhappy
   unlock_my_account: Unlock my account
   update: Update
+  users: Users
   we_need_your_current_password_to_confirm_your_changes: We need your current password to confirm your changes
   welcome: Welcome
   wrote: wrote

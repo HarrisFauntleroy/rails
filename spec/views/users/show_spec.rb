@@ -9,9 +9,9 @@ RSpec.describe 'users/show', type: :view do
       @recent_topics_opened = create_list(:topic, 1, user: @user)
       @recent_posts = create_list(:post, 1, user: @user)
     end
-    it 'card title should say "User Profile"' do
+    it 'card title should say "Users"' do
       render
-      expect(rendered).to have_content('Unknown')
+      expect(rendered).to have_content(t("users"))
     end
     it 'displays the user\'s username' do
       render
