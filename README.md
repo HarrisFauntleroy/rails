@@ -89,6 +89,12 @@ rails db:migrate
 rails db:create db:migrate db:seed
 ```
 
+**Development**
+
+```bash
+rails db:drop db:create db:schema:load db:migrate db:seed
+```
+
 To run the specs, a single spec, or a single test:
 
 ```bash
