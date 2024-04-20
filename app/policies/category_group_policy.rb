@@ -9,18 +9,32 @@ class CategoryGroupPolicy < ApplicationPolicy
   end
 
   def index?
-    user.present? # Anyone logged in can view
+    true
   end
 
   def create?
-    user.admin? # Only admins can create
+    user_is_admin?
   end
 
   def update?
-    user.admin? || (user.moderator? && user.id == record.user_id) # Admins or the category's moderator owner
+    user_is_admin? || (user_is_moderator? || record_belongs_to_user?)
   end
 
   def destroy?
-    user.admin? || (user.moderator? && user.id == record.user_id) # Admins or the category's moderator owner
+    user_is_admin? || (user_is_moderator? || record_belongs_to_user?)
+  end
+
+  private
+
+  def record_belongs_to_user?
+    user.present? && user.moderator? && user.id == record.user_id
+  end
+
+  def user_is_moderator?
+    user.present? && user.moderator? && user.id == record.user_id
+  end
+
+  def user_is_admin?
+    user.present? && user.admin?
   end
 end

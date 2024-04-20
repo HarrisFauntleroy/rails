@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_416_000_545) do
+ActiveRecord::Schema[7.1].define(version: 20_240_420_223_844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.1].define(version: 20_240_416_000_545) do
     t.datetime 'updated_at', null: false
     t.bigint 'user_id', default: 1, null: false
     t.index ['user_id'], name: 'index_category_groups_on_user_id'
+  end
+
+  create_table 'news', force: :cascade do |t|
+    t.string 'title'
+    t.text 'body'
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_news_on_user_id'
   end
 
   create_table 'posts', force: :cascade do |t|
@@ -88,6 +97,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_416_000_545) do
   add_foreign_key 'categories', 'category_groups'
   add_foreign_key 'categories', 'users'
   add_foreign_key 'category_groups', 'users'
+  add_foreign_key 'news', 'users'
   add_foreign_key 'posts', 'topics'
   add_foreign_key 'topics', 'categories'
 end

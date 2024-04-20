@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   include Pundit::Authorization
 
-  before_action :set_category_and_topic, only: %i[show new create edit update destroy]
+  before_action :set_topic, only: %i[show new create edit update destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -24,13 +24,18 @@ class PostsController < ApplicationController
     @post = @topic.posts.build(post_params)
     @post.user = current_user
 
+    puts "Parent post id: #{params[:parent_post_id]}"
+    puts "Post params: #{post_params.inspect}"
+    puts "Topic id: #{params[:topic_id]}"
+    puts "Topic: #{@topic}"
+
     if params[:parent_post_id]
       parent_post = Post.find(params[:parent_post_id])
       @post.parent_post_id = parent_post.id
     end
 
     if @post.save
-      redirect_to category_topic_path(@category, @topic, @post), notice: 'Post created!'
+      redirect_to category_topic_path(@topic.category, @topic), notice: 'Post created!'
     else
       render :new
     end
@@ -40,7 +45,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to category_topic_path(@category, @topic, @post), notice: 'Post updated!'
+      redirect_to category_topic_path(@topic.category, @topic), notice: 'Post updated!'
     else
       render :edit
     end
@@ -52,14 +57,17 @@ class PostsController < ApplicationController
 
     flash[:notice] = 'Post has been deleted successfully'
 
-    redirect_to category_topic_path(@category, @topic), notice: 'Post deleted!'
+    redirect_to category_topic_path(@topic.category, @topic), notice: 'Post deleted!'
   end
 
   private
 
-  def set_category_and_topic
+  def set_category
     @category = Category.find(params[:category_id])
-    @topic = @category.topics.find(params[:topic_id])
+  end
+
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
   end
 
   def set_post
