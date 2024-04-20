@@ -92,4 +92,16 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to(root_path)
     end
   end
+
+  describe 'POST #create' do
+  end
+
+  describe 'GET #edit' do
+  end
+
+  describe 'PATCH #update' do
+  end
+
+  describe 'DELETE #destroy' do
+  end
 end

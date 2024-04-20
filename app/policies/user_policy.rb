@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class UserPolicy < ApplicationPolicy
+  attr_reader :user, :record
+
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
   class Scope < Scope
     def resolve
       if user.admin?
@@ -11,15 +18,19 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    user.present? && user.admin?
+  end
+
   def show?
-    user.present?
+    record.present? && user.present?
   end
 
   def update?
-    user.present? && (user.admin? || user == record)
+    user.admin? || (user.present? && user == record)
   end
 
   def destroy?
-    user.present? && (user.admin? || user == record)
+    user.admin? && user != record || (user.present? && user == record && user.admin? == false)
   end
 end
