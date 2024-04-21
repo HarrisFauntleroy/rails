@@ -24,11 +24,6 @@ class PostsController < ApplicationController
     @post = @topic.posts.build(post_params)
     @post.user = current_user
 
-    puts "Parent post id: #{params[:parent_post_id]}"
-    puts "Post params: #{post_params.inspect}"
-    puts "Topic id: #{params[:topic_id]}"
-    puts "Topic: #{@topic}"
-
     if params[:parent_post_id]
       parent_post = Post.find(params[:parent_post_id])
       @post.parent_post_id = parent_post.id
@@ -61,10 +56,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def set_category
-    @category = Category.find(params[:category_id])
-  end
 
   def set_topic
     @topic = Topic.find(params[:topic_id])

@@ -61,6 +61,7 @@
                       category,
                       category.topics.last,
                       category.topics.last.posts.last,
+                      anchor: "post-#{category.topics.last.posts.last.id}",
                     ) %>
                   <% else %>
                     <%= t("no_posts_yet") %>
