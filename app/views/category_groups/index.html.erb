@@ -8,7 +8,7 @@
   <div class="card-body">
     <% @category_groups.each do |category_group| %>
       <table class="nforumholder">
-        <thead>
+        <tbody>
           <tr>
             <td colspan="6" class="nforumcaption">
               <%= category_group.name %>
@@ -35,9 +35,6 @@
               <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
             <% end %>
           </tr>
-        </thead>
-        <tbody>
-
           <% category_group.categories.each do |category| %>
             <tr>
               <td style="width:5%; text-align:center" class="nforumcaption3">
@@ -91,7 +88,6 @@
               <% end %>
             </tr>
           <% end %>
-
         </tbody>
       </table>
     <% end %>

@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
   def breadcrumb_handler
     add_breadcrumb '4hv.org', root_path
     add_breadcrumb 'Forums', categories_path
-    add_breadcrumb @category.name, category_path(@category)
+    add_breadcrumb @category.name, @category
   end
 
   def new
