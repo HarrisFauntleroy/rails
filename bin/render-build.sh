@@ -10,6 +10,7 @@ bundle exec rake assets:precompile
 bundle exec rake assets:clean
 
 # For a fresh setup, you can run the following commands:
-rails db:drop db:create db:schema:load db:migrate db:seed 
+# rails db:drop db:create db:schema:load db:migrate db:seed 
 
-# bundle exec rake db:migrate
+# For normal setup, you can run the following commands:
+bundle exec rake db:migrate
