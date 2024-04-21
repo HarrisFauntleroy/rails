@@ -3,9 +3,31 @@
     <%= image_tag("logo.png", width: 200) %>
   </div>
   <hr/>
-  <section class="search-bar">
-    <input class="tbox search"/>
-    <%= image_tag("search.png") %>
-  </section>
+  <div class="nav-bar">
+    <button class="menu-button">☰</button>
+    <section class="search-bar">
+      <input class="tbox search"/>
+      <%= image_tag("search.png") %>
+    </section>
+  </div>
   <hr/>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.querySelector('.menu-button');
+    const sidebar = document.querySelector('.sidebar');
+    const content = document.querySelector('.main-content')
+
+    menuButton.addEventListener('click', () => {
+      console.log("Sidebar", sidebar)
+      console.log("Content", content)
+      try {
+        sidebar.classList.toggle('open');
+        content.classList.toggle('sidebar-open'); 
+      } catch (error) {
+        console.error(error)
+      }
+    });
+  });
+</script>

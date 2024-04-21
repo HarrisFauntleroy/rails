@@ -18,7 +18,7 @@ en:
   contact: Contact
   contact_sidebar_text: 'If you need assistance, please send an email to forum at 4hv dot org. To ensure your email is not marked as spam, please include the phrase "4hv help" in the subject line. You can also find assistance via IRC, at irc.shadowworld.net, room #hvcomm.'
   currently_waiting_confirmation_for: 'Currently waiting confirmation for: '
-  delete: Delete
+  delete: "🗑️"
   devise:
     change_your_password: Change your password
     didnt_receive_confirmation_instructions: Didn"t receive confirmation instructions?
@@ -31,7 +31,7 @@ en:
     sign_out: Sign out
     sign_up: Sign up
   donate: 4hv.org is hosted on a dedicated server. Unfortunately, this server costs and we rely on the help of site members to keep 4hv.org running. Please consider donating. We will place your name on the thanks list and you"ll be helping to keep 4hv.org alive and free for everyone. Members whose names appear in red bold have donated recently. Green bold denotes those who have recently donated to keep the server carbon neutral.
-  edit: Edit
+  edit: "✏️"
   edit_comment: Edit Comment
   edit_forum: Edit Forum
   edit_topic: Edit Topic
@@ -63,8 +63,8 @@ en:
   members_birthdays: Members Birthdays
   moderators: Moderators
   most_ever_online: Most Ever Online
-  new_category: New Category
-  new_category_group: New Category Group
+  new_category: New Forum
+  new_category_group: New Category
   new_comment: New Comment
   new_forum: New Forum
   new_forum_group: New Forum Group

@@ -94,11 +94,11 @@
                     <% if authorized_to_create?(post) %>
                       <%= link_to t("reply"),
                       new_topic_post_path(@topic, parent_post_id: post.id),
-                      class: "btn btn-secondary" %>
+                      class: "btn btn" %>
                     <% end %>
 
                     <% if authorized_to_edit?(post) %>
-                      <%= link_to t("edit"), edit_topic_post_path(@topic, post), class: "btn btn-primary" %>
+                      <%= link_to t("edit"), edit_topic_post_path(@topic, post), class: "btn" %>
                     <% end %>
 
                     <% if authorized_to_destroy?(post) %>

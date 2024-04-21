@@ -33,7 +33,7 @@
     <td style="width: 20%; text-align: center;" class="nforumthread">
       <div class="btn-group">
         <% if policy(@category).edit? %>
-          <%= link_to t("edit"), edit_category_path(@category), class: "btn btn-primary" %>
+          <%= link_to t("edit"), edit_category_path(@category), class: "btn" %>
         <% end %>
         <% if policy(@category).destroy? %>
           <%= button_to t("delete"),

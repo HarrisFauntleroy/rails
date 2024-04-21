@@ -1,28 +1,26 @@
-<div class="custom-card">
-  <div class="card-body">
-    <%= form_with(model: [@topic, post], local: true) do |form| %>
-      <% if post.errors.any? %>
-        <div class="error_messages">
-          <h2><%= pluralize(post.errors.count, "error") %>
-            <%= t("prohibited_this_post_from_being_saved") %>:</h2>
-          <ul>
-            <% post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <%= form.hidden_field :parent_post_id, value: @parent_post_id %>
-
-      <div class="stack">
-        <%= form.label :content %>
-        <%= form.text_area :content %>
-      </div>
-
-      <div class="btn-group">
-        <%= form.submit t("submit"), class: "btn" %>
+<div class="card-body">
+  <%= form_with(model: [@topic, post], local: true) do |form| %>
+    <% if post.errors.any? %>
+      <div class="error_messages">
+        <h2><%= pluralize(post.errors.count, "error") %>
+          <%= t("prohibited_this_post_from_being_saved") %>:</h2>
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-  </div>
+
+    <%= form.hidden_field :parent_post_id, value: @parent_post_id %>
+
+    <div class="stack">
+      <%= form.label t("reply") %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="btn-group">
+      <%= form.submit t("submit"), class: "btn" %>
+    </div>
+  <% end %>
 </div>

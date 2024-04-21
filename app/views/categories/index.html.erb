@@ -12,18 +12,6 @@
           <tr>
             <td colspan="6" class="nforumcaption">
               <%= category_group.name %>
-              <span>
-                <% if policy(category_group).destroy? %>
-                  <%= button_to t("delete"),
-                  category_group,
-                  class: "btn",
-                  method: :delete,
-                  data: {
-                    confirm: t("are_you_sure"),
-                    turbo_confirm: t("are_you_sure"),
-                  } %>
-                <% end %>
-              </span>
             </td>
           </tr>
           <tr>
@@ -72,7 +60,7 @@
                 <td style="width: 20%; text-align: center;" class="nforumthread">
                   <div class="btn-group">
                     <% if policy(category).edit? %>
-                      <%= link_to t("edit"), edit_category_path(category), class: "btn btn-primary" %>
+                      <%= link_to t("edit"), edit_category_path(category), class: "btn" %>
                     <% end %>
                     <% if policy(category).destroy? %>
                       <%= button_to t("delete"),
@@ -90,13 +78,27 @@
             </tr>
           <% end %>
         </tbody>
+        <tfoot class="category-footer">
+          <div>
+            <% if policy(category_group).destroy? %>
+              <%= button_to t("delete"),
+              category_group,
+              class: "btn",
+              method: :delete,
+              data: {
+                confirm: t("are_you_sure"),
+                turbo_confirm: t("are_you_sure"),
+              } %>
+            <% end %>
+          </div>
+        </tfoot>
       </table>
     <% end %>
   </div>
   <div class="btn-group">
     <% if @current_user&.admin? %>
-      <%= link_to t("new_category"), new_category_path, class: "btn" %>
       <%= link_to t("new_category_group"), new_category_group_path, class: "btn" %>
+      <%= link_to t("new_category"), new_category_path, class: "btn" %>
     <% end %>
   </div>
 </div>

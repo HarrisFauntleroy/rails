@@ -136,7 +136,7 @@
                           <% if authorized_to_edit?(@topic) %>
                             <%= link_to t("edit_topic"),
                             edit_category_topic_path(@category, @topic),
-                            class: "btn btn-primary" %>
+                            class: "btn" %>
                           <% end %>
                           <% if authorized_to_destroy?(@topic) %>
                             <%= button_to t("delete"),
