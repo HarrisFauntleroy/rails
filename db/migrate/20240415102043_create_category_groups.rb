@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCategoryGroups < ActiveRecord::Migration[7.1]
   def change
     create_table :category_groups do |t|

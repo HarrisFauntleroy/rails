@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # lib/tasks/spec_check.rake
 require 'rainbow'
 

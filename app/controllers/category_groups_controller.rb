@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoryGroupsController < ApplicationController
   include Pundit::Authorization
 

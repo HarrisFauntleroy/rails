@@ -36,8 +36,8 @@ RSpec.describe UsersController, type: :controller do
 
     it 'limits recent posts and topics to 5' do
       sign_in user
-      topics = create_list(:topic, 6, user: user)
-      posts = create_list(:post, 6, user: user)
+      create_list(:topic, 6, user: user)
+      create_list(:post, 6, user: user)
 
       get :show, params: { id: user.id }
 
