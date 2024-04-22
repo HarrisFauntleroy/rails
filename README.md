@@ -117,6 +117,14 @@ rails console
 rails c
 ```
 
+**Rake Commands**
+
+Find missing specs:
+
+```bash
+rake spec_check:<views | models | controllers | all>    
+```
+
 **Makefile Commands**
 
 To make life easier, there is a Makefile with some common commands:
