@@ -40,7 +40,6 @@ en:
   errors:
     messages:
       not_saved: There were %{count} errors preventing this %{resource} from being saved
-  forgot_your_password: Forgot your password
   forum: Forum
   forum_threads: Forum Threads
   forums: Forums
@@ -140,7 +139,7 @@ en:
   threads_opened: Threads Opened
   topic: Topic
   topics: Topics
-  unhappy: Unhappy
+  unhappy: Unhappy?
   unlock_my_account: Unlock my account
   update: Update
   users: Users
