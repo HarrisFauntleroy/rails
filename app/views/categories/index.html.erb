@@ -19,7 +19,7 @@
             <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("topics") %></td>
             <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
             <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("last_post") %></td>
-            <% if @current_user&.admin? %>
+            <% if current_user&.admin? %>
               <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
             <% end %>
           </tr>
@@ -96,7 +96,7 @@
     <% end %>
   </div>
   <div class="btn-group">
-    <% if @current_user&.admin? %>
+    <% if current_user&.admin? %>
       <%= link_to t("new_category_group"), new_category_group_path, class: "btn" %>
       <%= link_to t("new_category"), new_category_path, class: "btn" %>
     <% end %>

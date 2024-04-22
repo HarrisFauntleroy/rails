@@ -42,9 +42,7 @@ class ApplicationController < ActionController::Base
     @most_ever_online = 0
   end
 
-  def show
-    @current_user = current_user
-  end
+  def show; end
 
   protected
 

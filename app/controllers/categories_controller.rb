@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
 
   def index
     @category_groups = CategoryGroup.all.includes(categories: { topics: :posts })
-    @current_user = current_user
 
     add_breadcrumb '4hv.org', root_path
     add_breadcrumb 'Forums', category_groups_path
@@ -28,7 +27,6 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    @current_user = current_user
   end
 
   def create

@@ -8,7 +8,6 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.all
-    @current_user = current_user
   end
 
   def show
@@ -26,7 +25,6 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
-    @current_user = current_user
   end
 
   def create

@@ -3,7 +3,7 @@
     <div class="card-header">
       <div class="header-content">
         <%= image_tag("bullet.png") %>
-        <span>Main Menu</span>
+        <span><%= t("main_menu") %></span>
       </div>
     </div>
     <div class="card-body">
@@ -56,19 +56,15 @@
           </div>
           <div>
             <div class="spacer">
-              <% if @current_user&.admin? %>
-                <%= image_tag("lev10.png") %>
-                <br/>
+              <% if current_user&.admin? %>
+                <%= t("admin") %>
                 <%= image_tag("English_main_admin.png") %>
-              <% elsif @current_user&.moderator? %>
-                <%= image_tag("lev10.png") %>
-                <br/>
+              <% elsif current_user&.moderator? %>
+                <%= t("moderator") %>
                 <%= image_tag("English_moderator.png") %>
-              <% else %>
-                <%= image_tag("lev3.png") %>
-                <br/>
-                <span class="smalltext">Registered Member #1749</span>
               <% end %>
+              <div class="smalltext"><%= t("registered_member") %>
+                #1749</div>
             </div>
             <%= button_to t("devise.sign_out"),
             destroy_user_session_path,

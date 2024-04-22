@@ -1,6 +1,7 @@
 ---
 en:
   actions: Actions
+  admin: admin
   announcement: Announcement
   are_you_sure: Are you sure?
   author: Author
@@ -57,9 +58,11 @@ en:
   last_post: Last Post
   leave_blank_if_you_dont_want_to_change_it: Leave blank if you don"t want to change it
   location: Location
+  main_menu: Main Menu
   member_map: Member Map
   members: Members
   members_birthdays: Members Birthdays
+  moderator: Moderator
   moderators: Moderators
   most_ever_online: Most Ever Online
   new_category: New Forum
