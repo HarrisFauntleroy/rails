@@ -3,6 +3,8 @@
 class UsersController < ApplicationController
   include Pundit::Authorization
 
+  helper UserHelper
+
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, only: [:show]
 

@@ -53,10 +53,10 @@ group :development, :test do
   gem 'faker'
   gem 'pundit-matchers'
   gem 'rails-controller-testing'
+  gem 'rainbow', '~> 3.0'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'rainbow', '~> 3.0'
 end
 
 group :development do

@@ -55,16 +55,18 @@
             <%= link_to current_user.username, current_user %>
           </div>
           <div>
-            <div class="spacer">
-              <% if current_user&.admin? %>
-                <%= t("admin") %>
-                <%= image_tag("English_main_admin.png") %>
-              <% elsif current_user&.moderator? %>
-                <%= t("moderator") %>
-                <%= image_tag("English_moderator.png") %>
-              <% end %>
-              <div class="smalltext"><%= t("registered_member") %>
-                #1749</div>
+            <% if current_user&.admin? %>
+              <div class="smalltext"><%= t("admin") %></div>
+              <%= image_tag("English_main_admin.png") %>
+            <% elsif current_user&.moderator? %>
+              <div class="smalltext"><%= t("moderator") %></div>
+              <%= image_tag("English_moderator.png") %>
+            <% else %>
+              <div class="smalltext"><%= t("user") %></div>
+            <% end %>
+            <div class="smalltext">
+              <%= t("registered_member") %>
+              #1749
             </div>
             <%= button_to t("devise.sign_out"),
             destroy_user_session_path,

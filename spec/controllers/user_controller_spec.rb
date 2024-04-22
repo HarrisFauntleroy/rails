@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe 'GET #show' do
-  let(:user) { create(:user, id: 1) }
+    let(:user) { create(:user, id: 1) }
 
-  it 'assigns the requested user to @user' do
+    it 'assigns the requested user to @user' do
       sign_in user
       get :show, params: { id: user.id }
       expect(assigns(:user)).to eq(user)

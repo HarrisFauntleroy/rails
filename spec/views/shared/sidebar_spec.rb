@@ -15,7 +15,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
   end
 
   describe 'should contain "Welcome" section' do
-    it 'should contain "Welcome" section' do
+    it 'should render "Welcome" label' do
       render
       expect(rendered).to have_content(t('welcome'))
     end
@@ -24,6 +24,9 @@ RSpec.describe 'shared/_sidebar', type: :view do
       it 'shows user-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @user }
         expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).to have_content(t('user'))
+        expect(rendered).not_to have_content(t('moderator'))
+        expect(rendered).not_to have_content(t('admin'))
       end
     end
 
@@ -37,23 +40,27 @@ RSpec.describe 'shared/_sidebar', type: :view do
       it 'shows moderator-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @moderator }
         expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).not_to have_content(t('user'))
         expect(rendered).to have_content(t('moderator'))
+        expect(rendered).not_to have_content(t('admin'))
       end
     end
-  end
 
-  describe 'for an admin' do
-    before(:each) do
-      @admin = create(:user, admin: true)
-      sign_in @admin
-      allow(view).to receive(:current_user).and_return(@admin)
-    end
+    describe 'for an admin' do
+      before(:each) do
+        @admin = create(:user, admin: true)
+        sign_in @admin
+        allow(view).to receive(:current_user).and_return(@admin)
+      end
 
-    it 'shows admin-specific elements' do
-      render partial: 'shared/sidebar', locals: { resource: @admin }
+      it 'shows admin-specific elements' do
+        render partial: 'shared/sidebar', locals: { resource: @admin }
 
-      expect(rendered).to have_content(t('registered_member'))
-      expect(rendered).to have_content(t('admin'))
+        expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).not_to have_content(t('user'))
+        expect(rendered).not_to have_content(t('moderator'))
+        expect(rendered).to have_content(t('admin'))
+      end
     end
   end
 
