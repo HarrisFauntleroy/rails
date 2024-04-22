@@ -117,44 +117,19 @@ rails console
 rails c
 ```
 
-**Generators**
+**Makefile Commands**
 
-To create an ExampleComponent with title and content attributes:
+To make life easier, there is a Makefile with some common commands:
 
+To run [i18n-tasks](https://github.com/glebm/i18n-tasks) normalize and health
 ```bash
-rails generate component Example title content
+make i18n
 ```
 
-**Commands**
-
-<!-- LIST OF COMMANDS -->
-
-To format `.erb` files with erb-format
+To format and lint the code
 
 ```bash
-rails erb-format app/views/**/*.html.erb --write 
-```
-
-To run Rubocop
-
-```bash
-rubocop
-```
-
-To run Brakeman (if installed)
-
-```bash
-brakeman
-```
-
-[i18n-tasks](https://github.com/glebm/i18n-tasks)
-
-```bash
-i18n-tasks health
-```
-
-```bash
-i18n-tasks normalize
+make pretty
 ```
 
 <!-- _Please refer to the package.json for additional details and scripts._ -->
