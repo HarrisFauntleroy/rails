@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-# lib/tasks/spec_check.rake
-require 'rainbow'
-
 namespace :spec_check do
   desc 'Verify that each model has a corresponding spec file'
   task models: :environment do
     Dir['app/models/**/*.rb'].each do |model_path|
       spec_path = model_path.sub(/app/, 'spec').sub(/\.rb$/, '_spec.rb')
-      puts Rainbow("Missing spec for model: #{model_path}").red unless File.exist?(spec_path)
+      puts "Missing spec for model: #{model_path}" unless File.exist?(spec_path)
     end
   end
 
@@ -16,7 +13,7 @@ namespace :spec_check do
   task controllers: :environment do
     Dir['app/controllers/**/*.rb'].each do |controller_path|
       spec_path = controller_path.sub(/app/, 'spec').sub(/\.rb$/, '_spec.rb')
-      puts Rainbow("Missing spec for controller: #{controller_path}").blue unless File.exist?(spec_path)
+      puts "Missing spec for controller: #{controller_path}" unless File.exist?(spec_path)
     end
   end
 
@@ -24,7 +21,7 @@ namespace :spec_check do
   task views: :environment do
     Dir['app/views/**/*.erb'].each do |view_path|
       spec_path = view_path.sub(/app/, 'spec').sub(/\.erb$/, '_spec.rb')
-      puts Rainbow("Missing spec for view: #{view_path}").magenta unless File.exist?(spec_path)
+      puts "Missing spec for view: #{view_path}" unless File.exist?(spec_path)
     end
   end
 
@@ -46,10 +43,10 @@ namespace :spec_check do
     end
 
     if missing_specs.any?
-      puts Rainbow('Missing Specs Report:').bg(:yellow).black
-      missing_specs.each { |msg| puts Rainbow(msg).red }
+      puts 'Missing Specs Report:'
+      missing_specs.each { |msg| puts msg }
     else
-      puts Rainbow('All files have corresponding specs!').green
+      puts 'All files have corresponding specs!'
     end
   end
 end
