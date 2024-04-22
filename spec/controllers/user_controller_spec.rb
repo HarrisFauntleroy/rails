@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  describe 'GET #show' do
-    let(:user) { create(:user, id: 1) }
+  include_context 'with user'
+  include_context 'with admin'
 
+  describe 'GET #show' do
     it 'assigns the requested user to @user' do
       sign_in user
       get :show, params: { id: user.id }
@@ -13,11 +14,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'handles a user with no posts' do
-      user = create(:user)
       sign_in user
-
       get :show, params: { id: user.id }
-
       expect(assigns(:recent_topics_opened)).to eq([])
       expect(assigns(:recent_posts)).to eq([])
     end
@@ -67,7 +65,6 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all users to @users' do
-      admin_user = create(:user, admin: true)
       sign_in admin_user
 
       users = create_list(:user, 3)
@@ -76,7 +73,6 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:users)).to eq([admin_user, *users])
     end
     it 'renders the index template for admin users' do
-      admin_user = create(:user, admin: true)
       sign_in admin_user
 
       get :index
@@ -84,8 +80,7 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to render_template(:index)
     end
     it 'redirects non-admin users' do
-      non_admin_user = create(:user, admin: false)
-      sign_in non_admin_user
+      sign_in user
 
       get :index
 

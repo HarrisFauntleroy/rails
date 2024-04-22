@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before(:each) do
-    @user = create(:user, id: 1)
-  end
+  include_context 'with user'
+  include_context 'with admin'
+  include_context 'with moderator'
 
   it 'has a valid factory' do
-    expect(@user).to be_valid
+    expect(user).to be_valid
   end
 
   describe 'validations' do
@@ -34,6 +34,10 @@ RSpec.describe User, type: :model do
       user = build(:user, username: nil)
       expect(user).to_not be_valid
     end
+    it 'is invalid with overly long usernames' do
+      user = build(:user, username: 'a' * 256) # Assuming 255 is the max
+      expect(user).not_to be_valid
+    end
     it 'is invalid with a duplicate username' do
       create(:user, username: 'testington')
       user = build(:user, username: 'testington')
@@ -56,31 +60,31 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it 'can have many category_groups' do
-      category_group1 = create(:category_group, user: @user)
-      category_group2 = create(:category_group, user: @user)
+      category_group1 = create(:category_group, user: user)
+      category_group2 = create(:category_group, user: user)
 
-      expect(@user.category_groups).to include(category_group1, category_group2)
+      expect(user.category_groups).to include(category_group1, category_group2)
     end
 
     it 'can have many categories' do
-      category1 = create(:category, user: @user)
-      category2 = create(:category, user: @user)
+      category1 = create(:category, user: user)
+      category2 = create(:category, user: user)
 
-      expect(@user.categories).to include(category1, category2)
+      expect(user.categories).to include(category1, category2)
     end
 
     it 'can have many topics' do
-      topic1 = create(:topic, user: @user)
-      topic2 = create(:topic, user: @user)
+      topic1 = create(:topic, user: user)
+      topic2 = create(:topic, user: user)
 
-      expect(@user.topics).to include(topic1, topic2)
+      expect(user.topics).to include(topic1, topic2)
     end
 
     it 'can have many posts' do
-      post1 = create(:post, user: @user)
-      post2 = create(:post, user: @user)
+      post1 = create(:post, user: user)
+      post2 = create(:post, user: user)
 
-      expect(@user.posts).to include(post1, post2)
+      expect(user.posts).to include(post1, post2)
     end
   end
 
@@ -91,12 +95,10 @@ RSpec.describe User, type: :model do
     end
 
     it 'can be an admin' do
-      admin_user = build(:user, admin: true)
       expect(admin_user.admin).to be true
     end
 
     it 'can be an moderator' do
-      moderator_user = build(:user, moderator: true)
       expect(moderator_user.moderator).to be true
     end
   end
