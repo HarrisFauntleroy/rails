@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  include_context 'with user'
-  include_context 'with admin'
+  let(:user) { create(:user, id: 1) }
+  let(:admin_user) { create(:user, admin: true, id: 3) }
 
   describe 'GET #show' do
     it 'assigns the requested user to @user' do

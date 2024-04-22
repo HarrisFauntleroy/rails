@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  include_context 'with user'
-  include_context 'with admin'
-  include_context 'with moderator'
+  let(:user) { create(:user, id: 1) }
+  let(:moderator_user) { create(:user, moderator: true, id: 2) }
+  let(:admin_user) { create(:user, admin: true, id: 3) }
 
   it 'has a valid factory' do
     expect(user).to be_valid
