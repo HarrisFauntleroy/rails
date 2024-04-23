@@ -42,8 +42,9 @@
                 <%= image_tag("English_moderator.png") %>
               <% end %>
             </div>
-            <span class="smalltext"><%= t("registered_member") %>
-              #<%= post.user.id %></span>
+            <span class="smalltext">
+              <%= t("registered_member", number: post.user.id) %>
+            </span>
             <br>
             <%= t("joined") %>: Thu Oct 09 2008, 09:04PM
             <br>

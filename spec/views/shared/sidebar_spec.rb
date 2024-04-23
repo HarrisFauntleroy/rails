@@ -23,10 +23,11 @@ RSpec.describe 'shared/_sidebar', type: :view do
     describe 'for a user' do
       it 'shows user-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @user }
-        expect(rendered).to have_content("#{t('registered_member')} ##{@user.id}")
         expect(rendered).to have_content(t('user'))
         expect(rendered).not_to have_content(t('moderator'))
         expect(rendered).not_to have_content(t('admin'))
+        expect(rendered).to have_content(t('registered_member', number: @user.id))
+        expect(rendered).to have_content(t('devise.sign_out'))
       end
     end
 
@@ -39,10 +40,11 @@ RSpec.describe 'shared/_sidebar', type: :view do
 
       it 'shows moderator-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @moderator }
-        expect(rendered).to have_content("#{t('registered_member')} ##{@moderator.id}")
         expect(rendered).not_to have_content(t('user'))
         expect(rendered).to have_content(t('moderator'))
         expect(rendered).not_to have_content(t('admin'))
+        expect(rendered).to have_content(t('registered_member', number: @moderator.id))
+        expect(rendered).to have_content(t('devise.sign_out'))
       end
     end
 
@@ -55,11 +57,11 @@ RSpec.describe 'shared/_sidebar', type: :view do
 
       it 'shows admin-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @admin }
-
-        expect(rendered).to have_content("#{t('registered_member')} ##{@admin.id}")
         expect(rendered).not_to have_content(t('user'))
         expect(rendered).not_to have_content(t('moderator'))
         expect(rendered).to have_content(t('admin'))
+        expect(rendered).to have_content(t('registered_member', number: @admin.id))
+        expect(rendered).to have_content(t('devise.sign_out'))
       end
     end
   end
@@ -77,10 +79,12 @@ RSpec.describe 'shared/_sidebar', type: :view do
   it 'should contain "Contact" section' do
     render
     expect(rendered).to have_content(t('contact'))
+    expect(rendered).to have_content(t('contact_sidebar_text'))
   end
 
   it 'should contain "Support 4hv.org!" section' do
     render
     expect(rendered).to have_content(t('support_4hv'))
+    expect(rendered).to have_content(t('donate'))
   end
 end

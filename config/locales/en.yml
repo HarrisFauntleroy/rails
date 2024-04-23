@@ -93,7 +93,7 @@ en:
   prohibited_this_topic_from_being_saved: prohibited this topic from being saved
   recent_activity: Recent Activity
   recent_comments: Recent Comments
-  registered_member: Registered Member
+  registered_member: 'Registered Member #%{number}'
   replies: Replies
   reply: Reply
   resend_confirmation_instructions: Resend confirmation instructions
