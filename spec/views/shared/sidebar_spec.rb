@@ -69,11 +69,16 @@ RSpec.describe 'shared/_sidebar', type: :view do
   it 'should contain "Online" section' do
     render
     expect(rendered).to have_content(t('online'))
+    # todo 'add online users'
+    # todo 'add members count'
+    # todo 'add newest member'
+    # todo 'most ever online'
   end
 
   it 'should contain "Members Birthdays" section' do
     render
     expect(rendered).to have_content(t('members_birthdays'))
+    # todo 'add members birthdays'
   end
 
   it 'should contain "Contact" section' do
@@ -86,5 +91,6 @@ RSpec.describe 'shared/_sidebar', type: :view do
     render
     expect(rendered).to have_content(t('support_4hv'))
     expect(rendered).to have_content(t('donate'))
+    # todo 'add donate link'
   end
 end
