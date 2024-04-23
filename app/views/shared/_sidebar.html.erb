@@ -65,7 +65,8 @@
               <div class="smalltext"><%= t("user") %></div>
             <% end %>
             <div class="smalltext">
-              <%= t("registered_member") %> #<%= current_user.id %>
+              <%= t("registered_member") %>
+              #<%= current_user.id %>
             </div>
             <%= button_to t("devise.sign_out"),
             destroy_user_session_path,

@@ -27,7 +27,7 @@
 
 <!-- PROJECT_DESCRIPTION -->
 
-<!-- 🚧 -->
+A full-featured forum application built with Ruby on Rails.
 
 <!-- PROJECT_SCREENSHOT -->
 
