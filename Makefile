@@ -9,3 +9,6 @@ install:
 
 dev:
 	rails s
+
+destructive-init:
+	rails db:drop db:create db:schema:load db:migrate db:seed 
