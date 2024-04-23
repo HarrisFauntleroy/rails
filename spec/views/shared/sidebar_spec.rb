@@ -85,6 +85,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
     render
     expect(rendered).to have_content(t('contact'))
     expect(rendered).to have_content(t('contact_sidebar_text'))
+    # todo 'add contact link'
   end
 
   it 'should contain "Support 4hv.org!" section' do
