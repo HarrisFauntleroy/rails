@@ -23,7 +23,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
     describe 'for a user' do
       it 'shows user-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @user }
-        expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).to have_content("#{t('registered_member')} ##{@user.id}")
         expect(rendered).to have_content(t('user'))
         expect(rendered).not_to have_content(t('moderator'))
         expect(rendered).not_to have_content(t('admin'))
@@ -39,7 +39,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
 
       it 'shows moderator-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @moderator }
-        expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).to have_content("#{t('registered_member')} ##{@moderator.id}")
         expect(rendered).not_to have_content(t('user'))
         expect(rendered).to have_content(t('moderator'))
         expect(rendered).not_to have_content(t('admin'))
@@ -56,7 +56,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
       it 'shows admin-specific elements' do
         render partial: 'shared/sidebar', locals: { resource: @admin }
 
-        expect(rendered).to have_content(t('registered_member'))
+        expect(rendered).to have_content("#{t('registered_member')} ##{@admin.id}")
         expect(rendered).not_to have_content(t('user'))
         expect(rendered).not_to have_content(t('moderator'))
         expect(rendered).to have_content(t('admin'))
