@@ -47,6 +47,7 @@ en:
   go_back: Go Back
   go_home: Go Home
   go_to_page: Go to page
+  guests: Guests
   hello: Hello
   home: Home
   hv_wiki: HvWiki
@@ -81,7 +82,6 @@ en:
   no_posts_yet: No posts yet
   no_recent_activity_to_display: No recent activity to display
   online: Online
-  online_guests: Online Guests
   post: Post
   post_replies_uou: post replies - You
   posts: Posts
