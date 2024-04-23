@@ -33,8 +33,6 @@ A full-featured forum application built with Ruby on Rails.
 
 <!-- 🚧 -->
 
----
-
 ## Table of Contents ⚙️
 
 1. [Features](#features-💫)
@@ -46,8 +44,6 @@ A full-featured forum application built with Ruby on Rails.
 ## Features 💫
 
 - 🚧
-
----
 
 ## Local Development 💻
 
