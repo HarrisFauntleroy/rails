@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user, id: 1) }
-  let(:moderator_user) { create(:user, moderator: true, id: 2) }
-  let(:admin_user) { create(:user, admin: true, id: 3) }
+  let(:moderator_user) { create(:user, moderator: true) }
+  let(:admin_user) { create(:user, admin: true) }
 
   describe 'Factory' do
     it 'is valid' do
@@ -81,32 +81,19 @@ RSpec.describe User, type: :model do
 
   describe 'Associations' do
     it 'has many categories' do
-      new_category = create(:category, user: user)
-      user.categories << new_category
-      expect(user.categories).to include(new_category)
-      expect(user.categories.count).to eq(1)
+      expect { user.categories << create(:category, user: user) }.to change(user.categories, :count).by(1)
     end
-  
+    
     it 'has many forums' do
-      new_forum = create(:forum, user: user)
-      user.forums << new_forum
-      expect(user.forums).to include(new_forum)
-      expect(user.forums.count).to eq(1)
+      expect { user.forums << create(:forum, user: user) }.to change(user.forums, :count).by(1)
+    end
 
-    end
-  
     it 'has many topics' do
-      new_topic = create(:topic, user: user)
-      user.topics << new_topic
-      expect(user.topics).to include(new_topic)
-      expect(user.topics.count).to eq(1)
+      expect { user.topics << create(:topic, user: user) }.to change(user.topics, :count).by(1)
     end
-  
+
     it 'has many comments' do
-      new_comment = create(:comment, user: user)
-      user.comments << new_comment
-      expect(user.comments).to include(new_comment)
-      expect(user.comments.count).to eq(1)
+      expect { user.comments << create(:comment, user: user) }.to change(user.comments, :count).by(1)
     end
   end
 
