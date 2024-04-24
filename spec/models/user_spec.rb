@@ -19,6 +19,7 @@ RSpec.describe User, type: :model do
     it 'is invalid without an email' do
       user = build(:user, email: nil)
       expect(user).to_not be_valid
+      expect(user.errors[:email]).to include("can't be blank")
     end
     it 'is invalid with a duplicate email' do
       create(:user, email: 'test@example.com')
@@ -33,9 +34,10 @@ RSpec.describe User, type: :model do
     it 'is invalid without an username' do
       user = build(:user, username: nil)
       expect(user).to_not be_valid
+      expect(user.errors[:username]).to include("can't be blank")
     end
     it 'is invalid with overly long usernames' do
-      user = build(:user, username: 'a' * 256) # Assuming 255 is the max
+      user = build(:user, username: 'a' * 256)
       expect(user).not_to be_valid
     end
     it 'is invalid with a duplicate username' do
