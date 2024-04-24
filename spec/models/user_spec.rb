@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is valid with a valid password' do
-      user = build(:user, password: 'Password1')
+      user = build(:user, password: 'Password!1')
       expect(user).to be_valid
     end
     it 'is invalid without a password' do

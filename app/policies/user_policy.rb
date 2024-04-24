@@ -10,27 +10,36 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
-        scope.all
-      else
-        scope.none
-      end
+      user.admin? ? scope.all : scope.none
     end
   end
 
   def index?
-    user.present? && user.admin?
+    return false unless user_exists?
+    user.admin?
   end
 
   def show?
-    record.present? && user.present?
+    user_exists? && record_exists?
   end
 
   def update?
-    user.admin? || (user.present? && user == record)
+    return false unless user_exists?
+    user.admin? || user == record
   end
 
   def destroy?
-    user.admin? && user != record || (user.present? && user == record && user.admin? == false)
+    return false unless user_exists?
+    (user.admin? && user != record) || (!user.admin? && user == record)
+  end
+
+  private
+
+  def user_exists?
+    user.present?
+  end
+
+  def record_exists?
+    record.present?
   end
 end
