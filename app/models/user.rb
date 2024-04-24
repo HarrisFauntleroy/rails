@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :category_groups
   has_many :categories
   has_many :topics
-  has_many :posts
+  has_many :comments
 
   def self.todays_birthdays
     where('EXTRACT(month FROM date_of_birth) = ? AND EXTRACT(day FROM date_of_birth) = ?', Date.today.month,

@@ -1,10 +1,10 @@
-<div class="spacer" id="post-<%= post.id %>">
+<div class="spacer" id="comment-<%= comment.id %>">
   <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
     <tbody>
       <tr>
         <td class="nforumcaption3" style="vertical-align:middle; width:20%;">
           <b>
-            <%= link_to post.user.username, user_url(post.user) %>
+            <%= link_to comment.user.username, user_url(comment.user) %>
           </b>
         </td>
         <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
@@ -13,12 +13,12 @@
               <tr>
                 <td class="smallblacktext">
                   <a
-                    id="post_66241"
-                    href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66241.post"
+                    id="comment_66241"
+                    href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66241.comment"
                   >
-                    <%= image_tag("post.png") %>
+                    <%= image_tag("comment.png") %>
                   </a>
-                  <%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>
+                  <%= comment.created_at.strftime("%d %b %Y at %I:%M %p") %>
                 </td>
                 <td style="text-align:right">
                 </td>
@@ -43,38 +43,38 @@
               <% end %>
             </div>
             <span class="smalltext">
-              <%= t("registered_member", number: post.user.id) %>
+              <%= t("registered_member", number: comment.user.id) %>
             </span>
             <br>
             <%= t("joined") %>: Thu Oct 09 2008, 09:04PM
             <br>
             <%= t("location") %>: Claremont New Hampshire
             <br>
-            <%= t("posts") %>: 270
+            <%= t("comments") %>: 270
             <br>
           </span>
         </td>
         <td class="nforumthread" style="vertical-align:top">
-          <% if post.parent_post %>
+          <% if comment.parent_comment %>
             <div class="indent">
               <em>
-                <%= post.parent_post.user.username %>
+                <%= comment.parent_comment.user.username %>
                 <%= t("wrote") %>
               </em>
               ...
               <br>
               <br>
-              <%= post.parent_post.content %>
+              <%= comment.parent_comment.content %>
               <br>
             </div>
           <% end %>
           <br>
-          <%= post.content %>
+          <%= comment.content %>
           <br>
-          <% if post.user&.signature %>
+          <% if comment.user&.signature %>
             <hr style="width:15%; text-align:left">
             <span class="smalltext">
-              <%= post.user.signature %>
+              <%= comment.user.signature %>
             </span>
           <% end %>
         </td>
@@ -92,19 +92,19 @@
               <tr>
                 <td style="text-align:right">
                   <div class="btn-group">
-                    <% if authorized_to_create?(post) %>
+                    <% if authorized_to_create?(comment) %>
                       <%= link_to t("reply"),
-                      new_topic_post_path(@topic, parent_post_id: post.id),
+                      new_topic_comment_path(@topic, parent_comment_id: comment.id),
                       class: "btn btn" %>
                     <% end %>
 
-                    <% if authorized_to_edit?(post) %>
-                      <%= link_to t("edit"), edit_topic_post_path(@topic, post), class: "btn" %>
+                    <% if authorized_to_edit?(comment) %>
+                      <%= link_to t("edit"), edit_topic_comment_path(@topic, comment), class: "btn" %>
                     <% end %>
 
-                    <% if authorized_to_destroy?(post) %>
+                    <% if authorized_to_destroy?(comment) %>
                       <%= button_to t("delete"),
-                      [@topic, post],
+                      [@topic, comment],
                       class: "btn",
                       method: :delete,
                       data: {

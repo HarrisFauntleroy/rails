@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
-    @category_groups = CategoryGroup.all.includes(categories: { topics: :posts })
+    @category_groups = CategoryGroup.all.includes(categories: { topics: :comments })
 
     add_breadcrumb '4hv.org', root_path
     add_breadcrumb 'Forums', category_groups_path

@@ -41,11 +41,11 @@ RSpec.describe Topic, type: :model do
       expect(Topic.where(id: @topic.id)).to be_empty
     end
 
-    it 'can have many posts' do
-      post1 = create(:post, topic: @topic)
-      post2 = create(:post, topic: @topic)
+    it 'can have many comments' do
+      comment1 = create(:comment, topic: @topic)
+      comment2 = create(:comment, topic: @topic)
 
-      expect(@topic.posts).to include(post1, post2)
+      expect(@topic.comments).to include(comment1, comment2)
     end
   end
 

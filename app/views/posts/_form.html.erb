@@ -1,18 +1,18 @@
 <div class="card-body">
-  <%= form_with(model: [@topic, post], local: true) do |form| %>
-    <% if post.errors.any? %>
+  <%= form_with(model: [@topic, comment], local: true) do |form| %>
+    <% if comment.errors.any? %>
       <div class="error_messages">
-        <h2><%= pluralize(post.errors.count, "error") %>
-          <%= t("prohibited_this_post_from_being_saved") %>:</h2>
+        <h2><%= pluralize(comment.errors.count, "error") %>
+          <%= t("prohibited_this_comment_from_being_saved") %>:</h2>
         <ul>
-          <% post.errors.full_messages.each do |message| %>
+          <% comment.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       </div>
     <% end %>
 
-    <%= form.hidden_field :parent_post_id, value: @parent_post_id %>
+    <%= form.hidden_field :parent_comment_id, value: @parent_comment_id %>
 
     <div class="stack">
       <%= form.label t("reply") %>

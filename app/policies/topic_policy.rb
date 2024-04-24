@@ -32,7 +32,7 @@ class TopicPolicy
     edit?
   end
 
-  def create_post?
+  def create_comment?
     user.present?
   end
 

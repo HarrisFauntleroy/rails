@@ -9,25 +9,25 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
 
-  def total_posts
-    topics.sum { |topic| topic.posts.count }
+  def total_comments
+    topics.sum { |topic| topic.comments.count }
   end
 
   def total_topics
     Topic.where(category_id: id).count
   end
 
-  def last_post_info
-    last_post = topics.flat_map(&:posts).max_by(&:created_at)
-    return nil unless last_post
+  def last_comment_info
+    last_comment = topics.flat_map(&:comments).max_by(&:created_at)
+    return nil unless last_comment
 
-    user = last_post.user
-    time_ago = time_ago_in_words(last_post.created_at)
+    user = last_comment.user
+    time_ago = time_ago_in_words(last_comment.created_at)
 
     "#{user&.username} #{time_ago} ago"
   end
 
-  def last_post_time
-    topics.flat_map(&:posts).max_by(&:created_at)&.created_at
+  def last_comment_time
+    topics.flat_map(&:comments).max_by(&:created_at)&.created_at
   end
 end

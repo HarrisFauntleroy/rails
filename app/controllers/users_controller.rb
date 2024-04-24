@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     authorize @user
 
     @recent_topics_opened = @user.topics.order(created_at: :desc).limit(5)
-    @recent_posts = @user.posts.order(created_at: :desc).limit(5)
+    @recent_comments = @user.comments.order(created_at: :desc).limit(5)
   rescue ActiveRecord::RecordNotFound
     redirect_to errors_not_found_path, alert: 'User not found'
   end

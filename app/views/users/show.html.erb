@@ -11,7 +11,7 @@
     <br/>
     <h2><%= t("recent_activity") %></h2>
 
-    <% if @recent_topics_opened.any? || @recent_posts.any? %>
+    <% if @recent_topics_opened.any? || @recent_comments.any? %>
       <% if @recent_topics_opened.any? %>
         <h3><%= t("threads_opened") %>
           (<%= @user.topics.count %>)</h3>
@@ -26,17 +26,19 @@
         </ul>
       <% end %>
 
-      <% if @recent_posts.any? %>
+      <% if @recent_comments.any? %>
         <h3><%= t("recent_comments") %>
-          (<%= @user.posts.count %>)</h3>
+          (<%= @user.comments.count %>)</h3>
         <ul>
-          <% @recent_posts.each do |post| %>
+          <% @recent_comments.each do |comment| %>
             <li>
-              <%= link_to truncate(post.content, length: 50), topic_post_path(post.topic, post) %>
+              <%= link_to truncate(comment.content, length: 50),
+              topic_comment_path(comment.topic, comment) %>
               (in
-              <%= link_to post.topic.title, category_topic_path(post.topic.category, post.topic) %>)
+              <%= link_to comment.topic.title,
+              category_topic_path(comment.topic.category, comment.topic) %>)
               <small class="timestamp">
-                (<%= post.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
+                (<%= comment.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
             </li>
           <% end %>
         </ul>

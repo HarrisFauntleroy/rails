@@ -49,7 +49,7 @@
           <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("starter") %></td>
           <td style="width:5%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
           <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
-          <td style="width:20%; text-align:center" class="nforumcaption2">Last Post</td>
+          <td style="width:20%; text-align:center" class="nforumcaption2">Last Comment</td>
         </tr>
 
         <% if @category.topics.where(sticky: true).or(@category.topics.where(announcement: true)).any? %>
@@ -117,7 +117,7 @@
                 class="nforumview2"
               >
                 <span class="smalltext">
-                  <%= topic.posts.count %>
+                  <%= topic.comments.count %>
                 </span>
               </td>
 
@@ -200,7 +200,7 @@
                 class="nforumview2"
               >
                 <span class="smalltext">
-                  <%= topic.posts.count %>
+                  <%= topic.comments.count %>
                 </span>
               </td>
 
@@ -303,14 +303,14 @@
                     <%= image_tag("new_small.png") %>
                   </td>
 
-                  <td style="width:10%" class="smallblacktext">New posts</td>
+                  <td style="width:10%" class="smallblacktext">New comments</td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
                     <%= image_tag("nonew_small.png") %>
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    <%= t("no_new_posts") %>
+                    <%= t("no_new_comments") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -334,7 +334,7 @@
                   </td>
 
                   <td style="width:2%" class="smallblacktext">
-                    <%= t("new_posts_popular") %>
+                    <%= t("new_comments_popular") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -342,7 +342,7 @@
                   </td>
 
                   <td style="width:10%" class="smallblacktext">
-                    <%= t("no_new_posts_popular") %>
+                    <%= t("no_new_comments_popular") %>
                   </td>
 
                   <td style="vertical-align:middle; text-align:center; width:2%">
@@ -373,9 +373,9 @@
             <b><%= t("can") %></b>
             <%= t("start_new_threads_you") %>
             <b><%= t("can") %></b>
-            <%= t("post_replies_uou") %>
+            <%= t("comment_replies_uou") %>
             <b><%= t("can") %></b>
-            <%= t("edit_your_posts") %>
+            <%= t("edit_your_comments") %>
             <br/>
             <br/>
             <form method="get" action="../../search.php">

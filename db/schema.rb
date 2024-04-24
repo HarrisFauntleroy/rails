@@ -40,6 +40,17 @@ ActiveRecord::Schema[7.1].define(version: 20_240_420_223_844) do
     t.index ['user_id'], name: 'index_category_groups_on_user_id'
   end
 
+  create_table 'comments', force: :cascade do |t|
+    t.text 'content'
+    t.integer 'topic_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'user_id'
+    t.integer 'parent_comment_id'
+    t.index ['topic_id'], name: 'index_comments_on_topic_id'
+    t.index ['user_id'], name: 'index_comments_on_user_id'
+  end
+
   create_table 'news', force: :cascade do |t|
     t.string 'title'
     t.text 'body'
@@ -47,17 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 20_240_420_223_844) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['user_id'], name: 'index_news_on_user_id'
-  end
-
-  create_table 'posts', force: :cascade do |t|
-    t.text 'content'
-    t.integer 'topic_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'user_id'
-    t.integer 'parent_post_id'
-    t.index ['topic_id'], name: 'index_posts_on_topic_id'
-    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
   create_table 'topics', force: :cascade do |t|
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_420_223_844) do
   add_foreign_key 'categories', 'category_groups'
   add_foreign_key 'categories', 'users'
   add_foreign_key 'category_groups', 'users'
+  add_foreign_key 'comments', 'topics'
   add_foreign_key 'news', 'users'
-  add_foreign_key 'posts', 'topics'
   add_foreign_key 'topics', 'categories'
 end

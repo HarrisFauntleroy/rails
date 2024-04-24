@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreatePosts < ActiveRecord::Migration[7.1]
+class CreateComments < ActiveRecord::Migration[7.1]
   def change
-    create_table :posts do |t|
+    create_table :comments do |t|
       t.text :content
       t.references :topic, null: false, foreign_key: true
 

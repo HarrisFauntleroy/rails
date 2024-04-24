@@ -80,11 +80,11 @@ RSpec.describe User, type: :model do
       expect(user.topics).to include(topic1, topic2)
     end
 
-    it 'can have many posts' do
-      post1 = create(:post, user: user)
-      post2 = create(:post, user: user)
+    it 'can have many comments' do
+      comment1 = create(:comment, user: user)
+      comment2 = create(:comment, user: user)
 
-      expect(user.posts).to include(post1, post2)
+      expect(user.comments).to include(comment1, comment2)
     end
   end
 

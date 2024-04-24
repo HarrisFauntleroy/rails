@@ -60,7 +60,7 @@
               <%= t("author") %>
             </td>
             <td style="width:80%; text-align:center" class="nforumcaption2">
-              <%= t("post") %>
+              <%= t("comment") %>
             </td>
           </tr>
         </tbody>
@@ -78,10 +78,10 @@
                   <tbody>
                     <tr>
                       <td class="smallblacktext"><a
-                          id="post_66240"
-                          href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.post"
+                          id="comment_66240"
+                          href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.comment"
                         ><img
-                            src="/e107_plugins/forum/images/lite/post.png"
+                            src="/e107_plugins/forum/images/lite/comment.png"
                             alt=""
                             title=""
                             style="border:0"
@@ -159,15 +159,15 @@
           </tbody>
         </table>
       </div>
-      <% if @topic.posts.any? %>
-        <% @topic.posts.each do |post| %>
-          <%= render post %>
+      <% if @topic.comments.any? %>
+        <% @topic.comments.each do |comment| %>
+          <%= render comment %>
         <% end %>
       <% else %>
         <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
       <% end %>
-      <% if policy(@topic).create_post? %>
-        <%= render "posts/form", post: @topic.posts.build %>
+      <% if policy(@topic).create_comment? %>
+        <%= render "comments/form", comment: @topic.comments.build %>
       <% end %>
       <div class="spacer">
         <div class="forumheader">
@@ -186,7 +186,7 @@
                 <b><%= t("moderators") %>: Chris Russell, Noelle, Alex, Tesladownunder, Dave Marshall,
                   Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
                 <form
-                  method="post"
+                  method="comment"
                   action="http://4hv.org/e107_plugins/forum/forum_viewtopic.php"
                 >
                   <p><%= t("jump") %>:

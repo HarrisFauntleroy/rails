@@ -13,19 +13,19 @@
     <%= @category.total_topics %>
   </td>
   <td style="width: 10%; text-align: center;" class="nforumthread">
-    <%= @category.total_posts %>
+    <%= @category.total_comments %>
   </td>
   <td style="width: 20%; text-align: center;" class="nforumthread">
     <span class="smallblacktext">
-      <% if @category.last_post_info %>
-        <%= link_to @category.last_post_info,
+      <% if @category.last_comment_info %>
+        <%= link_to @category.last_comment_info,
         category_topic_path(
           @category,
           @category.topics.last,
-          @category.topics.last.posts.last,
+          @category.topics.last.comments.last,
         ) %>
       <% else %>
-        <%= t("no_posts_yet") %>
+        <%= t("no_comments_yet") %>
       <% end %>
     </span>
   </td>

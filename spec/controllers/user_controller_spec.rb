@@ -12,12 +12,12 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
 
-    it 'handles a user with no posts' do
+    it 'handles a user with no comments' do
       user = create(:user)
       sign_in user
       get :show, params: { id: user.id }
       expect(assigns(:recent_topics_opened)).to eq([])
-      expect(assigns(:recent_posts)).to eq([])
+      expect(assigns(:recent_comments)).to eq([])
     end
 
     it 'assigns recent topics opened by the user to @recent_topics_opened' do
@@ -27,21 +27,21 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:recent_topics_opened)).to eq(topics.reverse)
     end
 
-    it 'assigns recent posts by the user to @recent_posts' do
+    it 'assigns recent comments by the user to @recent_comments' do
       sign_in user
-      posts = create_list(:post, 5, user: user)
+      comments = create_list(:comment, 5, user: user)
       get :show, params: { id: user.id }
-      expect(assigns(:recent_posts)).to eq(posts.reverse)
+      expect(assigns(:recent_comments)).to eq(comments.reverse)
     end
 
-    it 'limits recent posts and topics to 5' do
+    it 'limits recent comments and topics to 5' do
       sign_in user
       create_list(:topic, 6, user: user)
-      create_list(:post, 6, user: user)
+      create_list(:comment, 6, user: user)
 
       get :show, params: { id: user.id }
 
-      expect(assigns(:recent_posts).size).to eq(5)
+      expect(assigns(:recent_comments).size).to eq(5)
       expect(assigns(:recent_topics_opened).size).to eq(5)
     end
 

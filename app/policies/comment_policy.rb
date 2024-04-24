@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class PostPolicy
-  attr_reader :user, :post
+class CommentPolicy
+  attr_reader :user, :comment
 
-  def initialize(user, post)
+  def initialize(user, comment)
     @user = user
-    @post = post
+    @comment = comment
   end
 
   def index?
@@ -21,7 +21,7 @@ class PostPolicy
   end
 
   def edit?
-    user.present? && (post.user == user || user.admin?)
+    user.present? && (comment.user == user || user.admin?)
   end
 
   def update?
@@ -32,7 +32,7 @@ class PostPolicy
     edit?
   end
 
-  def create_post?
+  def create_comment?
     user.present?
   end
 end
