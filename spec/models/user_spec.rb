@@ -7,125 +7,143 @@ RSpec.describe User, type: :model do
   let(:moderator_user) { create(:user, moderator: true, id: 2) }
   let(:admin_user) { create(:user, admin: true, id: 3) }
 
-  it 'has a valid factory' do
-    expect(user).to be_valid
-  end
-
-  describe 'validations' do
-    it 'is valid with a valid email' do
-      user = build(:user, email: 'test@test.com')
+  describe 'Factory' do
+    it 'is valid' do
       expect(user).to be_valid
-    end
-    it 'is invalid without an email' do
-      user = build(:user, email: nil)
-      expect(user).to_not be_valid
-      expect(user.errors[:email]).to include("can't be blank")
-    end
-    it 'is invalid with a duplicate email' do
-      create(:user, email: 'test@example.com')
-      user = build(:user, email: 'test@example.com')
-      expect(user).to_not be_valid
-    end
-
-    it 'is valid with a valid username' do
-      user = build(:user, username: 'testington')
-      expect(user).to be_valid
-    end
-    it 'is invalid without an username' do
-      user = build(:user, username: nil)
-      expect(user).to_not be_valid
-      expect(user.errors[:username]).to include("can't be blank")
-    end
-    it 'is invalid with overly long usernames' do
-      user = build(:user, username: 'a' * 256)
-      expect(user).not_to be_valid
-    end
-    it 'is invalid with a duplicate username' do
-      create(:user, username: 'testington')
-      user = build(:user, username: 'testington')
-      expect(user).to_not be_valid
-    end
-
-    it 'is valid with a valid password' do
-      user = build(:user, password: 'Password!1')
-      expect(user).to be_valid
-    end
-    it 'is invalid without a password' do
-      user = build(:user, password: nil)
-      expect(user).to_not be_valid
-    end
-    it 'is invalid with a password less than 8 characters' do
-      user = build(:user, password: '1234567')
-      expect(user).to_not be_valid
     end
   end
 
-  describe 'associations' do
-    it 'can have many categories' do
-      category1 = create(:category, user: user)
-      category2 = create(:category, user: user)
+  describe 'Validations' do
+    context 'when validating emails' do
+      it 'is valid with a unique email' do
+        expect(build(:user, email: 'unique@test.com')).to be_valid
+      end
 
-      expect(user.categories).to include(category1, category2)
+      it 'is invalid without an email' do
+        invalid_user = build(:user, email: nil)
+        expect(invalid_user).not_to be_valid
+        expect(invalid_user.errors[:email]).to include("can't be blank")
+      end
+
+      it 'is invalid with a duplicate email' do
+        create(:user, email: 'duplicate@example.com')
+        expect(build(:user, email: 'duplicate@example.com')).not_to be_valid
+      end
     end
 
-    it 'can have many forums' do
-      forum1 = create(:forum, user: user)
-      forum2 = create(:forum, user: user)
+    context 'when validating usernames' do
+      it 'is valid with a unique username' do
+        expect(build(:user, username: 'uniqueuser')).to be_valid
+      end
 
-      expect(user.forums).to include(forum1, forum2)
+      it 'is invalid without a username' do
+        invalid_user = build(:user, username: nil)
+        expect(invalid_user).not_to be_valid
+        expect(invalid_user.errors[:username]).to include("can't be blank")
+      end
+
+      it 'is invalid with an overly long username' do
+        expect(build(:user, username: 'a' * 256)).not_to be_valid
+      end
+
+      it 'is invalid with a duplicate username' do
+        create(:user, username: 'duplicateuser')
+        expect(build(:user, username: 'duplicateuser')).not_to be_valid
+      end
     end
 
-    it 'can have many topics' do
-      topic1 = create(:topic, user: user)
-      topic2 = create(:topic, user: user)
+    context 'when validating passwords' do
+      it 'is valid with all required elements' do
+        expect(build(:user, password: 'ValidPassword!1')).to be_valid
+      end
 
-      expect(user.topics).to include(topic1, topic2)
+      it 'is invalid without a password' do
+        expect(build(:user, password: nil)).not_to be_valid
+      end
+
+      it 'is invalid with a short password' do
+        expect(build(:user, password: '1234567')).not_to be_valid
+      end
+
+      it 'is invalid without a special character' do
+        expect(build(:user, password: 'Password1')).not_to be_valid
+      end
+
+      it 'is invalid without a number' do
+        expect(build(:user, password: 'Password!')).not_to be_valid
+      end
+
+      it 'is invalid without a capital letter' do
+        expect(build(:user, password: 'password!1')).not_to be_valid
+      end
     end
+  end
 
-    it 'can have many comments' do
-      comment1 = create(:comment, user: user)
-      comment2 = create(:comment, user: user)
+  describe 'Associations' do
+    it 'has many categories' do
+      new_category = create(:category, user: user)
+      user.categories << new_category
+      expect(user.categories).to include(new_category)
+      expect(user.categories.count).to eq(1)
+    end
+  
+    it 'has many forums' do
+      new_forum = create(:forum, user: user)
+      user.forums << new_forum
+      expect(user.forums).to include(new_forum)
+      expect(user.forums.count).to eq(1)
 
-      expect(user.comments).to include(comment1, comment2)
+    end
+  
+    it 'has many topics' do
+      new_topic = create(:topic, user: user)
+      user.topics << new_topic
+      expect(user.topics).to include(new_topic)
+      expect(user.topics.count).to eq(1)
+    end
+  
+    it 'has many comments' do
+      new_comment = create(:comment, user: user)
+      user.comments << new_comment
+      expect(user.comments).to include(new_comment)
+      expect(user.comments.count).to eq(1)
     end
   end
 
   describe 'User roles' do
     it 'defaults to a regular user' do
-      user = build(:user)
       expect(user.admin).to be false
+      expect(user.moderator).to be false
     end
 
     it 'can be an admin' do
       expect(admin_user.admin).to be true
     end
 
-    it 'can be an moderator' do
+    it 'can be a moderator' do
       expect(moderator_user.moderator).to be true
     end
   end
 
-  describe 'Crud methods' do
-    it 'can be created' do
-      user = create(:user)
-      expect(user).to be_valid
+  describe 'CRUD operations' do
+    let(:new_user) { create(:user) }
+
+    it 'can create a user' do
+      expect(new_user).to be_valid
     end
 
-    it 'can be read' do
-      user = create(:user)
-      expect(User.find(user.id)).to eq(user)
+    it 'can read a user' do
+      expect(User.find(new_user.id)).to eq(new_user)
     end
 
-    it 'can be updated' do
-      user = create(:user)
-      user.update(username: 'new_username')
-      expect(user.username).to eq('new_username')
+    it 'can update a user' do
+      new_user.update(username: 'new_username')
+      expect(new_user.username).to eq('new_username')
     end
 
-    it 'can be deleted' do
-      user = create(:user)
-      user.destroy
-      expect(User.all).to_not include(user)
+    it 'can delete a user' do
+      new_user.destroy
+      expect(User.exists?(new_user.id)).to be false
     end
   end
 end
