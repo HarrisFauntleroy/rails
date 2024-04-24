@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_blank: true
 
   has_many :category_groups
-  has_many :categories
+  has_many :forums
   has_many :topics
   has_many :comments
 

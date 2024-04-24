@@ -5,7 +5,7 @@ class CreateTopics < ActiveRecord::Migration[7.1]
     create_table :topics do |t|
       t.string :title
       t.text :content
-      t.references :category, null: false, foreign_key: true
+      t.references :forum, null: false, foreign_key: true
 
       t.timestamps
     end

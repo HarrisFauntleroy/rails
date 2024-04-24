@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Category < ApplicationRecord
+class Forum < ApplicationRecord
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
@@ -14,7 +14,7 @@ class Category < ApplicationRecord
   end
 
   def total_topics
-    Topic.where(category_id: id).count
+    Topic.where(forum_id: id).count
   end
 
   def last_comment_info

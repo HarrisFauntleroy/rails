@@ -2,7 +2,7 @@
 
 class Topic < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :forum
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true

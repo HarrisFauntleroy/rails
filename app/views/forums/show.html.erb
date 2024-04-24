@@ -17,7 +17,7 @@
             <div class="mediumtext">
               <%= image_tag("e.png") %>
               <b>
-                <%= @category.name %>
+                <%= @forum.name %>
               </b>
             </div>
             <%= t("go_to_page") %>&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
@@ -31,8 +31,8 @@
           <td style="width:20%; text-align:right; vertical-align:bottom;">
           </td>
           <td style="width:20%; text-align:right; vertical-align:bottom;">
-            <% if policy(@category).create_topic? %>
-              <%= link_to new_category_topic_path(@category) do %>
+            <% if policy(@forum).create_topic? %>
+              <%= link_to new_forum_topic_path(@forum) do %>
                 <%= image_tag("English_newthread.png") %>
               <% end %>
             <% end %>
@@ -52,7 +52,7 @@
           <td style="width:20%; text-align:center" class="nforumcaption2">Last Comment</td>
         </tr>
 
-        <% if @category.topics.where(sticky: true).or(@category.topics.where(announcement: true)).any? %>
+        <% if @forum.topics.where(sticky: true).or(@forum.topics.where(announcement: true)).any? %>
 
           <tr>
             <td class="forumheader">&nbsp;</td>
@@ -64,7 +64,7 @@
           </tr>
 
           <%# Important (Sticky) Threads %>
-          <% @category.topics.where(sticky: true).or(@category.topics.where(announcement: true))
+          <% @forum.topics.where(sticky: true).or(@forum.topics.where(announcement: true))
           .order(announcement: :desc, created_at: :desc).each do |topic| %>
             <tr>
               <td
@@ -88,7 +88,7 @@
                       <td style="width:90%">
                         <span class="mediumtext">
                           <b>
-                            <%= link_to topic.title, [@category, topic] %>
+                            <%= link_to topic.title, [@forum, topic] %>
                           </b>
                         </span>
                         <span class="smalltext"></span>
@@ -151,8 +151,8 @@
           </td>
         </tr>
 
-        <% if @category.topics.where(sticky: false).or(@category.topics.where(announcement: false)).any? %>
-          <% @category.topics.where(sticky: false).and(@category.topics.where(announcement: false)).each do |topic| %>
+        <% if @forum.topics.where(sticky: false).or(@forum.topics.where(announcement: false)).any? %>
+          <% @forum.topics.where(sticky: false).and(@forum.topics.where(announcement: false)).each do |topic| %>
             <tr>
               <td
                 style="vertical-align:middle; text-align:center; width:3%"
@@ -171,7 +171,7 @@
                       <td style="width:90%">
                         <span class="mediumtext">
                           <b>
-                            <%= link_to topic.title, [@category, topic] %>
+                            <%= link_to topic.title, [@forum, topic] %>
                           </b>
                         </span>
                         <span class="smalltext"></span>
@@ -224,7 +224,7 @@
             </tr>
           <% end %>
         <% else %>
-          <p><%= t("there_are_no_topics_in_this_category_yet") %></p>
+          <p><%= t("there_are_no_topics_in_this_forum_yet") %></p>
         <% end %>
       </tbody>
     </table>

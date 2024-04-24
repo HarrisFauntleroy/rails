@@ -1,4 +1,4 @@
-<%= form_with(model: [@category, topic], local: true) do |form| %>
+<%= form_with(model: [@forum, topic], local: true) do |form| %>
   <% if topic.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(topic.errors.count, "error") %>

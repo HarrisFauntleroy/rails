@@ -66,11 +66,11 @@ RSpec.describe User, type: :model do
       expect(user.category_groups).to include(category_group1, category_group2)
     end
 
-    it 'can have many categories' do
-      category1 = create(:category, user: user)
-      category2 = create(:category, user: user)
+    it 'can have many forums' do
+      forum1 = create(:forum, user: user)
+      forum2 = create(:forum, user: user)
 
-      expect(user.categories).to include(category1, category2)
+      expect(user.forums).to include(forum1, forum2)
     end
 
     it 'can have many topics' do

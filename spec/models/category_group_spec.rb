@@ -28,11 +28,11 @@ RSpec.describe CategoryGroup, type: :model do
       expect(@category_group.user).to eq(@category_group.user)
     end
 
-    it 'can have many categories' do
-      category1 = create(:category, category_group: @category_group)
-      category2 = create(:category, category_group: @category_group)
+    it 'can have many forums' do
+      forum1 = create(:forum, category_group: @category_group)
+      forum2 = create(:forum, category_group: @category_group)
 
-      expect(@category_group.categories).to include(category1, category2)
+      expect(@category_group.forums).to include(forum1, forum2)
     end
   end
 

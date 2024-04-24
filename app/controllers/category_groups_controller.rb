@@ -6,7 +6,7 @@ class CategoryGroupsController < ApplicationController
   before_action :set_category_group, only: %i[show edit update destroy]
 
   def index
-    @category_groups = CategoryGroup.all.includes(:categories)
+    @category_groups = CategoryGroup.all.includes(:forums)
   end
 
   def new
@@ -19,7 +19,7 @@ class CategoryGroupsController < ApplicationController
     authorize @category_group
 
     if @category_group.save
-      redirect_to categories_path, notice: 'Category group created!'
+      redirect_to forums_path, notice: 'Category group created!'
     else
       render :new
     end
@@ -31,7 +31,7 @@ class CategoryGroupsController < ApplicationController
 
     flash[:notice] = 'Category group has been deleted successfully'
 
-    redirect_to categories_path, notice: 'Category group deleted!'
+    redirect_to forums_path, notice: 'Category group deleted!'
   end
 
   private

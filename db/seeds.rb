@@ -24,7 +24,7 @@ category_groups.each do |group_attributes|
   CategoryGroup.create!(group_attributes)
 end
 
-categories_data = [
+forums_data = [
   { name: 'General Chatting',
     description: 'Want to chat about something not covered by any of the other boards? This is the place to do it. Please remember that most of the site rules still apply here.', user_id: user.id, category_group: CategoryGroup.find_by(name: 'Chatting and Socializing (Restricted Access)') },
   { name: 'Sale and Trade',
@@ -55,6 +55,6 @@ categories_data = [
     description: 'This board is for pointing out good threads that are found in the archives, located at Link2 and Link2 Please remember, this board is for archive-related discussion only! For actual discussion of the topics, use one of the other boards.', user_id: user.id, category_group: CategoryGroup.find_by(name: 'Site Discussion and Utilities (Restricted Access)') }
 ]
 
-categories_data.each do |category_attributes|
-  Category.create!(category_attributes)
+forums_data.each do |forum_attributes|
+  Forum.create!(forum_attributes)
 end

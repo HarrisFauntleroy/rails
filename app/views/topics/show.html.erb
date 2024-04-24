@@ -81,7 +81,7 @@
                           id="comment_66240"
                           href="http://4hv.org/e107_plugins/forum/forum_viewtopic.php?66240.comment"
                         ><img
-                            src="/e107_plugins/forum/images/lite/comment.png"
+                            src="/e107_plugins/forum/images/lite/post.png"
                             alt=""
                             title=""
                             style="border:0"
@@ -135,13 +135,11 @@
                       <td style="text-align:right">
                         <div class="btn-group">
                           <% if authorized_to_edit?(@topic) %>
-                            <%= link_to t("edit_topic"),
-                            edit_category_topic_path(@category, @topic),
-                            class: "btn" %>
+                            <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
                           <% end %>
                           <% if authorized_to_destroy?(@topic) %>
                             <%= button_to t("delete"),
-                            [@category, @topic],
+                            [@forum, @topic],
                             class: "btn",
                             method: :delete,
                             data: {

@@ -3,26 +3,26 @@
     <%= image_tag("nonew.png") %>
   </td>
   <td class="nforumcaption3">
-    <%= link_to @category.name, @category, class: "category-title" %>
+    <%= link_to @forum.name, @forum, class: "category-title" %>
     <br/>
     <span class="smallblacktext">
-      <%= @category.description %>
+      <%= @forum.description %>
     </span>
   </td>
   <td style="width: 10%; text-align: center;" class="nforumthread">
-    <%= @category.total_topics %>
+    <%= @forum.total_topics %>
   </td>
   <td style="width: 10%; text-align: center;" class="nforumthread">
-    <%= @category.total_comments %>
+    <%= @forum.total_comments %>
   </td>
   <td style="width: 20%; text-align: center;" class="nforumthread">
     <span class="smallblacktext">
-      <% if @category.last_comment_info %>
-        <%= link_to @category.last_comment_info,
-        category_topic_path(
-          @category,
-          @category.topics.last,
-          @category.topics.last.comments.last,
+      <% if @forum.last_comment_info %>
+        <%= link_to @forum.last_comment_info,
+        forum_topic_path(
+          @forum,
+          @forum.topics.last,
+          @forum.topics.last.comments.last,
         ) %>
       <% else %>
         <%= t("no_comments_yet") %>
@@ -32,12 +32,12 @@
   <% if current_user&.admin? %>
     <td style="width: 20%; text-align: center;" class="nforumthread">
       <div class="btn-group">
-        <% if policy(@category).edit? %>
-          <%= link_to t("edit"), edit_category_path(@category), class: "btn" %>
+        <% if policy(@forum).edit? %>
+          <%= link_to t("edit"), edit_forum_path(@forum), class: "btn" %>
         <% end %>
-        <% if policy(@category).destroy? %>
+        <% if policy(@forum).destroy? %>
           <%= button_to t("delete"),
-          @category,
+          @forum,
           class: "btn",
           method: :delete,
           data: {

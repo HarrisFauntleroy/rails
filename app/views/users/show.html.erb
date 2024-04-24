@@ -18,7 +18,7 @@
         <ul>
           <% @recent_topics_opened.each do |topic| %>
             <li>
-              <%= link_to topic.title, category_topic_path(topic.category, topic) %>
+              <%= link_to topic.title, forum_topic_path(topic.forum, topic) %>
               <small class="timestamp">
                 (<%= topic.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
             </li>
@@ -36,7 +36,7 @@
               topic_comment_path(comment.topic, comment) %>
               (in
               <%= link_to comment.topic.title,
-              category_topic_path(comment.topic.category, comment.topic) %>)
+              forum_topic_path(comment.topic.forum, comment.topic) %>)
               <small class="timestamp">
                 (<%= comment.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
             </li>

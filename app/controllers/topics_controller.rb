@@ -3,7 +3,7 @@
 class TopicsController < ApplicationController
   include Pundit::Authorization
 
-  before_action :set_category
+  before_action :set_forum
   before_action :set_topic, only: %i[show edit update destroy]
 
   def index
@@ -18,9 +18,9 @@ class TopicsController < ApplicationController
 
   def breadcrumb_handler
     add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', categories_path
-    add_breadcrumb @category.name, @category
-    add_breadcrumb @topic.title, [@category, @topic]
+    add_breadcrumb 'Forums', forums_path
+    add_breadcrumb @forum.name, @forum
+    add_breadcrumb @topic.title, [@forum, @topic]
   end
 
   def new
@@ -28,26 +28,26 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = @category.topics.build(topic_params)
+    @topic = @forum.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
 
     if @topic.save
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic created!'
+      redirect_to forum_topic_path(@forum, @topic), notice: 'Topic created!'
     else
       render :new
     end
   end
 
   def edit
-    @topic = @category.topics.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
   end
 
   def update
-    @topic = @category.topics.find(params[:id])
+    @topic = @forum.topics.find(params[:id])
 
     if @topic.update(topic_params)
-      redirect_to category_topic_path(@category, @topic), notice: 'Topic updated!'
+      redirect_to forum_topic_path(@forum, @topic), notice: 'Topic updated!'
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
     authorize @topic
     @topic.destroy
 
-    redirect_to category_path(@category), notice: 'Topic deleted!'
+    redirect_to forum_path(@forum), notice: 'Topic deleted!'
   end
 
   def toggle_sticky
@@ -70,7 +70,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_sticky!
     end
 
-    redirect_to [@category, @topic], notice: 'Topic stickiness updated.'
+    redirect_to [@forum, @topic], notice: 'Topic stickiness updated.'
   end
 
   def toggle_announcement
@@ -83,13 +83,13 @@ class TopicsController < ApplicationController
       @topic.mark_as_announcement!
     end
 
-    redirect_to [@category, @topic], notice: 'Topic stickiness updated.'
+    redirect_to [@forum, @topic], notice: 'Topic stickiness updated.'
   end
 
   private
 
-  def set_category
-    @category = Category.find(params[:category_id])
+  def set_forum
+    @forum = Forum.find(params[:forum_id])
   end
 
   def set_topic
@@ -97,6 +97,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content, :sticky, :announcement, :category_id, :user_id)
+    params.require(:topic).permit(:title, :content, :sticky, :announcement, :forum_id, :user_id)
   end
 end
