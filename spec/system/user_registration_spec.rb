@@ -19,7 +19,6 @@ RSpec.describe 'UserRegistrations', type: :system do
     end
 
     click_button 'Sign up'
-    save_and_open_page
     expect(page).to have_current_path(root_path)
     expect(page).to have_text('Sign out')
   end

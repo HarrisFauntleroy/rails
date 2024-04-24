@@ -12,11 +12,11 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 8 }, allow_nil: true
   validates :password,
-          format: {
-            with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*\z/,
-            message: 'must include at least one lowercase letter, one uppercase letter, one digit, and one special character'
-          },
-          allow_nil: true
+            format: {
+              with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).*\z/,
+              message: 'must include at least one lowercase letter, one uppercase letter, one digit, and one special character'
+            },
+            allow_nil: true
 
   validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: 'is not a valid time zone' },
                        allow_blank: true

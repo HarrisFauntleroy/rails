@@ -16,6 +16,7 @@ class UserPolicy < ApplicationPolicy
 
   def index?
     return false unless user_exists?
+
     user.admin?
   end
 
@@ -25,11 +26,13 @@ class UserPolicy < ApplicationPolicy
 
   def update?
     return false unless user_exists?
+
     user.admin? || user == record
   end
 
   def destroy?
     return false unless user_exists?
+
     (user.admin? && user != record) || (!user.admin? && user == record)
   end
 

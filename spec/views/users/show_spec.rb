@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'users/show', type: :view do
+describe 'users/show', type: :view do
   before(:each) do
     @user = create(:user, id: 1)
     @recent_topics_opened = create_list(:topic, 1, user: @user)

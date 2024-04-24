@@ -16,7 +16,6 @@ RSpec.describe 'UserSessions', type: :system do
     end
 
     click_button 'Log in'
-    save_and_open_page
 
     expect(page).to have_current_path(root_path)
     expect(page).to have_text('Sign out')
@@ -27,7 +26,6 @@ RSpec.describe 'UserSessions', type: :system do
     visit root_path
 
     click_button 'Sign out'
-    save_and_open_page
 
     expect(page).to have_current_path(root_path)
     expect(page).to have_text('Sign up')
