@@ -2,67 +2,67 @@
 
 require 'rails_helper'
 
-RSpec.describe CategoryGroup, type: :model do
+RSpec.describe Category, type: :model do
   before(:each) do
     @user = create(:user, id: 1)
-    @category_group = create(:category_group, id: 1)
+    @category = create(:category, id: 1)
   end
 
   it 'has a valid factory' do
-    expect(@category_group).to be_valid
+    expect(@category).to be_valid
   end
 
   describe 'validations' do
     it 'is valid with a valid name' do
-      category_group = build(:category_group, name: 'My Category Group')
-      expect(category_group).to be_valid
+      category = build(:category, name: 'My Category')
+      expect(category).to be_valid
     end
     it 'is invalid without a name' do
-      category_group = build(:category_group, name: nil)
-      expect(category_group).to_not be_valid
+      category = build(:category, name: nil)
+      expect(category).to_not be_valid
     end
   end
 
   describe 'associations' do
     it 'belongs to a user' do
-      expect(@category_group.user).to eq(@category_group.user)
+      expect(@category.user).to eq(@category.user)
     end
 
     it 'can have many forums' do
-      forum1 = create(:forum, category_group: @category_group)
-      forum2 = create(:forum, category_group: @category_group)
+      forum1 = create(:forum, category: @category)
+      forum2 = create(:forum, category: @category)
 
-      expect(@category_group.forums).to include(forum1, forum2)
+      expect(@category.forums).to include(forum1, forum2)
     end
   end
 
   describe 'Crud methods' do
     it 'can be created' do
-      new_category_group = build(:category_group, name: 'New Group')
-      new_category_group.save
+      new_category = build(:category, name: 'New Group')
+      new_category.save
 
-      expect(new_category_group).to be_persisted
+      expect(new_category).to be_persisted
     end
 
     it 'can be read' do
-      created_group = create(:category_group, name: 'Test Group')
+      created_group = create(:category, name: 'Test Group')
 
-      expect(CategoryGroup.find(created_group.id)).to eq(created_group)
+      expect(Category.find(created_group.id)).to eq(created_group)
     end
 
     it 'can be updated' do
-      group_to_update = create(:category_group, name: 'Old Name')
+      group_to_update = create(:category, name: 'Old Name')
       group_to_update.update(name: 'Updated Name')
 
       expect(group_to_update.reload.name).to eq('Updated Name')
     end
 
     it 'can be deleted' do
-      group_to_delete = create(:category_group)
+      group_to_delete = create(:category)
       group_id = group_to_delete.id
       group_to_delete.destroy
 
-      expect(CategoryGroup.where(id: group_id)).to be_empty
+      expect(Category.where(id: group_id)).to be_empty
     end
   end
 end

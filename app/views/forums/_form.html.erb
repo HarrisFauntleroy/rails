@@ -21,7 +21,7 @@
     <%= form.text_area :description %>
   </div>
 
-  <%= form.collection_select :category_group_id, CategoryGroup.all, :id, :name %>
+  <%= form.collection_select :category_id, Category.all, :id, :name %>
 
   <div class="btn-group">
     <%= link_to t("go_back"), :back, class: "btn" %>

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class CategoryGroupPolicy < ApplicationPolicy
-  attr_reader :user, :category_group
+class CategoryPolicy < ApplicationPolicy
+  attr_reader :user, :category
 
-  def initialize(user, category_group)
+  def initialize(user, category)
     @user = user
-    @category_group = category_group
+    @category = category
   end
 
   def index?

@@ -6,12 +6,12 @@
     </div>
   </div>
   <div class="card-body">
-    <% @category_groups.each do |category_group| %>
+    <% @categories.each do |category| %>
       <table class="nforumholder">
         <tbody>
           <tr>
             <td colspan="6" class="nforumcaption">
-              <%= category_group.name %>
+              <%= category.name %>
             </td>
           </tr>
           <tr>
@@ -23,13 +23,13 @@
               <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
             <% end %>
           </tr>
-          <% category_group.forums.each do |forum| %>
+          <% category.forums.each do |forum| %>
             <tr>
               <td style="width:5%; text-align:center" class="nforumcaption3">
                 <%= image_tag("nonew.png") %>
               </td>
               <td class="nforumcaption3">
-                <%= link_to forum.name, [category_group, forum], class: "category-title" %>
+                <%= link_to forum.name, [category, forum], class: "category-title" %>
                 <br/>
                 <span class="smallblacktext">
                   <%= forum.description %>
@@ -80,9 +80,9 @@
         </tbody>
         <tfoot class="category-footer">
           <div>
-            <% if policy(category_group).destroy? %>
+            <% if policy(category).destroy? %>
               <%= button_to t("delete"),
-              category_group,
+              category,
               class: "btn",
               method: :delete,
               data: {
@@ -97,7 +97,7 @@
   </div>
   <div class="btn-group">
     <% if current_user&.admin? %>
-      <%= link_to t("new_category_group"), new_category_group_path, class: "btn" %>
+      <%= link_to t("new_category"), new_category_path, class: "btn" %>
       <%= link_to t("new_forum"), new_forum_path, class: "btn" %>
     <% end %>
   </div>

@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe 'category_groups/destroy.html.erb', type: :view do
+RSpec.describe 'categories/destroy.html.erb', type: :view do
 end

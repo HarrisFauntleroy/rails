@@ -1,46 +1,46 @@
 # frozen_string_literal: true
 
-class CategoryGroupsController < ApplicationController
+class CategoriesController < ApplicationController
   include Pundit::Authorization
 
-  before_action :set_category_group, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
-    @category_groups = CategoryGroup.all.includes(:forums)
+    @categories = Category.all.includes(:forums)
   end
 
   def new
-    @category_group = CategoryGroup.new
-    authorize @category_group
+    @category = Category.new
+    authorize @category
   end
 
   def create
-    @category_group = CategoryGroup.new(category_group_params)
-    authorize @category_group
+    @category = Category.new(category_params)
+    authorize @category
 
-    if @category_group.save
-      redirect_to forums_path, notice: 'Category group created!'
+    if @category.save
+      redirect_to forums_path, notice: 'Category created!'
     else
       render :new
     end
   end
 
   def destroy
-    authorize @category_group
-    @category_group.destroy
+    authorize @category
+    @category.destroy
 
-    flash[:notice] = 'Category group has been deleted successfully'
+    flash[:notice] = 'Category has been deleted successfully'
 
-    redirect_to forums_path, notice: 'Category group deleted!'
+    redirect_to forums_path, notice: 'Category deleted!'
   end
 
   private
 
-  def set_category_group
-    @category_group = CategoryGroup.find(params[:id])
+  def set_category
+    @category = Category.find(params[:id])
   end
 
-  def category_group_params
-    params.require(:category_group).permit(:name, :description)
+  def category_params
+    params.require(:category).permit(:name, :description)
   end
 end

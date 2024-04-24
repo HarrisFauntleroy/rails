@@ -28,14 +28,14 @@ RSpec.describe Forum, type: :model do
       expect(@forum.user).to eq(@forum.user)
     end
 
-    it 'has a parent category_group' do
-      category_group = create(:category_group, forums: [@forum])
-      expect(@forum.category_group).to eq(category_group)
+    it 'has a parent category' do
+      category = create(:category, forums: [@forum])
+      expect(@forum.category).to eq(category)
     end
 
-    it 'is destroyed when its parent category_group is destroyed' do
-      category_group = create(:category_group, forums: [@forum])
-      category_group.destroy
+    it 'is destroyed when its parent category is destroyed' do
+      category = create(:category, forums: [@forum])
+      category.destroy
 
       expect(Forum.where(id: @forum.id)).to be_empty
     end

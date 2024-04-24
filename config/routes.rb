@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show index]
 
-  resources :category_groups do
+  resources :categories do
     resources :forums
   end
 

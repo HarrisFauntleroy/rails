@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe 'category_groups/update.html.erb', type: :view do
+RSpec.describe 'categories/update.html.erb', type: :view do
 end

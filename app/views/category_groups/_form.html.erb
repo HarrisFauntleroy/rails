@@ -1,10 +1,10 @@
-<%= form_with(model: category_group, local: true) do |form| %>
-  <% if category_group.errors.any? %>
+<%= form_with(model: category, local: true) do |form| %>
+  <% if category.errors.any? %>
     <div class="error_messages">
-      <h2><%= pluralize(category_group.errors.count, "error") %>
-        <%= t("prohibited_this_category_group_from_being_saved") %>:</h2>
+      <h2><%= pluralize(category.errors.count, "error") %>
+        <%= t("prohibited_this_category_from_being_saved") %>:</h2>
       <ul>
-        <% category_group.errors.full_messages.each do |message| %>
+        <% category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

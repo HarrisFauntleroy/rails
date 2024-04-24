@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CategoryGroup < ApplicationRecord
+class Category < ApplicationRecord
   belongs_to :user
   has_many :forums, dependent: :destroy
 

@@ -59,11 +59,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it 'can have many category_groups' do
-      category_group1 = create(:category_group, user: user)
-      category_group2 = create(:category_group, user: user)
+    it 'can have many categories' do
+      category1 = create(:category, user: user)
+      category2 = create(:category, user: user)
 
-      expect(user.category_groups).to include(category_group1, category_group2)
+      expect(user.categories).to include(category1, category2)
     end
 
     it 'can have many forums' do

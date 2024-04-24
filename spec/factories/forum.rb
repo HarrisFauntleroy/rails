@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :forum do
     name { Faker::Lorem.word }
     association :user
-    association :category_group
+    association :category
   end
 end

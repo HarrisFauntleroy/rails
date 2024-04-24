@@ -3,14 +3,14 @@
 class ForumsController < ApplicationController
   include Pundit::Authorization
 
-  # before_action :set_category_group, only: %i[show edit update destroy]
+  # before_action :set_category, only: %i[show edit update destroy]
   before_action :set_forum, only: %i[show edit update destroy]
 
   def index
-    @category_groups = CategoryGroup.all.includes(forums: { topics: :comments })
+    @categories = Category.all.includes(forums: { topics: :comments })
 
     add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', category_groups_path
+    add_breadcrumb 'Forums', forums_path
   end
 
   def show
@@ -61,8 +61,8 @@ class ForumsController < ApplicationController
 
   private
 
-  def set_category_group
-    @category_group = CategoryGroup.find(params[:category_group_id])
+  def set_category
+    @category = Category.find(params[:category_id])
   end
 
   def set_forum
@@ -70,6 +70,6 @@ class ForumsController < ApplicationController
   end
 
   def forum_params
-    params.require(:forum).permit(:name, :description, :category_group_id)
+    params.require(:forum).permit(:name, :description, :category_id)
   end
 end

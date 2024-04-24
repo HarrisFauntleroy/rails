@@ -4,7 +4,7 @@ class Forum < ApplicationRecord
   include ActionView::Helpers::DateHelper
 
   belongs_to :user
-  belongs_to :category_group
+  belongs_to :category
   has_many :topics, dependent: :destroy
 
   validates :name, presence: true
