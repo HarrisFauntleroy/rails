@@ -10,5 +10,8 @@ install:
 dev:
 	rails s
 
+test:
+	rspec
+
 destructive-init:
 	rails db:drop db:create db:schema:load db:migrate db:seed 
