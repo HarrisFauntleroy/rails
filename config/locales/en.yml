@@ -91,6 +91,7 @@ en:
   prohibited_this_topic_from_being_saved: prohibited this topic from being saved
   recent_activity: Recent Activity
   recent_comments: Recent Comments
+  register: Register
   registered_member: 'Registered Member #%{number}'
   replies: Replies
   reply: Reply
