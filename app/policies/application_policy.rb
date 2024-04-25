@@ -25,8 +25,12 @@ class ApplicationPolicy
     @record = record
   end
 
+  def own_record?
+    user.present? && record.present? && user.id == record.id
+  end
+
   def owner?
-    user.present? && user == record
+    user.present? && record.present? && record.user == user
   end
 
   def admin?

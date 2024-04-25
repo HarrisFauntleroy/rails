@@ -3,9 +3,9 @@
 class CommentPolicy < ApplicationPolicy
   attr_reader :user, :comment
 
-  def initialize(user, comment)
+  def initialize(user, record)
     @user = user
-    @comment = comment
+    @record = record
   end
 
   def index?
@@ -21,7 +21,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? || owner?
+    owner?
   end
 
   def update?
@@ -30,9 +30,5 @@ class CommentPolicy < ApplicationPolicy
 
   def destroy?
     edit?
-  end
-
-  def create_comment?
-    user.present?
   end
 end

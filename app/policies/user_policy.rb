@@ -23,10 +23,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || owner?
+    admin? || own_record?
   end
 
   def destroy?
-    (admin? && !owner?) || (!admin? && owner?)
+    (admin? && !own_record?) || (!admin? && own_record?)
   end
 end

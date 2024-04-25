@@ -3,9 +3,9 @@
 class ForumPolicy < ApplicationPolicy
   attr_reader :user, :forum
 
-  def initialize(user, forum)
+  def initialize(user, record)
     @user = user
-    @forum = forum
+    @record = record
   end
 
   def index?
@@ -13,15 +13,15 @@ class ForumPolicy < ApplicationPolicy
   end
 
   def create?
-    admin?
+    admin? || moderator?
   end
 
   def update?
-    admin? || (moderator? && owner?)
+    admin? || moderator? && owner?
   end
 
   def destroy?
-    admin? || (moderator? && owner?)
+    admin? || moderator? && owner?
   end
 
   def create_topic?

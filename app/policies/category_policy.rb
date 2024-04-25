@@ -3,9 +3,9 @@
 class CategoryPolicy < ApplicationPolicy
   attr_reader :user, :category
 
-  def initialize(user, category)
+  def initialize(user, record)
     @user = user
-    @category = category
+    @record = record
   end
 
   def index?
@@ -13,14 +13,14 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    admin?
+    admin? || moderator?
   end
 
   def update?
-    admin? || (moderator? && owner?)
+    admin? || moderator? && owner?
   end
 
   def destroy?
-    admin? || (moderator? && owner?)
+    admin? || moderator? && owner?
   end
 end

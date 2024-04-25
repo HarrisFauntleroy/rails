@@ -3,9 +3,9 @@
 class TopicPolicy < ApplicationPolicy
   attr_reader :user, :topic
 
-  def initialize(user, topic)
+  def initialize(user, record)
     @user = user
-    @topic = topic
+    @record = record
   end
 
   def index?
@@ -21,7 +21,7 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? || owner?
+    owner?
   end
 
   def update?
@@ -33,10 +33,6 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def create_comment?
-    user.present?
-  end
-
-  def create_topic?
     user.present?
   end
 end
