@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserHelper
   def formatted_date(datetime)
     datetime.strftime('%d %b %Y at %I:%M %p')

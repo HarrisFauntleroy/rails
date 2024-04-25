@@ -79,7 +79,7 @@
           <% end %>
         </tbody>
         <tfoot class="category-footer">
-          <div>
+          <div class="btn-group">
             <% if policy(category).destroy? %>
               <%= button_to t("delete"),
               category,
@@ -89,6 +89,9 @@
                 confirm: t("are_you_sure"),
                 turbo_confirm: t("are_you_sure"),
               } %>
+            <% end %>
+            <% if policy(category).edit? %>
+              <%= link_to t("edit"), edit_category_path(category), class: "btn" %>
             <% end %>
           </div>
         </tfoot>
