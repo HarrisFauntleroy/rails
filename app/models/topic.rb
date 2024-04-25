@@ -12,11 +12,11 @@ class Topic < ApplicationRecord
   end
 
   def mark_as_sticky!
-    update(sticky: true)
+    update(sticky: true) unless sticky?
   end
 
   def unmark_as_sticky!
-    update(sticky: false)
+    update(sticky: false) if sticky?
   end
 
   def announcement?
@@ -24,10 +24,10 @@ class Topic < ApplicationRecord
   end
 
   def mark_as_announcement!
-    update(announcement: true)
+    update(announcement: true) unless announcement?
   end
 
   def unmark_as_announcement!
-    update(announcement: false)
+    update(announcement: false) if announcement?
   end
 end

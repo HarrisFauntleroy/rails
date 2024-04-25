@@ -10,24 +10,24 @@ class Forum < ApplicationRecord
   validates :name, presence: true
 
   def total_comments
-    topics.sum { |topic| topic.comments.count }
+    Comment.joins(:topic).where(topics: { forum_id: id }).count
   end
 
   def total_topics
     Topic.where(forum_id: id).count
   end
 
+  def last_comment
+    Comment.joins(:topic).where(topics: { forum_id: id }).order(created_at: :desc).first
+  end
+
   def last_comment_info
-    last_comment = topics.flat_map(&:comments).max_by(&:created_at)
-    return nil unless last_comment
+    return nil unless (last_comment = self.last_comment)
 
-    user = last_comment.user
-    time_ago = time_ago_in_words(last_comment.created_at)
-
-    "#{user&.username} #{time_ago} ago"
+    "#{last_comment.user.username} #{time_ago_in_words(last_comment.created_at)} ago"
   end
 
   def last_comment_time
-    topics.flat_map(&:comments).max_by(&:created_at)&.created_at
+    last_comment&.created_at
   end
 end
