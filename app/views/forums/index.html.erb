@@ -43,17 +43,15 @@
               </td>
               <td style="width: 20%; text-align: center;" class="nforumthread">
                 <span class="smallblacktext">
-                  <% if forum.last_comment_info %>
-                    <%= link_to forum.last_comment_info,
-                    forum_topic_path(
-                      forum,
-                      forum.topics.last,
-                      forum.topics.last.comments.last,
-                      anchor: "comment-#{forum.topics.last.comments.last.id}",
-                    ) %>
-                  <% else %>
-                    <%= t("no_comments_yet") %>
-                  <% end %>
+                  <% if forum.topics.last && forum.topics.last.comments.last %>
+                  <%= link_to(
+                    forum.topics.last.title,
+                    [forum, forum.topics.last, forum.topics.last.comments.last],
+                    anchor: "comment-#{forum.topics.last.comments.last.id}"
+                  ) %>
+                <% else %>
+                  <%= t("no_comments_yet") %>
+                <% end %>
                 </span>
               </td>
               <% if current_user&.admin? %>
