@@ -128,10 +128,10 @@
                     <tr>
                       <td style="text-align:right">
                         <div class="btn-group">
-                          <% if authorized_to_edit?(@topic) %>
+                          <% if policy(@topic).edit? %>
                             <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
                           <% end %>
-                          <% if authorized_to_destroy?(@topic) %>
+                          <% if policy(@topic).destroy? %>
                             <%= button_to t("delete"),
                             [@forum, @topic],
                             class: "btn",

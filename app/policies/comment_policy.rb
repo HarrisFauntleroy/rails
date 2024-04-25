@@ -21,7 +21,7 @@ class CommentPolicy
   end
 
   def edit?
-    user.present? && (comment.user == user || user.admin?)
+    admin? || owner?
   end
 
   def update?

@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
     it 'has many categories' do
       expect { user.categories << create(:category, user: user) }.to change(user.categories, :count).by(1)
     end
-    
+
     it 'has many forums' do
       expect { user.forums << create(:forum, user: user) }.to change(user.forums, :count).by(1)
     end

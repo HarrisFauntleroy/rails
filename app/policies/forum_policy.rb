@@ -9,22 +9,22 @@ class ForumPolicy < ApplicationPolicy
   end
 
   def index?
-    user.present? # Anyone logged in can view
+    user.present?
   end
 
   def create?
-    user.admin? # Only admins can create
+    admin?
   end
 
   def update?
-    user.admin? || (user.moderator? && user.id == record.user_id) # Admins or the forum's moderator owner
+    admin? || (moderator? && owner?)
   end
 
   def destroy?
-    user.admin? || (user.moderator? && user.id == record.user_id) # Admins or the forum's moderator owner
+    admin? || (moderator? && owner?)
   end
 
   def create_topic?
-    user.present? # Anyone logged in can create a topic
+    user.present?
   end
 end
