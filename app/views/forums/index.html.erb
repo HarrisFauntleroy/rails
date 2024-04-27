@@ -45,8 +45,8 @@
                 <span class="smallblacktext">
                   <% if forum.topics.last && forum.topics.last.comments.last %>
                     <%= link_to(
-                      forum.topics.last.title,
-                      [forum, forum.topics.last, forum.topics.last.comments.last],
+                      "#{forum.topics.last.comments.last.user.username} #{time_ago_in_words(forum.topics.last.comments.last.created_at)} ago",
+                      [forum, forum.topics.last],
                       anchor: "comment-#{forum.topics.last.comments.last.id}",
                     ) %>
                   <% else %>
