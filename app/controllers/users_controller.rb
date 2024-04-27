@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   helper UserHelper
 
+  before_action :set_user, only: %i[show]
   before_action :authenticate_admin!, only: [:index]
   before_action :authenticate_user!, only: [:show]
 
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     authorize @user
 
     @recent_topics_opened = @user.topics.order(created_at: :desc).limit(5)
@@ -36,6 +36,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to errors_not_found_path, alert: 'User not found.'
+  end
 
   def authenticate_moderator!
     return if current_user&.moderator?

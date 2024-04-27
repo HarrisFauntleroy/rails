@@ -3,6 +3,34 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  describe 'GET #index' do
+    it 'assigns all users to @users' do
+      admin_user = create(:user, admin: true)
+      sign_in admin_user
+
+      users = create_list(:user, 3)
+      get :index
+
+      expect(assigns(:users)).to eq([admin_user, *users])
+    end
+    it 'renders the index template for admin users' do
+      admin_user = create(:user, admin: true)
+      sign_in admin_user
+
+      get :index
+
+      expect(response).to render_template(:index)
+    end
+    it 'redirects non-admin users' do
+      non_admin_user = create(:user, admin: false)
+      sign_in non_admin_user
+
+      get :index
+
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
   describe 'GET #show' do
     let(:user) { create(:user, id: 1) }
 
@@ -63,43 +91,19 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe 'GET #index' do
-    it 'assigns all users to @users' do
-      admin_user = create(:user, admin: true)
-      sign_in admin_user
-
-      users = create_list(:user, 3)
-      get :index
-
-      expect(assigns(:users)).to eq([admin_user, *users])
-    end
-    it 'renders the index template for admin users' do
-      admin_user = create(:user, admin: true)
-      sign_in admin_user
-
-      get :index
-
-      expect(response).to render_template(:index)
-    end
-    it 'redirects non-admin users' do
-      non_admin_user = create(:user, admin: false)
-      sign_in non_admin_user
-
-      get :index
-
-      expect(response).to redirect_to(root_path)
-    end
-  end
-
   describe 'POST #create' do
+    # No additional functionality to test
   end
 
   describe 'GET #edit' do
+    # No additional functionality to test
   end
 
   describe 'PATCH #update' do
+    # No additional functionality to test
   end
 
   describe 'DELETE #destroy' do
+    # No additional functionality to test
   end
 end
