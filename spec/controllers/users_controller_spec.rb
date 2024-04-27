@@ -50,22 +50,22 @@ RSpec.describe UsersController, type: :controller do
 
     it 'assigns recent topics opened by the user to @recent_topics_opened' do
       sign_in user
-      topics = create_list(:topic, 5, user: user)
+      topics = create_list(:topic, 5, user:)
       get :show, params: { id: user.id }
       expect(assigns(:recent_topics_opened)).to eq(topics.reverse)
     end
 
     it 'assigns recent comments by the user to @recent_comments' do
       sign_in user
-      comments = create_list(:comment, 5, user: user)
+      comments = create_list(:comment, 5, user:)
       get :show, params: { id: user.id }
       expect(assigns(:recent_comments)).to eq(comments.reverse)
     end
 
     it 'limits recent comments and topics to 5' do
       sign_in user
-      create_list(:topic, 6, user: user)
-      create_list(:comment, 6, user: user)
+      create_list(:topic, 6, user:)
+      create_list(:comment, 6, user:)
 
       get :show, params: { id: user.id }
 
