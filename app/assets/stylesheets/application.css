@@ -373,16 +373,6 @@ blockquote {
   margin-right: auto;
 }
 
-.nextprev {
-  background-color: #eaeef2;
-  border: 1px solid #696C6C;
-  color: #000;
-  font: normal 9px verdana, tahoma, arial, helvetica, sans-serif;
-  text-align: center;
-  padding: 2px;
-  background-image: url("button.png");
-}
-
 .button {
   background-color: #eaeef2;
   border: #000 1px solid;
