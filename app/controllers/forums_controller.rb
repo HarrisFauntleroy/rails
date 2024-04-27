@@ -3,8 +3,8 @@
 class ForumsController < ApplicationController
   include Pundit::Authorization
 
-  # before_action :set_category, only: %i[show edit update destroy]
   before_action :set_forum, only: %i[show edit update destroy]
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
     @categories = Category.all.includes(forums: { topics: :comments })
@@ -16,17 +16,13 @@ class ForumsController < ApplicationController
   def show
     @forum = Forum.find(params[:id])
 
-    breadcrumb_handler
-  end
-
-  def breadcrumb_handler
     add_breadcrumb '4hv.org', root_path
     add_breadcrumb 'Forums', forums_path
     add_breadcrumb @forum.name, @forum
   end
 
   def new
-    @forum = Forum.new
+    @forum = Forum.new(user: current_user)
   end
 
   def create
@@ -60,10 +56,6 @@ class ForumsController < ApplicationController
   end
 
   private
-
-  def set_category
-    @category = Category.find(params[:category_id])
-  end
 
   def set_forum
     @forum = Forum.find(params[:id])
