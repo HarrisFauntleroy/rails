@@ -117,19 +117,19 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it 'has many categories' do
-      expect { user.categories << create(:category, user: user) }.to change(user.categories, :count).by(1)
+      expect { user.categories << create(:category, user:) }.to change(user.categories, :count).by(1)
     end
 
     it 'has many forums' do
-      expect { user.forums << create(:forum, user: user) }.to change(user.forums, :count).by(1)
+      expect { user.forums << create(:forum, user:) }.to change(user.forums, :count).by(1)
     end
 
     it 'has many topics' do
-      expect { user.topics << create(:topic, user: user) }.to change(user.topics, :count).by(1)
+      expect { user.topics << create(:topic, user:) }.to change(user.topics, :count).by(1)
     end
 
     it 'has many comments' do
-      expect { user.comments << create(:comment, user: user) }.to change(user.comments, :count).by(1)
+      expect { user.comments << create(:comment, user:) }.to change(user.comments, :count).by(1)
     end
   end
 

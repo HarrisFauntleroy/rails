@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   let(:user) { create(:user, id: 1) }
-  let(:topic) { create(:topic, id: 1, user: user) }
-  let(:comment) { create(:comment, id: 1, topic: topic, user: user) }
+  let(:topic) { create(:topic, id: 1, user:) }
+  let(:comment) { create(:comment, id: 1, topic:, user:) }
 
   it 'has a valid factory' do
     expect(comment).to be_valid
@@ -63,27 +63,27 @@ RSpec.describe Comment, type: :model do
 
   describe 'Crud methods' do
     it 'can be created' do
-      new_comment = build(:comment, content: 'Some content', user: user, topic: topic)
+      new_comment = build(:comment, content: 'Some content', user:, topic:)
       new_comment.save
 
       expect(new_comment).to be_persisted
     end
 
     it 'can be read' do
-      created_comment = create(:comment, user: user, topic: topic)
+      created_comment = create(:comment, user:, topic:)
 
       expect(Comment.find(created_comment.id)).to eq(created_comment)
     end
 
     it 'can be updated' do
-      comment_to_update = create(:comment, content: 'Old Content', user: user, topic: topic)
+      comment_to_update = create(:comment, content: 'Old Content', user:, topic:)
       comment_to_update.update(content: 'New Content')
 
       expect(comment_to_update.reload.content).to eq('New Content')
     end
 
     it 'can be deleted' do
-      comment_to_delete = create(:comment, user: user, topic: topic)
+      comment_to_delete = create(:comment, user:, topic:)
       comment_id = comment_to_delete.id
       comment_to_delete.destroy
 

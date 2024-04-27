@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Topic, type: :model do
   let(:user) { create(:user, id: 1) }
-  let(:forum) { create(:forum, user: user) }
-  let(:topic) { create(:topic, forum: forum, user: user) }
+  let(:forum) { create(:forum, user:) }
+  let(:topic) { create(:topic, forum:, user:) }
 
   describe 'factory' do
     it 'is valid' do
@@ -49,8 +49,8 @@ RSpec.describe Topic, type: :model do
     end
 
     it 'can have many comments' do
-      comment1 = create(:comment, topic: topic)
-      comment2 = create(:comment, topic: topic)
+      comment1 = create(:comment, topic:)
+      comment2 = create(:comment, topic:)
 
       expect(topic.comments).to include(comment1, comment2)
     end
@@ -84,27 +84,27 @@ RSpec.describe Topic, type: :model do
 
   describe 'Crud methods' do
     it 'can be created' do
-      new_topic = build(:topic, title: 'New Topic', user: user, forum: forum)
+      new_topic = build(:topic, title: 'New Topic', user:, forum:)
       new_topic.save
 
       expect(new_topic).to be_persisted
     end
 
     it 'can be read' do
-      created_topic = create(:topic, title: 'Test Topic', user: user, forum: forum)
+      created_topic = create(:topic, title: 'Test Topic', user:, forum:)
 
       expect(Topic.find(created_topic.id)).to eq(created_topic)
     end
 
     it 'can be updated' do
-      topic_to_update = create(:topic, title: 'Old Title', user: user, forum: forum)
+      topic_to_update = create(:topic, title: 'Old Title', user:, forum:)
       topic_to_update.update(title: 'Updated Title')
 
       expect(topic_to_update.reload.title).to eq('Updated Title')
     end
 
     it 'can be deleted' do
-      topic_to_delete = create(:topic, user: user, forum: forum)
+      topic_to_delete = create(:topic, user:, forum:)
       topic_id = topic_to_delete.id
       topic_to_delete.destroy
 
