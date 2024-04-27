@@ -53,7 +53,7 @@ Here's how you can set up forum in your local dev environment:
 
 <!-- LIST OF REQUIREMENTS -->
 
-- Ruby >= 3.0.6
+- Ruby >= 3.3.1
 <!-- - Docker (for running Postgres, Redis, etc.) 🐳 -->
 
 Ruby is managed using Ruby Version Manager
