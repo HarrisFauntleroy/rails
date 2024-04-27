@@ -6,6 +6,6 @@ module UserHelper
   end
 
   def truncated_content(content, length: 50)
-    truncate(content, length: length)
+    truncate(content, length:)
   end
 end
