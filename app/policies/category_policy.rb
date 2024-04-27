@@ -17,10 +17,10 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def update?
-    admin? || moderator? && owner?
+    admin? || (moderator? && owner?)
   end
 
   def destroy?
-    admin? || moderator? && owner?
+    admin? || (moderator? && owner?)
   end
 end
