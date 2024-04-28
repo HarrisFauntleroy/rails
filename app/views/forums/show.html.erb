@@ -9,7 +9,7 @@
   </div>
 
   <div class="card-body">
-    <%= render "shared/breadcrumbs" %>
+    <%= render(BreadcrumbsComponent.new(items: @breadcrumbs)) %>
     <table style="width:100%">
       <tbody>
         <tr>
