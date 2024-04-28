@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_online_stats
 
-  helper_method :breadcrumbs, :resource_name, :resource, :devise_mapping, :resource_class
+  helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   # These methods are used in application.html.erb in the login/signup form on the sidebar 👇
 
@@ -26,14 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   # These methods are used in application.html.erb in the login/signup form on the sidebar ☝️
-
-  def breadcrumbs
-    @breadcrumbs ||= []
-  end
-
-  def add_breadcrumb(name, path = nil)
-    breadcrumbs << Breadcrumb.new(name, path)
-  end
 
   def index
     @online_guests_count = 0

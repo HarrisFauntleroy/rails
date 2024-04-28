@@ -13,14 +13,12 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
 
-    breadcrumb_handler
-  end
-
-  def breadcrumb_handler
-    add_breadcrumb '4hv.org', root_path
-    add_breadcrumb 'Forums', forums_path
-    add_breadcrumb @forum.name, @forum
-    add_breadcrumb @topic.title, [@forum, @topic]
+    @breadcrumbs = [
+      { title: '4hv.org', path: root_path },
+      { title: 'Forums', path: forums_path },
+      { title: @forum.name, path: forum_path(@forum) },
+      { title: @topic.title, path: forum_topic_path(@forum, @topic) }
+    ]
   end
 
   def new
