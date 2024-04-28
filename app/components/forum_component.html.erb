@@ -1,51 +1,50 @@
 <tr>
-  <td style="width:5%; text-align:center" class="nforumcaption3">
-    <%= image_tag("nonew.png") %>
-  </td>
-  <td class="nforumcaption3">
-    <%= link_to @forum.name, @forum, class: "category-title" %>
-    <br/>
-    <span class="smallblacktext">
-      <%= @forum.description %>
-    </span>
-  </td>
-  <td style="width: 10%; text-align: center;" class="nforumthread">
-    <%= @forum.total_topics %>
-  </td>
-  <td style="width: 10%; text-align: center;" class="nforumthread">
-    <%= @forum.total_comments %>
-  </td>
-  <td style="width: 20%; text-align: center;" class="nforumthread">
-    <span class="smallblacktext">
-      <% if @forum.last_comment_info %>
-        <%= link_to @forum.last_comment_info,
-        forum_topic_path(
-          @forum,
-          @forum.topics.last,
-          @forum.topics.last.comments.last,
-        ) %>
-      <% else %>
-        <%= t("no_comments_yet") %>
-      <% end %>
-    </span>
-  </td>
-  <% if current_user&.admin? %>
-    <td style="width: 20%; text-align: center;" class="nforumthread">
-      <div class="btn-group">
-        <% if policy(@forum).edit? %>
-          <%= link_to t("edit"), edit_forum_path(@forum), class: "btn" %>
-        <% end %>
-        <% if policy(@forum).destroy? %>
-          <%= button_to t("delete"),
-          @forum,
-          class: "btn",
-          method: :delete,
-          data: {
-            confirm: t("are_you_sure"),
-            turbo_confirm: t("are_you_sure"),
-          } %>
-        <% end %>
-      </div>
-    </td>
-  <% end %>
-</tr>
+              <td style="width:5%; text-align:center" class="nforumcaption3">
+                <%= image_tag("nonew.png") %>
+              </td>
+              <td class="nforumcaption3">
+                <%= link_to @forum.name, [@forum.category, @forum], class: "category-title" %>
+                <br/>
+                <span class="smallblacktext">
+                  <%= @forum.description %>
+                </span>
+              </td>
+              <td style="width: 10%; text-align: center;" class="nforumthread">
+                <%= @forum.total_topics %>
+              </td>
+              <td style="width: 10%; text-align: center;" class="nforumthread">
+                <%= @forum.total_comments %>
+              </td>
+              <td style="width: 20%; text-align: center;" class="nforumthread">
+                <span class="smallblacktext">
+                  <% if @forum.topics.last && @forum.topics.last.comments.last %>
+                    <%= link_to(
+                      "#{@forum.topics.last.comments.last.user.username} #{time_ago_in_words(@forum.topics.last.comments.last.created_at)} ago",
+                      [@forum, @forum.topics.last],
+                      anchor: "comment-#{@forum.topics.last.comments.last.id}",
+                    ) %>
+                  <% else %>
+                    <%= t("no_comments_yet") %>
+                  <% end %>
+                </span>
+              </td>
+              <% if current_user&.admin? %>
+                <td style="width: 20%; text-align: center;" class="nforumthread">
+                  <div class="btn-group">
+                    <% if policy(@forum).edit? %>
+                      <%= link_to t("edit"), edit_forum_path(@forum), class: "btn" %>
+                    <% end %>
+                    <% if policy(@forum).destroy? %>
+                      <%= button_to t("delete"),
+                      @forum,
+                      class: "btn",
+                      method: :delete,
+                      data: {
+                        confirm: t("are_you_sure"),
+                        turbo_confirm: t("are_you_sure"),
+                      } %>
+                    <% end %>
+                  </div>
+                </td>
+              <% end %>
+            </tr>
