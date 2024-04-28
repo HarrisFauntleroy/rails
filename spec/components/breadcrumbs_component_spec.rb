@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BreadcrumbsComponent, type: :component do
   let(:breadcrumbs) do
     [
-      { title: "Home", path: "/" },
-      { title: "Forum", path: "/forum" },
-      { title: "Thread" }
+      { title: 'Home', path: '/' },
+      { title: 'Forum', path: '/forum' },
+      { title: 'Thread' }
     ]
   end
 
   it 'renders links for items with paths and text for those without' do
     render_inline(BreadcrumbsComponent.new(items: breadcrumbs))
-    
+
     expect(rendered_component).to have_link('Home', href: '/')
     expect(rendered_component).to have_link('Forum', href: '/forum')
     expect(rendered_component).to have_text('Thread')
