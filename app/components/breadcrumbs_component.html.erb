@@ -1,12 +1,10 @@
-<% if @items.any? %>
-  <nav class="breadcrumbs nforumcaption">
-    <% @items.each do |item| %>
-      <% if item.path %>
-        <%= link_to item.name, item.path, class: "forumlink" %>
-      <% else %>
-        <%= item.name %>
-      <% end %>
-      <%= "::" unless item == @items.last %>
+<nav class="breadcrumbs nforumcaption">
+  <% @breadcrumbs.each do |crumb| %>
+    <% if crumb[:path] %>
+      <%= link_to crumb[:title], crumb[:path], class: "forumlink" %>
+    <% else %>
+      <%= crumb[:title] %>
     <% end %>
-  </nav>
-<% end %>
+    <%= "::" unless crumb == @breadcrumbs.last %>
+  <% end %>
+</nav>

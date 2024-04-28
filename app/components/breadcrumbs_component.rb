@@ -2,6 +2,6 @@
 
 class BreadcrumbsComponent < ViewComponent::Base
   def initialize(items:)
-    @items = items
+    @breadcrumbs = items
   end
 end
