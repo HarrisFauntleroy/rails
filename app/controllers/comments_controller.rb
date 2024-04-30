@@ -71,6 +71,6 @@ class CommentsController < ApplicationController
 
   def update_comments_with_turbo_stream
     render turbo_stream:
-      turbo_stream.replace("comments", partial: "comments/comments", locals: { topic: @topic })
+      turbo_stream.replace('comments', partial: 'comments/comments', locals: { topic: @topic })
   end
 end
