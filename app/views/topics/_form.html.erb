@@ -43,6 +43,7 @@
 <script>
 document.addEventListener('turbo:load', initializeEasyMDE);
 document.addEventListener('turbo:before-cache', cleanupEasyMDE);
+document.addEventListener('turbo:submit-end', clearEditorOnSuccess);
 
 function initializeEasyMDE() {
   if (!document.getElementById('markdown-editor') || window.easymde) return;
@@ -50,14 +51,15 @@ function initializeEasyMDE() {
   window.easymde = new EasyMDE({
     element: document.getElementById('markdown-editor'),
     showIcons: ["code", "table"],
-    status: true,
-    autofocus: true,
-    autosave: {
-      enabled: true,
-      uniqueId: "topic",
-      delay: 1000,
-    },
   });
+}
+
+function clearEditorOnSuccess(event) {
+  if (event.detail.success && !document.querySelector('.error_messages')) {
+    if (window.easymde) {
+      window.easymde.value('');
+    }
+  }
 }
 
 function cleanupEasyMDE() {

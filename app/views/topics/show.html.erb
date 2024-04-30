@@ -150,12 +150,14 @@
           </tbody>
         </table>
       </div>
-      <% if @topic.comments.any? %>
-        <% @topic.comments.each do |comment| %>
-          <%= render comment %>
+      <%= turbo_frame_tag "comments" do %>
+        <% if @topic.comments.any? %>
+          <% @topic.comments.each do |comment| %>
+            <%= render comment %>
+          <% end %>
+        <% else %>
+          <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
         <% end %>
-      <% else %>
-        <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
       <% end %>
       <% if policy(@topic).create_comment? %>
         <%= render "comments/form", comment: @topic.comments.build %>

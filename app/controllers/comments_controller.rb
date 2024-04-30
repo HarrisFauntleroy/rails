@@ -30,7 +30,11 @@ class CommentsController < ApplicationController
     end
 
     if @comment.save
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: 'Comment created!'
+      # redirect_to forum_topic_path(@topic.forum, @topic), notice: 'Comment created!'
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @topic }
+      end
     else
       render :new
     end
