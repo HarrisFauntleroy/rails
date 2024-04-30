@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  include Pundit::Authorization
-
   before_action :set_category, only: %i[show edit update destroy]
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

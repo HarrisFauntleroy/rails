@@ -1,40 +1,14 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+  include DeviseHelper
+
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_online_stats
 
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
-
-  # These methods are used in application.html.erb in the login/signup form on the sidebar 👇
-
-  def resource_name
-    :user
-  end
-
-  def resource
-    @resource ||= User.new
-  end
-
-  def resource_class
-    User
-  end
-
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
-
-  # These methods are used in application.html.erb in the login/signup form on the sidebar ☝️
-
-  def index
-    @online_guests_count = 0
-    @online_members_count = User.where('last_seen_at > ?', 10.minutes.ago).count
-    @newest_member = User.order(created_at: :desc).first
-    @most_ever_online = 0
-  end
-
-  def show; end
 
   protected
 
@@ -45,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def set_online_stats
     @online_guests_count = 0
-    @online_members_count = 0
+    @online_members_count = User.where('last_seen_at > ?', 10.minutes.ago).count
     @newest_member = User.order(created_at: :desc).first
     @most_ever_online = 0
   end

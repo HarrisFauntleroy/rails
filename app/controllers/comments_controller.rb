@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  include Pundit::Authorization
-
   before_action :set_topic, only: %i[show new create edit update destroy]
   before_action :set_comment, only: %i[show edit update destroy]
 
