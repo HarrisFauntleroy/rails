@@ -30,11 +30,7 @@ class CommentsController < ApplicationController
     end
 
     if @comment.save
-      # redirect_to forum_topic_path(@topic.forum, @topic), notice: 'Comment created!'
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @topic }
-      end
+      update_comments_with_turbo_stream
     else
       render :new
     end
@@ -71,5 +67,10 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content, :parent_comment_id)
+  end
+
+  def update_comments_with_turbo_stream
+    render turbo_stream:
+      turbo_stream.replace("comments", partial: "comments/comments", locals: { topic: @topic })
   end
 end
