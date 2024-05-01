@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'UserSessions', type: :system do
   before do
-    # driven_by(:selenium, using: :chrome) # for JS testing
     driven_by(:rack_test) # for non-JS testing
-    # driven_by(:selenium_chrome) # for headless testing
   end
   it 'allows a user to log in' do
     user = create(:user)
