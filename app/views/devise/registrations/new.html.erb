@@ -7,7 +7,7 @@
       </span>
     </div>
   </div>
-  <div>
+  <div class="card-body">
     <div id="signup-custom-text" class="alert alert-block alert-warning"><b>Stop!</b> If you skim past this part, you won't be able to participate. 4hv.org is a community where rules are important. If you try to register and post without reading the rules first, there is a good chance you will be in trouble from the start. I cannot emphasize this enough:<br><br>Please enter your details below. A verification email will be sent to the email address you enter here so it must be valid. If you do not wish to display your email address on this site, please tick the 'hide email address' box.
 
     There will be special instructions on the next page that you must follow in order to activate your account. If you don't follow these instructions, your account won't be activated, and you won't be able to sign up again with the same email address.
@@ -41,8 +41,9 @@
         <%= f.label :password_confirmation %><br/>
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
-
+      <br />
       <div class="actions">
+        <%= recaptcha_v3(action: 'register') %>
         <%= f.submit t("devise.sign_up") %>
       </div>
     <% end %>
