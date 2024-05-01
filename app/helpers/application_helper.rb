@@ -5,12 +5,16 @@ module ApplicationHelper
   require 'rouge'
   require 'rouge/plugins/redcarpet'
 
-  class HTMLWithRouge < Redcarpet::Render::HTML
+  class HTMLWithRouge < Redcarpet::Render::Safe
     include Rouge::Plugins::Redcarpet
   end
 
   def markdown(text)
-    renderer = HTMLWithRouge.new(hard_wrap: true, filter_html: true)
+    renderer = HTMLWithRouge.new(
+      :with_toc_data => true,
+      :prettify => true,
+      :hard_wrap => true
+      )
 
     extensions = {
       autolink: true,
