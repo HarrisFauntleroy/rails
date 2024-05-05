@@ -10,18 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="stack">
+  <br/>
+  <div>
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
-  <div class="stack">
+  <br/>
+  <div>
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content,
+                   id: "markdown-editor",
+                   style: "width: 100%; padding: 4px;",
+                   rows: 8,
+                   maxlength: 5000,
+                   placeholder: "Write something here..." %>
   </div>
 
-  <div class="stack">
+  <div>
     <%= form.label :sticky %>
     <%= form.check_box :sticky %>
 
@@ -34,3 +39,33 @@
     <%= form.submit t("submit"), class: "btn" %>
   </div>
 <% end %>
+
+<script>
+document.addEventListener('turbo:load', initializeEasyMDE);
+document.addEventListener('turbo:before-cache', cleanupEasyMDE);
+document.addEventListener('turbo:submit-end', clearEditorOnSuccess);
+
+function initializeEasyMDE() {
+  if (!document.getElementById('markdown-editor') || window.easymde) return;
+
+  window.easymde = new EasyMDE({
+    element: document.getElementById('markdown-editor'),
+    showIcons: ["code", "table"],
+  });
+}
+
+function clearEditorOnSuccess(event) {
+  if (event.detail.success && !document.querySelector('.error_messages')) {
+    if (window.easymde) {
+      window.easymde.value('');
+    }
+  }
+}
+
+function cleanupEasyMDE() {
+  if (window.easymde) {
+    window.easymde.toTextArea();
+    window.easymde = null;
+  }
+}
+</script>

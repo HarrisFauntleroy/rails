@@ -1,3 +1,4 @@
+
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
@@ -117,6 +118,10 @@ search:
 # ignore_missing:
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
 # - '{devise,simple_form}.*'
+
+ignore_missing:
+  - '!'
+  - 'init'
 
 ## Consider these keys used:
 # ignore_unused:

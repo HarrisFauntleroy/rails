@@ -1,26 +1,55 @@
-<div class="card-body">
-  <%= form_with(model: [@topic, comment], local: true) do |form| %>
-    <% if comment.errors.any? %>
-      <div class="error_messages">
-        <h2><%= pluralize(comment.errors.count, "error") %>
-          <%= t("prohibited_this_comment_from_being_saved") %>:</h2>
-        <ul>
-          <% comment.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= form.hidden_field :parent_comment_id, value: @parent_comment_id %>
-
-    <div class="stack">
-      <%= form.label t("reply") %>
-      <%= form.text_area :content %>
-    </div>
-
-    <div class="btn-group">
-      <%= form.submit t("submit"), class: "btn" %>
+<%= form_with(model: [@topic, comment], local: true) do |form| %>
+  <% if comment.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(comment.errors.count, "error") %>
+        <%= t("prohibited_this_comment_from_being_saved") %>:</h2>
+      <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-</div>
+
+  <%= form.hidden_field :parent_comment_id, value: @parent_comment_id %>
+
+  <div>
+    <%= form.text_area :content,
+                   id: "markdown-editor",
+                   placeholder: "Write something here..." %>
+  </div>
+
+  <div>
+    <%= form.submit t("submit") %>
+  </div>
+<% end %>
+
+<script>
+document.addEventListener('turbo:load', initializeEasyMDE);
+document.addEventListener('turbo:before-cache', cleanupEasyMDE);
+document.addEventListener('turbo:submit-end', clearEditorOnSuccess);
+
+function initializeEasyMDE() {
+  if (!document.getElementById('markdown-editor') || window.easymde) return;
+
+  window.easymde = new EasyMDE({
+    element: document.getElementById('markdown-editor'),
+    showIcons: ["code", "table"],
+  });
+}
+
+function clearEditorOnSuccess(event) {
+  if (event.detail.success && !document.querySelector('.error_messages')) {
+    if (window.easymde) {
+      window.easymde.value('');
+    }
+  }
+}
+
+function cleanupEasyMDE() {
+  if (window.easymde) {
+    window.easymde.toTextArea();
+    window.easymde = null;
+  }
+}
+</script>

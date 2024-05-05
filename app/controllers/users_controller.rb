@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  include Pundit::Authorization
-
   helper UserHelper
 
   before_action :set_user, only: %i[show]
   before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   def index
     @users = User.all
@@ -22,14 +20,6 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to errors_not_found_path, alert: 'User not found'
   end
-
-  def create; end
-
-  def edit; end
-
-  def update; end
-
-  def destroy; end
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :timezone, :latitude, :longitude)

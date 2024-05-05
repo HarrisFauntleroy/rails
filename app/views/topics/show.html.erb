@@ -1,4 +1,4 @@
-<div class="custom-card">
+<div class="custom-card p-4">
   <div class="card-header">
     <div class="header-content">
       <%= image_tag("bullet.png") %>
@@ -105,7 +105,8 @@
                 </span>
               </td>
               <td class="nforumthread" style="vertical-align:top">
-                <%= @topic.content %><br><br><br><br><br><br>
+                <%= markdown(@topic.content) %>
+                <br><br><br><br><br><br>
                 <% if @topic.user&.signature %>
                   <hr style="width:15%; text-align:left">
                   <span class="smalltext">
@@ -149,21 +150,22 @@
           </tbody>
         </table>
       </div>
-      <% if @topic.comments.any? %>
-        <% @topic.comments.each do |comment| %>
-          <%= render comment %>
+      <%= turbo_frame_tag "comments" do %>
+        <% if @topic.comments.any? %>
+          <% @topic.comments.each do |comment| %>
+            <%= render comment %>
+          <% end %>
+        <% else %>
+          <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
         <% end %>
-      <% else %>
-        <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
       <% end %>
       <% if policy(@topic).create_comment? %>
         <%= render "comments/form", comment: @topic.comments.build %>
       <% end %>
       <div class="spacer">
         <div class="forumheader">
-          <%= t("go_to_page") %>&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <%= t("go_to_page") %>&nbsp;[<span class="nextprev_current" style="text-decoration:underline">1</span>]
           <a class="nextprev_link" href="">2</a>
-          <!-- End of Next/Prev -->
         </div>
         <br>
         <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
@@ -221,10 +223,5 @@
         </div>
       </div>
     </td>
-
   </div>
 </div>
-
-<%# Debugging policies %>
-<%= "Edit policy: #{policy(@topic).edit?}" %>
-<%= "Destroy policy: #{policy(@topic).destroy?}" %>
