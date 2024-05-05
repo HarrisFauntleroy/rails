@@ -30,7 +30,7 @@ RSpec.describe ApplicationHelper, type: :helper do
       it 'converts markdown code blocks to HTML code blocks' do
         code = "```ruby\nputs 'Hello, world!'\n```"
         actual_html = helper.markdown(code).gsub(/\s+/, ' ').strip
-        expect(actual_html).to match(/<div class="highlight"><pre class="highlight ruby"><code>.*puts.*'Hello, world!'.*<\/code><\/pre><\/div>/)
+        expect(actual_html).to match(%r{<div class="highlight"><pre class="highlight ruby"><code>.*puts.*'Hello, world!'.*</code></pre></div>})
       end
 
       it 'does not highlight the syntax of code blocks without a language' do

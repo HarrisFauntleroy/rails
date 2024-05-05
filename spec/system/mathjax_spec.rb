@@ -6,8 +6,8 @@ require 'rails_helper'
 RSpec.describe 'MathJaxIntegration', type: :system, js: true do
   let(:user) { create(:user, id: 1) }
   let(:forum) { create(:forum, user:) }
-  let(:topic) { create(:topic, forum:, user:, content: "$$\\lambda = \\frac{\\ln{2}}{T_{\\text{half}}}$$") }
-  let(:comment) { create(:comment, topic:, user:, content: "$$\\lambda = \\frac{\\ln{2}}{T_{\\text{half}}}$$") }
+  let(:topic) { create(:topic, forum:, user:, content: '$$\\lambda = \\frac{\\ln{2}}{T_{\\text{half}}}$$') }
+  let(:comment) { create(:comment, topic:, user:, content: '$$\\lambda = \\frac{\\ln{2}}{T_{\\text{half}}}$$') }
 
   before do
     driven_by(:selenium_chrome_headless)

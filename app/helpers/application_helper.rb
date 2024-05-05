@@ -11,10 +11,10 @@ module ApplicationHelper
 
   def markdown(text)
     renderer = HTMLWithRouge.new(
-      :with_toc_data => true,
-      :prettify => true,
-      :hard_wrap => true
-      )
+      with_toc_data: true,
+      prettify: true,
+      hard_wrap: true
+    )
 
     extensions = {
       autolink: true,
