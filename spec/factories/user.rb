@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    username { Faker::Internet.unique.username(specifier: 6..12) }
+    username { Faker::Internet.unique.username(specifier: 3..25) }
     password { 'Password!1' }
     admin { false }
     moderator { false }
