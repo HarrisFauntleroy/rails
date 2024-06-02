@@ -21,6 +21,7 @@ en:
   confirm_new_password: Confirm new password
   contact: Contact
   contact_sidebar_text: 'If you need assistance, please send an email to forum at 4hv dot org. To ensure your email is not marked as spam, please include the phrase "4hv help" in the subject line. You can also find assistance via IRC, at irc.shadowworld.net, room #hvcomm.'
+  create_topic: Create Topic
   currently_waiting_confirmation_for: 'Currently waiting confirmation for: '
   delete: "🗑️"
   devise:

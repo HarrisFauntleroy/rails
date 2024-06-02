@@ -1,5 +1,7 @@
-<div class="custom-card">
-  <h1><%= t("new_topic") %></h1>
+<%= turbo_frame_tag 'new_topic' do %>
+  <div class="custom-card">
+    <h1><%= t("new_topic") %></h1>
 
-  <%= render "form", topic: @topic %>
-</div>
+    <%= render "form", topic: @topic %>
+  </div>
+<% end %>

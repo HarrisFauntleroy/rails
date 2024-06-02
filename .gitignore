@@ -38,3 +38,6 @@
 # Ignore coverage folder except for coverage badge
 /coverage/*
 !/coverage/coverage.svg
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
