@@ -8,19 +8,14 @@ class ForumsController < ApplicationController
 
   def index
     @categories = Category.all.includes(forums: { topics: :comments })
-    @breadcrumbs = [
-      { title: '4hv.org', path: root_path },
-      { title: 'Forums', path: forums_path }
-    ]
+    @presenter = ForumPresenter.new(@forum, view_context)
+    @breadcrumbs = @presenter.breadcrumbs
   end
 
   def show
     @forum = Forum.find(params[:id])
-    @breadcrumbs = [
-      { title: '4hv.org', path: root_path },
-      { title: 'Forums', path: forums_path },
-      { title: @forum.name, path: forum_path(@forum) }
-    ]
+    @presenter = ForumPresenter.new(@forum, view_context)
+    @breadcrumbs = @presenter.breadcrumbs
   end
 
   def new
