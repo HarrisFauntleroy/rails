@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to forums_path, notice: 'Category created!'
     else
+      flash.now[:error] = 'Category could not be created.'
       render :new
     end
   end
