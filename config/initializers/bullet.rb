@@ -2,7 +2,7 @@
 
 if defined?(Bullet)
   Bullet.enable = true
-  Bullet.alert = true # JavaScript alert in the browser
+  Bullet.alert = false # JavaScript alert in the browser
   Bullet.bullet_logger = true # Log to Bullet log file (Rails.root/log/bullet.log)
   Bullet.console = true # Log to the browser console
   Bullet.rails_logger = true # Log to the Rails log
