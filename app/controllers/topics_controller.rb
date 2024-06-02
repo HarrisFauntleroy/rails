@@ -29,13 +29,14 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
-
+  
     if @topic.save
-      redirect_to forum_topic_path(@forum, @topic), notice: 'Topic created!'
+      redirect_to forum_topic_path(@forum, @topic), flash: { success: 'Topic was successfully created.' }
     else
+      flash.now[:error] = 'Topic could not be created.'
       render :new
     end
-  end
+  end  
 
   def edit
     @topic = @forum.topics.find(params[:id])
@@ -60,7 +61,7 @@ class TopicsController < ApplicationController
 
   def toggle_sticky
     @topic = Topic.find(params[:id])
-    authorize @topic, :toggle_sticky? # Assuming 'toggle_sticky?' policy exists
+    authorize @topic, :toggle_sticky?
 
     if @topic.sticky?
       @topic.unmark_as_sticky!
@@ -73,7 +74,7 @@ class TopicsController < ApplicationController
 
   def toggle_announcement
     @topic = Topic.find(params[:id])
-    authorize @topic, :toggle_announcement? # Assuming 'toggle_announcement?' policy exists
+    authorize @topic, :toggle_announcement?
 
     if @topic.announcement?
       @topic.unmark_as_announcement!
