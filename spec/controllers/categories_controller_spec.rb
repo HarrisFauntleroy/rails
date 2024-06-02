@@ -158,7 +158,7 @@ RSpec.describe CategoriesController, type: :controller do
         it 'handles non-existing category gracefully' do
           delete :destroy, params: { id: 99_999 }
           expect(response).to redirect_to(errors_not_found_path)
-          expect(flash[:alert]).to eq('Category not found.')
+          expect(flash[:alert]).to eq('Record not found.')
         end
       end
     end
@@ -179,7 +179,7 @@ RSpec.describe CategoriesController, type: :controller do
         it 'redirects to the not found page' do
           get :show, params: { id: 99_999 }
           expect(response).to redirect_to(errors_not_found_path)
-          expect(flash[:alert]).to eq('Category not found.')
+          expect(flash[:alert]).to eq('Record not found.')
         end
       end
     end
