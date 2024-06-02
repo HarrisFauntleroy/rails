@@ -16,7 +16,8 @@ describe 'User Authentication Flow', js: true do
       click_button 'Sign up'
     end
 
-    expect(page).to have_content('Sign out')
+    expect(page).to have_current_path(root_path)
+    expect(page).to have_text('Sign out')
   end
 
   it 'user logs in' do
@@ -28,7 +29,7 @@ describe 'User Authentication Flow', js: true do
       click_button 'Log in'
     end
 
-    expect(page).to have_content("Welcome #{user.username}!")
+    expect(page).to have_text("Welcome #{user.username}!")
   end
 
   it 'user logs out' do
@@ -41,7 +42,9 @@ describe 'User Authentication Flow', js: true do
     end
 
     click_button 'Sign out'
-    expect(page).to have_content('Log in')
+    expect(page).to have_current_path(root_path)
+    expect(page).to have_text('Sign up')
+    expect(page).to have_text('Log in')
   end
 
   it 'user resets password' do
