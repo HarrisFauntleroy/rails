@@ -24,11 +24,18 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    if @category.update(category_params)
+      redirect_to forums_path, notice: 'category updated!'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     authorize @category
     @category.destroy
 
-    flash[:notice] = 'Category has been deleted successfully'
     redirect_to forums_path, notice: 'Category deleted!'
   end
 
@@ -39,6 +46,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :id)
   end
 end

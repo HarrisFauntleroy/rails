@@ -1,2 +1,4 @@
-<h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div class="custom-card" id="edit_category">
+  <h1><%= t("edit_category") %></h1>
+  <%= render "form", category: @category %>
+</div>
