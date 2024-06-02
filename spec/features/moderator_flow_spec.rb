@@ -15,6 +15,6 @@ describe 'Moderator Flow', js: true do
     end
 
     expect(page).to have_text("Welcome #{moderator.username}!")
-    expect(page).to have_text("Moderator")
+    expect(page).to have_text('Moderator')
   end
 end

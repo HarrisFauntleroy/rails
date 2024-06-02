@@ -15,6 +15,6 @@ describe 'Admin Flow', js: true do
     end
 
     expect(page).to have_text("Welcome #{admin.username}!")
-    expect(page).to have_text("Admin")
+    expect(page).to have_text('Admin')
   end
 end
