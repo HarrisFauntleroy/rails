@@ -76,6 +76,12 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+if defined?(Bullet)
+  Bullet.enable = true
+  Bullet.bullet_logger = true
+  Bullet.raise = true # Raise errors for failing specs
+end
+
 # Configure Capybara to use headless Chrome
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new

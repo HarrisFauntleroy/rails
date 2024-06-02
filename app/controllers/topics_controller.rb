@@ -7,11 +7,11 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
 
   def index
-    @topics = Topic.all
+    @topics = Topic.all.includes(:user, :comments)
   end
 
   def show
-    @topic = Topic.find(params[:id])
+    @topic = @forum.topics.includes(:user, comments: :user).find(params[:id])
 
     @breadcrumbs = [
       { title: '4hv.org', path: root_path },
