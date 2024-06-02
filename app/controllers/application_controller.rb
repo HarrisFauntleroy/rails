@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_online_stats
 
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
-
-  # These methods are used in application.html.erb in the login/signup form on the sidebar 👇
 
   def resource_name
     :user
@@ -24,8 +27,6 @@ class ApplicationController < ActionController::Base
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
-
-  # These methods are used in application.html.erb in the login/signup form on the sidebar ☝️
 
   def index
     @online_guests_count = 0
@@ -56,4 +57,14 @@ class ApplicationController < ActionController::Base
   #   @next_birthdays = User.where("to_char(date_of_birth, 'MM-DD') > to_char(?, 'MM-DD')", Date.today)
   #                         .order(Arel.sql("to_char(date_of_birth, 'MM'), to_char(date_of_birth, 'DD')"))
   # end
+
+  private
+
+  def user_not_authorized
+    redirect_to root_path, alert: 'You are not authorized to perform this action.'
+  end
+
+  def record_not_found
+    redirect_to errors_not_found_path, alert: 'Record not found.'
+  end
 end
