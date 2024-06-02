@@ -48,6 +48,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'bullet'
   gem 'byebug'
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'factory_bot_rails'
@@ -59,9 +60,12 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-capybara'
   gem 'rubocop-factory_bot'
+  gem 'rubocop-i18n'
+  gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
+  gem 'rubocop-thread_safety'
 end
 
 group :development do
