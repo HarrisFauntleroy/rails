@@ -25,10 +25,11 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_confirmation_of(:password) }
 
     it {
-      is_expected.to validate_numericality_of(:latitude).is_greater_than_or_equal_to(-90).is_less_than_or_equal_to(90).allow_nil
+      expect(subject).to validate_numericality_of(:latitude).is_greater_than_or_equal_to(-90).is_less_than_or_equal_to(90).allow_nil
     }
+
     it {
-      is_expected.to validate_numericality_of(:longitude).is_greater_than_or_equal_to(-180).is_less_than_or_equal_to(180).allow_nil
+      expect(subject).to validate_numericality_of(:longitude).is_greater_than_or_equal_to(-180).is_less_than_or_equal_to(180).allow_nil
     }
 
     describe 'timezones' do
@@ -63,7 +64,7 @@ RSpec.describe User, type: :model do
 
   describe 'birthday methods' do
     shared_context 'birthday setup' do
-      let(:today) { Date.today }
+      let(:today) { Time.zone.today }
       let(:tomorrow) { today + 1 }
       let(:yesterday) { today - 1 }
     end
@@ -80,16 +81,16 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns only today\'s birthdays' do
-        expect(User.todays_birthdays.count).to eq(2)
+        expect(described_class.todays_birthdays.count).to eq(2)
       end
 
       it 'does not return upcoming or past birthdays' do
-        expect(User.todays_birthdays).not_to include(User.find_by(date_of_birth: tomorrow))
-        expect(User.todays_birthdays).not_to include(User.find_by(date_of_birth: yesterday))
+        expect(described_class.todays_birthdays).not_to include(described_class.find_by(date_of_birth: tomorrow))
+        expect(described_class.todays_birthdays).not_to include(described_class.find_by(date_of_birth: yesterday))
       end
 
       it 'does not count users without a date of birth' do
-        expect(User.todays_birthdays).not_to include(User.find_by(date_of_birth: nil))
+        expect(described_class.todays_birthdays).not_to include(described_class.find_by(date_of_birth: nil))
       end
     end
 
@@ -105,16 +106,16 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns only upcoming birthdays' do
-        expect(User.upcoming_birthdays.count).to eq(2)
+        expect(described_class.upcoming_birthdays.count).to eq(2)
       end
 
       it 'does not return today\'s or past birthdays' do
-        expect(User.upcoming_birthdays).not_to include(User.find_by(date_of_birth: today))
-        expect(User.upcoming_birthdays).not_to include(User.find_by(date_of_birth: yesterday))
+        expect(described_class.upcoming_birthdays).not_to include(described_class.find_by(date_of_birth: today))
+        expect(described_class.upcoming_birthdays).not_to include(described_class.find_by(date_of_birth: yesterday))
       end
 
       it 'does not count users without a date of birth' do
-        expect(User.upcoming_birthdays).not_to include(User.find_by(date_of_birth: nil))
+        expect(described_class.upcoming_birthdays).not_to include(described_class.find_by(date_of_birth: nil))
       end
     end
   end

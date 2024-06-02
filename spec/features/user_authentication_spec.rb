@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-feature 'User Authentication Flow', js: true do
+describe 'User Authentication Flow', js: true do
   let(:user) { create(:user) }
 
-  scenario 'user signs up' do
+  it 'user signs up' do
     visit new_user_registration_path
 
     within('#new_registration') do
@@ -19,7 +19,7 @@ feature 'User Authentication Flow', js: true do
     expect(page).to have_content('Sign out')
   end
 
-  scenario 'user logs in' do
+  it 'user logs in' do
     visit root_path
 
     within('#new_session') do
@@ -31,7 +31,7 @@ feature 'User Authentication Flow', js: true do
     expect(page).to have_content("Welcome #{user.username}!")
   end
 
-  scenario 'user logs out' do
+  it 'user logs out' do
     visit root_path
 
     within('#new_session') do
@@ -44,7 +44,7 @@ feature 'User Authentication Flow', js: true do
     expect(page).to have_content('Log in')
   end
 
-  scenario 'user resets password' do
+  it 'user resets password' do
     # Not implemented
   end
 end

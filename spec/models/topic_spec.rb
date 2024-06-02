@@ -18,9 +18,10 @@ RSpec.describe Topic, type: :model do
       topic = build(:topic, title: 'My Topic')
       expect(topic).to be_valid
     end
+
     it 'is invalid without a title' do
       topic = build(:topic, title: nil)
-      expect(topic).to_not be_valid
+      expect(topic).not_to be_valid
     end
   end
 
@@ -38,14 +39,14 @@ RSpec.describe Topic, type: :model do
       forum = create(:forum, topics: [topic])
       forum.destroy
 
-      expect(Topic.where(id: topic.id)).to be_empty
+      expect(described_class.where(id: topic.id)).to be_empty
     end
 
     it 'is destroyed when its parent user is destroyed' do
       user = create(:user, topics: [topic])
       user.destroy
 
-      expect(Topic.where(id: topic.id)).to be_empty
+      expect(described_class.where(id: topic.id)).to be_empty
     end
 
     it 'can have many comments' do
@@ -93,7 +94,7 @@ RSpec.describe Topic, type: :model do
     it 'can be read' do
       created_topic = create(:topic, title: 'Test Topic', user:, forum:)
 
-      expect(Topic.find(created_topic.id)).to eq(created_topic)
+      expect(described_class.find(created_topic.id)).to eq(created_topic)
     end
 
     it 'can be updated' do
@@ -108,7 +109,7 @@ RSpec.describe Topic, type: :model do
       topic_id = topic_to_delete.id
       topic_to_delete.destroy
 
-      expect(Topic.where(id: topic_id)).to be_empty
+      expect(described_class.where(id: topic_id)).to be_empty
     end
   end
 end

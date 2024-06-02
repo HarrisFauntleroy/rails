@@ -16,9 +16,10 @@ RSpec.describe Forum, type: :model do
       forum = build(:forum, name: 'My Forum')
       expect(forum).to be_valid
     end
+
     it 'is invalid without a name' do
       forum = build(:forum, name: nil)
-      expect(forum).to_not be_valid
+      expect(forum).not_to be_valid
     end
   end
 
@@ -36,14 +37,14 @@ RSpec.describe Forum, type: :model do
       category = create(:category, forums: [forum])
       category.destroy
 
-      expect(Forum.where(id: forum.id)).to be_empty
+      expect(described_class.where(id: forum.id)).to be_empty
     end
 
     it 'is destroyed when its parent user is destroyed' do
       user = create(:user, forums: [forum])
       user.destroy
 
-      expect(Forum.where(id: forum.id)).to be_empty
+      expect(described_class.where(id: forum.id)).to be_empty
     end
 
     it 'can have many topics' do
@@ -115,7 +116,7 @@ RSpec.describe Forum, type: :model do
     it 'can be read' do
       created_forum = create(:forum, category:, user:)
 
-      expect(Forum.find(created_forum.id)).to eq(created_forum)
+      expect(described_class.find(created_forum.id)).to eq(created_forum)
     end
 
     it 'can be updated' do
@@ -130,7 +131,7 @@ RSpec.describe Forum, type: :model do
       forum_id = forum_to_delete.id
       forum_to_delete.destroy
 
-      expect(Forum.where(id: forum_id)).to be_empty
+      expect(described_class.where(id: forum_id)).to be_empty
     end
   end
 end

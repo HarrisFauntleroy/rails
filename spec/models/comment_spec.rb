@@ -16,9 +16,10 @@ RSpec.describe Comment, type: :model do
       comment = build(:comment, content: 'My Comment')
       expect(comment).to be_valid
     end
+
     it 'is invalid without content' do
       comment = build(:comment, content: nil)
-      expect(comment).to_not be_valid
+      expect(comment).not_to be_valid
     end
   end
 
@@ -31,7 +32,7 @@ RSpec.describe Comment, type: :model do
       user = create(:user, comments: [comment])
       user.destroy
 
-      expect(Comment.where(id: comment.id)).to be_empty
+      expect(described_class.where(id: comment.id)).to be_empty
     end
 
     it 'has a parent topic' do
@@ -43,7 +44,7 @@ RSpec.describe Comment, type: :model do
       topic = create(:topic, comments: [comment])
       topic.destroy
 
-      expect(Comment.where(id: comment.id)).to be_empty
+      expect(described_class.where(id: comment.id)).to be_empty
     end
 
     it 'can have many replies' do
@@ -57,7 +58,7 @@ RSpec.describe Comment, type: :model do
       reply = create(:comment, parent_comment: comment)
       comment.destroy
 
-      expect(Comment.where(id: reply.id)).not_to be_empty
+      expect(described_class.where(id: reply.id)).not_to be_empty
     end
   end
 
@@ -72,7 +73,7 @@ RSpec.describe Comment, type: :model do
     it 'can be read' do
       created_comment = create(:comment, user:, topic:)
 
-      expect(Comment.find(created_comment.id)).to eq(created_comment)
+      expect(described_class.find(created_comment.id)).to eq(created_comment)
     end
 
     it 'can be updated' do
@@ -87,7 +88,7 @@ RSpec.describe Comment, type: :model do
       comment_id = comment_to_delete.id
       comment_to_delete.destroy
 
-      expect(Comment.where(id: comment_id)).to be_empty
+      expect(described_class.where(id: comment_id)).to be_empty
     end
   end
 end

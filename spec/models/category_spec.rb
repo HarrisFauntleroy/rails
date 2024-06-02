@@ -17,9 +17,10 @@ RSpec.describe Category, type: :model do
       category = build(:category, name: 'My Category')
       expect(category).to be_valid
     end
+
     it 'is invalid without a name' do
       category = build(:category, name: nil)
-      expect(category).to_not be_valid
+      expect(category).not_to be_valid
     end
   end
 
@@ -32,7 +33,7 @@ RSpec.describe Category, type: :model do
       user = create(:user, categories: [category])
       user.destroy
 
-      expect(Category.where(id: category.id)).to be_empty
+      expect(described_class.where(id: category.id)).to be_empty
     end
 
     it 'can have many forums' do
@@ -54,7 +55,7 @@ RSpec.describe Category, type: :model do
     it 'can be read' do
       created_group = create(:category, name: 'Test Group', user:)
 
-      expect(Category.find(created_group.id)).to eq(created_group)
+      expect(described_class.find(created_group.id)).to eq(created_group)
     end
 
     it 'can be updated' do
@@ -69,7 +70,7 @@ RSpec.describe Category, type: :model do
       group_id = group_to_delete.id
       group_to_delete.destroy
 
-      expect(Category.where(id: group_id)).to be_empty
+      expect(described_class.where(id: group_id)).to be_empty
     end
   end
 end

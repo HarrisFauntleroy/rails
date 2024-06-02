@@ -188,13 +188,10 @@ RSpec.describe CategoriesController, type: :controller do
   describe 'category_params' do
     before do
       sign_in admin_user
+      allow(controller).to receive(:params).and_return(params)
     end
 
     let(:params) { ActionController::Parameters.new(category: { name: 'Category Name', user: admin_user }) }
-
-    before do
-      allow(controller).to receive(:params).and_return(params)
-    end
 
     it 'permits the name attribute' do
       expect(controller.send(:category_params)).to eq(params[:category].permit(:name))

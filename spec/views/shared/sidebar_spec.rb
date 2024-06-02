@@ -3,19 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe 'shared/_sidebar', type: :view do
-  before(:each) do
+  before do
     @user = create(:user)
     sign_in @user
     allow(view).to receive(:current_user).and_return(@user)
   end
 
-  it 'should contain "Main Menu" section' do
+  it 'contains "Main Menu" section' do
     render
     expect(rendered).to have_content(t('main_menu'))
   end
 
   describe 'should contain "Welcome" section' do
-    it 'should render "Welcome" label' do
+    it 'renders "Welcome" label' do
       render
       expect(rendered).to have_content(t('welcome'))
     end
@@ -32,7 +32,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
     end
 
     describe 'for a moderator' do
-      before(:each) do
+      before do
         @moderator = create(:user, moderator: true)
         sign_in @moderator
         allow(view).to receive(:current_user).and_return(@moderator)
@@ -49,7 +49,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
     end
 
     describe 'for an admin' do
-      before(:each) do
+      before do
         @admin = create(:user, admin: true)
         sign_in @admin
         allow(view).to receive(:current_user).and_return(@admin)
@@ -66,7 +66,7 @@ RSpec.describe 'shared/_sidebar', type: :view do
     end
   end
 
-  it 'should contain "Online" section' do
+  it 'contains "Online" section' do
     render
     expect(rendered).to have_content(t('online'))
     # TODO: 'add online users'
@@ -75,20 +75,20 @@ RSpec.describe 'shared/_sidebar', type: :view do
     # todo 'most ever online'
   end
 
-  it 'should contain "Members Birthdays" section' do
+  it 'contains "Members Birthdays" section' do
     render
     expect(rendered).to have_content(t('members_birthdays'))
     # TODO: 'add members birthdays'
   end
 
-  it 'should contain "Contact" section' do
+  it 'contains "Contact" section' do
     render
     expect(rendered).to have_content(t('contact'))
     expect(rendered).to have_content(t('contact_sidebar_text'))
     # TODO: 'add contact link'
   end
 
-  it 'should contain "Support 4hv.org!" section' do
+  it 'contains "Support 4hv.org!" section' do
     render
     expect(rendered).to have_content(t('support_4hv'))
     expect(rendered).to have_content(t('donate'))

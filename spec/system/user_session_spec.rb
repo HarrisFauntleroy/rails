@@ -8,6 +8,7 @@ RSpec.describe 'UserSessions', type: :system do
     driven_by(:rack_test) # for non-JS testing
     # driven_by(:selenium_chrome) # for headless testing
   end
+
   it 'allows a user to log in' do
     user = create(:user)
     visit root_path
@@ -22,6 +23,7 @@ RSpec.describe 'UserSessions', type: :system do
     expect(page).to have_current_path(root_path)
     expect(page).to have_text('Sign out')
   end
+
   it 'allows a user to log out' do
     user = create(:user)
     login_as(user)

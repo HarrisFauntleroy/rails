@@ -64,7 +64,7 @@ RSpec.configure do |config|
 
   config.include Warden::Test::Helpers
 
-  config.after(:each) do
+  config.after do
     Warden.test_reset!
   end
 end
@@ -83,7 +83,7 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument('--disable-gpu') # Not necessary for Linux, but required for Windows
   options.add_argument('--window-size=1400,1400')
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
 end
 
 Capybara.javascript_driver = :headless_chrome

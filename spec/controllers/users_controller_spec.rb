@@ -13,6 +13,7 @@ RSpec.describe UsersController, type: :controller do
 
       expect(assigns(:users)).to eq([admin_user, *users])
     end
+
     it 'renders the index template for admin users' do
       admin_user = create(:user, admin: true)
       sign_in admin_user
@@ -21,6 +22,7 @@ RSpec.describe UsersController, type: :controller do
 
       expect(response).to render_template(:index)
     end
+
     it 'redirects non-admin users' do
       non_admin_user = create(:user, admin: false)
       sign_in non_admin_user
@@ -89,21 +91,5 @@ RSpec.describe UsersController, type: :controller do
       get :show, params: { id: 1000 }
       expect(response).to redirect_to(errors_not_found_path)
     end
-  end
-
-  describe 'POST #create' do
-    # No additional functionality to test
-  end
-
-  describe 'GET #edit' do
-    # No additional functionality to test
-  end
-
-  describe 'PATCH #update' do
-    # No additional functionality to test
-  end
-
-  describe 'DELETE #destroy' do
-    # No additional functionality to test
   end
 end
