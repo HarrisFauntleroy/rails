@@ -10,11 +10,11 @@
       <ul>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to t("home"), root_path %>
+          <%= link_to t("home"), root_path, id: 'home_link' %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to t("forum"), forums_path %>
+          <%= link_to t("forum"), forums_path, id: 'forums_link' %>
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
@@ -34,10 +34,10 @@
         </li>
         <li>
           <%= image_tag("bullet2.gif") %>
-          <%= link_to t("site_rules"), site_rules_path %>
+          <%= link_to t("site_rules"), site_rules_path, id: 'site_rules_link' %>
         </li>
       </ul>
-    </div>
+  </div>
   </div>
 
   <div class="custom-card">

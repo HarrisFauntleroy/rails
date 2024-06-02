@@ -13,6 +13,7 @@ class ForumPresenter
     ]
 
     return unless @forum
+
     crumbs << { title: @forum.name, path: @view_context.forum_path(@forum) }
   end
 end

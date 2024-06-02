@@ -7,5 +7,13 @@ FactoryBot.define do
     password { 'Password!1' }
     admin { false }
     moderator { false }
+
+    trait :admin do
+      admin { true }
+    end
+
+    trait :moderator do
+      moderator { true }
+    end
   end
 end
