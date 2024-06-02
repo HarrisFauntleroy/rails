@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  include Pundit::Authorization
-
   before_action :set_category, only: %i[show edit update destroy]
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
     @categories = Category.all.includes(:forums)
@@ -31,7 +28,6 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     flash[:notice] = 'Category has been deleted successfully'
-
     redirect_to forums_path, notice: 'Category deleted!'
   end
 
@@ -39,15 +35,9 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to errors_not_found_path, alert: 'Category not found.'
   end
 
   def category_params
     params.require(:category).permit(:name)
-  end
-
-  def user_not_authorized
-    redirect_to root_path, alert: 'You are not authorized to perform this action.'
   end
 end
