@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'User Authentication Flow', js: true do
@@ -43,6 +45,6 @@ feature 'User Authentication Flow', js: true do
   end
 
   scenario 'user resets password' do
-    #Not implemented
+    # Not implemented
   end
 end

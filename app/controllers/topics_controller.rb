@@ -29,14 +29,14 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.build(topic_params)
     @topic.user = current_user
     authorize @topic
-  
+
     if @topic.save
       redirect_to forum_topic_path(@forum, @topic), flash: { success: 'Topic was successfully created.' }
     else
       flash.now[:error] = 'Topic could not be created.'
       render :new
     end
-  end  
+  end
 
   def edit
     @topic = @forum.topics.find(params[:id])
