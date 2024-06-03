@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Moderators', js: true do
+describe 'Moderators', type: :system, js: true do
   let(:moderator) { create(:user, :moderator) }
 
   before do
