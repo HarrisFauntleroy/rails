@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'User Flow', js: true do
+describe 'Users', js: true do
   let(:user) { create(:user) }
 
   it 'user signs up' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Category Flow', js: true do
+describe 'Categories', js: true do
   let(:admin) { create(:user, :admin, id: 1) }
 
   it 'admin creates a category' do
@@ -44,12 +44,27 @@ describe 'Category Flow', js: true do
     expect(page).to have_text('New Category Name')
 
     # Admin deletes the category
-    reload_page # TODO: reload should not be necessary, the button needs fixing
+    visit current_path
 
     accept_confirm do
       find('#delete_category_button').click
     end
 
     expect(page).not_to have_text('New Category Name')
+  end
+
+  it 'regular user cannot create a category' do
+    # Regular user logs in
+    user = create(:user)
+    visit root_path
+
+    within('#new_session') do
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+      click_button 'Log in'
+    end
+
+    # Regular user cannot create a category
+    expect(page).not_to have_css('#new_category_link')
   end
 end
