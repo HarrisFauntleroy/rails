@@ -16,6 +16,7 @@ class ForumsController < ApplicationController
     @forum = Forum.find(params[:id])
     @presenter = ForumPresenter.new(@forum, view_context)
     @breadcrumbs = @presenter.breadcrumbs
+    @users_presenter = UsersPresenter.new(User.all)
   end
 
   def new

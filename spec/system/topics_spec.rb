@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Topics', type: :system, js: true do
   let(:user) { create(:user) }
   let(:forum) { create(:forum) }
-  let(:topic) { create(:topic, forum: forum, user: user) }
+  let(:topic) { create(:topic, forum:, user:) }
 
   before do
     sign_in user

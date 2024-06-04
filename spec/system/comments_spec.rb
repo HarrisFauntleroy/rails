@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Comments', type: :system, js: true do
   let(:user) { create(:user) }
-  let(:topic) { create(:topic, user: user) }
-  let(:comment) { create(:comment, topic: topic, user: user) }
+  let(:topic) { create(:topic, user:) }
+  let(:comment) { create(:comment, topic:, user:) }
 
   before do
     sign_in user

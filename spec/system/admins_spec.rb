@@ -14,7 +14,7 @@ RSpec.describe 'Admins', type: :system, js: true do
     expect(page).to have_text("Welcome #{admin.username}!")
     expect(page).to have_text('Admin')
   end
-  
+
   describe 'Admin Manages Users' do
     it 'allows admin to activate a user' do
       # Todo
