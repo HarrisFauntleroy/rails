@@ -30,12 +30,19 @@
         <tfoot class="category-footer">
           <div class="btn-group">
             <% if policy(category).destroy? %>
-              <%= button_to t("delete"), category, class: "btn", id: "delete_category_button", method: :delete, data: {   turbo_confirm: t("are_you_sure"), } %>
+              <%= button_to t("delete"),
+              category,
+              class: "btn",
+              id: "delete_category_button",
+              method: :delete,
+              data: {
+                turbo_confirm: t("are_you_sure"),
+              } %>
             <% end %>
             <% if policy(category).edit? %>
-              <%= link_to t("edit"), 
-              edit_category_path(category), 
-              class: "btn", 
+              <%= link_to t("edit"),
+              edit_category_path(category),
+              class: "btn",
               id: "edit_category_link" %>
             <% end %>
           </div>
@@ -45,7 +52,10 @@
   </div>
   <div class="btn-group">
     <% if current_user&.admin? %>
-      <%= link_to t("new_category"), new_category_path, class: "btn", id: "new_category_link" %>
+      <%= link_to t("new_category"),
+      new_category_path,
+      class: "btn",
+      id: "new_category_link" %>
       <%= link_to t("new_forum"), new_forum_path, class: "btn" %>
     <% end %>
   </div>
