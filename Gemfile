@@ -48,9 +48,9 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'bullet'
   gem 'byebug'
-  gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pundit-matchers'
@@ -92,9 +92,6 @@ end
 
 gem 'devise', '~> 4.9'
 gem 'pundit'
-
 gem 'erb-formatter', '~> 0.7.2'
-
 gem 'simplecov-formatter-badge', require: false
-
 gem 'view_component', '~> 3.12'
