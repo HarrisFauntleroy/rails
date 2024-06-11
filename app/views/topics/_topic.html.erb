@@ -1,0 +1,20 @@
+<table style="width:100%">
+  <tbody>
+    <tr>
+      <td style="width:60%">
+        <div class="mediumtext">
+          <%= image_tag("e.png") %>
+          <b>
+            <%= @topic.title %>
+          </b>
+        </div>
+        <br>
+        <%= t("go_to_page") %>&nbsp;
+        <div class="pagination" style="display: inline-block;">
+          <%= paginate @comments %>
+        </div>
+      </td>
+      <td style="width:40%; text-align: right; vertical-align:bottom;"></td>
+    </tr>
+  </tbody>
+</table>

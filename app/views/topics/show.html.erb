@@ -32,24 +32,9 @@
         </tbody>
       </table>
       <br>
-      <table style="width:100%">
-        <tbody>
-          <tr>
-            <td style="width:60%">
-              <div class="mediumtext">
-                <%= image_tag("e.png") %>
-                <b>
-                  <%= @topic.title %>
-                </b>
-              </div><br><%= t("go_to_page") %>&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
-              <a class="nextprev_link" href="">2</a>
-              <!-- End of Next/Prev -->
-            </td>
-            <td style="width:40%; text-align: right; vertical-align:bottom;"></td>
-          </tr>
-        </tbody>
-      </table>
-
+      <% if params[:page].to_i <= 1 %>
+        <%= render partial: 'topics/topic', locals: { topic: @topic } %>
+      <% end %>
       <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
         <tbody>
           <tr>
@@ -68,93 +53,99 @@
       <div class="spacer">
         <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
           <tbody>
-            <tr>
-              <td class="nforumcaption3" style="vertical-align:middle; width:20%;"><a href="../../user.php?id.1225"><b>
+            <% if params[:page].to_i <= 1 %>
+              <tr>
+                <td class="nforumcaption3" style="vertical-align:middle; width:20%;">
+                  <a href="../../user.php?id.1225"><b>
                     <%= link_to @topic.user.username, user_url(@topic.user) %>
-                  </b></a></td>
-              <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
-                <table cellspacing="0" cellpadding="0" style="width:100%">
-                  <tbody>
-                    <tr>
-                      <td class="smallblacktext">
-                        <a id="comment_66240" href="">
-                          <%= image_tag("post.png") %>
-                        </a>
-                        <%= @topic.created_at.strftime("%d %b %Y at %I:%M %p") %>
-                      </td>
-                      <td style="text-align:right">
-                        <a href="/print.php?plugin:forum.66240">
-                          <%= image_tag("printer.png") %>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td class="nforumthread" style="vertical-align:top">
-                <div class="spacer">
-                  <%= image_tag("blank_avatar.jpg") %>
-                </div><br><span class="smalltext">
+                  </b></a>
+                </td>
+                <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
+                  <table cellspacing="0" cellpadding="0" style="width:100%">
+                    <tbody>
+                      <tr>
+                        <td class="smallblacktext">
+                          <a id="comment_66240" href="">
+                            <%= image_tag("post.png") %>
+                          </a>
+                          <%= @topic.created_at.strftime("%d %b %Y at %I:%M %p") %>
+                        </td>
+                        <td style="text-align:right">
+                          <a href="/print.php?plugin:forum.66240">
+                            <%= image_tag("printer.png") %>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="nforumthread" style="vertical-align:top">
                   <div class="spacer">
-                    <%= image_tag("lev3.png") %>
-                  </div>
-                  <span class="smalltext">
-                    <%= t("registered_member", number: @topic.user.id) %>
+                    <%= image_tag("blank_avatar.jpg") %>
+                  </div><br><span class="smalltext">
+                    <div class="spacer">
+                      <%= image_tag("lev3.png") %>
+                    </div>
+                    <span class="smalltext">
+                      <%= t("registered_member", number: @topic.user.id) %>
+                    </span>
+                    <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
                   </span>
-                  <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
-                </span>
-              </td>
-              <td class="nforumthread" style="vertical-align:top">
-                <%= @topic.content %><br><br><br><br><br><br>
-                <% if @topic.user&.signature %>
-                  <hr style="width:15%; text-align:left">
-                  <span class="smalltext">
-                    <%= @topic.user.signature %>
-                  </span>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
-                  nil,
-                  id: "back-to-top",
-                  onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-                </span></td>
-              <td class="nforumthread2" style="vertical-align:top">
-                <table cellspacing="0" cellpadding="0" style="width:100%">
-                  <tbody>
-                    <tr>
-                      <td style="text-align:right">
-                        <div class="btn-group">
-                          <% if policy(@topic).edit? %>
-                            <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
-                          <% end %>
-                          <% if policy(@topic).destroy? %>
-                            <%= button_to t("delete"),
-                            [@forum, @topic],
-                            class: "btn",
-                            method: :delete,
-                            data: {
-                              confirm: t("are_you_sure"),
-                              turbo_confirm: t("are_you_sure"),
-                            } %>
-                          <% end %>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
+                </td>
+                <td class="nforumthread" style="vertical-align:top">
+                  <%= @topic.content %><br><br><br><br><br><br>
+                  <% if @topic.user&.signature %>
+                    <hr style="width:15%; text-align:left">
+                    <span class="smalltext">
+                      <%= @topic.user.signature %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
+                    nil,
+                    id: "back-to-top",
+                    onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                  </span></td>
+                <td class="nforumthread2" style="vertical-align:top">
+                  <table cellspacing="0" cellpadding="0" style="width:100%">
+                    <tbody>
+                      <tr>
+                        <td style="text-align:right">
+                          <div class="btn-group">
+                            <% if policy(@topic).edit? %>
+                              <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
+                            <% end %>
+                            <% if policy(@topic).destroy? %>
+                              <%= button_to t("delete"),
+                              [@forum, @topic],
+                              class: "btn",
+                              method: :delete,
+                              data: {
+                                confirm: t("are_you_sure"),
+                                turbo_confirm: t("are_you_sure"),
+                              } %>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
       <% if @topic.comments.any? %>
-        <% @topic.comments.each do |comment| %>
-          <%= render comment %>
-        <% end %>
+        <div class="comments">
+          <% @comments.each do |comment| %>
+            <%= render comment %>
+          <% end %>
+        </div>
       <% else %>
         <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
       <% end %>
@@ -163,9 +154,10 @@
       <% end %>
       <div class="spacer">
         <div class="forumheader">
-          <%= t("go_to_page") %>&nbsp; <!-- Start of Next/Prev --> [<span class="nextprev_current" style="text-decoration:underline">1</span>]
-          <a class="nextprev_link" href="">2</a>
-          <!-- End of Next/Prev -->
+          <%= t("go_to_page") %>&nbsp;
+          <div class="pagination" style="display: inline-block;">
+            <%= paginate @comments %>
+          </div>
         </div>
         <br>
         <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
@@ -199,10 +191,8 @@
                   </p>
                 </form>
               </td>
-              <td
-                style="width:50%; text-align:right; vertical-align:top"
-                class="nforumthread"
-              ></td>
+              <td style="width:50%; text-align:right; vertical-align:top" class="nforumthread">
+              </td>
             </tr>
           </tbody>
         </table>
@@ -213,7 +203,6 @@
           <tbody>
             <tr>
               <td style="text-align:center" class="nforumthread2">
-
               </td>
             </tr>
           </tbody>
