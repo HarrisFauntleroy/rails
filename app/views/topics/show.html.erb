@@ -164,8 +164,8 @@
           <tbody>
             <tr>
               <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
-                <b><%= t("moderators") %>: Chris Russell, Noelle, Alex, Tesladownunder, Dave Marshall,
-                  Bjørn, Dave Billington, Steve McConner, Anders M.</b><br>
+                <b><%= t("moderators") %>:
+                  <%= @users_presenter.moderators_list %></b><br>
                 <form method="comment" action="">
                   <p><%= t("jump") %>:
                     <select name="forumjump" class="tbox">

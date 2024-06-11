@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
       { title: @forum.name, path: forum_path(@forum) },
       { title: @topic.title, path: forum_topic_path(@forum, @topic) }
     ]
+    @users_presenter = UsersPresenter.new(User.all)
   end
 
   def new
