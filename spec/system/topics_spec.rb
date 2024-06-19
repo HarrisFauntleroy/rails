@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Topics', type: :system, js: true do
+RSpec.describe 'Topics', :js, type: :system do
   let(:user) { create(:user) }
   let(:forum) { create(:forum) }
   let(:topic) { create(:topic, forum:, user:) }

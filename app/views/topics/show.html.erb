@@ -33,7 +33,7 @@
       </table>
       <br>
       <% if params[:page].to_i <= 1 %>
-        <%= render partial: 'topics/topic', locals: { topic: @topic } %>
+        <%= render partial: "topics/topic", locals: { topic: @topic } %>
       <% end %>
       <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
         <tbody>
@@ -57,8 +57,8 @@
               <tr>
                 <td class="nforumcaption3" style="vertical-align:middle; width:20%;">
                   <a href="../../user.php?id.1225"><b>
-                    <%= link_to @topic.user.username, user_url(@topic.user) %>
-                  </b></a>
+                      <%= link_to @topic.user.username, user_url(@topic.user) %>
+                    </b></a>
                 </td>
                 <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
                   <table cellspacing="0" cellpadding="0" style="width:100%">
@@ -191,7 +191,10 @@
                   </p>
                 </form>
               </td>
-              <td style="width:50%; text-align:right; vertical-align:top" class="nforumthread">
+              <td
+                style="width:50%; text-align:right; vertical-align:top"
+                class="nforumthread"
+              >
               </td>
             </tr>
           </tbody>

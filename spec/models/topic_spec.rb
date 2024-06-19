@@ -60,26 +60,26 @@ RSpec.describe Topic, type: :model do
   describe 'sticky' do
     it 'can be marked as sticky' do
       topic.mark_as_sticky!
-      expect(topic.sticky?).to eq(true)
+      expect(topic.sticky?).to be(true)
     end
 
     it 'can be unmarked as sticky' do
       topic.mark_as_sticky!
       topic.unmark_as_sticky!
-      expect(topic.sticky?).to eq(false)
+      expect(topic.sticky?).to be(false)
     end
   end
 
   describe 'announcement' do
     it 'can be marked as announcement' do
       topic.mark_as_announcement!
-      expect(topic.announcement?).to eq(true)
+      expect(topic.announcement?).to be(true)
     end
 
     it 'can be unmarked as announcement' do
       topic.mark_as_announcement!
       topic.unmark_as_announcement!
-      expect(topic.announcement?).to eq(false)
+      expect(topic.announcement?).to be(false)
     end
   end
 
