@@ -7,3 +7,11 @@ require:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'config/**/*.rb'
