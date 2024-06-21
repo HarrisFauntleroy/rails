@@ -1,11 +1,11 @@
 # Forum
 
 <p align="center">
-    <a href="/LICENSE.md">
-        <img alt="GitHub" src="https://img.shields.io/github/license/HarrisFauntleroy/forum?&style=flat">
+    <a href="https://github.com/rubocop/rubocop">
+        <img alt="Code style" src="https://img.shields.io/badge/code_style-rubocop-brightgreen.svg">
     </a>
-    <a href="/LICENSE.md">
-        <img alt="GitHub" src="coverage/coverage.svg">
+    <a href="/coverage">
+        <img alt="Coverage" src="/coverage/coverage.svg">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/graphs/contributors">
         <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum?&style=flat">
