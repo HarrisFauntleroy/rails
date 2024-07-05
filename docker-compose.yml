@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  4hv:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    depends_on:
+      - db_4hv
+
+  db_4hv:
+    image: postgres:13
+    env_file:
+      - .env.production
+    volumes:
+      - 4hv_pgdata:/var/lib/postgresql/data
+
+volumes:
+  4hv_pgdata:
