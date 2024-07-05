@@ -11,7 +11,7 @@ services:
       - db_4hv
 
   db_4hv:
-    image: postgres:13
+    image: postgres:16
     env_file:
       - .env.production
     volumes:
