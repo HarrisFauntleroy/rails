@@ -4,18 +4,18 @@ services:
   4hv:
     build: .
     ports:
-      - "3000:3000"
+      - "4000:4000"
     env_file:
       - .env.production
     depends_on:
-      - db_4hv
+      - db-4hv
 
-  db_4hv:
-    image: postgres:13
+  db-4hv:
+    image: postgres:16
     env_file:
       - .env.production
     volumes:
-      - 4hv_pgdata:/var/lib/postgresql/data
+      - 4hv-pgdata:/var/lib/postgresql/data
 
 volumes:
-  4hv_pgdata:
+  4hv-pgdata:
