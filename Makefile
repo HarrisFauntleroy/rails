@@ -11,7 +11,7 @@ rails-c:
 .PHONY: dev
 dev:
 	@echo "Starting the development server..."
-	./bin/dev
+	rails s
 
 # .PHONY: sidekiq
 # sidekiq:
