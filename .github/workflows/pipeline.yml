@@ -1,11 +1,14 @@
 name: Build & Test
+
 on:
   push:
   pull_request:
   schedule:
     - cron: '0 2 * * *'
+
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -29,14 +32,34 @@ jobs:
           cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create
           bundle exec rake db:schema:load
+          bundle exec rails assets:precompile
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
     
       - name: Run RSpec
-        run: COVERAGE=true bundle exec rspec  --require rails_helper
+        run: COVERAGE=true bundle exec rspec
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 80
+
+      - name: Upload Capybara Screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capybara-screenshots
+          path: tmp/capybara
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+  
+      - name: Run Brakeman
+        run: bundle exec brakeman
