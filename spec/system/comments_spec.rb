@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Comments', js: true do
+describe 'Comments', type: :system do
   let(:user) { create(:user) }
   let(:topic) { create(:topic, user:) }
   let(:comment) { create(:comment, topic:, user:) }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Forums', js: true do
+describe 'Forums', type: :system do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:forum) { create(:forum, category:) }

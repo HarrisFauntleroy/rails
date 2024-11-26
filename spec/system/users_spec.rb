@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Users', js: true do
+describe 'Users', type: :system do
   let(:user) { create(:user) }
 
   it 'user signs up' do

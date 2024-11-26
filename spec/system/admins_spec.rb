@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-feature 'Admins', js: true do
+describe 'Admins', type: :system do
   let(:admin) { create(:user, :admin) }
 
   before do
