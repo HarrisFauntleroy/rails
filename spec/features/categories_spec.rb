@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Categories', :js, type: :system do
+feature 'Categories', js: true do
   let(:admin) { create(:user, :admin, id: 1) }
 
   it 'admin creates a category' do

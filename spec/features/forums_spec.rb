@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Forums', :js, type: :system do
+feature 'Forums', js: true do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
   let(:forum) { create(:forum, category:) }
