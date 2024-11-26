@@ -12,7 +12,7 @@ describe 'Categories', type: :system do
     within('#new_session') do
       fill_in 'user_email', with: admin.email
       fill_in 'user_password', with: admin.password
-      click_button 'Log in'
+      click_on 'Log in'
     end
 
     # Admin creates a category
@@ -21,7 +21,7 @@ describe 'Categories', type: :system do
 
     within('#new_category') do
       fill_in 'category_name', with: 'Testing Category'
-      click_button 'Submit'
+      click_on 'Submit'
     end
 
     # Admin sees the category
@@ -37,7 +37,7 @@ describe 'Categories', type: :system do
 
     within('#edit_category') do
       fill_in 'category_name', with: 'New Category Name'
-      click_button 'Submit'
+      click_on 'Submit'
     end
 
     # Admin sees the updated category
@@ -61,7 +61,7 @@ describe 'Categories', type: :system do
     within('#new_session') do
       fill_in 'user_email', with: user.email
       fill_in 'user_password', with: user.password
-      click_button 'Log in'
+      click_on 'Log in'
     end
 
     # Regular user cannot create a category

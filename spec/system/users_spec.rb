@@ -13,7 +13,7 @@ describe 'Users', type: :system do
       fill_in 'user_username', with: 'newuser'
       fill_in 'user_password', with: 'Password!1'
       fill_in 'user_password_confirmation', with: 'Password!1'
-      click_button 'Sign up'
+      click_on 'Sign up'
     end
 
     expect(page).to have_current_path(root_path)
@@ -26,7 +26,7 @@ describe 'Users', type: :system do
     within('#new_session') do
       fill_in 'user_email', with: user.email
       fill_in 'user_password', with: user.password
-      click_button 'Log in'
+      click_on 'Log in'
     end
 
     expect(page).to have_text("Welcome #{user.username}!")
@@ -38,10 +38,10 @@ describe 'Users', type: :system do
     within('#new_session') do
       fill_in 'user_email', with: user.email
       fill_in 'user_password', with: user.password
-      click_button 'Log in'
+      click_on 'Log in'
     end
 
-    click_button 'Sign out'
+    click_on 'Sign out'
     expect(page).to have_current_path(root_path)
     expect(page).to have_text('Sign up')
     expect(page).to have_text('Log in')
