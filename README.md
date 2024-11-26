@@ -1,153 +1,134 @@
-# Forum
+# 4hv.org
+
+<div align="center">
+    <a href="">
+        <!-- You may want to add a logo image here, similar to Alchemical Finance -->
+    </a>
+</div>
 
 <p align="center">
     <a href="https://github.com/rubocop/rubocop">
-        <img alt="Code style" src="https://img.shields.io/badge/code_style-rubocop-brightgreen.svg">
+        <img alt="Code Style: RuboCop" src="https://img.shields.io/badge/code_style-rubocop-brightgreen.svg">
     </a>
     <a href="/coverage">
-        <img alt="Coverage" src="/coverage/coverage.svg">
+        <img alt="Coverage Status" src="/coverage/coverage.svg">
+    </a>
+    <a href="/LICENSE.md">
+        <img alt="License: MIT" src="https://img.shields.io/github/license/HarrisFauntleroy/forum">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/graphs/contributors">
-        <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum?&style=flat">
+        <img alt="Contributors" src="https://img.shields.io/github/contributors-anon/HarrisFauntleroy/forum">
     </a>
     <a href="https://github.com/HarrisFauntleroy/forum/actions">
-        <img alt="GitHub branch checks state" src="https://img.shields.io/github/checks-status/HarrisFauntleroy/forum/main?&style=flat">
+        <img alt="Build Status" src="https://img.shields.io/github/checks-status/HarrisFauntleroy/forum/main">
     </a>
-    <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/issues/HarrisFauntleroy/forum?&style=flat">
+    <a href="https://github.com/HarrisFauntleroy/forum/issues">
+        <img alt="Issues" src="https://img.shields.io/github/issues/HarrisFauntleroy/forum">
     </a>
-    <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/last-commit/HarrisFauntleroy/forum?&style=flat">
+    <a href="https://github.com/HarrisFauntleroy/forum/commits">
+        <img alt="Last Commit" src="https://img.shields.io/github/last-commit/HarrisFauntleroy/forum">
     </a>
-    </a>
-    <a href="https://github.com/HarrisFauntleroy/forum/issues?q=is%3Aopen+is%3Aissue">
-        <img alt="GitHub issues" src="https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/forum?&style=flat">
+    <a href="https://github.com/HarrisFauntleroy/forum/commits">
+        <img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/w/HarrisFauntleroy/forum">
     </a>
 </p>
 
-<!-- PROJECT_DESCRIPTION -->
+## Overview
 
 A full-featured forum application built with Ruby on Rails.
 
-<!-- PROJECT_SCREENSHOT -->
+## Prerequisites
 
-<!-- 🚧 -->
+Before setting up the project, ensure you have the following installed:
 
-## Table of Contents ⚙️
+- Ruby (via [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv))
+- Bundler (`gem install bundler`)
+- PostgreSQL (via Homebrew or [Postgres.app](https://postgresapp.com/))
+- Redis (for caching and background jobs)
 
-1. [Features](#features-💫)
-2. [Local Development](#local-development-💻)
-3. [Contributing](#contributing-🤝)
-4. [License](#license-⚖️)
-5. [Disclaimer](#disclaimer-🚨)
+## Setup
 
-## Features 💫
-
-- 🚧
-
-## Local Development 💻
-
-Here's how you can set up forum in your local dev environment:
-
-**Requirements**
-
-<!-- LIST OF REQUIREMENTS -->
-
-- Ruby >= 3.3.1
-<!-- - Docker (for running Postgres, Redis, etc.) 🐳 -->
-
-Ruby is managed using Ruby Version Manager
-
-<!-- <a href="https://github.com/nvm-sh/logos"><img alt="nvm project logo" src="https://raw.githubusercontent.com/nvm-sh/logos/HEAD/nvm-logo-color.svg" height="50" /></a> -->
+### Ruby Installation
 
 ```bash
-# Update ruby version
-rvm use <version>
+brew install rvm
+rvm install $(cat .ruby-version)
+rvm use
 ```
 
-**Installation**
+### Dependencies
 
-<!-- INSTALLATION INSTRUCTIONS -->
-
-Install the required gems by running the following command:
+Install project dependencies:
 
 ```bash
 bundle install
 ```
 
-To migrate the database, run the following command:
+### Database Setup
+
+Create and initialize the PostgreSQL database:
 
 ```bash
-rails db:migrate
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails db:seed
 ```
 
-```bash
-rails db:create db:migrate db:seed
-```
-
-**Development**
-
+For a fresh start:
 ```bash
 rails db:drop db:create db:schema:load db:migrate db:seed
 ```
 
-To run the specs, a single spec, or a single test:
+## Development
 
-```bash
-rails rspec
-rspec spec/controllers/user_controller_spec.rb
-rspec spec/controllers/user_controller_spec.rb:32 
-```
-
-To start the server, run the following command:
+Start the Rails server in development mode:
 
 ```bash
 rails server
+# or
 rails s
 ```
 
-To run the rails console, run the following command:
-
+Access the Rails console:
 ```bash
 rails console
+# or
 rails c
 ```
 
-**Rake Commands**
+The application will be available at `http://localhost:3000`.
 
-Find missing specs:
+_For additional commands and options, please refer to the Makefile._
 
-```bash
-rake spec_check:<views | models | controllers | all>    
-```
+### Testing
 
-**Makefile Commands**
-
-To make life easier, there is a Makefile with some common commands:
-
-To run [i18n-tasks](https://github.com/glebm/i18n-tasks) normalize and health
-```bash
-make i18n
-```
-
-To format and lint the code
+Run the full test suite:
 
 ```bash
-make pretty
+rails rspec
 ```
 
-<!-- _Please refer to the package.json for additional details and scripts._ -->
+Run specific tests:
 
-## Contributing 🤝
+```bash
+# Run all tests in a specific file
+rspec spec/controllers/user_controller_spec.rb
+# Run a specific test
+rspec spec/controllers/user_controller_spec.rb:32
+```
 
-<!-- GUIDELINES FOR CONTRIBUTION -->
+### Utility Commands
 
-## License ⚖️
+_For additional commands and options, please refer to the Makefile._
 
-<!-- Distributed under the MIT License. See `LICENSE` for more information. -->
+## Contributing
 
-## Disclaimer 🚨
+We welcome contributions! Please see our [contribution guidelines](CONTRIBUTING.md) for details on how to get involved.
 
-This software is currently a work in progress and is considered in ALPHA state.
-Features will appear and disappear, APIs will be changed, bugs will be
-introduced, your feedback is always welcome! 🚧🔧
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE.md) for details.
+
+## Disclaimer
+
+This software is currently in alpha development and should be used with caution. Features and APIs may change as development continues. Your feedback is valuable and appreciated!
