@@ -8,10 +8,16 @@ en:
   back_to_top: Back to top
   can: can
   cancel_my_account: Cancel my account
-  category_could_not_be_created: Category could not be created.
-  category_created: Category created!
-  category_deleted: Category deleted!
-  category_updated: Category updated!
+  categories:
+    create:
+      failure: Category could not be created
+      success: Category created
+    destroy:
+      failure: Category could not be deleted
+      success: Category deleted
+    update:
+      failure: Category could not be updated
+      success: Category updated
   change_my_password: Change my password
   characters_minimum: characters minimum
   chat_room: Chat Room
@@ -19,11 +25,7 @@ en:
   closed_thread: Closed Thread
   coffee: Coffee
   comment: Comment
-  comment_created: Comment created!
-  comment_deleted: Comment deleted!
-  comment_has_been_deleted_successfully: Comment has been deleted successfully
   comment_replies_uou: comment replies - You
-  comment_updated: Comment updated!
   comments: Comments
   confirm_my_account: Confirm my account
   confirm_new_password: Confirm new password
@@ -55,11 +57,7 @@ en:
     messages:
       not_saved: There were %{count} errors preventing this %{resource} from being saved
   forum: Forum
-  forum_created: Forum created!
-  forum_deleted: Forum deleted!
-  forum_has_been_deleted_successfully: Forum has been deleted successfully
   forum_threads: Forum Threads
-  forum_updated: Forum updated!
   forums: Forums
   go_back: Go Back
   go_home: Go Home
@@ -155,11 +153,7 @@ en:
   there_are_no_topics_in_this_forum_yet: There are no topics in this forum yet.
   threads_opened: Threads Opened
   topic: Topic
-  topic_could_not_be_created: Topic could not be created
-  topic_deleted: Topic deleted!
   topic_stickiness_updated: Topic stickiness updated
-  topic_updated: Topic updated!
-  topic_was_successfully_created: Topic was successfully created
   topics: Topics
   unhappy: Unhappy?
   unlock_my_account: Unlock my account

@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     end
 
     if @comment.save
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('comment_created')
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
     else
       render :new
     end
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('comment_updated')
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
     else
       render :edit
     end
@@ -50,9 +50,9 @@ class CommentsController < ApplicationController
     authorize @comment
     @comment.destroy
 
-    flash[:notice] = t('comment_has_been_deleted_successfully')
+    flash[:notice] = t('.success')
 
-    redirect_to forum_topic_path(@topic.forum, @topic), notice: t('comment_deleted')
+    redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
   end
 
   private

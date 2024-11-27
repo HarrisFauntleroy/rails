@@ -17,26 +17,32 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.save
-      redirect_to forums_path, notice: t('category_created')
+      redirect_to forums_path, notice: t('.success')
     else
-      flash.now[:error] = t('category_could_not_be_created')
+      flash.now[:error] = t('.failure')
       render :new
     end
   end
 
   def update
     if @category.update(category_params)
-      redirect_to forums_path, notice: t('category_updated')
+      flash[:notice] = t('.success')
+      redirect_to forums_path, notice: t('.success')
     else
+      flash.now[:error] = t('.failure')
       render :edit
     end
   end
 
   def destroy
     authorize @category
-    @category.destroy
-
-    redirect_to forums_path, notice: t('category_deleted')
+    if @category.destroy
+      flash[:notice] = t('.success')
+      redirect_to forums_path, notice: t('.success')
+    else
+      flash.now[:error] = t('.failure')
+      redirect_to forums_path, status: :unprocessable_entity
+    end
   end
 
   private

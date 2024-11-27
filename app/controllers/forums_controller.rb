@@ -28,7 +28,7 @@ class ForumsController < ApplicationController
     authorize @forum
 
     if @forum.save
-      redirect_to forums_path, notice: t('forum_created')
+      redirect_to forums_path, notice: t('.success')
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ForumsController < ApplicationController
 
   def update
     if @forum.update(forum_params)
-      redirect_to forums_path, notice: t('forum_updated')
+      redirect_to forums_path, notice: t('.success')
     else
       render :edit
     end
@@ -46,9 +46,9 @@ class ForumsController < ApplicationController
     authorize @forum
     @forum.destroy
 
-    flash[:notice] = t('forum_has_been_deleted_successfully')
+    flash[:notice] = t('.success')
 
-    redirect_to forums_path, notice: t('forum_deleted')
+    redirect_to forums_path, notice: t('.success')
   end
 
   private
