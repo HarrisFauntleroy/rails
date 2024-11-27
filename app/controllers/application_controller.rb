@@ -61,7 +61,11 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    redirect_to root_path, alert: t('you_are_not_authorized_to_perform_this_action')
+    if user_signed_in?
+      redirect_to root_path, alert: t('not_authorized')
+    else
+      redirect_to new_user_session_path, alert: t('please_sign_in')
+    end
   end
 
   def record_not_found

@@ -27,8 +27,8 @@ describe CategoriesController, type: :controller do
     context 'when no user is signed in' do
       before { get :new }
 
-      it 'redirects to the root path' do
-        expect(response).to redirect_to(root_path)
+      it 'redirects to the login page' do
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -203,10 +203,11 @@ describe CategoriesController, type: :controller do
   end
 
   describe 'user_not_authorized' do
+    before { sign_in user }
     it 'redirects to the root path' do
       get :new
       expect(response).to redirect_to(root_path)
-      expect(flash[:alert]).to eq(I18n.t('you_are_not_authorized_to_perform_this_action'))
+      expect(flash[:alert]).to eq(I18n.t('not_authorized'))
     end
   end
 end

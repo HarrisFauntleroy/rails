@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   helper UserHelper
 
   before_action :set_user, only: %i[show]
-  before_action :authenticate_admin!, only: [:index]
-  before_action :authenticate_user!, only: [:show]
 
   def index
     @users = User.all
@@ -41,19 +39,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to errors_not_found_path, alert: t('user_not_found')
-  end
-
-  def authenticate_moderator!
-    return if current_user&.moderator?
-
-    redirect_to root_path,
-                alert: t('you_are_not_authorized_to_access_this_page')
-  end
-
-  def authenticate_admin!
-    return if current_user&.admin?
-
-    redirect_to root_path,
-                alert: t('you_are_not_authorized_to_access_this_page')
   end
 end
