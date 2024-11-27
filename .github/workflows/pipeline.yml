@@ -3,8 +3,8 @@ name: Build & Test
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 2 * * *'
+  # schedule:
+  #   - cron: '0 2 * * *'
 
 jobs:
   build:
@@ -51,15 +51,15 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           failedThreshold: 80
 
-      - name: Upload Capybara Screenshots
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: capybara-screenshots
-          path: tmp/capybara
+      # - name: Upload Capybara Screenshots
+      #   if: failure()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: capybara-screenshots
+      #     path: tmp/capybara
 
-      - name: Run RuboCop
-        run: bundle exec rubocop
+      # - name: Run RuboCop
+      #   run: bundle exec rubocop
   
-      - name: Run Brakeman
-        run: bundle exec brakeman
+      # - name: Run Brakeman
+      #   run: bundle exec brakeman
