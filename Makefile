@@ -1,79 +1,85 @@
-.PHONY: install
+# Setup and Installation
+.PHONY: install setup-env
 install:
-	@echo "Installing dependencies..."
+	@echo "Installing project dependencies..."
 	bundle install
 
-.PHONY: rails-c
-rails-c:
-	@echo "Opening the Rails console..."
-	bundle exec rails c
+setup-env:
+	@echo "Creating .env from example.env..."
+	cp example.env .env && echo "Environment variables configured."
 
-.PHONY: dev
+# Server Management
+.PHONY: dev redis-start redis-stop
 dev:
-	@echo "Starting the development server..."
+	@echo "Starting development server (Procfile.dev)..."
 	rails s
 
-# .PHONY: sidekiq
-# sidekiq:
-# 	@echo "Starting the Sidekiq server..."
-# 	bundle exec sidekiq
+redis-start:
+	@echo "Starting Redis service..."
+	brew services start redis
 
-.PHONY: db-console
+redis-stop:
+	@echo "Stopping Redis service..."
+	brew services stop redis
+
+# Development Console Access
+.PHONY: rails-c db-console
+rails-c:
+	@echo "Opening Rails console..."
+	bundle exec rails c
+
 db-console:
-	@echo "Opening the database console..."
+	@echo "Opening database console..."
 	bundle exec rails db
-	
-.PHONY: db-create
-db-create:
-	@echo "Creating the database..."
-	bundle exec rails db:create
 
-.PHONY: db-reset
+# Database Operations
+.PHONY: db-recreate db-reset db-drop db-create db-schema-load db-migrate db-seed
+db-recreate:
+	@echo "Recreating database (drop, create, load schema, migrate, seed)..."
+	bundle exec rails db:drop db:create db:schema:load db:migrate db:seed
+
 db-reset:
-	@echo "Resetting the database..."
+	@echo "Resetting database to initial state..."
 	bundle exec rails db:reset
 
-.PHONY: db-migrate
+db-drop:
+	@echo "Dropping database..."
+	bundle exec rails db:drop
+
+db-create:
+	@echo "Creating database..."
+	bundle exec rails db:create
+
+db-schema-load:
+	@echo "Loading database schema..."
+	bundle exec rails db:schema:load
+
 db-migrate:
-	@echo "Migrating the database..."
+	@echo "Running database migrations..."
 	bundle exec rails db:migrate
 
-.PHONY: db-seed
 db-seed:
-	@echo "Seeding database..."
+	@echo "Seeding database with initial data..."
 	bundle exec rails db:seed
 
-# .PHONY: redis-start
-# redis-start:
-# 	@echo "Starting Redis server..."
-# 	brew services start redis
+# Code Quality and Testing
+.PHONY: rspec rubocop brakeman i18n pretty
+rspec:
+	@echo "Running test suite..."
+	bundle exec rspec
 
-# .PHONY: redis-stop
-# redis-stop:
-# 	@echo "Stopping Redis server..."
-# 	brew services stop redis
+rubocop:
+	@echo "Running code linting and auto-correction..."
+	bundle exec rubocop -A
 
-.PHONY: i18n
+brakeman:
+	@echo "Running security analysis..."
+	bundle exec brakeman -z -q
+
 i18n:
-	@echo "Normalizing and checking i18n tasks..."
+	@echo "Checking i18n health and normalizing translations..."
 	i18n-tasks normalize && i18n-tasks health
 
-.PHONY: pretty
 pretty:
 	@echo "Formatting ERB templates..."
 	bundle exec erb-format app/views/**/*.html.erb --write
-
-.PHONY: rspec
-rspec:
-	@echo "Running specs..."
-	bundle exec rspec
-
-.PHONY: rubocop
-rubocop:
-	@echo "Running RuboCop for linting and auto-corrections..."
-	bundle exec rubocop -A
-
-.PHONY: brakeman
-brakeman:
-	@echo "Running Brakeman for security analysis..."
-	bundle exec brakeman -z -q
