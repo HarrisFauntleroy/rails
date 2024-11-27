@@ -8,6 +8,10 @@ en:
   back_to_top: Back to top
   can: can
   cancel_my_account: Cancel my account
+  category_could_not_be_created: Category could not be created.
+  category_created: Category created!
+  category_deleted: Category deleted!
+  category_updated: Category updated!
   change_my_password: Change my password
   characters_minimum: characters minimum
   chat_room: Chat Room
@@ -15,7 +19,11 @@ en:
   closed_thread: Closed Thread
   coffee: Coffee
   comment: Comment
+  comment_created: Comment created!
+  comment_deleted: Comment deleted!
+  comment_has_been_deleted_successfully: Comment has been deleted successfully
   comment_replies_uou: comment replies - You
+  comment_updated: Comment updated!
   comments: Comments
   confirm_my_account: Confirm my account
   confirm_new_password: Confirm new password
@@ -47,7 +55,11 @@ en:
     messages:
       not_saved: There were %{count} errors preventing this %{resource} from being saved
   forum: Forum
+  forum_created: Forum created!
+  forum_deleted: Forum deleted!
+  forum_has_been_deleted_successfully: Forum has been deleted successfully
   forum_threads: Forum Threads
+  forum_updated: Forum updated!
   forums: Forums
   go_back: Go Back
   go_home: Go Home
@@ -93,6 +105,7 @@ en:
   prohibited_this_topic_from_being_saved: prohibited this topic from being saved
   recent_activity: Recent Activity
   recent_comments: Recent Comments
+  record_not_found: Record not found
   register: Register
   registered_member: 'Registered Member #%{number}'
   replies: Replies
@@ -142,16 +155,24 @@ en:
   there_are_no_topics_in_this_forum_yet: There are no topics in this forum yet.
   threads_opened: Threads Opened
   topic: Topic
+  topic_could_not_be_created: Topic could not be created
+  topic_deleted: Topic deleted!
+  topic_stickiness_updated: Topic stickiness updated
+  topic_updated: Topic updated!
+  topic_was_successfully_created: Topic was successfully created
   topics: Topics
   unhappy: Unhappy?
   unlock_my_account: Unlock my account
   update: Update
   user: User
+  user_not_found: User not found
   users: Users
   we_need_your_current_password_to_confirm_your_changes: We need your current password to confirm your changes
   welcome: Welcome
   wrote: wrote
   you: You
+  you_are_not_authorized_to_access_this_page: You are not authorized to access this page
+  you_are_not_authorized_to_perform_this_action: You are not authorized to perform this action
   you_can_confirm_your_account_email_through_the_link_below: You can confirm your account email through the link below
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts
   your_password_wont_change_until_you_access_the_link_above_and_create_a_new_one: Your password won"t change until you access the link above and create a new one

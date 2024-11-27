@@ -8,5 +8,6 @@ class ForumComponent < ViewComponent::Base
 
   def initialize(forum:)
     @forum = forum
+    super
   end
 end

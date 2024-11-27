@@ -61,10 +61,10 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    redirect_to root_path, alert: 'You are not authorized to perform this action.'
+    redirect_to root_path, alert: I18n.t('you_are_not_authorized_to_perform_this_action')
   end
 
   def record_not_found
-    redirect_to errors_not_found_path, alert: 'Record not found.'
+    redirect_to errors_not_found_path, alert: I18n.t('record_not_found')
   end
 end

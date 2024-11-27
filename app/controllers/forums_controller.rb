@@ -3,7 +3,7 @@
 class ForumsController < ApplicationController
   include Pundit::Authorization
 
-  before_action :set_forum, only: %i[show edit update destroy]
+  before_action :set_forum, only: %i[show update destroy]
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
@@ -28,7 +28,7 @@ class ForumsController < ApplicationController
     authorize @forum
 
     if @forum.save
-      redirect_to forums_path, notice: 'Forum created!'
+      redirect_to forums_path, notice: I18n.t('forum_created')
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ForumsController < ApplicationController
 
   def update
     if @forum.update(forum_params)
-      redirect_to forums_path, notice: 'Forum updated!'
+      redirect_to forums_path, notice: I18n.t('forum_updated')
     else
       render :edit
     end
@@ -46,9 +46,9 @@ class ForumsController < ApplicationController
     authorize @forum
     @forum.destroy
 
-    flash[:notice] = 'Forum has been deleted successfully'
+    flash[:notice] = I18n.t('forum_has_been_deleted_successfully')
 
-    redirect_to forums_path, notice: 'Forum deleted!'
+    redirect_to forums_path, notice: I18n.t('forum_deleted')
   end
 
   private

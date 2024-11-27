@@ -6,6 +6,7 @@ class UserPolicy < ApplicationPolicy
   def initialize(user, record)
     @user = user
     @record = record
+    super
   end
 
   class Scope < Scope

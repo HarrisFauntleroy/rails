@@ -6,6 +6,7 @@ class CommentPolicy < ApplicationPolicy
   def initialize(user, record)
     @user = user
     @record = record
+    super
   end
 
   def index?
