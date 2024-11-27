@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'shared/_sidebar', type: :view do
+describe 'shared/_sidebar', type: :view do
   let(:user) { create(:user) }
 
   before do

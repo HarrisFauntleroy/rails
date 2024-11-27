@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ForumsController, type: :controller do
+describe ForumsController, type: :controller do
   let(:user) { create(:user) }
   let(:moderator_user) { create(:user, moderator: true) }
   let(:admin_user) { create(:user, admin: true, id: 1) }

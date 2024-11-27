@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
+describe Comment, type: :model do
   let(:user) { create(:user, id: 1) }
   let(:topic) { create(:topic, id: 1, user:) }
   let(:comment) { create(:comment, id: 1, topic:, user:) }

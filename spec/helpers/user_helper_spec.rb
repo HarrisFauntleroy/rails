@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserHelper, type: :helper do
+describe UserHelper, type: :helper do
   describe '#formatted_date' do
     it 'formats the datetime to a specific string format' do
       datetime = DateTime.new(2023, 4, 1, 14, 30)

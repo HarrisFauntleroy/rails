@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Topic, type: :model do
+describe Topic, type: :model do
   let(:user) { create(:user, id: 1) }
   let(:forum) { create(:forum, user:) }
   let(:topic) { create(:topic, forum:, user:) }

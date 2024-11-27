@@ -33,9 +33,9 @@ class TopicsController < ApplicationController
     authorize @topic
 
     if @topic.save
-      redirect_to forum_topic_path(@forum, @topic), flash: { success: I18n.t('topic_was_successfully_created') }
+      redirect_to forum_topic_path(@forum, @topic), flash: { success: t('topic_was_successfully_created') }
     else
-      flash.now[:error] = I18n.t('topic_could_not_be_created')
+      flash.now[:error] = t('topic_could_not_be_created')
       render :new
     end
   end
@@ -48,7 +48,7 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.find(params[:id])
 
     if @topic.update(topic_params)
-      redirect_to forum_topic_path(@forum, @topic), notice: I18n.t('topic_updated')
+      redirect_to forum_topic_path(@forum, @topic), notice: t('topic_updated')
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class TopicsController < ApplicationController
     authorize @topic
     @topic.destroy
 
-    redirect_to forum_path(@forum), notice: I18n.t('topic_deleted')
+    redirect_to forum_path(@forum), notice: t('topic_deleted')
   end
 
   def toggle_sticky
@@ -71,7 +71,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_sticky!
     end
 
-    redirect_to [@forum, @topic], notice: I18n.t('topic_stickiness_updated')
+    redirect_to [@forum, @topic], notice: t('topic_stickiness_updated')
   end
 
   def toggle_announcement
@@ -84,7 +84,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_announcement!
     end
 
-    redirect_to [@forum, @topic], notice: I18n.t('topic_stickiness_updated')
+    redirect_to [@forum, @topic], notice: t('topic_stickiness_updated')
   end
 
   private

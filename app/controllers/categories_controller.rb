@@ -17,16 +17,16 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.save
-      redirect_to forums_path, notice: I18n.t('category_created')
+      redirect_to forums_path, notice: t('category_created')
     else
-      flash.now[:error] = I18n.t('category_could_not_be_created')
+      flash.now[:error] = t('category_could_not_be_created')
       render :new
     end
   end
 
   def update
     if @category.update(category_params)
-      redirect_to forums_path, notice: I18n.t('category_updated')
+      redirect_to forums_path, notice: t('category_updated')
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
     authorize @category
     @category.destroy
 
-    redirect_to forums_path, notice: I18n.t('category_deleted')
+    redirect_to forums_path, notice: t('category_deleted')
   end
 
   private

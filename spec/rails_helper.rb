@@ -6,7 +6,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
 # Prevent database truncation if the environment is production
-abort(I18n.t('The Rails environment is running in production mode!')) if Rails.env.production?
+abort(t('The Rails environment is running in production mode!')) if Rails.env.production?
 
 require 'spec_helper'
 require 'rspec/rails'
@@ -47,7 +47,7 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, type: :controller do
+  #     describe UsersController, type: :controller do
   #       # ...
   #     end
   #

@@ -40,20 +40,20 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to errors_not_found_path, alert: I18n.t('user_not_found')
+    redirect_to errors_not_found_path, alert: t('user_not_found')
   end
 
   def authenticate_moderator!
     return if current_user&.moderator?
 
     redirect_to root_path,
-                alert: I18n.t('you_are_not_authorized_to_access_this_page')
+                alert: t('you_are_not_authorized_to_access_this_page')
   end
 
   def authenticate_admin!
     return if current_user&.admin?
 
     redirect_to root_path,
-                alert: I18n.t('you_are_not_authorized_to_access_this_page')
+                alert: t('you_are_not_authorized_to_access_this_page')
   end
 end

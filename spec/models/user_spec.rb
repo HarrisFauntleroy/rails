@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+describe User, type: :model do
   let(:user) { build(:user) }
   let(:moderator_user) { build(:user, moderator: true) }
   let(:admin_user) { build(:user, admin: true) }

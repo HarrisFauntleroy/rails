@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'StaticPages', type: :request do
+describe 'StaticPages', type: :request do
   describe 'GET /site_rules' do
     it 'returns http success' do
       get '/site_rules'

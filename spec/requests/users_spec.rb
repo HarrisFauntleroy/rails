@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
+describe 'Users', type: :request do
   describe 'GET /users/sign_in' do
     it 'renders a successful response' do
       get new_user_session_path
