@@ -79,6 +79,9 @@ group :development do
   # gem "spring"
   gem 'brakeman'
   gem 'i18n-tasks', '~> 1.0.13'
+  gem 'solargraph'
+  gem 'solargraph-rails'
+  gem 'annotate'
 end
 
 group :test do
