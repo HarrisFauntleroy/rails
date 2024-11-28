@@ -9,7 +9,7 @@ class UserPolicy < ApplicationPolicy
     super
   end
 
-  class Scope < Scope
+  class Scope < ApplicationPolicy::Scope
     def resolve
       admin? ? scope.all : scope.none
     end
