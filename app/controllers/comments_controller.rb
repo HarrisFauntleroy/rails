@@ -22,9 +22,9 @@ class CommentsController < ApplicationController
     set_parent_comment if params[:parent_comment_id]
 
     if @comment.save
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t(".success")
     else
-      render :new, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :new, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 
@@ -32,9 +32,9 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t(".success")
     else
-      render :edit, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :edit, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 
@@ -42,9 +42,9 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.destroy
-      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t(".success")
     else
-      render :show, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :show, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 

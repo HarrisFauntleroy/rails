@@ -5,13 +5,13 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: "users/sessions"
   }
 
-  root 'home#index'
+  root "home#index"
 
-  get 'site_rules', to: 'static_pages#site_rules'
-  get 'errors/not_found', to: 'errors#not_found'
+  get "site_rules", to: "static_pages#site_rules"
+  get "errors/not_found", to: "errors#not_found"
 
   resources :users, only: %i[show index]
 

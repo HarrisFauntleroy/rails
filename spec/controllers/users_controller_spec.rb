@@ -11,7 +11,7 @@ describe UsersController, type: :controller do
       users = create_list(:user, 3)
       get :index
 
-      expect(assigns(:users)).to eq([admin_user, *users])
+      expect(assigns(:users)).to eq([ admin_user, *users ])
     end
 
     it 'renders the index template for admin users' do

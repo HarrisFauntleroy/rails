@@ -50,19 +50,19 @@ describe Comment, type: :model do
     end
 
     it 'is destroyed when its parent user is destroyed' do
-      user = create(:user, comments: [comment])
+      user = create(:user, comments: [ comment ])
       user.destroy
 
       expect(described_class.where(id: comment.id)).to be_empty
     end
 
     it 'has a parent topic' do
-      topic = create(:topic, comments: [comment])
+      topic = create(:topic, comments: [ comment ])
       expect(comment.topic).to eq(topic)
     end
 
     it 'is destroyed when its parent topic is destroyed' do
-      topic = create(:topic, comments: [comment])
+      topic = create(:topic, comments: [ comment ])
       topic.destroy
 
       expect(described_class.where(id: comment.id)).to be_empty

@@ -6,6 +6,6 @@ class UsersPresenter
   end
 
   def moderators_list
-    @users.where(moderator: true).map(&:username).join(', ')
+    @users.where(moderator: true).map(&:username).join(", ")
   end
 end

@@ -7,7 +7,7 @@ module UserScopes
     today = Time.zone.today
 
     scope :todays_birthdays, lambda {
-      where('EXTRACT(month FROM date_of_birth) = ? AND EXTRACT(day FROM date_of_birth) = ?', today.month, today.day)
+      where("EXTRACT(month FROM date_of_birth) = ? AND EXTRACT(day FROM date_of_birth) = ?", today.month, today.day)
     }
 
     scope :upcoming_birthdays, lambda {

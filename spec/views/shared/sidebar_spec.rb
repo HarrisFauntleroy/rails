@@ -20,7 +20,7 @@ RSpec.shared_examples 'a user role display' do |role|
 
   it 'hides other role indicators' do
     render partial: 'shared/sidebar', locals: { resource: user }
-    (%i[user moderator admin] - [role]).each do |other_role|
+    (%i[user moderator admin] - [ role ]).each do |other_role|
       expect(rendered).not_to have_content(t(other_role))
     end
   end

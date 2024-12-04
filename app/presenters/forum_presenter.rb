@@ -8,8 +8,8 @@ class ForumPresenter
 
   def breadcrumbs
     crumbs = [
-      { title: '4hv.org', path: @view_context.root_path },
-      { title: 'Forums', path: @view_context.forums_path }
+      { title: "4hv.org", path: @view_context.root_path },
+      { title: "Forums", path: @view_context.forums_path }
     ]
 
     return unless @forum

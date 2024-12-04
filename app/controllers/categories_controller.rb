@@ -19,9 +19,9 @@ class CategoriesController < ApplicationController
     authorize @category
 
     if @category.save
-      redirect_to forums_path, notice: t('.success')
+      redirect_to forums_path, notice: t(".success")
     else
-      render :new, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :new, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 
@@ -29,18 +29,18 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to forums_path, notice: t('.success')
+      redirect_to forums_path, notice: t(".success")
     else
-      render :edit, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :edit, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 
   def destroy
     authorize @category
     if @category.destroy
-      redirect_to forums_path, notice: t('.success')
+      redirect_to forums_path, notice: t(".success")
     else
-      redirect_to forums_path, status: :unprocessable_entity, flash: { error: t('.failure') }
+      redirect_to forums_path, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 

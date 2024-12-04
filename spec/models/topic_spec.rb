@@ -55,19 +55,19 @@ describe Topic, type: :model do
     end
 
     it 'belongs to a forum' do
-      forum = create(:forum, topics: [topic])
+      forum = create(:forum, topics: [ topic ])
       expect(topic.forum).to eq(forum)
     end
 
     it 'is destroyed when its parent forum is destroyed' do
-      forum = create(:forum, topics: [topic])
+      forum = create(:forum, topics: [ topic ])
       forum.destroy
 
       expect(described_class.where(id: topic.id)).to be_empty
     end
 
     it 'is destroyed when its parent user is destroyed' do
-      user = create(:user, topics: [topic])
+      user = create(:user, topics: [ topic ])
       user.destroy
 
       expect(described_class.where(id: topic.id)).to be_empty

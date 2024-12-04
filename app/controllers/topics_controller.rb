@@ -15,8 +15,8 @@ class TopicsController < ApplicationController
     @comments = @topic.comments.page(params[:page]).per(10)
 
     @breadcrumbs = [
-      { title: '4hv.org', path: root_path },
-      { title: 'Forums', path: forums_path },
+      { title: "4hv.org", path: root_path },
+      { title: "Forums", path: forums_path },
       { title: @forum.name, path: forum_path(@forum) },
       { title: @topic.title, path: forum_topic_path(@forum, @topic) }
     ]
@@ -33,9 +33,9 @@ class TopicsController < ApplicationController
     authorize @topic
 
     if @topic.save
-      redirect_to forum_topic_path(@forum, @topic), flash: { success: t('.success') }
+      redirect_to forum_topic_path(@forum, @topic), flash: { success: t(".success") }
     else
-      render :new, status: :unprocessable_entity, flash: { error: t('.failure') }
+      render :new, status: :unprocessable_entity, flash: { error: t(".failure") }
     end
   end
 
@@ -47,7 +47,7 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.find(params[:id])
 
     if @topic.update(topic_params)
-      redirect_to forum_topic_path(@forum, @topic), notice: t('.success')
+      redirect_to forum_topic_path(@forum, @topic), notice: t(".success")
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
     authorize @topic
     @topic.destroy
 
-    redirect_to forum_path(@forum), notice: t('.success')
+    redirect_to forum_path(@forum), notice: t(".success")
   end
 
   def toggle_sticky
@@ -70,7 +70,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_sticky!
     end
 
-    redirect_to [@forum, @topic], notice: t('topic_stickiness_updated')
+    redirect_to [ @forum, @topic ], notice: t("topic_stickiness_updated")
   end
 
   def toggle_announcement
@@ -83,7 +83,7 @@ class TopicsController < ApplicationController
       @topic.mark_as_announcement!
     end
 
-    redirect_to [@forum, @topic], notice: t('topic_stickiness_updated')
+    redirect_to [ @forum, @topic ], notice: t("topic_stickiness_updated")
   end
 
   private

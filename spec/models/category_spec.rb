@@ -48,7 +48,7 @@ describe Category, type: :model do
     end
 
     it 'is destroyed when its parent user is destroyed' do
-      user = create(:user, categories: [category])
+      user = create(:user, categories: [ category ])
       user.destroy
 
       expect(described_class.where(id: category.id)).to be_empty

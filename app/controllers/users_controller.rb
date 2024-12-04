@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @recent_topics_opened = @user.topics.order(created_at: :desc).limit(5)
     @recent_comments = @user.comments.order(created_at: :desc).limit(5)
   rescue ActiveRecord::RecordNotFound
-    redirect_to errors_not_found_path, alert: t('user_not_found')
+    redirect_to errors_not_found_path, alert: t("user_not_found")
   end
 
   def create; end
@@ -38,6 +38,6 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to errors_not_found_path, alert: t('user_not_found')
+    redirect_to errors_not_found_path, alert: t("user_not_found")
   end
 end

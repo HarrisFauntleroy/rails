@@ -27,7 +27,7 @@ require 'rails_helper'
 describe Forum, type: :model do
   let(:user) { create(:user, id: 1) }
   let(:forum) { create(:forum, user:) }
-  let(:category) { create(:category, forums: [forum]) }
+  let(:category) { create(:category, forums: [ forum ]) }
 
   it 'has a valid factory' do
     expect(forum).to be_valid
@@ -51,19 +51,19 @@ describe Forum, type: :model do
     end
 
     it 'has a parent category' do
-      category = create(:category, forums: [forum])
+      category = create(:category, forums: [ forum ])
       expect(forum.category).to eq(category)
     end
 
     it 'is destroyed when its parent category is destroyed' do
-      category = create(:category, forums: [forum])
+      category = create(:category, forums: [ forum ])
       category.destroy
 
       expect(described_class.where(id: forum.id)).to be_empty
     end
 
     it 'is destroyed when its parent user is destroyed' do
-      user = create(:user, forums: [forum])
+      user = create(:user, forums: [ forum ])
       user.destroy
 
       expect(described_class.where(id: forum.id)).to be_empty

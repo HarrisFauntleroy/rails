@@ -5,8 +5,8 @@ SimpleCov.start
 require 'simplecov-formatter-badge'
 SimpleCov.formatter =
   SimpleCov::Formatter::MultiFormatter.new \
-    [SimpleCov::Formatter::HTMLFormatter,
-     SimpleCov::Formatter::BadgeFormatter]
+    [ SimpleCov::Formatter::HTMLFormatter,
+     SimpleCov::Formatter::BadgeFormatter ]
 
 # frozen_string_literal: true
 
