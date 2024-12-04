@@ -46,8 +46,6 @@ class ForumsController < ApplicationController
     authorize @forum
     @forum.destroy
 
-    flash[:notice] = t(".success")
-
     redirect_to forums_path, notice: t(".success")
   end
 
