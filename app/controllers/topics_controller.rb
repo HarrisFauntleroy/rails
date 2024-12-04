@@ -35,8 +35,7 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to forum_topic_path(@forum, @topic), flash: { success: t('.success') }
     else
-      flash.now[:error] = t('.failure')
-      render :new
+      render :new, status: :unprocessable_entity, flash: { error: t('.failure') }
     end
   end
 
