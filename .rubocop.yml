@@ -5,22 +5,29 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-thread_safety
-  # TODO: Re-enable these cops and fix (low priority)
-  # - rubocop-rspec
-  # - rubocop-rspec_rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
 
 Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  Exclude:
+    - 'config/**/*.rb'
+    - 'lib/**/*.rake'
+
+Layout/LineLength:
   Exclude:
     - 'config/**/*.rb'
 
-Layout/LineLength:
-  Enabled: false
+Rails/BulkChangeTable:
   Exclude:
-    - 'config/**/*.rb'
+    - 'db/migrate/*'
 
 I18n/RailsI18n:
   Enabled: true
@@ -29,3 +36,25 @@ I18n/GetText:
 I18n/RailsI18n/DecorateString:
   Exclude:
     - 'db/seeds.rb'
+    - 'spec/helpers/user_helper_spec.rb'
+
+# Just noise at the moment
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/RepeatedExample:
+  Enabled: false
+RSpec/ContextWording:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/IdenticalEqualityAssertion:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false

@@ -63,6 +63,7 @@ group :development, :test do
   gem 'rubocop-i18n'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
+  gem 'rubocop-rake'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails'
   gem 'rubocop-thread_safety'
@@ -77,11 +78,11 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'annotate'
   gem 'brakeman'
   gem 'i18n-tasks', '~> 1.0.13'
   gem 'solargraph'
   gem 'solargraph-rails'
-  gem 'annotate'
 end
 
 group :test do
