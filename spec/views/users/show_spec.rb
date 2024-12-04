@@ -23,7 +23,7 @@ describe 'users/show', type: :view do
     expect(rendered).to match(user.username)
   end
 
-  context 'displays the user\'s recent topics opened' do
+  context 'when displaying the user\'s recent topics opened' do
     before { render }
 
     it 'with header' do
@@ -47,7 +47,7 @@ describe 'users/show', type: :view do
     end
   end
 
-  context 'displays the user\'s recent comments' do
+  context 'when displaying the user\'s recent comments' do
     before { render }
 
     it 'with header' do

@@ -7,6 +7,8 @@ class CategoriesController < ApplicationController
     @categories = Category.all.includes(:forums)
   end
 
+  def show; end
+
   def new
     @category = Category.new(user: current_user)
     authorize @category
@@ -23,6 +25,8 @@ class CategoriesController < ApplicationController
       render :new
     end
   end
+
+  def edit; end
 
   def update
     if @category.update(category_params)

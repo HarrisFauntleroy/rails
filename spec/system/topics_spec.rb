@@ -13,25 +13,25 @@ describe 'Topics', type: :system do
 
   describe 'Viewing Topics' do
     it 'allows a user to view topics in a forum' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Creating Topics' do
     it 'allows a user to create a topic in a forum' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Editing Topics' do
     it 'allows a user to edit their topic' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Deleting Topics' do
     it 'allows a user to delete their topic' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 end

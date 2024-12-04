@@ -17,15 +17,15 @@ describe 'Admins', type: :system do
 
   describe 'Admin Manages Users' do
     it 'allows admin to activate a user' do
-      # Todo
+      skip 'Not yet implemented'
     end
 
     it 'allows admin to deactivate a user' do
-      # Todo
+      skip 'Not yet implemented'
     end
 
     it 'allows admin to delete a user' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 end

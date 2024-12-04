@@ -13,25 +13,25 @@ describe 'Forums', type: :system do
 
   describe 'Viewing Forums' do
     it 'allows a user to view forums in a category' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Creating Forums' do
     it 'allows an admin to create a forum' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Editing Forums' do
     it 'allows an admin to edit a forum' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Deleting Forums' do
     it 'allows an admin to delete a forum' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 end

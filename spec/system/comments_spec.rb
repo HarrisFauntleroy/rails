@@ -13,31 +13,31 @@ describe 'Comments', type: :system do
 
   describe 'Viewing Comments' do
     it 'allows a user to view comments on a topic' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Creating Comments' do
     it 'allows a user to create a comment on a topic' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Editing Comments' do
     it 'allows a user to edit their comment' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Deleting Comments' do
     it 'allows a user to delete their comment' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 
   describe 'Replying to Comments' do
     it 'allows a user to reply to a comment' do
-      # Todo
+      skip 'Not yet implemented'
     end
   end
 end

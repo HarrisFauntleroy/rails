@@ -10,9 +10,7 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
-  def show
-    @comment = Comment.find(params[:id])
-  end
+  def show; end
 
   def new
     @comment = Comment.new
@@ -20,19 +18,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.build(comment_params)
-    @comment.user = current_user
-
-    if params[:parent_comment_id]
-      parent_comment = Comment.find(params[:parent_comment_id])
-      @comment.parent_comment_id = parent_comment.id
-    end
+    @comment = build_comment
+    set_parent_comment if params[:parent_comment_id]
 
     if @comment.save
       redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
     else
-      render :new
+      render :new, status: :unprocessable_entity, flash: { error: t('.failure') }
     end
   end
 
@@ -42,17 +34,18 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, flash: { error: t('.failure') }
     end
   end
 
   def destroy
     authorize @comment
-    @comment.destroy
 
-    flash[:notice] = t('.success')
-
-    redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
+    if @comment.destroy
+      redirect_to forum_topic_path(@topic.forum, @topic), notice: t('.success')
+    else
+      render :show, status: :unprocessable_entity, flash: { error: t('.failure') }
+    end
   end
 
   private
@@ -61,8 +54,19 @@ class CommentsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
   end
 
+  def build_comment
+    @topic.comments.build(comment_params).tap do |comment|
+      comment.user = current_user
+    end
+  end
+
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_parent_comment
+    parent_comment = Comment.find(params[:parent_comment_id])
+    @comment.parent_comment_id = parent_comment.id
   end
 
   def comment_params

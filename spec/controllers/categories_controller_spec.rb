@@ -204,6 +204,7 @@ describe CategoriesController, type: :controller do
 
   describe 'user_not_authorized' do
     before { sign_in user }
+
     it 'redirects to the root path' do
       get :new
       expect(response).to redirect_to(root_path)
