@@ -38,6 +38,9 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "bullet"
+  gem "reek"
+  gem "rails_best_practices"
+  gem "fasterer"
   gem "byebug"
   gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem "factory_bot_rails"
