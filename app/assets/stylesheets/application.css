@@ -126,7 +126,6 @@ header .search-bar {
   flex-grow: 1;
   width: 100%;
   gap: 8px;
-  ;
 }
 
 /* Keep these below layout stuff */
