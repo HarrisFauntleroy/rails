@@ -87,3 +87,6 @@ gem "simplecov-formatter-badge", require: false
 gem "view_component", "~> 3.12"
 
 gem "kaminari"
+
+gem 'secure_headers'
+gem 'strong_migrations'

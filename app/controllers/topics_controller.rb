@@ -6,6 +6,9 @@ class TopicsController < ApplicationController
   before_action :set_forum
   before_action :set_topic, only: %i[show edit update destroy]
 
+  rate_limit to: 10, within: 5.minutes, only: [:create], 
+  with: -> { redirect_to root_path, alert: "You're posting too quickly. Please wait a few minutes." }
+
   def index
     @topics = Topic.page(params[:page]).per(10).includes(:user, :comments)
   end
