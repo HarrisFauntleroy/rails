@@ -66,6 +66,7 @@ group :development do
   gem "web-console"
   gem "annotate"
   gem "brakeman"
+  gem "bundler-audit"
   gem "i18n-tasks", "~> 1.0.13"
   gem "solargraph"
   gem "solargraph-rails"

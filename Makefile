@@ -95,6 +95,11 @@ reek:
 	@echo "Running code smell analysis..."
 	bundle exec reek
 
+# Dependency Security Analysis
+bundle-audit:
+	@echo "Checking for dependency vulnerabilities..."
+	bundle exec bundle-audit check --update
+
 # Performance Analysis
 fasterer:
 	@echo "Running performance analysis..."
