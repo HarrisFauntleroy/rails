@@ -243,6 +243,7 @@ GEM
     nokogiri (1.17.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (8.6.3)
     parallel (1.26.3)
     parser (3.3.6.0)
       ast (~> 2.4.1)
@@ -514,6 +515,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  pagy (~> 8.4)
   pg (~> 1.1)
   puma (>= 5.0)
   pundit

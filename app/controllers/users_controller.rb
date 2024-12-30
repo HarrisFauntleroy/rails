@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  include Pundit::Authorization
-
   helper UserHelper
 
   before_action :set_user, only: %i[show]

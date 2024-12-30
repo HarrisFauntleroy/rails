@@ -1,0 +1,44 @@
+<nav class="pagy-nav" id="pagination">
+  <%== pagy_nav(pagy) %>
+</nav>
+
+<style>
+  .pagy-nav {
+    user-select: none;
+    display: flex;
+    justify-content: left;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    margin: 1rem 0;
+  }
+
+  .pagy-nav a, .pagy-nav span {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #007bff;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .pagy-nav a:hover {
+    background-color: #f8f9fa;
+  }
+
+  .pagy-nav .disabled, .pagy-nav .current {
+    color: #6c757d;
+    background-color: #e9ecef;
+    border-color: #ddd;
+    cursor: default;
+  }
+
+  .pagy-nav .current {
+    font-weight: bold;
+    color: #495057;
+  }
+</style>

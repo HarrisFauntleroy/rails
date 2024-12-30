@@ -30,6 +30,8 @@
             <a class="nextprev_link">89</a>
             <a class="nextprev_link">90</a>
             <a class="nextprev_link">91</a>
+
+            <%= render(PaginationComponent.new(pagy: @pagy, records: @forum.topics)) %>
           </td>
           <td style="width:20%; text-align:right; vertical-align:bottom;">
           </td>

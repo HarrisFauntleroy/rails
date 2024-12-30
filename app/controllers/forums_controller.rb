@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ForumsController < ApplicationController
-  include Pundit::Authorization
-
   before_action :set_forum, only: %i[show update destroy]
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -13,7 +11,7 @@ class ForumsController < ApplicationController
   end
 
   def show
-    @forum = Forum.find(params[:id])
+    @pagy, @topics = pagy(@forum.topics.includes(:user, :comments), items: 10)
     @presenter = ForumPresenter.new(@forum, view_context)
     @breadcrumbs = @presenter.breadcrumbs
     @users_presenter = UsersPresenter.new(User.all)

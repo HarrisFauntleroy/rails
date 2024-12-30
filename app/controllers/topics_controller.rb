@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TopicsController < ApplicationController
-  include Pundit::Authorization
-
   before_action :set_forum
   before_action :set_topic, only: %i[show edit update destroy]
 
