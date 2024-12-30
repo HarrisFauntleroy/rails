@@ -33,6 +33,10 @@ class ApplicationPolicy
     user.present? && record.present? && record.user == user
   end
 
+  def user?
+    user.present?
+  end
+
   def admin?
     user.present? && user.admin?
   end

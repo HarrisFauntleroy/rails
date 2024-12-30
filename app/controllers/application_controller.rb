@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!, only: %i[create edit update destroy]
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  # This sets sidebar stats
   before_action :set_online_stats
+
+  before_action :update_last_seen_at, if: :user_signed_in?
 
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
@@ -31,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def index
     @online_guests_count = 0
-    @online_members_count = User.where("last_seen_at > ?", 10.minutes.ago).count
+    @online_members_count = User.online.count
     @newest_member = User.order(created_at: :desc).first
     @most_ever_online = 0
   end
@@ -47,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def set_online_stats
     @online_guests_count = 0
-    @online_members_count = 0
+    @online_members_count = User.online.count
     @newest_member = User.order(created_at: :desc).first
     @most_ever_online = 0
   end
@@ -60,6 +64,10 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def update_last_seen_at
+    current_user.update_attribute(:last_seen_at, Time.current)
+  end
 
   def user_not_authorized
     if user_signed_in?

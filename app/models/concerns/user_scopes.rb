@@ -17,5 +17,7 @@ module UserScopes
         today.month, today.month, today.day
       )
     }
+
+    scope :online, -> { where("last_seen_at > ?", 5.minutes.ago) }
   end
 end
