@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
 
   def index
+    authorize User
     # Don't show users who haven't been seen.
     @users = User.all.where.not(last_seen_at: nil)
-    authorize @users
   end
 
   def show

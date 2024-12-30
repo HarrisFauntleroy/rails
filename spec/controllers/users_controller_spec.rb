@@ -4,14 +4,16 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
   describe 'GET #index' do
-    it 'assigns all users to @users' do
+    it 'assigns all users with last_seen_at to @users' do
       admin_user = create(:user, admin: true)
+
+      # Signing in admin sets the last_seen_at attribute.
       sign_in admin_user
 
       users = create_list(:user, 3)
       get :index
 
-      expect(assigns(:users)).to eq([ admin_user, *users ])
+      expect(assigns(:users)).to eq([ admin_user ])
     end
 
     it 'renders the index template for admin users' do

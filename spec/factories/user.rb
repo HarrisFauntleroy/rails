@@ -5,6 +5,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     username { Faker::Internet.unique.username(specifier: 3..25) }
     password { 'Password!1' }
+    date_of_birth { nil }
     admin { false }
     moderator { false }
 
