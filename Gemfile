@@ -90,5 +90,5 @@ gem "kaminari"
 
 gem "pagy", "~> 8.4"
 
-gem 'secure_headers'
-gem 'strong_migrations'
+gem "secure_headers"
+gem "strong_migrations"
