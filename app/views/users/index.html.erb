@@ -1,25 +1,15 @@
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>
-        <%= t("users") %>
-      </span>
+<%= render(CardComponent.new(title: t("users"))) do %>
+  <h1>All Users</h1>
+
+  <% @users.each do |user| %>
+    <div>
+      <%= link_to user.username, user_path(user) %>
+      <% if user.admin? %>
+        <span>(Admin)</span>
+      <% end %>
+      user last online
+      <%= time_ago_in_words(user&.last_seen_at) %>
+      ago
     </div>
-  </div>
-
-  <div class="card-body">
-    <h1>All Users</h1>
-
-    <% @users.each do |user| %>
-      <div>
-        <%= link_to user.username, user_path(user) %>
-        <% if user.admin? %>
-          <span>(Admin)</span>
-        <% end %>
-
-        user last online <%= time_ago_in_words(user&.last_seen_at) %> ago
-      </div>
-    <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>

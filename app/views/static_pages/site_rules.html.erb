@@ -1,113 +1,105 @@
 <!-- Page title -->
 <% content_for :title, "Site Rules" %>
 
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span><%= t("site_rules") %></span>
-    </div>
-  </div>
-  <div class="card-body">
-    <%= t("site_rules_1") %>
-    <br>
-    <br>
-    <%= t("site_rules_2") %>
-    <br><br>
-    <span>
-      <strong>
-        <%= t("site_rules_3") %>
-      </strong>
-    </span>
-    <br>
-    <br>
-    <%= t("site_rules_4") %>
-    <br>
-    <br>
-    <strong>A.</strong>
-    <%= t("site_rules_5") %>
-    <br>
-    <br>
-    <strong>B.</strong>
-    <%= t("site_rules_6") %>
-    <br>
-    <br>
-    <strong>C.</strong>
-    <%= t("site_rules_7") %>
-    <br>
-    <br>
-    <strong>D.</strong>
-    <%= t("site_rules_8") %>
-    <br>
-    <br>
-    <strong>E.</strong>
-    <%= t("site_rules_9") %>
-    <br>
-    <br>
-    <strong>F.</strong>
-    <%= t("site_rules_10") %>
-    <br><br>
-    <span>
-      <strong>
-        <%= t("site_rules_11") %>
-      </strong>
-    </span>
-    <br><br>
-    <strong>A.</strong>
-    <%= t("site_rules_12") %>
-    <br><br>
-    <strong>B.</strong>
-    <%= t("site_rules_13") %>
-    <br><br>
-    <strong>C.</strong>
-    <%= t("site_rules_14") %>
-    <br><br>
-    <strong>D.</strong>
-    <%= t("site_rules_15") %>
-    <br><br>
-    <strong>E.</strong>
-    <%= t("site_rules_16") %>
-    <br><br>
-    <strong>F.</strong>
-    <%= t("site_rules_17") %>
-    <br><br>
-    <strong>G.</strong>
-    <%= t("site_rules_18") %>
+<%= render(CardComponent.new(title: t("site_rules"))) do %>
+  <%= t("site_rules_1") %>
+  <br>
+  <br>
+  <%= t("site_rules_2") %>
+  <br><br>
+  <span>
     <strong>
-      <%= t("site_rules_19") %>
+      <%= t("site_rules_3") %>
     </strong>
-    <%= t("site_rules_20") %>
-    <br><br>
-    <strong>H.</strong>
-    <%= t("site_rules_21") %>
-    <br><br>
-    <strong>I.</strong>
-    <%= t("site_rules_22") %>
-    <br><br>
-    <span><strong><%= t("site_rules_23") %>
-      </strong></span>
-    <br><br>
-    <strong>A.</strong>
-    <%= t("site_rules_24") %>
-    <br><br>
-    <strong>B.</strong>
-    <%= t("site_rules_25") %>
-    <br><br>
-    <strong>C.</strong>
-    <%= t("site_rules_26") %>
-    <br><br>
-    <strong>D.</strong>
-    <%= t("site_rules_27") %>
-    <br><br>
-    <span><strong><%= t("site_rules_28") %></strong></span>
-    <br><br>
-    <strong>A.</strong>
-    <%= t("site_rules_29") %>
-    <br><br>
-    <strong>B.</strong>
-    <%= t("site_rules_30") %>
-    <br><br>
-    <strong>C.</strong>
-    <%= t("site_rules_31") %>
-  </div>
-</div>
+  </span>
+  <br>
+  <br>
+  <%= t("site_rules_4") %>
+  <br>
+  <br>
+  <strong>A.</strong>
+  <%= t("site_rules_5") %>
+  <br>
+  <br>
+  <strong>B.</strong>
+  <%= t("site_rules_6") %>
+  <br>
+  <br>
+  <strong>C.</strong>
+  <%= t("site_rules_7") %>
+  <br>
+  <br>
+  <strong>D.</strong>
+  <%= t("site_rules_8") %>
+  <br>
+  <br>
+  <strong>E.</strong>
+  <%= t("site_rules_9") %>
+  <br>
+  <br>
+  <strong>F.</strong>
+  <%= t("site_rules_10") %>
+  <br><br>
+  <span>
+    <strong>
+      <%= t("site_rules_11") %>
+    </strong>
+  </span>
+  <br><br>
+  <strong>A.</strong>
+  <%= t("site_rules_12") %>
+  <br><br>
+  <strong>B.</strong>
+  <%= t("site_rules_13") %>
+  <br><br>
+  <strong>C.</strong>
+  <%= t("site_rules_14") %>
+  <br><br>
+  <strong>D.</strong>
+  <%= t("site_rules_15") %>
+  <br><br>
+  <strong>E.</strong>
+  <%= t("site_rules_16") %>
+  <br><br>
+  <strong>F.</strong>
+  <%= t("site_rules_17") %>
+  <br><br>
+  <strong>G.</strong>
+  <%= t("site_rules_18") %>
+  <strong>
+    <%= t("site_rules_19") %>
+  </strong>
+  <%= t("site_rules_20") %>
+  <br><br>
+  <strong>H.</strong>
+  <%= t("site_rules_21") %>
+  <br><br>
+  <strong>I.</strong>
+  <%= t("site_rules_22") %>
+  <br><br>
+  <span><strong><%= t("site_rules_23") %>
+    </strong></span>
+  <br><br>
+  <strong>A.</strong>
+  <%= t("site_rules_24") %>
+  <br><br>
+  <strong>B.</strong>
+  <%= t("site_rules_25") %>
+  <br><br>
+  <strong>C.</strong>
+  <%= t("site_rules_26") %>
+  <br><br>
+  <strong>D.</strong>
+  <%= t("site_rules_27") %>
+  <br><br>
+  <span><strong><%= t("site_rules_28") %></strong></span>
+  <br><br>
+  <strong>A.</strong>
+  <%= t("site_rules_29") %>
+  <br><br>
+  <strong>B.</strong>
+  <%= t("site_rules_30") %>
+  <br><br>
+  <strong>C.</strong>
+  <%= t("site_rules_31") %>
+<% end %>

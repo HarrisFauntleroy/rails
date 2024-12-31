@@ -1,5 +1,4 @@
-<div class="custom-card">
+<%= render(CardComponent.new(title: t("new_forum"), id: "new_forum")) do %>
   <h1><%= t("new_forum") %></h1>
-
   <%= render "form", forum: @forum %>
-</div>
+<% end %>

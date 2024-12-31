@@ -1,239 +1,228 @@
 <!-- Page title -->
 <% content_for :title, "#{@forum.name} / Forums" %>
 
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>
-        <%= t("forums") %>
-      </span>
-    </div>
-  </div>
+<%= render(CardComponent.new(title: t("forums"))) do %>
+  <%= render(BreadcrumbsComponent.new(items: @breadcrumbs)) %>
+  <table style="width:100%">
+    <tbody>
+      <tr>
+        <td style="width:80%">
+          <div class="mediumtext">
+            <%= image_tag("e.png") %>
+            <b>
+              <%= @forum.name %>
+            </b>
+          </div>
+          <%= t("go_to_page") %>&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
+          <a class="nextprev_link">2</a>
+          <a class="nextprev_link">3</a>
+          ...
+          <a class="nextprev_link">89</a>
+          <a class="nextprev_link">90</a>
+          <a class="nextprev_link">91</a>
 
-  <div class="card-body">
-    <%= render(BreadcrumbsComponent.new(items: @breadcrumbs)) %>
-    <table style="width:100%">
-      <tbody>
-        <tr>
-          <td style="width:80%">
-            <div class="mediumtext">
-              <%= image_tag("e.png") %>
-              <b>
-                <%= @forum.name %>
-              </b>
-            </div>
-            <%= t("go_to_page") %>&nbsp; [<span class="nextprev_current" style="text-decoration:underline">1</span>]
-            <a class="nextprev_link">2</a>
-            <a class="nextprev_link">3</a>
-            ...
-            <a class="nextprev_link">89</a>
-            <a class="nextprev_link">90</a>
-            <a class="nextprev_link">91</a>
-
-            <%= render(PaginationComponent.new(pagy: @pagy, records: @topics)) %>
-          </td>
-          <td style="width:20%; text-align:right; vertical-align:bottom;">
-          </td>
-          <td style="width:20%; text-align:right; vertical-align:bottom;">
-            <% if policy(@forum).create_topic? %>
-              <%= link_to new_forum_topic_path(@forum) do %>
-                <%= image_tag("English_newthread.png") %>
-              <% end %>
+          <%= render(PaginationComponent.new(pagy: @pagy, records: @topics)) %>
+        </td>
+        <td style="width:20%; text-align:right; vertical-align:bottom;">
+        </td>
+        <td style="width:20%; text-align:right; vertical-align:bottom;">
+          <% if policy(@forum).create_topic? %>
+            <%= link_to new_forum_topic_path(@forum) do %>
+              <%= image_tag("English_newthread.png") %>
             <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-      <tbody>
-        <tr>
-          <td style="width:3%" class="nforumcaption2">&nbsp;</td>
-          <td style="width:47%" class="nforumcaption2"><%= t("topic") %></td>
-          <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("starter") %></td>
-          <td style="width:5%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
-          <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
-          <td style="width:20%; text-align:center" class="nforumcaption2">Last Comment</td>
-        </tr>
-
-        <% if @topics.where(sticky: true).or(@topics.where(announcement: true)).any? %>
-
-          <tr>
-            <td class="forumheader">&nbsp;</td>
-            <td colspan="6" class="forumheader">
-              <span class="mediumtext">
-                <b><%= t("important_threads") %></b>
-              </span>
-            </td>
-          </tr>
-
-          <%# Important (Sticky) Threads %>
-          <% @topics.where(sticky: true).or(@topics.where(announcement: true))
-          .order(announcement: :desc, created_at: :desc).each do |topic| %>
-            <tr>
-              <td
-                style="vertical-align:middle; text-align:center; width:3%"
-                class="nforumview1"
-              >
-                <% if topic.announcement? %>
-                  <%= image_tag("announce.png") %>
-                <% else %>
-                  <%= image_tag("sticky_1.png") %>
-                <% end %>
-              </td>
-
-              <td
-                style="vertical-align:middle; text-align:left; width:47%"
-                class="nforumview1"
-              >
-                <table style="width:100%">
-                  <tbody>
-                    <tr>
-                      <td style="width:90%">
-                        <span class="mediumtext">
-                          <b>
-                            <%= link_to topic.title, [@forum, topic] %>
-                          </b>
-                        </span>
-                        <span class="smalltext"></span>
-                      </td>
-                      <td style="width:10%; white-space:nowrap;"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
-                  <b>
-                    <%= link_to topic.user.username, user_url(topic.user) %>
-                  </b>
-                  <br/>
-                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
-                </span>
-              </td>
-
-              <td
-                style="vertical-align:center; text-align:center; width:5%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
-                  <%= topic.comments_count %>
-                </span>
-              </td>
-
-              <td
-                style="vertical-align:center; text-align:center; width:5%"
-                class="nforumview2"
-              >
-                <span class="smalltext">0</span>
-              </td>
-
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
-                  <%= link_to topic.user.username, user_url(topic.user) %>
-                  <br/>
-                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
-                </span>
-              </td>
-            </tr>
           <% end %>
-        <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td style="width:3%" class="nforumcaption2">&nbsp;</td>
+        <td style="width:47%" class="nforumcaption2"><%= t("topic") %></td>
+        <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("starter") %></td>
+        <td style="width:5%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
+        <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
+        <td style="width:20%; text-align:center" class="nforumcaption2">Last Comment</td>
+      </tr>
+
+      <% if @topics.where(sticky: true).or(@topics.where(announcement: true)).any? %>
 
         <tr>
           <td class="forumheader">&nbsp;</td>
           <td colspan="6" class="forumheader">
             <span class="mediumtext">
-              <b><%= t("forum_threads") %></b>
+              <b><%= t("important_threads") %></b>
             </span>
           </td>
         </tr>
 
-        <% if @topics.where(sticky: false).or(@topics.where(announcement: false)).any? %>
-          <% @topics.where(sticky: false).and(@topics.where(announcement: false)).each do |topic| %>
-            <tr>
-              <td
-                style="vertical-align:middle; text-align:center; width:3%"
-                class="nforumview1"
-              >
-                <%= image_tag("nonew_popular.png") %>
-              </td>
+        <%# Important (Sticky) Threads %>
+        <% @topics.where(sticky: true).or(@topics.where(announcement: true))
+          .order(announcement: :desc, created_at: :desc).each do |topic| %>
+          <tr>
+            <td
+              style="vertical-align:middle; text-align:center; width:3%"
+              class="nforumview1"
+            >
+              <% if topic.announcement? %>
+                <%= image_tag("announce.png") %>
+              <% else %>
+                <%= image_tag("sticky_1.png") %>
+              <% end %>
+            </td>
 
-              <td
-                style="vertical-align:middle; text-align:left; width:47%"
-                class="nforumview1"
-              >
-                <table style="width:100%">
-                  <tbody>
-                    <tr>
-                      <td style="width:90%">
-                        <span class="mediumtext">
-                          <b>
-                            <%= link_to topic.title, [@forum, topic] %>
-                          </b>
-                        </span>
-                        <span class="smalltext"></span>
-                      </td>
-                      <td style="width:10%; white-space:nowrap;"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
+            <td
+              style="vertical-align:middle; text-align:left; width:47%"
+              class="nforumview1"
+            >
+              <table style="width:100%">
+                <tbody>
+                  <tr>
+                    <td style="width:90%">
+                      <span class="mediumtext">
+                        <b>
+                          <%= link_to topic.title, [@forum, topic] %>
+                        </b>
+                      </span>
+                      <span class="smalltext"></span>
+                    </td>
+                    <td style="width:10%; white-space:nowrap;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
 
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
-                  <b>
-                    <%= link_to topic.user.username, user_url(topic.user) %>
-                  </b>
-                  <br/>
-                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
-                </span>
-              </td>
-
-              <td
-                style="vertical-align:center; text-align:center; width:5%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
-                  <%= topic.comments_count %>
-                </span>
-              </td>
-
-              <td
-                style="vertical-align:center; text-align:center; width:5%"
-                class="nforumview2"
-              >
-                <span class="smalltext">0</span>
-              </td>
-
-              <td
-                style="vertical-align:top; text-align:center; width:20%"
-                class="nforumview2"
-              >
-                <span class="smalltext">
+            <td
+              style="vertical-align:top; text-align:center; width:20%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <b>
                   <%= link_to topic.user.username, user_url(topic.user) %>
-                  <br/>
-                  <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
-                </span>
-              </td>
-            </tr>
-          <% end %>
-        <% else %>
-          <p><%= t("there_are_no_topics_in_this_forum_yet") %></p>
+                </b>
+                <br/>
+                <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+              </span>
+            </td>
+
+            <td
+              style="vertical-align:center; text-align:center; width:5%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <%= topic.comments_count %>
+              </span>
+            </td>
+
+            <td
+              style="vertical-align:center; text-align:center; width:5%"
+              class="nforumview2"
+            >
+              <span class="smalltext">0</span>
+            </td>
+
+            <td
+              style="vertical-align:top; text-align:center; width:20%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <%= link_to topic.user.username, user_url(topic.user) %>
+                <br/>
+                <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+              </span>
+            </td>
+          </tr>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+
+      <tr>
+        <td class="forumheader">&nbsp;</td>
+        <td colspan="6" class="forumheader">
+          <span class="mediumtext">
+            <b><%= t("forum_threads") %></b>
+          </span>
+        </td>
+      </tr>
+
+      <% if @topics.where(sticky: false).or(@topics.where(announcement: false)).any? %>
+        <% @topics.where(sticky: false).and(@topics.where(announcement: false)).each do |topic| %>
+          <tr>
+            <td
+              style="vertical-align:middle; text-align:center; width:3%"
+              class="nforumview1"
+            >
+              <%= image_tag("nonew_popular.png") %>
+            </td>
+
+            <td
+              style="vertical-align:middle; text-align:left; width:47%"
+              class="nforumview1"
+            >
+              <table style="width:100%">
+                <tbody>
+                  <tr>
+                    <td style="width:90%">
+                      <span class="mediumtext">
+                        <b>
+                          <%= link_to topic.title, [@forum, topic] %>
+                        </b>
+                      </span>
+                      <span class="smalltext"></span>
+                    </td>
+                    <td style="width:10%; white-space:nowrap;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+            <td
+              style="vertical-align:top; text-align:center; width:20%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <b>
+                  <%= link_to topic.user.username, user_url(topic.user) %>
+                </b>
+                <br/>
+                <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+              </span>
+            </td>
+
+            <td
+              style="vertical-align:center; text-align:center; width:5%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <%= topic.comments_count %>
+              </span>
+            </td>
+
+            <td
+              style="vertical-align:center; text-align:center; width:5%"
+              class="nforumview2"
+            >
+              <span class="smalltext">0</span>
+            </td>
+
+            <td
+              style="vertical-align:top; text-align:center; width:20%"
+              class="nforumview2"
+            >
+              <span class="smalltext">
+                <%= link_to topic.user.username, user_url(topic.user) %>
+                <br/>
+                <%= topic.created_at.strftime("%a %b %d %Y, %I:%M%p") %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <p><%= t("there_are_no_topics_in_this_forum_yet") %></p>
+      <% end %>
+    </tbody>
+  </table>
 
   <table style="width:100%">
     <tbody>
@@ -396,4 +385,5 @@
   <div class="nforumdisclaimer" style="text-align:center"><%= t("powered_by") %>
     <b><%= t("coffee") %></b>
   </div>
-</div>
+
+<% end %>

@@ -780,3 +780,24 @@ tfoot .category-footer {
 .alert .alert-link {
   font-weight: 700;
 }
+
+.category-table-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: red;
+}
+
+.category-table-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.category-heading-text {
+  width: fit-content;
+}

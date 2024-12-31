@@ -1,54 +1,54 @@
 <!-- Page title -->
 <% content_for :title, "Register" %>
 
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>
-        <%= t("register") %>
-      </span>
+<%= render(CardComponent.new(title: t("register"))) do %>
+    <div>
+      <div id="signup-custom-text" class="alert alert-block alert-warning"><b>Stop!</b> If you skim past this part, you
+        won't be able to participate. 4hv.org is a community where rules are important. If you try to register and post
+        without reading the rules first, there is a good chance you will be in trouble from the start. I cannot
+        emphasize this enough:<br><br>Please enter your details below. A verification email will be sent to the email
+        address you enter here so it must be valid. If you do not wish to display your email address on this site,
+        please tick the 'hide email address' box.
+
+        There will be special instructions on the next page that you must follow in order to activate your account. If
+        you don't follow these instructions, your account won't be activated, and you won't be able to sign up again
+        with the same email address.
+
+        Again, for clarity's sake:
+        <%= image_tag("badtime.jpg", alt: "Badtime" , title: "Badtime" , class: "img-rounded rounded bbcode bbcode-img"
+          ) %>
+      </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'new_registration' })
+        do |f| %>
+        <%= render "devise/shared/error_messages" , resource: resource %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :username %><br />
+              <%= f.text_field :username, autofocus: true %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %>
+                    <%= t("characters_minimum") %>)</em>
+                <% end %><br />
+                  <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit t("devise.sign_up") %>
+          </div>
+          <% end %>
     </div>
-  </div>
-  <div>
-    <div id="signup-custom-text" class="alert alert-block alert-warning"><b>Stop!</b> If you skim past this part, you won't be able to participate. 4hv.org is a community where rules are important. If you try to register and post without reading the rules first, there is a good chance you will be in trouble from the start. I cannot emphasize this enough:<br><br>Please enter your details below. A verification email will be sent to the email address you enter here so it must be valid. If you do not wish to display your email address on this site, please tick the 'hide email address' box.
-
-    There will be special instructions on the next page that you must follow in order to activate your account. If you don't follow these instructions, your account won't be activated, and you won't be able to sign up again with the same email address.
-      
-    Again, for clarity's sake:
-      <%= image_tag("badtime.jpg", alt: "Badtime", title: "Badtime", class: "img-rounded rounded bbcode bbcode-img") %>
-    </div>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'new_registration' }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :username %><br/>
-        <%= f.text_field :username, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>
-            <%= t("characters_minimum") %>)</em>
-        <% end %><br/>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit t("devise.sign_up") %>
-      </div>
-    <% end %>
-    </div>
-  </div>
-</div>
+<% end %>

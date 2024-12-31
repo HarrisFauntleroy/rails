@@ -1,33 +1,18 @@
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>Registration Backlog Processed</span>
-    </div>
-  </div>
-  <div class="card-body">
-    <p>Just an update to let everyone know that the existing backlog of
-      registrations has been processed. A handful of older registrations which
-      had been caught by an errant spam filter have also been processed.
-      Apologies for any delays.
-      <br>
-      <br>
-      For everyone's convenience, I've added some contact information to the
-      menu on the left side of the site. Please don't hesitate to use it if
-      you're experiencing any difficulty signing in or getting registered.</p>
-  </div>
-</div>
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>Site Back Up!</span>
-    </div>
-  </div>
-  <div class="card-body">
-    <p>4hv.org is back up and running, after several hours of downtime due to a
-      hardware failure. Apologies for the inconvenience. The problem now
-      appears to be fully resolved, so there's no expectation of further
-      downtime in the near future. Carry on!</p>
-  </div>
-</div>
+<%= render(CardComponent.new(title: "Registration Backlog Processed")) do %>
+  <p>Just an update to let everyone know that the existing backlog of
+    registrations has been processed. A handful of older registrations which
+    had been caught by an errant spam filter have also been processed.
+    Apologies for any delays.
+    <br>
+    <br>
+    For everyone's convenience, I've added some contact information to the menu
+    on the left side of the site. Please don't hesitate to use it if you're
+    experiencing any difficulty signing in or getting registered.</p>
+<% end %>
+
+<%= render(CardComponent.new(title: "Site Back Up!")) do %>
+  <p>4hv.org is back up and running, after several hours of downtime due to a
+    hardware failure. Apologies for the inconvenience. The problem now appears
+    to be fully resolved, so there's no expectation of further downtime in the
+    near future. Carry on!</p>
+<% end %>

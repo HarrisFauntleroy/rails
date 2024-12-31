@@ -1,222 +1,212 @@
 <!-- Page title -->
 <% content_for :title, "#{@topic.title} / #{@topic.forum.name} / Forums" %>
 
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span>
-        <%= t("forums") %>
-      </span>
-    </div>
-  </div>
-  <div class="card-body">
-    <td class="bodymain">
-      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-        <tbody>
-          <%= render(BreadcrumbsComponent.new(items: @breadcrumbs)) %>
-          <tr>
-            <td class="nforumcaption2" colspan="2">
-              <table cellspacing="0" cellpadding="0" style="width:100%">
-                <tbody>
-                  <tr>
-                    <td>&lt;&lt;
-                      <a href=""><%= t("previous_thread") %></a>
-                      |
-                      <a href=""><%= t("next_thread") %></a>
-                      &gt;&gt;
-                    </td>
-                    <td style="text-align:right">&nbsp;&nbsp;</td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <% if params[:page].to_i <= 1 %>
-        <%= render partial: "topics/topic", locals: { topic: @topic } %>
-      <% end %>
-      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-        <tbody>
-          <tr>
-            <td style="width:20%; text-align:center" class="nforumcaption2">
-              <%= t("author") %>
-            </td>
-            <td style="width:80%; text-align:center" class="nforumcaption2">
-              <!--
-              <%= t("comment") %>
-              -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<%= render(CardComponent.new(title: t("forums"))) do %>
+  <td class="bodymain">
+    <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+      <tbody>
+        <%= render(BreadcrumbsComponent.new(items: @breadcrumbs)) %>
+        <tr>
+          <td class="nforumcaption2" colspan="2">
+            <table cellspacing="0" cellpadding="0" style="width:100%">
+              <tbody>
+                <tr>
+                  <td>&lt;&lt;
+                    <a href=""><%= t("previous_thread") %></a>
+                    |
+                    <a href=""><%= t("next_thread") %></a>
+                    &gt;&gt;
+                  </td>
+                  <td style="text-align:right">&nbsp;&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <% if params[:page].to_i <= 1 %>
+      <%= render partial: "topics/topic", locals: { topic: @topic } %>
+    <% end %>
+    <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="width:20%; text-align:center" class="nforumcaption2">
+            <%= t("author") %>
+          </td>
+          <td style="width:80%; text-align:center" class="nforumcaption2">
+            <!--
+            <%= t("comment") %>
+            -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="spacer">
-        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-          <tbody>
-            <% if params[:page].to_i <= 1 %>
-              <tr>
-                <td class="nforumcaption3" style="vertical-align:middle; width:20%;">
-                  <a href="../../user.php?id.1225"><b>
-                      <%= link_to @topic.user.username, user_url(@topic.user) %>
-                    </b></a>
-                </td>
-                <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
-                  <table cellspacing="0" cellpadding="0" style="width:100%">
-                    <tbody>
-                      <tr>
-                        <td class="smallblacktext">
-                          <a id="comment_66240" href="">
-                            <%= image_tag("post.png") %>
-                          </a>
-                          <%= @topic.created_at.strftime("%d %b %Y at %I:%M %p") %>
-                        </td>
-                        <td style="text-align:right">
-                          <a href="/print.php?plugin:forum.66240">
-                            <%= image_tag("printer.png") %>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="nforumthread" style="vertical-align:top">
+    <div class="spacer">
+      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+        <tbody>
+          <% if params[:page].to_i <= 1 %>
+            <tr>
+              <td class="nforumcaption3" style="vertical-align:middle; width:20%;">
+                <a href="../../user.php?id.1225"><b>
+                    <%= link_to @topic.user.username, user_url(@topic.user) %>
+                  </b></a>
+              </td>
+              <td class="nforumcaption3" style="vertical-align:middle; width:80%;">
+                <table cellspacing="0" cellpadding="0" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <td class="smallblacktext">
+                        <a id="comment_66240" href="">
+                          <%= image_tag("post.png") %>
+                        </a>
+                        <%= @topic.created_at.strftime("%d %b %Y at %I:%M %p") %>
+                      </td>
+                      <td style="text-align:right">
+                        <a href="/print.php?plugin:forum.66240">
+                          <%= image_tag("printer.png") %>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="nforumthread" style="vertical-align:top">
+                <div class="spacer">
+                  <%= image_tag("blank_avatar.jpg") %>
+                </div><br><span class="smalltext">
                   <div class="spacer">
-                    <%= image_tag("blank_avatar.jpg") %>
-                  </div><br><span class="smalltext">
-                    <div class="spacer">
-                      <%= image_tag("lev3.png") %>
-                    </div>
-                    <span class="smalltext">
-                      <%= t("registered_member", number: @topic.user.id) %>
-                    </span>
-                    <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
+                    <%= image_tag("lev3.png") %>
+                  </div>
+                  <span class="smalltext">
+                    <%= t("registered_member", number: @topic.user.id) %>
                   </span>
-                </td>
-                <td class="nforumthread" style="vertical-align:top">
-                  <%= @topic.content %><br><br><br><br><br><br>
-                  <% if @topic.user&.signature %>
-                    <hr style="width:15%; text-align:left">
-                    <span class="smalltext">
-                      <%= @topic.user.signature %>
-                    </span>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
-                    nil,
-                    id: "back-to-top",
-                    onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-                  </span></td>
-                <td class="nforumthread2" style="vertical-align:top">
-                  <table cellspacing="0" cellpadding="0" style="width:100%">
-                    <tbody>
-                      <tr>
-                        <td style="text-align:right">
-                          <div class="btn-group">
-                            <% if policy(@topic).edit? %>
-                              <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
-                            <% end %>
-                            <% if policy(@topic).destroy? %>
-                              <%= button_to t("delete"),
-                              [@forum, @topic],
-                              class: "btn",
-                              method: :delete,
-                              data: {
-                                confirm: t("are_you_sure"),
-                                turbo_confirm: t("are_you_sure"),
-                              } %>
-                            <% end %>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <% if @topic.comments.any? %>
-        <div class="comments">
-          <% @comments.each do |comment| %>
-            <%= render comment %>
+                  <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
+                </span>
+              </td>
+              <td class="nforumthread" style="vertical-align:top">
+                <%= @topic.content %><br><br><br><br><br><br>
+                <% if @topic.user&.signature %>
+                  <hr style="width:15%; text-align:left">
+                  <span class="smalltext">
+                    <%= @topic.user.signature %>
+                  </span>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="nforumthread2"><span class="smallblacktext"><%= link_to t("back_to_top"),
+                  nil,
+                  id: "back-to-top",
+                  onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                </span></td>
+              <td class="nforumthread2" style="vertical-align:top">
+                <table cellspacing="0" cellpadding="0" style="width:100%">
+                  <tbody>
+                    <tr>
+                      <td style="text-align:right">
+                        <div class="btn-group">
+                          <% if policy(@topic).edit? %>
+                            <%= link_to t("edit_topic"), edit_forum_topic_path(@forum, @topic), class: "btn" %>
+                          <% end %>
+                          <% if policy(@topic).destroy? %>
+                            <%= button_to t("delete"),
+                            [@forum, @topic],
+                            class: "btn",
+                            method: :delete,
+                            data: {
+                              confirm: t("are_you_sure"),
+                              turbo_confirm: t("are_you_sure"),
+                            } %>
+                          <% end %>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
           <% end %>
-        </div>
-      <% else %>
-        <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
-      <% end %>
-      <% if policy(@topic).create_comment? %>
-        <%= render "comments/form", comment: @topic.comments.build %>
-      <% end %>
-      <div class="spacer">
-        <div class="forumheader">
-          <%= t("go_to_page") %>&nbsp;
-          <div class="pagination" style="display: inline-block;">
-            <%= paginate @comments %>
-          </div>
-        </div>
-        <br>
-        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-          <tbody>
-            <tr>
-              <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
-                <b><%= t("moderators") %>:
-                  <%= @users_presenter.moderators_list %></b><br>
-                <form method="comment" action="">
-                  <p><%= t("jump") %>:
-                    <select name="forumjump" class="tbox">
-                      <option value="2">General Chatting</option>
-                      <option value="8">Sale and Trade</option>
-                      <option value="9">General Science and Electronics</option>
-                      <option value="10">Electromagnetic Radiation</option>
-                      <option value="11">Electromagnetic Projectile Accelerators</option>
-                      <option value="12">High Voltage</option>
-                      <option value="13">Tesla Coils</option>
-                      <option value="14">Chemistry</option>
-                      <option value="15">Computer Science</option>
-                      <option value="16">Projects</option>
-                      <option value="20">Archive Discussion</option>
-                      <option value="19">Suggestion Box</option>
-                      <option value="21">Attachments</option>
-                      <option value="23">HvWiki Discussion</option>
-                    </select>
-                    <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to t("back_to_top"),
-                    nil,
-                    id: "back-to-top",
-                    onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
-                  </p>
-                </form>
-              </td>
-              <td
-                style="width:50%; text-align:right; vertical-align:top"
-                class="nforumthread"
-              >
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        </tbody>
+      </table>
+    </div>
+    <% if @topic.comments.any? %>
+      <div class="comments">
+        <% @comments.each do |comment| %>
+          <%= render comment %>
+        <% end %>
       </div>
+    <% else %>
+      <p><%= t("there_are_no_comments_in_this_topic_yet") %></p>
+    <% end %>
+    <% if policy(@topic).create_comment? %>
+      <%= render "comments/form", comment: @topic.comments.build %>
+    <% end %>
+    <div class="spacer">
+      <div class="forumheader">
+        <%= t("go_to_page") %>&nbsp;
+        <div class="pagination" style="display: inline-block;">
+          <%= paginate @comments %>
+        </div>
+      </div>
+      <br>
+      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="width:50%; text-align:left; vertical-align:top" class="nforumthread">
+              <b><%= t("moderators") %>:
+                <%= @users_presenter.moderators_list %></b><br>
+              <form method="comment" action="">
+                <p><%= t("jump") %>:
+                  <select name="forumjump" class="tbox">
+                    <option value="2">General Chatting</option>
+                    <option value="8">Sale and Trade</option>
+                    <option value="9">General Science and Electronics</option>
+                    <option value="10">Electromagnetic Radiation</option>
+                    <option value="11">Electromagnetic Projectile Accelerators</option>
+                    <option value="12">High Voltage</option>
+                    <option value="13">Tesla Coils</option>
+                    <option value="14">Chemistry</option>
+                    <option value="15">Computer Science</option>
+                    <option value="16">Projects</option>
+                    <option value="20">Archive Discussion</option>
+                    <option value="19">Suggestion Box</option>
+                    <option value="21">Attachments</option>
+                    <option value="23">HvWiki Discussion</option>
+                  </select>
+                  <input class="button" type="submit" name="fjsubmit" value="Go">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to t("back_to_top"),
+                  nil,
+                  id: "back-to-top",
+                  onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" %>
+                </p>
+              </form>
+            </td>
+            <td
+              style="width:50%; text-align:right; vertical-align:top"
+              class="nforumthread"
+            >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="spacer">
-        <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
-          <tbody>
-            <tr>
-              <td style="text-align:center" class="nforumthread2">
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="nforumdisclaimer" style="text-align:center"><%= t("powered_by") %>
-          <b><%= t("coffee") %></b>
-        </div>
+    <div class="spacer">
+      <table style="width:100%" class="nforumholder" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="text-align:center" class="nforumthread2">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="nforumdisclaimer" style="text-align:center"><%= t("powered_by") %>
+        <b><%= t("coffee") %></b>
       </div>
-    </td>
-  </div>
-</div>
+    </div>
+  </td>
+<% end %>

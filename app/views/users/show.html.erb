@@ -1,50 +1,42 @@
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span><%= t("users") %></span>
-    </div>
-  </div>
-  <div class="card-body">
-    <h1><%= @user.username %></h1>
+<%= render(CardComponent.new(title: t("users"))) do %>
+  <h1><%= @user.username %></h1>
 
-    <br/>
-    <h2><%= t("recent_activity") %></h2>
+  <br/>
+  <h2><%= t("recent_activity") %></h2>
 
-    <% if @recent_topics_opened.any? || @recent_comments.any? %>
-      <% if @recent_topics_opened.any? %>
-        <h3><%= t("threads_opened") %>
-          (<%= @user.topics.count %>)</h3>
-        <ul>
-          <% @recent_topics_opened.each do |topic| %>
-            <li>
-              <%= link_to topic.title, forum_topic_path(topic.forum, topic) %>
-              <small class="timestamp">
-                (<%= topic.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-
-      <% if @recent_comments.any? %>
-        <h3><%= t("recent_comments") %>
-          (<%= @user.comments.count %>)</h3>
-        <ul>
-          <% @recent_comments.each do |comment| %>
-            <li>
-              <%= link_to truncate(comment.content, length: 50),
-              topic_comment_path(comment.topic, comment) %>
-              (in
-              <%= link_to comment.topic.title,
-              forum_topic_path(comment.topic.forum, comment.topic) %>)
-              <small class="timestamp">
-                (<%= comment.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    <% else %>
-      <p class="text-muted"><%= t("no_recent_activity_to_display") %>.</p>
+  <% if @recent_topics_opened.any? || @recent_comments.any? %>
+    <% if @recent_topics_opened.any? %>
+      <h3><%= t("threads_opened") %>
+        (<%= @user.topics.count %>)</h3>
+      <ul>
+        <% @recent_topics_opened.each do |topic| %>
+          <li>
+            <%= link_to topic.title, forum_topic_path(topic.forum, topic) %>
+            <small class="timestamp">
+              (<%= topic.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  </div>
-</div>
+
+    <% if @recent_comments.any? %>
+      <h3><%= t("recent_comments") %>
+        (<%= @user.comments.count %>)</h3>
+      <ul>
+        <% @recent_comments.each do |comment| %>
+          <li>
+            <%= link_to truncate(comment.content, length: 50),
+            topic_comment_path(comment.topic, comment) %>
+            (in
+            <%= link_to comment.topic.title,
+            forum_topic_path(comment.topic.forum, comment.topic) %>)
+            <small class="timestamp">
+              (<%= comment.created_at.strftime("%d %b %Y at %I:%M %p") %>)</small>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% else %>
+    <p class="text-muted"><%= t("no_recent_activity_to_display") %>.</p>
+  <% end %>
+<% end %>

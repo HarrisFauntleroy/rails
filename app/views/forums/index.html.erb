@@ -1,58 +1,54 @@
 <!-- Page title -->
 <% content_for :title, "Forums" %>
 
-<div class="custom-card">
-  <div class="card-header">
-    <div class="header-content">
-      <%= image_tag("bullet.png") %>
-      <span><%= t("forums") %></span>
-    </div>
-  </div>
-  <div class="card-body">
-    <% @categories.each do |category| %>
-      <table class="nforumholder">
-        <tbody>
-          <tr>
-            <td colspan="6" class="nforumcaption">
+<%= render(CardComponent.new(title: t("forums"))) do %>
+  <% @categories.each do |category| %>
+    <table class="nforumholder">
+      <tbody class="category-table-body">
+        <tr class="category-table-row">
+          <td colspan="6" class="nforumcaption">
+            <span class="category-heading-text">
               <%= category.name %>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" style="width:60%; text-align:center" class="nforumcaption2">Forums</td>
-            <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("topics") %></td>
-            <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
-            <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("last_comment") %></td>
-            <% if current_user&.admin? %>
-              <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
-            <% end %>
-          </tr>
-          <% category.forums.each do |forum| %>
-            <%= render(ForumComponent.new(forum: forum)) %>
+            </span>
+
+            <div class="btn-group">
+              <% if policy(category).destroy? %>
+                <%= button_to t("delete"),
+                category,
+                class: "btn",
+                id: "delete_category_button",
+                method: :delete,
+                data: {
+                  turbo_confirm: t("are_you_sure"),
+                } %>
+              <% end %>
+              <% if policy(category).edit? %>
+                <%= link_to t("edit"),
+                edit_category_path(category),
+                class: "btn",
+                id: "edit_category_link" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="width:60%; text-align:center" class="nforumcaption2">Forums</td>
+          <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("topics") %></td>
+          <td style="width:10%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
+          <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("last_comment") %></td>
+          <% if current_user&.admin? %>
+            <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("actions") %></td>
           <% end %>
-        </tbody>
-        <tfoot class="category-footer">
-          <div class="btn-group">
-            <% if policy(category).destroy? %>
-              <%= button_to t("delete"),
-              category,
-              class: "btn",
-              id: "delete_category_button",
-              method: :delete,
-              data: {
-                turbo_confirm: t("are_you_sure"),
-              } %>
-            <% end %>
-            <% if policy(category).edit? %>
-              <%= link_to t("edit"),
-              edit_category_path(category),
-              class: "btn",
-              id: "edit_category_link" %>
-            <% end %>
-          </div>
-        </tfoot>
-      </table>
-    <% end %>
-  </div>
+        </tr>
+        <% category.forums.each do |forum| %>
+          <%= render(ForumComponent.new(forum: forum)) %>
+        <% end %>
+      </tbody>
+      <tfoot class="category-footer">
+        <!-- TODO: Remove? -->
+      </tfoot>
+    </table>
+  <% end %>
   <div class="btn-group">
     <% if current_user&.admin? %>
       <%= link_to t("new_category"),
@@ -62,4 +58,4 @@
       <%= link_to t("new_forum"), new_forum_path, class: "btn" %>
     <% end %>
   </div>
-</div>
+<% end %>

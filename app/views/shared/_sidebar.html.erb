@@ -1,169 +1,122 @@
 <aside class="sidebar">
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("main_menu") %></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <ul>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= link_to t("home"), root_path, id: "home_link" %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= link_to t("forum"), forums_path, id: "forums_link" %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= link_to t("members"), users_path, id: "members_link" %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= t("member_map") %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= t("hv_wiki") %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= t("chat_room") %>
-        </li>
-        <li>
-          <%= image_tag("bullet2.gif") %>
-          <%= link_to t("site_rules"), site_rules_path, id: "site_rules_link" %>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <%= render(CardComponent.new(title: t("main_menu"))) do %>
+    <ul>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= link_to t("home"), root_path, id: "home_link" %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= link_to t("forum"), forums_path, id: "forums_link" %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= link_to t("members"), users_path, id: "members_link" %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= t("member_map") %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= t("hv_wiki") %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= t("chat_room") %>
+      </li>
+      <li>
+        <%= image_tag("bullet2.gif") %>
+        <%= link_to t("site_rules"), site_rules_path, id: "site_rules_link" %>
+      </li>
+    </ul>
+  <% end %>
 
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("welcome") %></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <div style="text-align: center">
-        <% if user_signed_in? %>
-          <div style="margin-bottom: 4px;">
-            <%= t("welcome") %>
-            <%= link_to current_user.username, current_user %>!
-          </div>
-          <div>
-            <% if current_user&.admin? %>
-              <div class="smalltext"><%= t("admin") %></div>
-              <%= image_tag("English_main_admin.png") %>
-            <% elsif current_user&.moderator? %>
-              <div class="smalltext"><%= t("moderator") %></div>
-              <%= image_tag("English_moderator.png") %>
-            <% else %>
-              <div class="smalltext"><%= t("user") %></div>
-            <% end %>
-            <div class="smalltext">
-              <%= t("registered_member", number: current_user.id) %>
-            </div>
-            <%= button_to t("devise.sign_out"),
-            destroy_user_session_path,
-            method: :delete,
-            class: "link-button" %>
-          </div>
-        <% else %>
-          <%= render "devise/sessions/new" %>
-          <div>
-            [
-            <%= link_to "Sign up", new_user_registration_path %>
-            ]
-          </div>
-          <div>
-            [
-            <%= link_to "Forgot password?", new_user_password_path %>
-            ]
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("online") %></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <ol class="online-stats">
-        <li>
-          <%= t("guests") %>:
-          <%= @online_guests_count %>
-        </li>
-        <li>
-          <%= t("members") %>:
-          <%= @online_members_count %>
-        </li>
-        <li>
-          <%= t("newest_member") %>:
-          <%= @newest_member&.username %>
-        </li>
-        <li>
-          <%= t("most_ever_online") %>:
-          <%= @most_ever_online %>
-        </li>
-      </ol>
-    </div>
-  </div>
-
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("members_birthdays") %>:</span>
-      </div>
-    </div>
-    <div class="card-body">
-      <td class="bodymain">
-        <% if User.todays_birthdays.any? %>
-          One birthday today, congrats!<br>
-          <% User.todays_birthdays.each do |user| %>
-            <%= link_to "#{user.username} (#{age(user)})", user_path(user) %><br>
+  <%= render(CardComponent.new(title: t("welcome"))) do %>
+    <div style="text-align: center">
+      <% if user_signed_in? %>
+        <div style="margin-bottom: 4px;">
+          <%= t("welcome") %>
+          <%= link_to current_user.username, current_user %>!
+        </div>
+        <div>
+          <% if current_user&.admin? %>
+            <div class="smalltext"><%= t("admin") %></div>
+            <%= image_tag("English_main_admin.png") %>
+          <% elsif current_user&.moderator? %>
+            <div class="smalltext"><%= t("moderator") %></div>
+            <%= image_tag("English_moderator.png") %>
+          <% else %>
+            <div class="smalltext"><%= t("user") %></div>
           <% end %>
-        <% end %>
-        <%= t("next_birthdays") %>
-        <% User.upcoming_birthdays.each do |user| %>
-          <%= user.date_of_birth.to_char("MM/DD") %>
+          <div class="smalltext">
+            <%= t("registered_member", number: current_user.id) %>
+          </div>
+          <%= button_to t("devise.sign_out"),
+          destroy_user_session_path,
+          method: :delete,
+          class: "link-button" %>
+        </div>
+      <% else %>
+        <%= render "devise/sessions/new" %>
+        <div>
+          [
+          <%= link_to "Sign up", new_user_registration_path %>
+          ]
+        </div>
+        <div>
+          [
+          <%= link_to "Forgot password?", new_user_password_path %>
+          ]
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render(CardComponent.new(title: t("online"))) do %>
+    <ol class="online-stats">
+      <li>
+        <%= t("guests") %>:
+        <%= @online_guests_count %>
+      </li>
+      <li>
+        <%= t("members") %>:
+        <%= @online_members_count %>
+      </li>
+      <li>
+        <%= t("newest_member") %>:
+        <%= @newest_member&.username %>
+      </li>
+      <li>
+        <%= t("most_ever_online") %>:
+        <%= @most_ever_online %>
+      </li>
+    </ol>
+  <% end %>
+
+  <%= render(CardComponent.new(title: t("members_birthdays:"))) do %>
+    <td class="bodymain">
+      <% if User.todays_birthdays.any? %>
+        One birthday today, congrats!<br>
+        <% User.todays_birthdays.each do |user| %>
           <%= link_to "#{user.username} (#{age(user)})", user_path(user) %><br>
         <% end %>
-      </td>
-    </div>
-  </div>
+      <% end %>
+      <%= t("next_birthdays") %>
+      <% User.upcoming_birthdays.each do |user| %>
+        <%= user.date_of_birth.to_char("MM/DD") %>
+        <%= link_to "#{user.username} (#{age(user)})", user_path(user) %><br>
+      <% end %>
+    </td>
+  <% end %>
 
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("contact") %></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <%= t("contact_sidebar_text") %>
-    </div>
-  </div>
+  <%= render(CardComponent.new(title: t("contact"))) do %>
+    <%= t("contact_sidebar_text") %>
+  <% end %>
 
-  <div class="custom-card">
-    <div class="card-header">
-      <div class="header-content">
-        <%= image_tag("bullet.png") %>
-        <span><%= t("support_4hv") %></span>
-      </div>
-    </div>
-    <div class="card-body">
-      <%= t("donate") %>
-      <br/>
-      <%= image_tag("paypal.gif") %>
-    </div>
-  </div>
+  <%= render(CardComponent.new(title: t("support_4hv"))) do %>
+    <%= t("donate") %>
+    <br/>
+    <%= image_tag("paypal.gif") %>
+  <% end %>
 </aside>
