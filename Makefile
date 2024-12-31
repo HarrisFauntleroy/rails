@@ -19,7 +19,7 @@ setup-env:
 # Development Server
 dev:
 	@echo "Starting development server (Procfile.dev)..."
-	rails s
+	bin/dev
 
 # -------- Development Console Access -------- #
 .PHONY: rails-c db-console

@@ -20,6 +20,9 @@ gem "sprockets-rails"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
+gem "tailwindcss-rails"
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
 # -------- Hotwire Stack --------
