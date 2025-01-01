@@ -16,7 +16,10 @@
     <%= render "shared/site_header" %>
     <main class="content-area">
       <div class="container">
-        <%= render "shared/sidebar" %>
+        <%= render SidebarComponent.new(
+          current_user: current_user,
+          online_stats: @online_stats,
+        ) %>
         <%= render "shared/site_content" %>
       </div>
     </main>

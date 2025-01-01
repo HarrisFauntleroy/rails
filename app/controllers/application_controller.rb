@@ -50,10 +50,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_online_stats
-    @online_guests_count = 0
-    @online_members_count = User.online.count
-    @newest_member = User.order(created_at: :desc).first
-    @most_ever_online = 0
+    @online_stats = {
+      online_guests_count: @online_guests_count,
+      online_members_count: @online_members_count,
+      newest_member: @newest_member,
+      most_ever_online: @most_ever_online
+    }
   end
 
   # def set_birthday_stats
