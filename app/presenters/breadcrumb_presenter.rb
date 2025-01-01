@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ForumPresenter
+class BreadcrumbPresenter
   def initialize(forum, view_context)
     @forum = forum
     @view_context = view_context

@@ -6,13 +6,13 @@ class ForumsController < ApplicationController
 
   def index
     @categories = Category.all.includes(forums: { topics: :comments })
-    @presenter = ForumPresenter.new(@forum, view_context)
+    @presenter = BreadcrumbPresenter.new(@forum, view_context)
     @breadcrumbs = @presenter.breadcrumbs
   end
 
   def show
     @pagy, @topics = pagy(@forum.topics.includes(:user, :comments), items: 10)
-    @presenter = ForumPresenter.new(@forum, view_context)
+    @presenter = BreadcrumbPresenter.new(@forum, view_context)
     @breadcrumbs = @presenter.breadcrumbs
     @users_presenter = UsersPresenter.new(User.all)
   end
