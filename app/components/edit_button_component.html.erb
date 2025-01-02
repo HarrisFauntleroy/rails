@@ -1,0 +1,6 @@
+<% if @policy.edit? %>
+  <%= link_to t("edit"),
+  edit_polymorphic_path(@record),
+  class: "btn",
+  id: "edit_#{@record.model_name.singular}_link" %>
+<% end %>

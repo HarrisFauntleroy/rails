@@ -1,0 +1,19 @@
+<td class="nforumthread user-card" style="vertical-align:top">
+  <div class="spacer">
+    <%= image_tag("blank_avatar.jpg") %>
+  </div>
+  <br>
+  <span class="smalltext">
+    <div class="spacer">
+      <%= image_tag("lev3.png") %>
+    </div>
+    <span class="smalltext">
+      <%= t("registered_member", number: user.id) %>
+    </span>
+    <br>
+    <%= t("joined") %>:
+    <%= user.created_at.strftime("%a %b %d %Y, %I:%M%p") %><br>
+    Location: TODO<br>
+    Posts: TODO<br>
+  </span>
+</td>

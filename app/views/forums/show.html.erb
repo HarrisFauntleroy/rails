@@ -44,7 +44,7 @@
         <td style="width:20%; text-align:center" class="nforumcaption2"><%= t("starter") %></td>
         <td style="width:5%; text-align:center" class="nforumcaption2"><%= t("replies") %></td>
         <td style="width:5%; text-align:center" class="nforumcaption2">Views</td>
-        <td style="width:20%; text-align:center" class="nforumcaption2">Last Comment</td>
+        <td style="width:20%; text-align:center; width: fit-content; white-space: nowrap;" class="nforumcaption2"><%= t("last_comment") %></td>
       </tr>
 
       <% if @topics.where(sticky: true).or(@topics.where(announcement: true)).any? %>
@@ -363,7 +363,7 @@
             <b><%= t("can") %></b>
             <%= t("start_new_threads_you") %>
             <b><%= t("can") %></b>
-            <%= t("comment_replies_uou") %>
+            <%= t("comment_replies_you") %>
             <b><%= t("can") %></b>
             <%= t("edit_your_comments") %>
             <br/>

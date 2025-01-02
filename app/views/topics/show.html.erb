@@ -75,19 +75,7 @@
               </td>
             </tr>
             <tr>
-              <td class="nforumthread" style="vertical-align:top">
-                <div class="spacer">
-                  <%= image_tag("blank_avatar.jpg") %>
-                </div><br><span class="smalltext">
-                  <div class="spacer">
-                    <%= image_tag("lev3.png") %>
-                  </div>
-                  <span class="smalltext">
-                    <%= t("registered_member", number: @topic.user.id) %>
-                  </span>
-                  <br><%= t("joined") %>: Fri Jan 11 2008, 07:24PM<br>Location: Beaumont, Texas, USA<br>Posts: 1814<br>
-                </span>
-              </td>
+              <%= render(UserCardComponent.new(user: @topic.user)) %>
               <td class="nforumthread" style="vertical-align:top">
                 <%= @topic.content %><br><br><br><br><br><br>
                 <% if @topic.user&.signature %>

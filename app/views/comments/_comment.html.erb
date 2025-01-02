@@ -25,32 +25,7 @@
         </td>
       </tr>
       <tr>
-        <td class="nforumthread" style="vertical-align:top">
-          <div class="spacer">
-            <%= image_tag("blank_avatar.jpg") %>
-          </div>
-          <br>
-          <span class="smalltext">
-            <%= image_tag("lev10.png") %>
-            <div class="spacer">
-              <% if current_user&.admin? %>
-                <%= image_tag("English_main_admin.png") %>
-              <% else %>
-                <%= image_tag("English_moderator.png") %>
-              <% end %>
-            </div>
-            <span class="smalltext">
-              <%= t("registered_member", number: comment.user.id) %>
-            </span>
-            <br>
-            <%= t("joined") %>: Thu Oct 09 2008, 09:04PM
-            <br>
-            <%= t("location") %>: Claremont New Hampshire
-            <br>
-            <%= t("comments") %>: 270
-            <br>
-          </span>
-        </td>
+        <%= render(UserCardComponent.new(user: comment.user)) %>
         <td class="nforumthread" style="vertical-align:top">
           <% if comment.parent_comment %>
             <div class="indent">
@@ -88,26 +63,31 @@
             <tbody>
               <tr>
                 <td style="text-align:right">
+
                   <div class="btn-group">
                     <% if policy(comment).create? %>
-                      <%= link_to t("reply"),
-                      new_topic_comment_path(@topic, parent_comment_id: comment.id),
-                      class: "btn btn" %>
+                      <%= link_to new_topic_comment_path(@topic, parent_comment_id: comment.id),
+                                  class: "btn",
+                                  data: { turbo_frame: "new_comment_#{comment.id}" } do %>
+                        <%= t("comments.actions.reply") %>
+                      <% end %>
                     <% end %>
 
                     <% if policy(comment).edit? %>
-                      <%= link_to t("edit"), edit_topic_comment_path(@topic, comment), class: "btn" %>
+                      <%= link_to edit_topic_comment_path(@topic, comment),
+                                  class: "btn",
+                                  data: { turbo_frame: "comment_#{comment.id}" } do %>
+                        <%= t("comments.actions.edit") %>
+                      <% end %>
                     <% end %>
 
                     <% if policy(comment).destroy? %>
-                      <%= button_to t("delete"),
-                      [@topic, comment],
-                      class: "btn",
-                      method: :delete,
-                      data: {
-                        confirm: t("are_you_sure"),
-                        turbo_confirm: t("are_you_sure"),
-                      } %>
+                      <%= button_to [@topic, comment],
+                                    class: "btn",
+                                    method: :delete,
+                                    form: { data: { turbo_confirm: t("comments.confirmation.delete") } } do %>
+                        <%= t("comments.actions.delete") %>
+                      <% end %>
                     <% end %>
                   </div>
                 </td>

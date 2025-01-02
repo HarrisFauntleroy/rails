@@ -804,3 +804,6 @@ tfoot .category-footer {
   justify-content: left;
   width: 200px;
 }
+.user-card {
+  width: 128px;
+}

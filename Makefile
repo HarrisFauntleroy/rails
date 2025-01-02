@@ -113,7 +113,7 @@ rails_best_practices:
 # Formatting for views
 pretty:
 	@echo "Formatting ERB templates..."
-	bundle exec erb-format app/views/**/*.html.erb --write
+	bundle exec erb-format app/**/*.html.erb --write
 
 # -------- Internationalization and Localization -------- #
 .PHONY: i18n

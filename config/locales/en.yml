@@ -25,15 +25,31 @@ en:
   closed_thread: Closed Thread
   coffee: Coffee
   comment: Comment
-  comment_replies_uou: comment replies - You
-  comments: Comments
+  comment_replies_you: comment replies - You
+  comments:
+    actions:
+      delete: Delete
+      edit: Edit
+      reply: Reply
+    confirmation:
+      delete: Are you sure you want to delete this comment?
+    create:
+      failure: Comment could not be created
+      success: Comment created
+    destroy:
+      failure: Comment could not be deleted
+      success: Comment deleted
+    update:
+      failure: Comment could not be updated
+      success: Comment updated
+  comments_count: "%{count} comments"
   confirm_my_account: Confirm my account
   confirm_new_password: Confirm new password
   contact: Contact
   contact_sidebar_text: 'If you need assistance, please send an email to forum at 4hv dot org. To ensure your email is not marked as spam, please include the phrase "4hv help" in the subject line. You can also find assistance via IRC, at irc.shadowworld.net, room #hvcomm.'
   create_topic: Create Topic
   currently_waiting_confirmation_for: 'Currently waiting confirmation for: '
-  delete: "🗑️"
+  delete: Delete
   devise:
     change_your_password: Change your password
     didnt_receive_confirmation_instructions: Didn"t receive confirmation instructions?
@@ -46,7 +62,7 @@ en:
     sign_out: Sign out
     sign_up: Sign up
   donate: 4hv.org is hosted on a dedicated server. Unfortunately, this server costs and we rely on the help of site members to keep 4hv.org running. Please consider donating. We will place your name on the thanks list and you"ll be helping to keep 4hv.org alive and free for everyone. Members whose names appear in red bold have donated recently. Green bold denotes those who have recently donated to keep the server carbon neutral.
-  edit: "✏️"
+  edit: Edit
   edit_category: Edit Category
   edit_comment: Edit Comment
   edit_forum: Edit Forum
