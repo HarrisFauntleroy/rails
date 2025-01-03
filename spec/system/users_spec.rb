@@ -2,93 +2,124 @@
 
 require 'rails_helper'
 
-describe 'Users', type: :system do
-  let(:user) { create(:user) }
+RSpec.describe 'Users', type: :system do
+  # Shared contexts
+  shared_context 'when user exists' do
+    let(:user) { create(:user) }
+  end
 
-  describe 'signup' do
-    before do
-      visit new_user_registration_path
+  # Helper methods
+  def fill_in_registration_form(email:, password:, username:)
+    within('form#new_registration') do
+      fill_in 'Email', with: email
+      fill_in 'Username', with: username
+      fill_in 'Password', with: password
+      fill_in 'Password confirmation', with: password
+      click_button I18n.t('devise.sign_up')
     end
+  end
 
-    it 'redirects to root path after successful signup' do
-      fill_in_signup_form
+  def fill_in_login_form(email:, password:)
+    within('form#new_session') do
+      fill_in 'Email', with: email
+      fill_in 'Password', with: password
+      click_button I18n.t('devise.sign_in')
+    end
+  end
+
+  def expect_successful_authentication
+    aggregate_failures do
       expect(page).to have_current_path(root_path)
+      expect(page).to have_button(I18n.t('devise.sign_out'))
+      expect(page).not_to have_link(I18n.t('devise.sign_up'))
+      expect(page).not_to have_link(I18n.t('devise.sign_in'))
+    end
+  end
+
+  describe 'Sign up' do
+    before { visit new_user_registration_path }
+
+    context 'with valid credentials' do
+      it 'creates a new user account' do
+        fill_in_registration_form(
+          email: 'newuser@example.com',
+          password: 'Password!1',
+          username: 'newuser'
+        )
+
+        expect_successful_authentication
+        expect(page).to have_text(I18n.t('devise.registrations.signed_up'))
+      end
     end
 
-    it 'displays logout option after successful signup' do
-      fill_in_signup_form
-      expect(page).to have_text('Sign out')
-    end
+    context 'with invalid credentials' do
+      it 'shows validation errors' do
+        fill_in_registration_form(
+          email: 'email@gmail.com',
+          password: 'short',
+          username: ''
+        )
 
-    private
-
-    def fill_in_signup_form
-      within('#new_registration') do
-        fill_in 'user_email', with: 'newuser@example.com'
-        fill_in 'user_username', with: 'newuser'
-        fill_in 'user_password', with: 'Password!1'
-        fill_in 'user_password_confirmation', with: 'Password!1'
-        click_on 'Sign up'
+        aggregate_failures do
+          expect(page).to have_text("Username can't be blank")
+          expect(page).to have_text("Username is too short (minimum is 3 characters)")
+          expect(page).to have_text("Password is too short (minimum is 8 characters)")
+        end
       end
     end
   end
 
-  describe 'login' do
+  describe 'Sign in' do
+    include_context 'when user exists'
+    before { visit new_user_session_path }
+
+    context 'with valid credentials' do
+      it 'signs in the user' do
+        fill_in_login_form(
+          email: user.email,
+          password: user.password
+        )
+
+        expect_successful_authentication
+        expect(page).to have_text(I18n.t('devise.sessions.signed_in'))
+      end
+    end
+
+    context 'with invalid credentials' do
+      it 'shows error message' do
+        fill_in_login_form(
+          email: user.email,
+          password: 'wrong_password'
+        )
+
+        expect(page).to have_text("Invalid Email or password.")
+      end
+    end
+  end
+
+  describe 'Sign out' do
+    include_context 'when user exists'
+
     before do
+      sign_in user
       visit root_path
+      click_button I18n.t('devise.sign_out')
     end
 
-    it 'displays welcome message after successful login' do
-      login_as_user
-      expect(page).to have_text("Welcome #{user.username}!")
-    end
-
-    private
-
-    def login_as_user
-      within('#new_session') do
-        fill_in 'user_email', with: user.email
-        fill_in 'user_password', with: user.password
-        click_on 'Log in'
+    it 'signs out the user' do
+      aggregate_failures do
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_link(I18n.t('devise.sign_up'))
+        expect(page).to have_button(I18n.t('devise.sign_in'))
+        expect(page).not_to have_button(I18n.t('devise.sign_out'))
+        expect(page).to have_text(I18n.t('devise.sessions.signed_out'))
       end
     end
   end
 
-  describe 'logout' do
-    before do
-      visit root_path
-      login_as_user
-    end
-
-    it 'redirects to root path after logout' do
-      click_on 'Sign out'
-      expect(page).to have_current_path(root_path)
-    end
-
-    it 'displays signup option after logout' do
-      click_on 'Sign out'
-      expect(page).to have_text('Sign up')
-    end
-
-    it 'displays login option after logout' do
-      click_on 'Sign out'
-      expect(page).to have_text('Log in')
-    end
-
-    private
-
-    def login_as_user
-      within('#new_session') do
-        fill_in 'user_email', with: user.email
-        fill_in 'user_password', with: user.password
-        click_on 'Log in'
-      end
-    end
-  end
-
-  describe 'password reset' do
-    it 'user resets password' do
-      skip 'Not yet implemented'
+  describe 'Password reset', :skip do
+    it 'allows user to reset password' do
+      pending 'Implement password reset functionality'
     end
   end
 end

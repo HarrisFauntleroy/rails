@@ -7,7 +7,7 @@ describe 'Users', type: :request do
     it 'renders a successful response' do
       get new_user_session_path
       expect(response).to have_http_status(:ok)
-      # expect(response.body).to include('Log in')
+      # expect(response.body).to include('Sign in')
     end
   end
 

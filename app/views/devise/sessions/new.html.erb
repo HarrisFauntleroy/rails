@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'new_session_sidebar' }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'new_session' }) do |f| %>
   <div class="field">
     <%= f.label :email %><br/>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
