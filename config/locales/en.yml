@@ -53,6 +53,8 @@ en:
     change_your_password: Change your password
     didnt_receive_confirmation_instructions: Didn"t receive confirmation instructions?
     didnt_receive_unlock_instructions: Didn"t receive unlock instructions?
+    failure:
+      invalid: Invalid email or password
     forgot_your_password: Forgot your password?
     omniauth_providers:
       sign_in_with: 'Sign in with '
@@ -177,8 +179,3 @@ en:
   you_can_confirm_your_account_email_through_the_link_below: You can confirm your account email through the link below
   your_account_has_been_locked_due_to_an_excessive_number_of_unsuccessful_sign_in_attempts: Your account has been locked due to an excessive number of unsuccessful sign in attempts
   your_password_wont_change_until_you_access_the_link_above_and_create_a_new_one: Your password won"t change until you access the link above and create a new one
-  errors:
-    messages:
-      invalid: is invalid
-      too_short: is too short (minimum is %{count} characters)
-      blank: can't be blank

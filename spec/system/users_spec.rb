@@ -92,7 +92,7 @@ RSpec.describe 'Users', type: :system do
           password: 'wrong_password'
         )
 
-        expect(page).to have_text("Invalid Email or password.")
+        expect(page).to have_text(I18n.t("devise.failure.invalid"))
       end
     end
   end
