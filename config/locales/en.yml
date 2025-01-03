@@ -42,7 +42,6 @@ en:
     update:
       failure: Comment could not be updated
       success: Comment updated
-  comments_count: "%{count} comments"
   confirm_my_account: Confirm my account
   confirm_new_password: Confirm new password
   contact: Contact
@@ -69,9 +68,6 @@ en:
   edit_topic: Edit Topic
   edit_your_comments: edit your comments
   error_404_not_found: Error 404 - Not Found
-  errors:
-    messages:
-      not_saved: There were %{count} errors preventing this %{resource} from being saved
   forum: Forum
   forum_threads: Forum Threads
   forums: Forums
@@ -89,7 +85,6 @@ en:
   jump_to_forum: Jump to forum
   last_comment: Last Comment
   leave_blank_if_you_dont_want_to_change_it: Leave blank if you don"t want to change it
-  location: Location
   main_menu: Main Menu
   member_map: Member Map
   members: Members
@@ -115,10 +110,6 @@ en:
   please_sign_in: Please sign in.
   powered_by: Powered by
   previous_thread: Previous Thread
-  prohibited_this_category_from_being_saved: prohibited this category from being saved
-  prohibited_this_comment_from_being_saved: prohibited this comment from being saved
-  prohibited_this_forum_from_being_saved: prohibited this forum from being saved
-  prohibited_this_topic_from_being_saved: prohibited this topic from being saved
   recent_activity: Recent Activity
   recent_comments: Recent Comments
   record_not_found: Record not found

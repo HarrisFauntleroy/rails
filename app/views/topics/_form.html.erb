@@ -1,15 +1,5 @@
 <%= form_with(model: [@forum, topic], local: true) do |form| %>
-  <% if topic.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(topic.errors.count, "error") %>
-        <%= t("prohibited_this_topic_from_being_saved") %>:</h2>
-      <ul>
-        <% topic.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render(ErrorMessagesComponent.new(resource: topic)) %>
 
   <div class="stack">
     <%= form.label :title %>
