@@ -92,6 +92,7 @@ group :development do
  # Development Tools
  gem "web-console"
  gem "i18n-tasks", "~> 1.0.13"
+ gem "rails_live_reload"
 end
 
 group :test do
