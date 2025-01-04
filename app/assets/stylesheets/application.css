@@ -793,13 +793,37 @@ tfoot .category-footer {
   width: 200px;
 }
 
+/* ---- New stuff below the line ----  */
+
+/* -------- Categories */
+
+/* -------- Forums  */
+
+/* -------- Topics  */
+
+/* -------- Comments  */
+
+/* -------- Users  */
+
+/* User Card, the section to the left of a topic or comment  */
 .user-card {
   width: 128px;
 }
 
+/* --------Misc  */
+
+.title-logo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 4px 0;
+  gap: 4px;
+}
+
+/* Flash Messages */
 .flash {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 8px;
 }
