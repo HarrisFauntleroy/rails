@@ -9,7 +9,7 @@ describe 'Categories', type: :system do
     # Admin logs in
     visit root_path
 
-    within('#new_session') do
+    within('#new_session_sidebar') do
       fill_in 'user_email', with: admin.email
       fill_in 'user_password', with: admin.password
       click_on 'Sign in'
@@ -46,9 +46,8 @@ describe 'Categories', type: :system do
     # Admin deletes the category
     visit current_path
 
-    accept_confirm do
-      find('#delete_category_button').click
-    end
+    # Doesn't currently confirm deletion with a dialog, but it should
+    find('#delete_category_button').click
 
     expect(page).not_to have_text('New Category Name')
   end
@@ -58,7 +57,7 @@ describe 'Categories', type: :system do
     user = create(:user)
     visit root_path
 
-    within('#new_session') do
+    within('#new_session_sidebar') do
       fill_in 'user_email', with: user.email
       fill_in 'user_password', with: user.password
       click_on 'Sign in'

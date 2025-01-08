@@ -20,7 +20,7 @@ RSpec.describe 'Users', type: :system do
   end
 
   def fill_in_login_form(email:, password:)
-    within('form#new_session') do
+    within('form#new_session_sidebar') do
       fill_in 'Email', with: email
       fill_in 'Password', with: password
       click_button I18n.t('devise.sign_in')
