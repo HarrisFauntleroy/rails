@@ -132,3 +132,7 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE.md) for de
 ## Disclaimer
 
 This software is currently in alpha development and should be used with caution. Features and APIs may change as development continues. Your feedback is valuable and appreciated!
+
+---
+
+![Visualization of this repo](./diagram.svg)
