@@ -135,4 +135,6 @@ This software is currently in alpha development and should be used with caution.
 
 ---
 
+![Code Metrics](./metrics.svg)
+
 ![Visualization of this repo](./diagram.svg)
